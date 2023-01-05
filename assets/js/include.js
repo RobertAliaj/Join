@@ -12,7 +12,7 @@ async function includeHTML() {
         if (resp.ok) {
             element.innerHTML = await resp.text();
         } else {
-            element.innerHTML = 'Page not found';
+            element.innerHTML = 'Page not found!';
         }
     }
 }
