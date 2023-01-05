@@ -1,3 +1,56 @@
 .side-container {
     background-color: rgb(44, 54, 70);
+    width: 232px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-container {
+
+}
+
+.side-logo {
+    width: 100px;
+    padding: 66px;
+}
+
+.bottom-container {
+    width: 232px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    width: calc(232px - 55px);
+    height: 46px;
+    display: flex;
+    padding-left: 55px;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.link:hover {
+    background-color: rgb(13, 25, 48);
+}
+
+.link-img {
+    width: 24px;
+    height: 24px;
+    padding-right: 20px;
+}
+
+.legal-notice {
+    margin-bottom: 112px;
+    padding-left: 0px;
+    justify-content: center;
+    width: 232px;
 }
