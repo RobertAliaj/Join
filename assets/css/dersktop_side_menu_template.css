@@ -1,3 +1,5 @@
 body {
     margin: 0;
+.side-container {
+    background-color: rgb(44, 54, 70);
 }
