@@ -1,4 +1,4 @@
-setURL('http://developerakademie.com/smallest_backend_ever');
+setURL('http://gruppe-join-421.developerakademie.net/smallest_backend_ever.zip');
 
 async function init() {
     await downloadFromServer();
