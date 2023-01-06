@@ -5,9 +5,7 @@ body {
 
 .summary-container {
     font-family: 'Inter';
-    position: absolute;
-    top: 0;
-    margin: 10% 10% 0% 25%;
+    Padding: 50px 50px 50px 100px;
 }
 
 .headline {
