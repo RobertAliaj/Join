@@ -1,0 +1,36 @@
+.summary-div {
+    font-family: 'Inter';
+    position: absolute;
+    margin: 171px 53px 153px 355px;
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.headline span:first-of-type {
+
+    width: 315px;
+    height: 73px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 73.2px;
+}
+
+.headline span:last-of-type {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 32.4px;
+}
+
+.vertical-line {
+    width: 0px;
+    height: 59px;
+    border: 3px solid #29ABE2;
+}
