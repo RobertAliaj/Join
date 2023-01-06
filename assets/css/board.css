@@ -1,0 +1,100 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 52%);
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.toDoSection {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.taskDivsParent{
+    width: 20%;
+}
+
+.taskDivsChild {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    font-weight: 700;
+}
+
+.taskDivsChild img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.container h1 {
+    margin-top: 0;
+}
+
+.searchDiv {
+    display: flex;
+    gap: 10px;
+    width: 35%;
+}
+
+input {
+    border-radius: 10px;
+    padding: 10px 21px;
+    background-image: url(/assets/img/search.png);
+    background-repeat: no-repeat;
+    background-position: 96% 47%;
+    background-size: auto;
+    border: 1px solid rgb(0 0 0 / 15%);
+    width: 70%;
+}
+
+button {
+    background-color: rgb(42, 54, 71);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border: 1px solid #2A3647;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #50aadf;
+    border: none;
+}
+
+
+.toDoCards{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.cardTitle{
+    width: 50%;
+    background-color: brown;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2px;
+    font-size: 12px;
+    margin: 5px;
+}
