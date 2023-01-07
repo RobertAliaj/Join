@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 52%);
     box-sizing: border-box;
     padding: 40px;
 }
@@ -14,24 +13,24 @@
     margin-bottom: 15px;
 }
 
-.toDoSection {
+.to-do-section {
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
 }
 
-.taskDivsParent{
+.task-divs-parent {
     width: 20%;
 }
 
-.taskDivsChild {
+.task-divs-child {
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
     font-weight: 700;
 }
 
-.taskDivsChild img {
+.task-divs-child img {
     width: 20px;
     height: 20px;
     object-fit: contain;
@@ -42,7 +41,7 @@
     margin-top: 0;
 }
 
-.searchDiv {
+.search-div {
     display: flex;
     gap: 10px;
     width: 35%;
@@ -59,6 +58,10 @@ input {
     width: 70%;
 }
 
+input:focus {
+    outline: 1px solid rgb(0 0 0 / 5%);
+}
+
 button {
     background-color: rgb(42, 54, 71);
     color: white;
@@ -71,13 +74,13 @@ button {
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background-color: #50aadf;
     border: none;
 }
 
 
-.toDoCards{
+.to-do-cards {
     background-color: white;
     border-radius: 10px;
     padding: 10px;
@@ -85,7 +88,7 @@ button:hover{
     box-sizing: border-box;
 }
 
-.cardTitle{
+.category {
     width: 50%;
     background-color: brown;
     border-radius: 10px;
@@ -97,4 +100,50 @@ button:hover{
     padding: 2px;
     font-size: 12px;
     margin: 5px;
+}
+
+.add-img:hover {
+    cursor: pointer;
+    background-color: rgb(0 0 0 / 20%);
+    filter: hue-rotate(180deg);
+}
+
+.add-img {
+    filter: hue-rotate(180deg);
+}
+
+.to-do-title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.progress-bar{
+    width: 60%;
+    height: 5px;
+    background-color: grey;
+    border-radius: 20px;
+}
+
+.progress-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-info{
+    font-size: 14px;
+    display: flex;
+}
+
+.initials-div{
+    display: flex;
+}
+
+.initials{
+    width: 30px;
+    height: 30px;
+    background-color: chocolate;
+    border: 1px solid white;
+    border-radius: 50px;
+    margin: 0 -5px 0 0 ;
 }

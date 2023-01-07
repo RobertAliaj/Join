@@ -1,0 +1,16 @@
+.overlay-bg{
+    width: calc(100vw - 18%);
+    height: 100vh;
+    background-color: rgb(0 0 0 / 20%);
+    z-index: 5;
+    position: absolute;
+    left: 232px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+.d-none{
+    display: none;
+}
