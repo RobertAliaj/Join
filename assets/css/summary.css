@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    background-color: #f6f7f8;
+}
+
+.summary-container {
+    font-family: 'Inter';
+    position: absolute;
+    top: 0;
+    margin: 10% 10% 0% 25%;
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.headline span:first-of-type {
+
+    width: 315px;
+    height: 73px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 73.2px;
+}
+
+.headline span:last-of-type {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 27px;
+    line-height: 32.4px;
+}
+
+.vertical-line-blue {
+    width: 0px;
+    height: 45px;
+    border: 1.5px solid #29ABE2;
+    border-radius: 10px
+}
+
+.task-menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90%;
+}
+
+.task-menu-container .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.task-menu-container .row > * {
+    min-width: 130px;
+    min-height: 130px;
+    max-width: 100%;
+    max-height: 130px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.upcoming-task {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+}
+
+.urgent-icon {
+    background-color: red;
+    border-radius: 100%;
+    padding: 10px;
+}
+
+.todo-done {
+
+}
+
+.todo-done img {
+
+}
+
+.vertical-line-grey {
+    width: 0px;
+    height: 45px;
+    border: 1px solid#D1D1D1;
+    border-radius: 10px
+}
