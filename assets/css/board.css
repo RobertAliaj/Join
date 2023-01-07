@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 52%);
     box-sizing: border-box;
     padding: 40px;
 }
