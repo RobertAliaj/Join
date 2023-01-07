@@ -8,5 +8,6 @@ body {
 .content-container {
     position: absolute;
     top: 90px;
-    left: 323px;
+    left: 232px;
+    right: 0px;
 }

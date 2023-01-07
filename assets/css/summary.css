@@ -5,21 +5,17 @@ body {
 
 .summary-container {
     font-family: 'Inter';
-    position: absolute;
-    top: 0;
-    margin: 10% 10% 0% 25%;
+    Padding: 50px 50px 50px 120px;
 }
 
 .headline {
     display: flex;
     align-items: center;
     gap: 30px;
+    margin-bottom: 30px;
 }
 
 .headline span:first-of-type {
-
-    width: 315px;
-    height: 73px;
     font-style: normal;
     font-weight: 700;
     font-size: 50px;
@@ -30,22 +26,28 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 200;
-    font-size: 27px;
+    font-size: 20px;
     line-height: 32.4px;
 }
 
 .vertical-line-blue {
     width: 0px;
-    height: 45px;
+    height: 40px;
     border: 1.5px solid #29ABE2;
-    border-radius: 10px
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.summary-content {
+    display: flex;
 }
 
 .task-menu-container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 90%;
+    width: 50%;
+    gap: 20px;
 }
 
 .task-menu-container .row {
@@ -54,42 +56,156 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    gap: 40px;
+
 }
 
-.task-menu-container .row > * {
-    min-width: 130px;
-    min-height: 130px;
-    max-width: 100%;
-    max-height: 130px;
+.task-menu-container .row>* {
+    box-sizing: border-box;
+    height: 130px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     display: flex;
     flex-direction: column;
+    flex: 1 1 0px;
+    padding: 20px;
+    border-radius: 20px;
+    transition: all .2s ease-in-out;
+}
+
+.task-menu-container .row>*:hover {
+    background-color: #293646;
+    color: white;
+    transform: scale(1.1);
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.task b {
+    font-size: 55px;
+    font-weight: 200;
+}
+
+.task span {
+    text-align: center;
+    font-size: 15px;
 }
 
 .upcoming-task {
     display: flex;
     flex-direction: row !important;
     justify-content: space-evenly;
+    align-items: center;
+}
+
+.urgent-container {
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+
+.deadline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    text-align: left;
+}
+
+.deadline-container span {
+    font-size: 12px;
+
+}
+
+.urgent-container div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.urgent-container div b {
+    font-size: 48px;
+    font-weight: 200;
+}
+
+.urgent-container div span {
+    font-size: 12px;
+
 }
 
 .urgent-icon {
-    background-color: red;
+    background-color: #ff3d00;
+    color: white;
     border-radius: 100%;
-    padding: 10px;
+    width: 50px;
+    height: 50px;
+    transform: rotate(180deg);
 }
 
 .todo-done {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 
+.todo-done:hover img {
+    border: 1px solid white;
+}
+
+.todo-done div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-done div b {
+    font-size: 55px;
+    font-weight: 200;
+}
+
+.todo-done div span {
+    text-align: center;
+    font-size: 15px;
 }
 
 .todo-done img {
-
+    background-color: #293646;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
 }
 
 .vertical-line-grey {
     width: 0px;
-    height: 45px;
+    height: 100px;
     border: 1px solid#D1D1D1;
     border-radius: 10px
+}
+
+.greeting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.greeting span {
+    font-size: 40px;
+}
+
+.greeting b {
+    color: #29ABE2;
+    font-size: 55px;
 }
