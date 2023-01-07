@@ -1,0 +1,55 @@
+.contacts-page {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.left-section {
+    width: 35%;
+    background-color: white;
+}
+
+.right-section {
+    width: 65%;
+    position: relative;
+    background-color: #f6f7f8;
+}
+
+.headline {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.headline span:first-of-type {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 73.2px;
+}
+
+.headline span:last-of-type {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 32.4px;
+}
+
+.vertical-line-blue {
+    width: 0px;
+    height: 40px;
+    border: 1.5px solid #29ABE2;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.new-contact-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
