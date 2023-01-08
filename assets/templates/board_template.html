@@ -3,7 +3,7 @@
         <h1>Board</h1>
         <div class="search-div">
             <input type="text" placeholder="Find Task">
-            <button onclick="addTask()">Add task <span>+</span></button>
+            <button onclick="renderToDoDetails()">Add task <span>+</span></button>
         </div>
     </div>
 
@@ -19,32 +19,9 @@
             </div>
 
             <!-- Hier wird nur die Card mit der jeweiligen To do generiert -->
-            <div class="to-do-cards">
-
-                <div class="category">
-                    Design
-                </div>
-
-                <span class="to-do-title">
-                    Heute Putzen und so
-                </span>
-
-                <div class="progress-div">
-                    <div class="progress-bar"></div>
-                    <div><span class="progress-info"> <b>1</b>/ <b>2</b> Done</span></div>
-                </div>
-
-                <div>
-                    <div class="initials-div">
-                        <div class="initials"></div>
-                        <div class="initials"></div>
-                        <div class="initials"></div>
-                    </div>
-                    <div></div>
-                </div>
-
+            <div id="cards">
             </div>
-            
+
         </div>
 
 

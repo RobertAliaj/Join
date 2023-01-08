@@ -3,6 +3,8 @@
     flex-direction: column;
     box-sizing: border-box;
     padding: 40px;
+    padding-top: 125px;
+    width: calc(100vw - 52%);
 }
 
 .title {
@@ -146,4 +148,12 @@ button:hover {
     border: 1px solid white;
     border-radius: 50px;
     margin: 0 -5px 0 0 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.absolute{
+    position: absolute;
+    right: 0;
 }
