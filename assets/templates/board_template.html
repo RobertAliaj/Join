@@ -3,47 +3,26 @@
         <h1>Board</h1>
         <div class="search-div">
             <input type="text" placeholder="Find Task">
-            <button onclick="renderToDoDetails()">Add task <span>+</span></button>
+            <button onclick="renderProgressSection(), renderToDoDetails()">Add task <span>+</span></button>
         </div>
     </div>
 
 
 
     <!-- hier fängt der ganze section an -->
-    <div class="to-do-section">
-        <!-- hier ist die erste Reihe, also die To do - Reihe -->
+    <div class="to-do-section" id="toDoSection">
+        <!-- hier ist die erste Reihe, also die To do - Reihe
         <div class="task-divs-parent">
             <div class="task-divs-child">
                 <div>To Do</div>
                 <img src="/assets/img/add_button.png" class="add-img">
             </div>
 
-            <!-- Hier wird nur die Card mit der jeweiligen To do generiert -->
-            <div id="cards">
+            Hier wird nur die Card mit der jeweiligen To do generiert
+            <div id="cards" class="cards-parent">
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="task-divs-parent">
             <div class="task-divs-child">
@@ -64,6 +43,6 @@
                 <div>Done</div>
                 <img src="/assets/img/add_button.png" class="add-img">
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

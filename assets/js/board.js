@@ -36,9 +36,38 @@ let myData = [
     },
 ];
 
+
+let backgroundColors = ["8AA4FF", "FF0000", "2AD300", "FF7A00", "E200BE", "0038FF"];
+let progress = ['To Do', 'In Progress', 'Awaiting Feedback', 'Done'];
+
+
+function renderProgressSection() {
+    for (let i = 0; i < progress.length; i++) {
+        const oneSection = progress[i];
+        let proogressSection = document.getElementById('toDoSection');
+        progress.innerHTML = '';
+        proogressSection.innerHTML += renderProgressSectionHtml(oneSection);
+
+    }
+}
+
+function renderProgressSectionHtml(oneSection) {
+    return         /*html*/ `
+    <div class="task-divs-parent">
+            <div class="task-divs-child">
+               <div>${oneSection}</div>
+             <img src="/assets/img/add_button.png" class="add-img">
+            </div>
+
+         <!-- Hier wird nur die Card mit der jeweiligen To do generiert -->
+        <div id="cards" class="cards-parent">
+    </div>
+`;
+}
+
 function renderToDoDetails() {
     for (let i = 0; i < myData.length; i++) {
-         oneCard = myData[i];
+        oneCard = myData[i];
         let title = oneCard['title'];
         let description = oneCard['description'];
         let category = oneCard['category'];
@@ -47,11 +76,11 @@ function renderToDoDetails() {
         let card = document.getElementById('cards');
         card.innerHTML += renderToDoDetailsHtml(title, description, category, i);
         renderCoWorkers(oneCard, i);
-    }   
+    }
 }
 
 
-function renderToDoDetailsHtml(title, description, category, i){
+function renderToDoDetailsHtml(title, description, category, i) {
     return /* html */`
     <div class="to-do-cards" id="toDoCards">
      <div class="category" id="category">
@@ -80,10 +109,10 @@ function renderToDoDetailsHtml(title, description, category, i){
 `;
 }
 
-function renderCoWorkers(oneCard, i){
+function renderCoWorkers(oneCard, i) {
     let myCard = oneCard['assigned_to'];
     for (let c = 0; c < myCard.length; c++) {
-        const element = myCard[c].charAt(0);  
+        const element = myCard[c].charAt(0);
         document.getElementById(`initials${i}`).innerHTML += `<div class="initials" >${element}</div>`;
     }
 }
