@@ -3,6 +3,9 @@
     flex-direction: column;
     box-sizing: border-box;
     padding: 40px;
+    padding-top: 125px;
+    padding-left: 270px;
+    width: calc(100vw - 16px);
 }
 
 .title {
@@ -117,33 +120,53 @@ button:hover {
     font-size: 14px;
 }
 
-.progress-bar{
+.progress-bar {
     width: 60%;
     height: 5px;
     background-color: grey;
     border-radius: 20px;
 }
 
-.progress-div{
+.progress-div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.progress-info{
+.progress-info {
     font-size: 14px;
     display: flex;
 }
 
-.initials-div{
+.initials-div {
     display: flex;
 }
 
-.initials{
+.initials {
     width: 30px;
     height: 30px;
     background-color: chocolate;
     border: 1px solid white;
     border-radius: 50px;
-    margin: 0 -5px 0 0 ;
+    margin: 0 -5px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.absolute {
+    position: absolute;
+    right: 0;
+}
+
+.cards-parent {
+    height: 375px;
+    overflow: auto;
+}
+
+.cards-parent::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
+  
