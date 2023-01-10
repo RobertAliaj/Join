@@ -2,8 +2,8 @@
     <div class="title">
         <h1>Board</h1>
         <div class="search-div">
-            <input type="text" placeholder="Find Task">
-            <button onclick="renderProgressSection(), renderToDoDetails()">Add task <span>+</span></button>
+            <input type="text" placeholder="Find Task" id="myInput" onkeyup="filterCards()">
+            <button onclick="renderProgressSection(), loadDataBase()">Add task <span>+</span></button>
         </div>
     </div>
 
@@ -11,38 +11,5 @@
 
     <!-- hier fängt der ganze section an -->
     <div class="to-do-section" id="toDoSection">
-        <!-- hier ist die erste Reihe, also die To do - Reihe
-        <div class="task-divs-parent">
-            <div class="task-divs-child">
-                <div>To Do</div>
-                <img src="/assets/img/add_button.png" class="add-img">
-            </div>
-
-            Hier wird nur die Card mit der jeweiligen To do generiert
-            <div id="cards" class="cards-parent">
-            </div>
-
-        </div>
-
-        <div class="task-divs-parent">
-            <div class="task-divs-child">
-                <div>In Progress</div>
-                <img src="/assets/img/add_button.png" class="add-img">
-            </div>
-        </div>
-
-        <div class="task-divs-parent">
-            <div class="task-divs-child">
-                <div>Awaiting Feedback</div>
-                <img src="/assets/img/add_button.png" class="add-img">
-            </div>
-        </div>
-
-        <div class="task-divs-parent">
-            <div class="task-divs-child">
-                <div>Done</div>
-                <img src="/assets/img/add_button.png" class="add-img">
-            </div>
-        </div> -->
     </div>
 </div>

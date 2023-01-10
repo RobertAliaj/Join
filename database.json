@@ -1,0 +1,20 @@
+[
+    {
+        "category": "Sales",
+        "title": "Call Potential Clients",
+        "description": "Make the Product Presentation to prospective Buyers",
+        "assigned_to": ["Michael"],
+        "due_date": "20.02.2150",
+        "prio": "Urgent",
+        "subtasks": 1
+    },
+    {
+        "category": "Sales",
+        "title": "Accounting Invoices",
+        "description": "Make the Product Presentation to prospective Buyers",
+        "assigned_to": ["John"],
+        "due_date": "20.02.2150",
+        "prio": "Urgent",
+        "subtasks": 1
+    }
+]
