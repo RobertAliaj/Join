@@ -1,3 +1,107 @@
-<div class="overlay-bg d-none" >
+<div class="overlay-bg d-none">
+    <!-- ab hier ist der code von Gerald -->
+    <div class="add-task-container">
+        <div class="headline">
+            <span>Add Task</span>
+        </div>
+        <div class="input-section">
+            <div class="main-inforamtion">
+                <div class="padding-36-bottom">
+                    <div class="padding-10-bottom">Title</div>
+                    <input type="text" placeholder="Enter a title" class="input-title" required>
+                </div>
 
+                <div class="padding-36-bottom">
+                    <div class="padding-10-bottom">Description</div>
+                    <textarea name="description" id="#" placeholder="Enter a description" class="textarea-description"
+                        required></textarea>
+                </div>
+
+                <div class="padding-36-bottom">
+                    <div class="padding-10-bottom">Category</div>
+                    <div class="dropdown-category-closed" id="category">
+                        <div class="dd-placeholder"
+                            onclick="pullDownMenu('category', 'assingedTo', 'moreCategorys', 'morecontacts')">
+                            <div>Select task categoey</div>
+                            <img src="assets\img\drop_down.png">
+                        </div>
+                        <div class="d-none" id="moreCategorys">
+                            <div class="dd-placeholder">
+                                <div>New category</div>
+                            </div>
+                            <div class="dd-placeholder">
+                                <div>Sales</div>
+                            </div>
+                            <div class="dd-placeholder">
+                                <div>Backoffice</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="padding-36-bottom">
+                    <div class="padding-10-bottom">Assinged to</div>
+                    <div class="dropdown-category-closed" id="assingedTo">
+                        <div class="dd-placeholder"
+                            onclick="pullDownMenu('assingedTo', 'category', 'morecontacts', 'moreCategorys')">
+                            <div>Contacts to assing</div>
+                            <img src="assets\img\drop_down.png">
+                        </div>
+                        <div class="d-none" id="morecontacts">
+                            <div class="dd-placeholder">
+                                <div>You</div>
+                            </div>
+                            <div class="dd-placeholder">
+                                <div>Maximilian Vaogel</div>
+                            </div>
+                            <div class="dd-placeholder">
+                                <div>Invite new contact</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="second-inforamtion">
+                <div class="padding-36-bottom">
+                    <div class="padding-10-bottom">Due date</div>
+                    <input type="text" placeholder="dd/mm/yyyy" class="input-title" required>
+                </div>
+
+                <div class="padding-36-bottom">
+                    <div class="padding-10-bottom">Prio</div>
+                    <div class="prio-container">
+                        <button class="prio-button">
+                            <div>Urgent</div>
+                            <img src="assets\img\prio_high.png">
+                        </button>
+                        <button class="prio-button">
+                            <div>Medium</div>
+                            <img src="assets\img\prio_medium.png">
+                        </button>
+                        <button class="prio-button">
+                            <div>Low</div>
+                            <img src="assets\img\prio_low.png">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="padding-36-bottom">
+                    <div class="padding-10-bottom">Subtasks</div>
+                    <input type="text" placeholder="Add new subtask" class="input-title add-icon" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="clear-task">
+                Clear
+                <img src="assets\img\Clear_task.png">
+            </button>
+            <button class="create-task">
+                Create Task
+                <img src="assets\img\create_task.png">
+            </button>
+        </div>
+    </div>
 </div>
