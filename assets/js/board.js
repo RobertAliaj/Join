@@ -1,9 +1,8 @@
 let progress = ['To Do', 'In Progress', 'Awaiting Feedback', 'Done'];
 let myData = [];
-
 let filteredCard = [];
 
-async function loadAll() {
+async function renderContent() {
     await loadMyData();
     renderProgressSection();
     renderCards();
@@ -25,7 +24,37 @@ function renderProgressSection() {
 }
 
 
-function filter() {
+function renderCards() {
+    let tasks = document.getElementById(`task`);
+    tasks.innerHTML = '';
+
+    for (let l = 0; l < myData.length; l++) {
+        const currentCard = myData[l];
+
+        tasks.innerHTML += renderCardsHtml(currentCard, l);
+        renderCoWorkes(l)
+    }
+}
+
+
+
+function renderCoWorkes(l) {
+    let initialsDiv = document.getElementById(`initials${l}`);
+    let currentCard = myData[l];
+    let initialsArray = currentCard['assigned_to'];
+
+    for (let s = 0; s < initialsArray.length; s++) {
+        const myInitial = initialsArray[s].charAt(0);
+        initialsDiv.innerHTML += `
+                    <div class="initials" id="inits${s}">
+                     ${myInitial}
+                    </div>
+                    `;
+    }
+}
+
+
+function proofInput() {
     let search = document.getElementById('searchInput').value;
     if (search.length < 1) {
         renderCards();
@@ -36,80 +65,26 @@ function filter() {
 
 
 function filterCards() {
+    filteredCard.length = 0;
+    for (let i = 0; i < myData.length; i++) {
+        filteredCard.push(myData[i]);
+    }
+    renderFilteredCards();
+}
+
+function renderFilteredCards() {
     let search = document.getElementById('searchInput').value;
     search = search.toLowerCase();
     let task = document.getElementById('task');
     task.innerHTML = '';
 
-    filteredCard.length = 0;                                    // setze das array auf 0
-
-    for (let i = 0; i < myData.length; i++) {                   // iteriere durch das myDataArray     
-        const myTitle = myData[i]['title'];                     // Der Titel
-        filteredCard.push(myData[i]);                           // Kopiere myData in filteredCard
-        if (myTitle.toLowerCase().includes(search)) {           // wenn der Titel = searchValue
-            renderFilteredCards();                              // dann rufe diese Funktion auf
+    for (let l = 0; l < filteredCard.length; l++) {
+        const currentCard = filteredCard[l];
+        if (filteredCard[l]['title'].toLowerCase().includes(search)) {
+            task.innerHTML += renderCardsHtml(currentCard, l);
         }
     }
 }
-
-function renderFilteredCards() {
-    let currentSection;
-    for (let i = 0; i < progress.length; i++) {
-        currentSection = progress[i];                           // variable die später als id übergeben wird 
-    }
-
-    for (let l = 0; l < filteredCard.length; l++) {             // iteriere durch das filteredCardArray  
-        const currentCard = filteredCard[l];                    
-        let title = currentCard['title'];
-        let description = currentCard['description'];
-        let category = currentCard['category'];
-        let task = document.getElementById('task');           
-        task.innerHTML += renderCardsHtml(title, description, category, currentSection, l);
-    }
-}
-
-
-
-function renderCards() {
-
-    let myCard = document.getElementById(`task`);
-    myCard.innerHTML = '';
-    let currentSection;
-
-    for (let i = 0; i < progress.length; i++) {
-        currentSection = progress[i];
-    }
-    for (let l = 0; l < myData.length; l++) {
-        const currentCard = myData[l];
-        let title = currentCard['title'];
-        let description = currentCard['description'];
-        let category = currentCard['category'];
-
-        myCard.innerHTML += renderCardsHtml(title, description, category, currentSection, l);
-        renderCoWorkes(currentSection, l)
-    }
-}
-
-
-
-function renderCoWorkes(currentSection, l) {
-    let initialsDiv = document.getElementById(`initials${currentSection}${l}`);
-    let currentCard = myData[l];
-    let initialsArray = currentCard['assigned_to'];
-
-    for (let s = 0; s < initialsArray.length; s++) {
-        const myInitial = initialsArray[s].charAt(0);
-        initialsDiv.innerHTML += `
-                    <div class="initials">
-                     ${myInitial}
-                    </div>
-                    `;
-    }
-}
-
-
-
-
 
 
 
@@ -137,21 +112,19 @@ function renderProgressHtml(currentSection) {
 }
 
 
-
-
-function renderCardsHtml(title, description, category, currentSection, l) {
+function renderCardsHtml(currentCard, l) {
     return `
     <div class="to-do-cards" id="${l}">
         <div class="category" id="category">
-            ${category}
+            ${currentCard['category']}
            </div>
    
            <span class="to-do-title" id="toDoTitle">
-               ${title}
+               ${currentCard['title']}
    </span>
 
    <span>
-       ${description}
+       ${currentCard['description']}
    </span>
    
    <div class="progress-div">
@@ -159,7 +132,7 @@ function renderCardsHtml(title, description, category, currentSection, l) {
        <div><span class="progress-info"> <b>1</b>/ <b>2</b> Done</span></div>
    </div>
 
-   <div id="initials${currentSection}${l}" class="initials-div">
+   <div id="initials${l}" class="initials-div">
    </div>
 </div>
 `;

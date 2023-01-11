@@ -19,7 +19,7 @@
     },
     {
         "category": "Backoffice",
-        "title": "Accounting invoices",
+        "title": "Invoices",
         "description": "Write open invoices for customer",
         "assigned_to": ["John", "Andy", "Mary", "Anna"],
         "due_date": "2023-02-13",
