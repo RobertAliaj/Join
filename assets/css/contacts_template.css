@@ -79,13 +79,54 @@
     z-index: 3;
     position: absolute;
     margin: auto;
-    left: 0;
     right: 0;
-    top: 0;
+    left: 0;
     bottom: 0;
+    top: 0;
     height: 60vh;
     width: 70vw;
     display: flex;
+    z-index: 4;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.slide-in {
+    animation: slide-left 0.5s ease 0s 1 normal none;
+}
+
+.slide-out {
+    animation: slide-right 0.5s ease 0s 1 normal none;
+}
+
+
+@keyframes slide-left {
+
+    0% {
+        transform: translateX(100vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-right {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
 }
 
 .blue-side {
@@ -222,4 +263,49 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.fade-in {
+    animation: fade-in 0.5s ease 0s 1 normal none;
+}
+
+.fade-out {
+    animation: fade-out 0.5s ease 0s 1 normal none;
+}
+
+@keyframes fade-in {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.d-none {
+    display: none;
 }
