@@ -1,5 +1,7 @@
 async function awaitHTML() {
+    await init();
     await includeHTML();
+    blurSubtask();
 }
 
 

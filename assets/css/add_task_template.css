@@ -5,8 +5,8 @@
 
 .headline {
     font-size: 61px;
-    font-weight: 700;  
-    padding-bottom: 50px;  
+    font-weight: 700;
+    padding-bottom: 50px;
     width: 1009px;
 }
 
@@ -21,9 +21,28 @@
     padding-right: 59px;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spcae-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.spcae-evenly {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .padding-10-bottom {
     padding-bottom: 10px;
 }
+
 .padding-36-bottom {
     padding-bottom: 36px;
 }
@@ -32,7 +51,7 @@
     display: none;
 }
 
-.input-title {
+.white-box {
     width: 420px;
     height: 50px;
     border: 1px solid rgb(209, 209, 209);
@@ -42,6 +61,7 @@
     font-family: 'Inter';
     font-weight: 400;
     color: rgb(209, 209, 209);
+    background-color: rgb(255, 255, 255);
 }
 
 .textarea-description {
@@ -75,11 +95,11 @@
     font-weight: 400;
     background-color: rgb(255, 255, 255);
     cursor: pointer;
-    
+
 }
 
 .dropdown-category-open {
-    height: 200px !important;   
+    height: 200px !important;
 }
 
 /* Container right */
@@ -110,19 +130,48 @@
     padding-left: 10px;
 }
 
-.add-icon {
-    background-image: url(https://gruppe-join-421.developerakademie.net/asset/img/add_subtask.png);
-    background-repeat: no-repeat;
-    background-position: 400px 16px;
-
+.subtask-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0px !important;
 }
 
+.subtask-input {
+    width: 360px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    font-size: 21px;
+    padding: 0px;
+    font-family: 'Inter';
+    font-weight: 400;
+    padding-left: 21px;
+}
+
+.subtask-input:focus {
+    outline: none;
+}
+
+.add-subtask-button {
+    padding-right: 17px;
+}
+
+.addtask-button-container {
+    padding-right: 17px;
+    width: 70px;
+}
+
+.clear-task-input {
+    height: 14px;
+    width: 14px;
+}
 
 /* buttons */
 .buttons {
     display: flex;
     justify-content: end;
-    width: 1009px;;
+    width: 1009px;
     padding-top: 48px;
 }
 
@@ -132,15 +181,14 @@
     color: rgb(44, 54, 70);
     width: 136px;
     height: 60px;
-    border: 1px solid rgb(44, 54, 70);;
+    border: 1px solid rgb(44, 54, 70);
     border-radius: 10px;
     margin-right: 25px;
 }
 
 .clear-task img {
-    width: 12px;
-    height: 12px;
-    padding-left: 16px;
+    width: 16px;
+    height: 16px;
 }
 
 .create-task {
@@ -154,8 +202,7 @@
     font-weight: 700;
 }
 
-.create-task img {
+/* .create-task img {
     width: 16px;
     height: 12px;
-    padding-left: 14px;
-}
+} */
