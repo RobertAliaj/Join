@@ -1,7 +1,7 @@
 [
     {
         "category": "Sales",
-        "title": "Call Potential Clients",
+        "title": "call",
         "description": "Make the Product Presentation to prospective Buyers",
         "assigned_to": ["Michael"],
         "due_date": "20.02.2150",
@@ -10,11 +10,38 @@
     },
     {
         "category": "Sales",
-        "title": "Accounting Invoices",
+        "title": "accounting Invoices",
         "description": "Make the Product Presentation to prospective Buyers",
-        "assigned_to": ["John"],
+        "assigned_to": ["John", "Andy", "Mary", "Anna"],
         "due_date": "20.02.2150",
         "prio": "Urgent",
         "subtasks": 1
-    }
+    },
+    {
+        "category": "Backoffice",
+        "title": "Accounting invoices",
+        "description": "Write open invoices for customer",
+        "assigned_to": ["John", "Andy", "Mary", "Anna"],
+        "due_date": "2023-02-13",
+        "prio": "medium",
+        "subtasks": ""
+      },
+      {
+        "category": "Marketing",
+        "title": "Social media strategy",
+        "description": "Develop an ad campaign for brand positioning",
+        "assigned_to": ["Ina", "Dita", "Mary", "Anna"],
+        "due_date": "2023-03-02",
+        "prio": "low",
+        "subtasks": "Design an ad, Calculate the costs, Created accounts for all common social media platforms"
+      },
+      {
+        "category": "Media",
+        "title": "Video cut",
+        "description": "Edit the new company video",
+        "assigned_to": ["Jani", "Rrezi", "Mary", "Anna"],
+        "due_date": "2023-03-02",
+        "prio": "medium",
+        "subtasks": ""
+      }
 ]

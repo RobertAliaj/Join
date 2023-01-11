@@ -1,154 +1,166 @@
-
-// let myData = [
-//     {
-//         "category": "Sales",
-//         "title": "Call Potential Clients",
-//         "description": "Make the Product Presentation to prospective Buyers",
-//         "assigned_to": ['john'],
-//         "due_date": "20.02.2150",
-//         "prio": "Urgent",
-//         "subtasks": 1
-//     },
-//     {
-//         "category": "Sales",
-//         "title": "Accounting Invoices",
-//         "description": "Make the Product Presentation to prospective Buyers",
-//         "assigned_to": ['john'],
-//         "due_date": "20.02.2150",
-//         "prio": "Urgent",
-//         "subtasks": 1
-//     }, {
-//         "category": "Sales",
-//         "title": "Social Media Strategy",
-//         "description": "Make the Product Presentation to prospective Buyers",
-//         "assigned_to": ['john'],
-//         "due_date": "20.02.2150",
-//         "prio": "Urgent",
-//         "subtasks": 1
-//     }, {
-//         "category": "Sales",
-//         "title": "Call Potential Clients",
-//         "description": "Make the Product Presentation to prospective Buyers",
-//         "assigned_to": ['John', 'Melissa'],
-//         "due_date": "20.02.2150",
-//         "prio": "Urgent",
-//         "subtasks": 1
-//     },
-// ];
-
-// let myData;
-
-let filteredData = [];
-
-let backgroundColors = ["8AA4FF", "FF0000", "2AD300", "FF7A00", "E200BE", "0038FF"];
 let progress = ['To Do', 'In Progress', 'Awaiting Feedback', 'Done'];
+let myData = [];
+
+let filteredCard = [];
+
+async function loadAll() {
+    await loadMyData();
+    renderProgressSection();
+    renderCards();
+}
 
 
-async function loadDataBase() {
+async function loadMyData() {
     let resp = await fetch('.//database.json');
-    let myData = await resp.json();
-
-    filteredData.push(myData);
+    myData = await resp.json();
 }
 
 
 function renderProgressSection() {
+    let mySection = document.getElementById('toDoSection');
     for (let i = 0; i < progress.length; i++) {
-        const oneSection = progress[i];
-        let proogressSection = document.getElementById('toDoSection');
-        progress.innerHTML = '';
-        proogressSection.innerHTML += renderProgressSectionHtml(oneSection, i);
-        renderToDoDetails(i);
+        const currentSection = progress[i];
+        mySection.innerHTML += renderProgressHtml(currentSection);
     }
 }
 
 
-function renderProgressSectionHtml(oneSection, i) {
-    return `
-    <div class="task-divs-parent">
-            <div class="task-divs-child">
-               <div>${oneSection}</div>
-             <img src="/assets/img/add_button.png" class="add-img">
-            </div>
-
-         <!-- Hier wird nur die Card mit der jeweiligen To do generiert -->
-        <div id="cards${i}" class="cards-parent">
-    </div>
-`;
-}
-
-
-function renderToDoDetails(i) {
-    for (let l = 0; l < filteredData.length; l++) {
-        let oneCard = filteredData[l];
-        let title = oneCard['title'];
-        let description = oneCard['description'];
-        let category = oneCard['category'];
-        let prio = oneCard['prio'];
-        let card = document.getElementById(`cards${i}`);
-
-        card.innerHTML += renderToDoDetailsHtml(title, description, category, l);
-
-        renderCoWorkers(l);
-    }
-}
-
-
-function renderToDoDetailsHtml(title, description, category, l) {
-    return`
-    <div class="to-do-cards" id="toDoCards">
-     <div class="category" id="category">
-            ${category}
-        </div>
-
-        <span class="to-do-title" id="toDoTitle">
-            ${title}
-        </span>
-
-        <span>
-            ${description}
-        </span>
-
-        <div class="progress-div">
-            <div class="progress-bar"></div>
-            <div><span class="progress-info"> <b>1</b>/ <b>2</b> Done</span></div>
-        </div>
-
-        <div>
-            <div class="initials-div" id="initials${l}">
-            </div>
-            <div></div>
-        </div>
-    </div>
-`;
-}
-
-
-function renderCoWorkers(l) {
-    let myCard = filteredData[l]['assigned_to'];
-    for (let c = 0; c < myCard.length; c++) {
-        const element = myCard[c].charAt(0);
-        document.getElementById(`initials${l}`).innerHTML += `<div class="initials" >${element}</div>`;
+function filter() {
+    let search = document.getElementById('searchInput').value;
+    if (search.length < 1) {
+        renderCards();
+    } else {
+        filterCards();
     }
 }
 
 
 function filterCards() {
-    let search = document.getElementById('myInput').value;
+    let search = document.getElementById('searchInput').value;
     search = search.toLowerCase();
+    let task = document.getElementById('task');
+    task.innerHTML = '';
 
-    for (let i = 0; i < filteredData.length; i++) {
-        const filteredCards = filteredData[i];
-        
-        let card = document.getElementById(`cards${i}`);
-        card.innerHTML = '';
-        
-        for (let s = 0; s < filteredCards.length; s++) {
-            const myTitle = filteredCards[s]['title'];
-            if (myTitle.toLowerCase().includes(search)) {
-                renderToDoDetails(filteredCards);
-                console.log(myTitle);
-            }
+    filteredCard.length = 0;                                    // setze das array auf 0
+
+    for (let i = 0; i < myData.length; i++) {                   // iteriere durch das myDataArray     
+        const myTitle = myData[i]['title'];                     // Der Titel
+        filteredCard.push(myData[i]);                           // Kopiere myData in filteredCard
+        if (myTitle.toLowerCase().includes(search)) {           // wenn der Titel = searchValue
+            renderFilteredCards();                              // dann rufe diese Funktion auf
         }
     }
+}
+
+function renderFilteredCards() {
+    let currentSection;
+    for (let i = 0; i < progress.length; i++) {
+        currentSection = progress[i];                           // variable die später als id übergeben wird 
+    }
+
+    for (let l = 0; l < filteredCard.length; l++) {             // iteriere durch das filteredCardArray  
+        const currentCard = filteredCard[l];                    
+        let title = currentCard['title'];
+        let description = currentCard['description'];
+        let category = currentCard['category'];
+        let task = document.getElementById('task');           
+        task.innerHTML += renderCardsHtml(title, description, category, currentSection, l);
+    }
+}
+
+
+
+function renderCards() {
+
+    let myCard = document.getElementById(`task`);
+    myCard.innerHTML = '';
+    let currentSection;
+
+    for (let i = 0; i < progress.length; i++) {
+        currentSection = progress[i];
+    }
+    for (let l = 0; l < myData.length; l++) {
+        const currentCard = myData[l];
+        let title = currentCard['title'];
+        let description = currentCard['description'];
+        let category = currentCard['category'];
+
+        myCard.innerHTML += renderCardsHtml(title, description, category, currentSection, l);
+        renderCoWorkes(currentSection, l)
+    }
+}
+
+
+
+function renderCoWorkes(currentSection, l) {
+    let initialsDiv = document.getElementById(`initials${currentSection}${l}`);
+    let currentCard = myData[l];
+    let initialsArray = currentCard['assigned_to'];
+
+    for (let s = 0; s < initialsArray.length; s++) {
+        const myInitial = initialsArray[s].charAt(0);
+        initialsDiv.innerHTML += `
+                    <div class="initials">
+                     ${myInitial}
+                    </div>
+                    `;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function renderProgressHtml(currentSection) {
+    return `
+    <div class="task-divs-parent">
+    <div class="task-divs-child">
+       <div>${currentSection}</div>
+     <img src="/assets/img/add_button.png" class="add-img">
+    </div>
+
+<!-- Hier wird nur die Card mit der jeweiligen To do generiert -->
+<div id="task" class="cards-parent">
+</div>`;
+}
+
+
+
+
+function renderCardsHtml(title, description, category, currentSection, l) {
+    return `
+    <div class="to-do-cards" id="${l}">
+        <div class="category" id="category">
+            ${category}
+           </div>
+   
+           <span class="to-do-title" id="toDoTitle">
+               ${title}
+   </span>
+
+   <span>
+       ${description}
+   </span>
+   
+   <div class="progress-div">
+       <div class="progress-bar"></div>
+       <div><span class="progress-info"> <b>1</b>/ <b>2</b> Done</span></div>
+   </div>
+
+   <div id="initials${currentSection}${l}" class="initials-div">
+   </div>
+</div>
+`;
 }
