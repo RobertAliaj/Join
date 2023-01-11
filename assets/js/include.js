@@ -1,6 +1,9 @@
 async function awaitHTML() {
     await includeHTML();
+<<<<<<< HEAD
     // await init();
+=======
+>>>>>>> b51336b998b86a9011a427f5c9d098f2f0562726
     // blurSubtask();
 }
 
