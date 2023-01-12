@@ -12,7 +12,7 @@
         "category": "Sales",
         "title": "accounting Invoices",
         "description": "Make the Product Presentation to prospective Buyers",
-        "assigned_to": ["John", "Andy", "Mary", "Anna"],
+        "assigned_to": ["John", "Andy", "Mary"],
         "due_date": "20.02.2150",
         "prio": "Urgent",
         "subtasks": 1
@@ -39,7 +39,7 @@
         "category": "Media",
         "title": "Video cut",
         "description": "Edit the new company video",
-        "assigned_to": ["Jani", "Rrezi", "Mary", "Anna"],
+        "assigned_to": ["Jani", "Rrezi", "Mary", "Anna", "Gary"],
         "due_date": "2023-03-02",
         "prio": "medium",
         "subtasks": ""

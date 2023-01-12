@@ -1,6 +1,5 @@
 let progress = ['To Do', 'In Progress', 'Awaiting Feedback', 'Done'];
 let myData = [];
-let filteredCard = [];
 
 async function renderContent() {
     await loadMyData();
@@ -30,65 +29,56 @@ function renderCards() {
 
     for (let l = 0; l < myData.length; l++) {
         const currentCard = myData[l];
-
         tasks.innerHTML += renderCardsHtml(currentCard, l);
-        renderCoWorkes(l)
+        renderCoWorkes(l);
     }
 }
 
 
-
+//render the first three CoWorkers to have the Task
 function renderCoWorkes(l) {
     let initialsDiv = document.getElementById(`initials${l}`);
-    let currentCard = myData[l];
-    let initialsArray = currentCard['assigned_to'];
-
+    let initialsArray = myData[l]['assigned_to'];
+    //das 0 wird praktisch nicht durch die Schleife erhöht sondern durch divscreated++; 
+    let divsCreated = 0;
     for (let s = 0; s < initialsArray.length; s++) {
+        if (divsCreated === 3) {
+            break;
+        }
         const myInitial = initialsArray[s].charAt(0);
-        initialsDiv.innerHTML += `
-                    <div class="initials" id="inits${s}">
-                     ${myInitial}
-                    </div>
-                    `;
+        initialsDiv.innerHTML += renderCoWorkersHtml(myInitial, s);
+        divsCreated++;
     }
+    displayRemainingWorkers(initialsArray, initialsDiv);
 }
 
 
-function proofInput() {
-    let search = document.getElementById('searchInput').value;
-    if (search.length < 1) {
-        renderCards();
-    } else {
-        filterCards();
+//if theres more than 3 CoWO in one Task, then display a div with the number of the remaining Workers
+function displayRemainingWorkers(initialsArray, initialsDiv){
+    if (initialsArray.length > 3) {
+        // Create a new div element into the 'initialsDiv' to display the number of remaining workers
+        let remainingWorkers = document.createElement("div");
+        remainingWorkers.innerHTML = `+${initialsArray.length - 3}`;
+        remainingWorkers.classList.add("remaining-workers");
+        initialsDiv.appendChild(remainingWorkers);
     }
 }
 
 
 function filterCards() {
-    filteredCard.length = 0;
-    for (let i = 0; i < myData.length; i++) {
-        filteredCard.push(myData[i]);
-    }
-    renderFilteredCards();
-}
-
-function renderFilteredCards() {
     let search = document.getElementById('searchInput').value;
     search = search.toLowerCase().trim();
     let task = document.getElementById('task');
     task.innerHTML = '';
     
-    for (let l = 0; l < filteredCard.length; l++) {
-        const currentCard = filteredCard[l];
-        if (filteredCard[l]['title'].toLowerCase().includes(search)) {
+    for (let l = 0; l < myData.length; l++) {
+        const currentCard = myData[l];
+        if (myData[l]['title'].toLowerCase().includes(search)) {
             task.innerHTML += renderCardsHtml(currentCard, l);
             renderCoWorkes(l);
         }
     }
 }
-
-
-
 
 
 
@@ -114,26 +104,60 @@ function renderProgressHtml(currentSection) {
 
 function renderCardsHtml(currentCard, l) {
     return `
-    <div class="to-do-cards" id="${l}">
+    <div class="to-do-cards" id="myCard${l}">
         <div class="category" id="category">
             ${currentCard['category']}
-           </div>
+        </div>
    
-           <span class="to-do-title" id="toDoTitle">
-               ${currentCard['title']}
-   </span>
+        <div class="title-descr">
+            <span class="to-do-title" id="toDoTitle">
+                ${currentCard['title']}
+            </span>
+            <span>
+                ${currentCard['description']}
+            </span>
+        </div> 
+        <div class="progress-div">
+            <div class="progress-bar"></div>
+            <div><span class="progress-info"> <b>1</b>/ <b>2</b> Done</span></div>
+        </div>
 
-   <span>
-       ${currentCard['description']}
-   </span>
-   
-   <div class="progress-div">
-       <div class="progress-bar"></div>
-       <div><span class="progress-info"> <b>1</b>/ <b>2</b> Done</span></div>
-   </div>
-
-   <div id="initials${l}" class="initials-div">
-   </div>
-</div>
+        <div id="initials${l}" class="initials-div">
+        </div>
+    </div>
 `;
 }
+
+
+function renderCoWorkersHtml(myInitial, s){
+    return `
+    <div class="initials" id="inits${s}">
+     ${myInitial}
+    </div>
+    `;
+}
+
+
+// function filterCards() {
+//     filteredCard.length = 0;
+//     for (let i = 0; i < myData.length; i++) {
+//         filteredCard.push(myData[i]);
+//     }
+//     renderFilteredCards();
+// }
+
+
+// function renderFilteredCards() {
+//     let search = document.getElementById('searchInput').value;
+//     search = search.toLowerCase().trim();
+//     let task = document.getElementById('task');
+//     task.innerHTML = '';
+    
+//     for (let l = 0; l < filteredCard.length; l++) {
+//         const currentCard = filteredCard[l];
+//         if (filteredCard[l]['title'].toLowerCase().includes(search)) {
+//             task.innerHTML += renderCardsHtml(currentCard, l);
+//             renderCoWorkes(l);
+//         }
+//     }
+// }
