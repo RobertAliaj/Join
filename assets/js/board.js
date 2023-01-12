@@ -74,14 +74,15 @@ function filterCards() {
 
 function renderFilteredCards() {
     let search = document.getElementById('searchInput').value;
-    search = search.toLowerCase();
+    search = search.toLowerCase().trim();
     let task = document.getElementById('task');
     task.innerHTML = '';
-
+    
     for (let l = 0; l < filteredCard.length; l++) {
         const currentCard = filteredCard[l];
         if (filteredCard[l]['title'].toLowerCase().includes(search)) {
             task.innerHTML += renderCardsHtml(currentCard, l);
+            renderCoWorkes(l);
         }
     }
 }
@@ -106,9 +107,8 @@ function renderProgressHtml(currentSection) {
      <img src="/assets/img/add_button.png" class="add-img">
     </div>
 
-<!-- Hier wird nur die Card mit der jeweiligen To do generiert -->
-<div id="task" class="cards-parent">
-</div>`;
+        <div id="task" class="cards-parent">
+        </div>`;
 }
 
 
