@@ -6,13 +6,13 @@
         <div class="main-inforamtion">
             <div class="padding-36-bottom">
                 <div class="padding-10-bottom">Title</div>
-                <input type="text" placeholder="Enter a title" class="white-box" required>
+                <input type="text" placeholder="Enter a title" class="white-box no-outline" id="tileInput" required>
             </div>
 
             <div class="padding-36-bottom">
                 <div class="padding-10-bottom">Description</div>
-                <textarea name="description" id="#" placeholder="Enter a description" class="textarea-description"
-                    required></textarea>
+                <textarea name="description" placeholder="Enter a description" class="textarea-description no-outline"
+                    id="descriptionInput" required></textarea>
             </div>
 
             <div class="padding-36-bottom">
@@ -24,14 +24,23 @@
                         <img src="assets/img/drop_down.png">
                     </div>
                     <div class="d-none" id="moreCategorys">
-                        <div class="dd-placeholder">
+                        <div class="dd-placeholder gray-hover">
                             <div>New category</div>
                         </div>
-                        <div class="dd-placeholder">
+                        <div class="dd-placeholder gray-hover">
                             <div>Sales</div>
                         </div>
-                        <div class="dd-placeholder">
+                        <div class="dd-placeholder gray-hover">
                             <div>Backoffice</div>
+                        </div>
+                        <div class="dd-placeholder gray-hover">
+                            <div>Design</div>
+                        </div>
+                        <div class="dd-placeholder gray-hover">
+                            <div>Marketing</div>
+                        </div>
+                        <div class="dd-placeholder gray-hover">
+                            <div>Media</div>
                         </div>
                     </div>
                 </div>
@@ -46,13 +55,13 @@
                         <img src="assets/img/drop_down.png">
                     </div>
                     <div class="d-none" id="morecontacts">
-                        <div class="dd-placeholder">
+                        <div class="dd-placeholder gray-hover">
                             <div>You</div>
                         </div>
-                        <div class="dd-placeholder">
+                        <div class="dd-placeholder gray-hover">
                             <div>Maximilian Vaogel</div>
                         </div>
-                        <div class="dd-placeholder">
+                        <div class="dd-placeholder gray-hover">
                             <div>Invite new contact</div>
                         </div>
                     </div>
@@ -63,7 +72,7 @@
         <div class="second-inforamtion">
             <div class="padding-36-bottom">
                 <div class="padding-10-bottom">Due date</div>
-                <input type="text" placeholder="dd/mm/yyyy" class="white-box" required>
+                <input type="text" placeholder="dd/mm/yyyy" class="white-box no-outline" required>
             </div>
 
             <div class="padding-36-bottom">
@@ -87,29 +96,30 @@
             <div class="padding-36-bottom">
                 <div class="padding-10-bottom">Subtasks</div>
                 <div class="white-box subtask-container" id="subtask">
-                    <input type="text" placeholder="Add new subtask" id="subtaskInput" class="subtask-input" onclick="changeIcons()" required>
+                    <input type="text" placeholder="Add new subtask" id="subtaskInput" class="subtask-input no-outline"
+                        onclick="changeIcons()" required>
                     <div class="center" id="addSubtask">
                         <img onclick="changeIcons()" src="assets/img/add_subtask.png" class="add-subtask-button">
                     </div>
-                        <div class="center spcae-between addtask-button-container d-none" id="createSubtask">
-                            <img class="clear-task-input" onclick="changeIcons()" src="assets\img\Clear_task_input.png">
-                            <div>|</div>
-                            <img onclick="addSubtask()" src="assets\img\create_subtask.png">
-                        </div>
+                    <div class="center spcae-between addtask-button-container d-none" id="createSubtask">
+                        <img class="clear-task-input" onclick="changeIcons()" src="assets\img\Clear_task_input.png">
+                        <div>|</div>
+                        <img onclick="addSubtask()" src="assets\img\create_subtask.png">
                     </div>
                 </div>
-                <div id="subtask-list"></div>
             </div>
-        </div>
-
-        <div class="buttons">
-            <button class="clear-task spcae-evenly">
-                Clear
-                <img src="assets/img/Clear_task2.png">
-            </button>
-            <button class="create-task spcae-evenly">
-                Create Task
-                <img src="assets/img/create_task.png">
-            </button>
+            <div id="subtask-list"></div>
         </div>
     </div>
+
+    <div class="buttons">
+        <button class="clear-task spcae-evenly">
+            Clear
+            <img src="assets/img/Clear_task2.png">
+        </button>
+        <button class="create-task spcae-evenly">
+            Create Task
+            <img src="assets/img/create_task.png">
+        </button>
+    </div>
+</div>
