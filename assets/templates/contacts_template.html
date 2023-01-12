@@ -1,5 +1,5 @@
-<div class="contacts-page">
-    <div class="left-section"></div>
+<div class="contacts-page" onload="createLetters(); displayContacts()">
+    <div id="contacts" class="left-section"></div>
     <div class="right-section">
         <div class="headline">
             <span>Contacts</span>
@@ -12,47 +12,52 @@
             <img src="assets/img/add-contact.png" alt="">
             <!--<a href="https://www.flaticon.com/free-icons/contact" title="contact icons">Contact icons created by Vector Stall - Flaticon</a> -->
         </div>
+    </div>
 
 
-    </div>
 </div>
-<div class="new-contact-container">
-    <div class="blue-side">
-        <div class="flex-blue-side">
-            <img src="assets/img/join_small.png" alt="">
-            <b>Add contact</b>
-            <span>Tasks are better with a team!</span>
-            <div class="horizontal-blue-line"></div>
+<div id="overlay" class="overlay d-none">
+    <div id="newContactContainer" class="new-contact-container">
+        <img onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">
+        <div class="blue-side">
+            <div class="flex-blue-side">
+                <img src="assets/img/join_small.png" alt="">
+                <b>Add contact</b>
+                <span>Tasks are better with a team!</span>
+                <div class="horizontal-blue-line"></div>
+            </div>
+        </div>
+        <div class="contact-create-container">
+            <img class="user" src="assets/img/user (1).png" alt="">
+            <div class="contact-form">
+                <form>
+                    <div class="input-fields">
+                        <div>
+                            <input id="name" placeholder="Name" type="text" pattern="lls* lls*" required>
+                            <img src="assets/img/user.png" alt="">
+                        </div>
+                        <div>
+                            <input id="mail" placeholder="Email" type="email" required>
+                            <img src="assets/img/mail.png" alt="">
+                        </div>
+                        <div>
+                            <input id="phone" placeholder="Phone" type="tel" required>
+                            <img src="assets/img/mobile.png" alt="">
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <div onclick="cancelCreateContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
+                        </div>
+                        <div onclick="submitContact()" type="submit">Create contact <img
+                                src="assets/img/create_task.png" alt="">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="contact-create-container">
-        <img class="user" src="assets/img/user (1).png" alt="">
-        <div class="contact-form">
-            <form>
-                <div class="input-fields">
-                    <div>
-                        <input id="name" placeholder="Name" type="text" pattern="lls* lls*" required>
-                        <img src="assets/img/user.png" alt="">
-                    </div>
-                    <div>
-                        <input id="mail" placeholder="Email" type="email" required>
-                        <img src="assets/img/mail.png" alt="">
-                    </div>
-                    <div>
-                        <input id="phone" placeholder="Phone" type="tel" required>
-                        <img src="assets/img/mobile.png" alt="">
-                    </div>
-                </div>
-                <div class="submit-section">
-                    <div onclick="cancelCreateContact()">Cancle <img src="assets/img/Clear_task.png" alt=""></div>
-                    <div onclick="submitContact()" type="submit">Create contact <img src="assets/img/create_task.png" alt="">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
-</div>
+
 
 <!-- <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Graphics Plazza - Flaticon</a> -->
 <!-- <a href="https://www.flaticon.com/de/kostenlose-icons/mail" title="mail Icons">Mail Icons erstellt von Freepik - Flaticon</a> -->

@@ -1,11 +1,7 @@
-body {
-    margin: 0;
-    background-color: #f6f7f8;
-}
-
 .summary-container {
     font-family: 'Inter';
     Padding: 50px 50px 50px 120px;
+    
 }
 
 .headline {
@@ -57,7 +53,6 @@ body {
     justify-content: space-between;
     width: 100%;
     gap: 40px;
-
 }
 
 .task-menu-container .row>* {
@@ -121,7 +116,6 @@ body {
 
 .deadline-container span {
     font-size: 12px;
-
 }
 
 .urgent-container div {
@@ -138,7 +132,6 @@ body {
 
 .urgent-container div span {
     font-size: 12px;
-
 }
 
 .urgent-icon {
@@ -190,7 +183,7 @@ body {
     width: 0px;
     height: 100px;
     border: 1px solid#D1D1D1;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .greeting {

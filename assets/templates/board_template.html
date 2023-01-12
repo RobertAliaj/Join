@@ -2,14 +2,11 @@
     <div class="title">
         <h1>Board</h1>
         <div class="search-div">
-            <input type="text" placeholder="Find Task" id="myInput" onkeyup="filterCards()">
-            <button onclick="renderProgressSection(), loadDataBase()">Add task <span>+</span></button>
+            <input type="text" placeholder="Find Task" id="searchInput" onkeyup="proofInput()">
+            <button onclick="loadAll()">Add task <span>+</span></button>
         </div>
     </div>
 
-
-
-    <!-- hier fängt der ganze section an -->
     <div class="to-do-section" id="toDoSection">
     </div>
 </div>
