@@ -39,7 +39,6 @@ function setURL(url) {
 async function loadJSONFromServer() {
     let response = await fetch(BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime()));
     return await response.text();
-
 }
 
 function loadJSONFromServerOld() {

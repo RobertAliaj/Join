@@ -1,7 +1,5 @@
-// let progress = ['To Do', 'In Progress', 'Awaiting Feedback', 'Done'];
 
 let progressJson = [
-
     {
         'progress': 'To Do'
     },
@@ -105,22 +103,44 @@ function allowDrop(ev) {
 }
 
 
+
+function dragOver(ev) {
+    ev.preventDefault();
+}
+
+
 function startDragging(id) {
     currentDragElement = id;
 }
 
 
 function moveTo(currentSection, i) {
-    progressJson[i]['progress'] = currentSection;     
+    document.getElementById('toDoSection').innerHTML = '';
+    progressJson[i]['progress'] = currentSection;
+    renderProgressSection();
+    renderCards();
+    console.log(progressJson[i]['progress']);
+}
+
+
+function displayOverlay(){
+    document.getElementById('overlayBg').classList.remove('d-none');
+    document.getElementById('popUp').classList.remove('d-none');
+}
+
+
+function removeOverlay(){
+    document.getElementById('overlayBg').classList.add('d-none');
+    document.getElementById('popUp').classList.add('d-none')
 }
 
 
 function renderProgressHtml(currentSection, i) {
     return `
-    <div class="task-divs-parent" id="${currentSection}" ondrop="moveTo(${currentSection}, ${i})" ondragover="allowDrop(event)">
+    <div class="task-divs-parent" id="${currentSection}" ondrop="moveTo('${currentSection}', ${i})" ondragover="allowDrop(event)">
     <div class="task-divs-child">
        <div>${currentSection}</div>
-     <img src="./assets/img/add_button.png" class="add-img">
+     <img src="./assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
     </div>
 
         <div id="task" class="cards-parent">

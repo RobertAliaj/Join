@@ -1,5 +1,5 @@
 async function awaitHTML() {
-    await init();
+     await init();
     await includeHTML();
 }
 

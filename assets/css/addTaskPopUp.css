@@ -1,183 +1,97 @@
 .overlay-bg {
-    width: calc(100vw - 18%);
+    width: calc(100vw);
     height: 100vh;
     background-color: rgb(0 0 0 / 20%);
     z-index: 5;
     position: absolute;
-    left: 232px;
+    left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-}
-
-.d-none {
-    display: none;
-}
-
-
-/* Ab hier ist der Code von Gerald */
-.add-task-container {
-    Padding: 50px 120px 50px 120px;
-    font-size: 21px;
-}
-
-.headline {
-    font-size: 61px;
-    font-weight: 700;
-    padding-bottom: 50px;
-    width: 1009px;
-}
-
-.input-section {
-    display: flex;
-    width: 1009px;
-}
-
-/* container left */
-.main-inforamtion {
-    border-right: 1px solid rgb(209, 209, 209);
-    padding-right: 59px;
-}
-
-.padding-10-bottom {
-    padding-bottom: 10px;
-}
-
-.padding-36-bottom {
-    padding-bottom: 36px;
-}
-
-.d-none {
-    display: none;
-}
-
-.input-title {
-    width: 420px;
-    height: 50px;
-    border: 1px solid rgb(209, 209, 209);
-    border-radius: 10px;
-    font-size: 21px;
-    padding-left: 21px;
-    font-family: 'Inter';
-    font-weight: 400;
-    color: rgb(209, 209, 209);
-}
-
-.textarea-description {
-    width: 420px;
-    height: 120px;
-    border: 1px solid rgb(209, 209, 209);
-    border-radius: 10px;
-    font-size: 21px;
-    padding-left: 21px;
-    padding-top: 18px;
-    font-family: 'Inter';
-    font-weight: 400;
-    color: rgb(209, 209, 209);
-    resize: vertical;
-}
-
-.dd-placeholder {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 13px 21px 13px 21px;
-}
-
-.dropdown-category-closed {
-    width: 420px;
-    height: 50px;
-    border: 1px solid rgb(209, 209, 209);
-    border-radius: 10px;
-    font-size: 21px;
-    font-family: 'Inter';
-    font-weight: 400;
-    background-color: rgb(255, 255, 255);
-    cursor: pointer;
-
-}
-
-.dropdown-category-open {
-    height: 200px !important;
-}
-
-/* Container right */
-.second-inforamtion {
-    padding-left: 59px;
-}
-
-.prio-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.prio-button {
-    width: 136px;
-    height: 50px;
-    border: 1px solid rgb(209, 209, 209);
-    border-radius: 10px;
-    font-size: 21px;
-    font-family: 'Inter';
-    font-weight: 400;
-    background-color: rgb(255, 255, 255);
-    display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.prio-button img {
-    padding-left: 10px;
+.d-none {
+    display: none;
 }
 
-.add-icon {
-    background-image: url(https://gruppe-join-421.developerakademie.net/asset/img/add_subtask.png);
-    background-repeat: no-repeat;
-    background-position: 400px 16px;
-
-}
-
-
-/* buttons */
-.buttons {
+.content {
+    background-color: white;
+    width: 80%;
+    height: fit-content;
+    border-radius: 20px;
+    box-sizing: border-box;
+    z-index: 999;
     display: flex;
-    justify-content: end;
-    width: 1009px;
-    ;
-    padding-top: 48px;
+    flex-direction: column;
+    padding: 50px;
 }
 
-.clear-task {
-    background-color: rgb(246, 247, 248);
-    font-size: 21px;
-    color: rgb(44, 54, 70);
-    width: 136px;
-    height: 60px;
-    border: 1px solid rgb(44, 54, 70);
-    ;
+.content-child {
+    display: flex;
+    width: 100%;
+}
+
+.add-task {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+
+.flex-column {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.select-category {
+    border: 1px solid rgb(0 0 0 / 20%);
+    box-sizing: border-box;
     border-radius: 10px;
-    margin-right: 25px;
+    padding: 8px;
 }
 
-.clear-task img {
-    width: 12px;
-    height: 12px;
-    padding-left: 16px;
+.prio-parent {
+    display: flex;
 }
 
-.create-task {
-    background-color: rgb(44, 54, 70);
-    font-size: 21px;
-    color: rgb(246, 247, 248);
-    width: 175px;
-    height: 60px;
-    border: none;
+.prio-child {
+    box-sizing: border-box;
+    border: 1px solid rgb(0 0 0 / 20%);
     border-radius: 10px;
-    font-weight: 700;
+    width: 33%;
+    height: 30px;
 }
 
-.create-task img {
-    width: 16px;
-    height: 12px;
-    padding-left: 14px;
+.check {
+    width: 10px;
+    height: 10px;
+    border: 1px solid black;
 }
 
+.half {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.middle-line {
+    border-right: 2px solid rgb(0 0 0 / 22%);
+    margin-right: 20px;
+}
+
+.task-input {
+    border-radius: 6px;
+    border: 1px solid rgb(0 0 0 / 20%);
+    padding: 8px;
+}
+
+textarea {
+    border-radius: 6px;
+    border: 1px solid rgb(0 0 0 / 20%);
+    padding: 8px;
+}
