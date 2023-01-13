@@ -1,21 +1,4 @@
-// let progress = ['To Do', 'In Progress', 'Awaiting Feedback', 'Done'];
-
-let progressJson = [
-
-    {
-        'progress': 'To Do'
-    },
-    {
-        'progress': 'In Progress'
-
-    },
-    {
-        'progress': 'Awaiting Feedback'
-    },
-    {
-        'progress': 'Done'
-    }
-]
+let progress = ['To Do', 'In Progress', 'Awaiting Feedback', 'Done'];
 
 let myData = [];
 
@@ -36,8 +19,8 @@ async function loadMyData() {
 
 function renderProgressSection() {
     let mySection = document.getElementById('toDoSection');
-    for (let i = 0; i < progressJson.length; i++) {
-        const currentSection = progressJson[i]['progress'];
+    for (let i = 0; i < progress.length; i++) {
+        const currentSection = progress[i];
         mySection.innerHTML += renderProgressHtml(currentSection, i);
     }
 }
@@ -111,13 +94,13 @@ function startDragging(id) {
 
 
 function moveTo(currentSection, i) {
-    progressJson[i]['progress'] = currentSection;     
+    currentSection;
 }
 
 
 function renderProgressHtml(currentSection, i) {
     return `
-    <div class="task-divs-parent" id="${currentSection}" ondrop="moveTo(${currentSection}, ${i})" ondragover="allowDrop(event)">
+    <div class="task-divs-parent" id="${currentSection}${i}" ondrop="moveTo(${currentSection}, ${i})" ondragover="allowDrop(event)">
     <div class="task-divs-child">
        <div>${currentSection}</div>
      <img src="./assets/img/add_button.png" class="add-img">

@@ -39,7 +39,7 @@
         "category": "Media",
         "title": "Video cut",
         "description": "Edit the new company video",
-        "assigned_to": ["Jani", "Rrezi", "Mary", "Anna", "Gary"],
+        "assigned_to": ["Jani", "Rrezi", "Mary", "Anna", "Gary", "Mary", "Anna", "Gary"],
         "due_date": "2023-03-02",
         "prio": "medium",
         "subtasks": ""
