@@ -1,6 +1,27 @@
 let contacts = [];
 let letters = [];
 
+setURL('http://alina-wetter.developerakademie.net/Join/smallest_backend_ever');
+
+
+async function init() {
+    await downloadFromServer();
+    // contacts = JSON.parse(backend.getItem('contacts')) || [];
+    tasks = jsonFromServer['tasks'];
+    showContacts()
+}
+
+
+
+async function deleteUser() {
+    await backend.deleteItem('contacts');
+}
+
+function addContact() {
+
+    backend.setItem('contacts', JSON.stringify(contacts));
+}
+
 function submitContact() {
     let name = document.getElementById('name');
     let mail = document.getElementById('mail');
@@ -24,8 +45,8 @@ function submitContact() {
             "phone": phone.value,
             "color": ''
         };
+        
         contacts.push(contact);
-        console.log(contacts);
     }
 
     closeNewContact();
@@ -48,6 +69,10 @@ function closeNewContact() {
     setTimeout(function () {
         document.getElementById('overlay').classList.add('d-none')
     }, 400)
+    showContacts()
+}
+
+function showContacts() {
     createLetters();
     displayContacts();
 }
@@ -105,7 +130,7 @@ function displayContacts() {
 
 function contactHtml(j) {
     return /*html*/ `
-        <div class="single-contact" tabindex="1">
+        <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
             <div class="name-tag" id="${j}">
                 ${contacts[j]['firstname'].charAt(0).toUpperCase()}${contacts[j]['lastname'].charAt(0).toUpperCase()}
             </div>
@@ -123,10 +148,44 @@ function generateRandomColor() {
 }
 
 function setRandomColor(j) {
-    if (! contacts[j]['color'] == '') {
+    if (!contacts[j]['color'] == '') {
         document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
     } else {
         contacts[j]['color'] = generateRandomColor();
         document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
     }
+    addContact();
+}
+
+function openSpecificContact(idx) {
+    document.getElementById('specificContact').innerHTML = specificContactHtml(idx);
+    document.getElementById(`specific${idx}`).style.backgroundColor = contacts[idx]['color'];
+}
+
+function specificContactHtml(idx) {
+    return /*html*/ `
+        <div class="specific-contact">
+            <div class="single-contact no-hover">
+                <div class="name-tag bigger" id="specific${idx}">
+                    ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
+                </div>
+                <div>
+                    <span class="name">${contacts[idx]['firstname']} ${contacts[idx]['lastname']}</span>
+                    <span class="add-task">+ Add Task</span>
+                </div>
+            </div>
+            <div class="contact-information">
+                <div>
+                    <span>Contact Information</span>
+                    <span>Edit Contact</span>
+                </div>
+                <div>
+                    <b>Email</b>
+                    <span class="mail">${contacts[idx]['email']}</span>
+                    <b>Phone</b>
+                    <span>${contacts[idx]['phone']}</span>
+                </div>
+            </div>
+        </div>
+    `;
 }
