@@ -3,20 +3,20 @@ let letters = [];
 
 setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
 
-// async function init() {
-//     await downloadFromServer();
-//     // contacts = JSON.parse(backend.getItem('contacts')) || [];
-//     contacts = jsonFromServer;
-//     showContacts()
-// }
-
-async function deleteUser() {
-    await backend.deleteItem('contacts');
+async function init() {
+    await downloadFromServer();
+    contacts = jsonFromServer['contacts'];
+    console.log(contacts)
+    showContacts()
 }
 
-function addContact() {
+// async function deleteUser() {
+//     await backend.deleteItem('contacts');
+// }
 
-    backend.setItem('contacts', JSON.stringify(contacts));
+function addContact() {
+    jsonFromServer['contacts'] = contacts;
+    saveJSONToServer()
 }
 
 function submitContact() {
@@ -33,7 +33,6 @@ function submitContact() {
             "color": ''
         };
         contacts.push(contact);
-        console.log(contacts);
     } if (WordCount(name) === 2) {
         let contact = {
             "firstname": name.value.split(' ')[0],
@@ -139,10 +138,10 @@ function contactHtml(j) {
     `;
 }
 
-function generateRandomColor() {
-    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    return randomColor;
-}
+// function generateRandomColor() {
+//     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+//     return randomColor;
+// }
 
 function setRandomColor(j) {
     if (!contacts[j]['color'] == '') {
@@ -153,6 +152,13 @@ function setRandomColor(j) {
     }
     addContact();
 }
+
+function generateRandomColor() {
+    let color = "#";
+    for (let i = 0; i < 3; i++)
+      color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+    return color;
+  }
 
 function openSpecificContact(idx) {
     document.getElementById('specificContact').innerHTML = specificContactHtml(idx);
