@@ -404,6 +404,53 @@
     color: #007CEE;
 }
 
+/********** EDIT CONTACT ************/
+
+.edit-contact-container {
+    width: 35%;
+    height: 80%;
+    background-color: white;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    border-radius: 20px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-sizing: border-box;
+}
+
+.name-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.big-name {
+    font-size: 30px;
+}
+
+.delete-button {
+    background-color: #293646;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 /********* SCROLLBAR **********/
 
 

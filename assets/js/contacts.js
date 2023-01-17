@@ -54,7 +54,8 @@ function WordCount(str) {
 }
 
 function openCreateContact() {
-    document.getElementById('overlay').classList.remove('d-none')
+    document.getElementById('overlay').classList.remove('d-none');
+    document.getElementById('newContactContainer').classList.remove('d-none');
     fadeIn();
     slideIn();
 }
@@ -63,7 +64,9 @@ function closeNewContact() {
     slideOut();
     fadeOut();
     setTimeout(function () {
-        document.getElementById('overlay').classList.add('d-none')
+        document.getElementById('overlay').classList.add('d-none');
+        document.getElementById('newContactContainer').classList.add('d-none')
+
     }, 400)
     showContacts()
 }
@@ -81,6 +84,8 @@ function fadeIn() {
 function slideIn() {
     document.getElementById('newContactContainer').classList.remove('slide-out');
     document.getElementById('newContactContainer').classList.add('slide-in');
+    document.getElementById('editContactContainer').classList.remove('slide-out');
+    document.getElementById('editContactContainer').classList.add('slide-in');
 }
 
 function fadeOut() {
@@ -91,6 +96,8 @@ function fadeOut() {
 function slideOut() {
     document.getElementById('newContactContainer').classList.remove('slide-in');
     document.getElementById('newContactContainer').classList.add('slide-out');
+    document.getElementById('editContactContainer').classList.remove('slide-in');
+    document.getElementById('editContactContainer').classList.add('slide-out');
 }
 
 function createLetters() {
@@ -108,13 +115,7 @@ function createLetters() {
     }
 }
 
-function createLetterHtml(i) {
-    return /*html*/`
-        <div class="letter" onclick="searchLetter(${i})">${letters[i].toUpperCase()}</div>
-        <div class="letter-block" id="${letters[i]}">
-        </div>
-    `;
-}
+
 
 function displayContacts() {
     for (j = 0; j < contacts.length; j++) {
@@ -124,19 +125,7 @@ function displayContacts() {
     }
 }
 
-function contactHtml(j) {
-    return /*html*/ `
-        <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
-            <div class="name-tag" id="${j}">
-                ${contacts[j]['firstname'].charAt(0).toUpperCase()}${contacts[j]['lastname'].charAt(0).toUpperCase()}
-            </div>
-            <div>
-                <span>${contacts[j]['firstname']} ${contacts[j]['lastname']}</span>
-                <span>${contacts[j]['email']}</span>
-            </div>
-        </div>
-    `;
-}
+
 
 // function generateRandomColor() {
 //     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -165,6 +154,39 @@ function openSpecificContact(idx) {
     document.getElementById(`specific${idx}`).style.backgroundColor = contacts[idx]['color'];
 }
 
+function editContact(idx) {
+    document.getElementById('overlay').classList.remove('d-none');
+    document.getElementById('editContactContainer').classList.remove('d-none');
+    fadeIn();
+    slideIn();
+}
+
+
+
+/************ HTML ************/
+
+function createLetterHtml(i) {
+    return /*html*/`
+        <div class="letter" onclick="searchLetter(${i})">${letters[i].toUpperCase()}</div>
+        <div class="letter-block" id="${letters[i]}">
+        </div>
+    `;
+}
+
+function contactHtml(j) {
+    return /*html*/ `
+        <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
+            <div class="name-tag" id="${j}">
+                ${contacts[j]['firstname'].charAt(0).toUpperCase()}${contacts[j]['lastname'].charAt(0).toUpperCase()}
+            </div>
+            <div>
+                <span>${contacts[j]['firstname']} ${contacts[j]['lastname']}</span>
+                <span>${contacts[j]['email']}</span>
+            </div>
+        </div>
+    `;
+}
+
 function specificContactHtml(idx) {
     return /*html*/ `
         <div class="specific-contact">
@@ -180,7 +202,7 @@ function specificContactHtml(idx) {
             <div class="contact-information">
                 <div>
                     <span>Contact Information</span>
-                    <span>Edit Contact</span>
+                    <span onclick="editContact(${idx})">Edit Contact</span>
                 </div>
                 <div>
                     <b>Email</b>
