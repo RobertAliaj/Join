@@ -6,7 +6,8 @@
             <div class="vertical-line-blue"></div>
             <span>Better with a team</span>
         </div>
-        <div class="contact-display"></div>
+        <div class="specific-contact" id="specificContact">
+        </div>
         <div onclick="openCreateContact()" class="new-contact-button">
             <b>New contact</b>
             <img src="assets/img/add-contact.png" alt="">
@@ -16,8 +17,10 @@
 
 
 </div>
+
+</div>
 <div id="overlay" class="overlay d-none">
-    <div id="newContactContainer" class="new-contact-container">
+    <div id="newContactContainer" class="new-contact-container d-none">
         <img onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
@@ -46,7 +49,7 @@
                         </div>
                     </div>
                     <div class="submit-section">
-                        <div onclick="cancelCreateContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
+                        <div onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
                         </div>
                         <div onclick="submitContact()" type="submit">Create contact <img
                                 src="assets/img/create_task.png" alt="">
@@ -54,6 +57,27 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+    <div id="editContactContainer" class="edit-contact-container d-none">
+        <div class="name-section">
+            <b class="big-name">ALINA WETTER</b>
+            <div class="horizontal-blue-line" style="width: 100%;"></div>
+        </div>
+        <div class="input-fields">
+            <input type="text" value="Alina">
+            <input type="text" value="Wetter">
+            <input type="email" value="alinawetter@gmail.com">
+            <input type="tel" value="+4917631414472">
+        </div>
+        <div class="submit-section" style="justify-content: center;">
+            <div onclick="closeContactChange()">Cancle <img src="assets/img/Clear_task.png" alt="">
+            </div>
+            <div onclick="changeContact()" type="submit">Submit change<img
+                    src="assets/img/create_task.png" alt="">
+            </div>
+        </div>
+        <div class="delete-button" onclick="deleteContact()" type="submit">Delete contact
         </div>
     </div>
 </div>

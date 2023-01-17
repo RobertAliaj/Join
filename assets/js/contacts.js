@@ -1,6 +1,24 @@
 let contacts = [];
 let letters = [];
 
+setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
+
+async function init() {
+    await downloadFromServer();
+    contacts = jsonFromServer['contacts'];
+    console.log(contacts)
+    showContacts()
+}
+
+// async function deleteUser() {
+//     await backend.deleteItem('contacts');
+// }
+
+function addContact() {
+    jsonFromServer['contacts'] = contacts;
+    saveJSONToServer()
+}
+
 function submitContact() {
     let name = document.getElementById('name');
     let mail = document.getElementById('mail');
@@ -15,7 +33,6 @@ function submitContact() {
             "color": ''
         };
         contacts.push(contact);
-        console.log(contacts);
     } if (WordCount(name) === 2) {
         let contact = {
             "firstname": name.value.split(' ')[0],
@@ -24,8 +41,8 @@ function submitContact() {
             "phone": phone.value,
             "color": ''
         };
+        
         contacts.push(contact);
-        console.log(contacts);
     }
 
     closeNewContact();
@@ -37,7 +54,8 @@ function WordCount(str) {
 }
 
 function openCreateContact() {
-    document.getElementById('overlay').classList.remove('d-none')
+    document.getElementById('overlay').classList.remove('d-none');
+    document.getElementById('newContactContainer').classList.remove('d-none');
     fadeIn();
     slideIn();
 }
@@ -46,8 +64,14 @@ function closeNewContact() {
     slideOut();
     fadeOut();
     setTimeout(function () {
-        document.getElementById('overlay').classList.add('d-none')
+        document.getElementById('overlay').classList.add('d-none');
+        document.getElementById('newContactContainer').classList.add('d-none')
+
     }, 400)
+    showContacts()
+}
+
+function showContacts() {
     createLetters();
     displayContacts();
 }
@@ -60,6 +84,8 @@ function fadeIn() {
 function slideIn() {
     document.getElementById('newContactContainer').classList.remove('slide-out');
     document.getElementById('newContactContainer').classList.add('slide-in');
+    document.getElementById('editContactContainer').classList.remove('slide-out');
+    document.getElementById('editContactContainer').classList.add('slide-in');
 }
 
 function fadeOut() {
@@ -70,6 +96,8 @@ function fadeOut() {
 function slideOut() {
     document.getElementById('newContactContainer').classList.remove('slide-in');
     document.getElementById('newContactContainer').classList.add('slide-out');
+    document.getElementById('editContactContainer').classList.remove('slide-in');
+    document.getElementById('editContactContainer').classList.add('slide-out');
 }
 
 function createLetters() {
@@ -87,13 +115,7 @@ function createLetters() {
     }
 }
 
-function createLetterHtml(i) {
-    return /*html*/`
-        <div class="letter" onclick="searchLetter(${i})">${letters[i].toUpperCase()}</div>
-        <div class="letter-block" id="${letters[i]}">
-        </div>
-    `;
-}
+
 
 function displayContacts() {
     for (j = 0; j < contacts.length; j++) {
@@ -103,9 +125,57 @@ function displayContacts() {
     }
 }
 
+
+
+// function generateRandomColor() {
+//     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+//     return randomColor;
+// }
+
+function setRandomColor(j) {
+    if (!contacts[j]['color'] == '') {
+        document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
+    } else {
+        contacts[j]['color'] = generateRandomColor();
+        document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
+    }
+    addContact();
+}
+
+function generateRandomColor() {
+    let color = "#";
+    for (let i = 0; i < 3; i++)
+      color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+    return color;
+  }
+
+function openSpecificContact(idx) {
+    document.getElementById('specificContact').innerHTML = specificContactHtml(idx);
+    document.getElementById(`specific${idx}`).style.backgroundColor = contacts[idx]['color'];
+}
+
+function editContact(idx) {
+    document.getElementById('overlay').classList.remove('d-none');
+    document.getElementById('editContactContainer').classList.remove('d-none');
+    fadeIn();
+    slideIn();
+}
+
+
+
+/************ HTML ************/
+
+function createLetterHtml(i) {
+    return /*html*/`
+        <div class="letter" onclick="searchLetter(${i})">${letters[i].toUpperCase()}</div>
+        <div class="letter-block" id="${letters[i]}">
+        </div>
+    `;
+}
+
 function contactHtml(j) {
     return /*html*/ `
-        <div class="single-contact" tabindex="1">
+        <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
             <div class="name-tag" id="${j}">
                 ${contacts[j]['firstname'].charAt(0).toUpperCase()}${contacts[j]['lastname'].charAt(0).toUpperCase()}
             </div>
@@ -117,16 +187,30 @@ function contactHtml(j) {
     `;
 }
 
-function generateRandomColor() {
-    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    return randomColor;
-}
-
-function setRandomColor(j) {
-    if (! contacts[j]['color'] == '') {
-        document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
-    } else {
-        contacts[j]['color'] = generateRandomColor();
-        document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
-    }
+function specificContactHtml(idx) {
+    return /*html*/ `
+        <div class="specific-contact">
+            <div class="single-contact no-hover">
+                <div class="name-tag bigger" id="specific${idx}">
+                    ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
+                </div>
+                <div>
+                    <span class="name">${contacts[idx]['firstname']} ${contacts[idx]['lastname']}</span>
+                    <span class="add-task">+ Add Task</span>
+                </div>
+            </div>
+            <div class="contact-information">
+                <div>
+                    <span>Contact Information</span>
+                    <span onclick="editContact(${idx})">Edit Contact</span>
+                </div>
+                <div>
+                    <b>Email</b>
+                    <span class="mail">${contacts[idx]['email']}</span>
+                    <b>Phone</b>
+                    <span>${contacts[idx]['phone']}</span>
+                </div>
+            </div>
+        </div>
+    `;
 }
