@@ -1,17 +1,14 @@
 let contacts = [];
 let letters = [];
 
-setURL('http://alina-wetter.developerakademie.net/Join/smallest_backend_ever');
+setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
 
-
-async function init() {
-    await downloadFromServer();
-    // contacts = JSON.parse(backend.getItem('contacts')) || [];
-    tasks = jsonFromServer['tasks'];
-    showContacts()
-}
-
-
+// async function init() {
+//     await downloadFromServer();
+//     // contacts = JSON.parse(backend.getItem('contacts')) || [];
+//     contacts = jsonFromServer;
+//     showContacts()
+// }
 
 async function deleteUser() {
     await backend.deleteItem('contacts');
