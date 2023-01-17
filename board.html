@@ -46,14 +46,16 @@
                 <div class="status-title">
                     <h4>To do</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
                 </div>
-                <div class="cards-parent" id="TODO" ondrop="moveTo('TODO')" ondragover="allowDrop(event)"></div>
+                <div class="cards-parent" id="TODO" ondrop="moveTo('TODO'); removeHighlight('TODO')" ondragover="allowDrop(event); highlight('TODO')"
+                ondragleave="removeHighlight('TODO')"></div>
             </div>
 
             <div class="status-parent">
                 <div class="status-title">
                     <h4>In Progress</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
                 </div>
-                <div class="cards-parent" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                <div class="cards-parent" id="inProgress" ondrop="moveTo('inProgress'); removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')"
+                ondragleave="removeHighlight('inProgress')">
                 </div>
             </div>
 
@@ -61,14 +63,16 @@
                 <div class="status-title">
                     <h4>Awaiting Feedback</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
                 </div>
-                <div class="cards-parent" id="feedback" ondrop="moveTo('feedback')" ondragover="allowDrop(event)"></div>
+                <div class="cards-parent" id="feedback" ondrop="moveTo('feedback'); removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"
+                ondragleave="removeHighlight('feedback')"></div>
             </div>
 
             <div class="status-parent">
                 <div class="status-title">
                     <h4>Done</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
                 </div>
-                <div class="cards-parent" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+                <div class="cards-parent" id="done" ondrop="moveTo('done'); removeHighlight('done')" ondragover="allowDrop(event); highlight('done')"
+                ondragleave="removeHighlight('done')"></div>
             </div>
         </div>
     </div>

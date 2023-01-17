@@ -2,6 +2,15 @@ body {
     position: relative;
 }
 
+.title h1{
+    margin-top: 0px;
+}
+
+.to-do-section h4{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -19,7 +28,7 @@ body {
 .title {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
     margin-bottom: 15px;
     padding-left: 13px;
@@ -143,8 +152,8 @@ body {
 }
 
 .cards-parent {
-    height: 70vh;
-    /* overflow: auto; */
+    height: 60vh;
+    overflow: auto;
 }
 
 .cards-parent::-webkit-scrollbar {
@@ -198,7 +207,6 @@ body {
 .status-title {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding-left: 7px;
     padding-right: 7px;
     box-sizing: border-box;
@@ -209,3 +217,11 @@ body {
     height: 15px;
     cursor: pointer;
 }
+
+
+.dragarea-highlight {
+    background: rgb(255 255 255 / 50%);
+    border: 1px dotted rgb(0 0 0 / 25%);
+    border-radius: 10px;
+}
+
