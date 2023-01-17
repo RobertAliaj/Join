@@ -25,7 +25,7 @@
 
 </head>
 
-<body onload="includeHTML(), renderCards()">
+<body onload="awaitHTML()">
 
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div class="absolute">
@@ -43,22 +43,31 @@
         <div class="to-do-section" id="toDoSection">
 
             <div class="status-parent">
-                <h4>To do</h4>
+                <div class="status-title">
+                    <h4>To do</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
+                </div>
                 <div class="cards-parent" id="TODO" ondrop="moveTo('TODO')" ondragover="allowDrop(event)"></div>
             </div>
 
             <div class="status-parent">
-                <h4>In Progress</h4>
-                <div class="cards-parent" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)"></div>
+                <div class="status-title">
+                    <h4>In Progress</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
+                </div>
+                <div class="cards-parent" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                </div>
             </div>
 
             <div class="status-parent">
-                <h4>Awaiting Feedback</h4>
+                <div class="status-title">
+                    <h4>Awaiting Feedback</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
+                </div>
                 <div class="cards-parent" id="feedback" ondrop="moveTo('feedback')" ondragover="allowDrop(event)"></div>
             </div>
-            
+
             <div class="status-parent">
-                <h4>Done</h4>
+                <div class="status-title">
+                    <h4>Done</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
+                </div>
                 <div class="cards-parent" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
             </div>
         </div>
