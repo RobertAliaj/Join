@@ -21,7 +21,7 @@
 </div>
 <div id="overlay" class="overlay d-none">
     <div id="newContactContainer" class="new-contact-container d-none">
-        <img onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">
+        <img onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
                 <img src="assets/img/join_small.png" alt="">
@@ -36,7 +36,7 @@
                 <form>
                     <div class="input-fields">
                         <div>
-                            <input id="name" placeholder="Name" type="text" pattern="lls* lls*" required>
+                            <input id="name" placeholder="Name" type="text" required>
                             <img src="assets/img/user.png" alt="">
                         </div>
                         <div>
@@ -51,34 +51,16 @@
                     <div class="submit-section">
                         <div onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
                         </div>
-                        <div onclick="submitContact()" type="submit">Create contact <img
+                        <button onclick="submitContact()" type="submit">Create contact <img
                                 src="assets/img/create_task.png" alt="">
-                        </div>
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <div id="editContactContainer" class="edit-contact-container d-none">
-        <div class="name-section">
-            <b class="big-name">ALINA WETTER</b>
-            <div class="horizontal-blue-line" style="width: 100%;"></div>
-        </div>
-        <div class="input-fields">
-            <input type="text" value="Alina">
-            <input type="text" value="Wetter">
-            <input type="email" value="alinawetter@gmail.com">
-            <input type="tel" value="+4917631414472">
-        </div>
-        <div class="submit-section" style="justify-content: center;">
-            <div onclick="closeContactChange()">Cancle <img src="assets/img/Clear_task.png" alt="">
-            </div>
-            <div onclick="changeContact()" type="submit">Submit change<img
-                    src="assets/img/create_task.png" alt="">
-            </div>
-        </div>
-        <div class="delete-button" onclick="deleteContact()" type="submit">Delete contact
-        </div>
+        
     </div>
 </div>
 
