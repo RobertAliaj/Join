@@ -136,7 +136,7 @@ body {
 .initials {
     width: 30px;
     height: 30px;
-    background-color: chocolate;
+    background-color: lightskyblue;
     border: 1px solid white;
     border-radius: 50px;
     margin: 0 -5px 0 0;
@@ -154,6 +154,7 @@ body {
 .cards-parent {
     height: 60vh;
     overflow: auto;
+    width: 200px;
 }
 
 .cards-parent::-webkit-scrollbar {

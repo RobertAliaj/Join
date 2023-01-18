@@ -41,7 +41,7 @@ function submitContact() {
             "phone": phone.value,
             "color": ''
         };
-        
+
         contacts.push(contact);
     }
 
@@ -145,9 +145,9 @@ function setRandomColor(j) {
 function generateRandomColor() {
     let color = "#";
     for (let i = 0; i < 3; i++)
-      color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+        color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
     return color;
-  }
+}
 
 function openSpecificContact(idx) {
     document.getElementById('specificContact').innerHTML = specificContactHtml(idx);
