@@ -1,9 +1,9 @@
 let tasks = [];
 let contacts = [];
+let searchTasks = [];
 let contactColors = [];
 let progress = ['TODO', 'inProgress', 'feedback', 'done'];
 let currentDraggedElement;
-
 
 async function init() {
     await downloadFromServer();
@@ -13,17 +13,37 @@ async function init() {
 }
 
 
+////////////////////////// ALL TASKS /////////////////////7
 function renderCards() {
     clearSections();
     for (let i = 0; i < tasks.length; i++) {
         let element = tasks[i];
         let section = tasks[i]['progress'];
+        let category = tasks[i]['category'];
+        let names = tasks[i]['assigned_to']
+        let prio = tasks[i]['prio'];
         if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
             document.getElementById(section).innerHTML += renderCardsHTML(element, i);
-        getInitials(i);
-        changeCategoryColor(i);
+        getInitials(names, i);
+        changeCategoryColor(category, i);
+        renderPrioImg(prio, i);
     }
 }
+
+
+function renderSubtasks(i) {
+    let subtasks = tasks[i]['subtasks']['name'];
+    for (let s = 0; s < subtasks.length; s++) {
+        const sub = subtasks[s];
+        document.getElementById('subtasks').innerHTML += `
+        <div class="subtasks-names">
+            <div class="check-box"></div>
+            <div>${sub}</div>
+        </div>
+        `;
+    }
+}
+
 
 
 function clearSections() {
@@ -34,35 +54,24 @@ function clearSections() {
 }
 
 
-//get the names of the CoWorkers and get the Initials of them
-function getInitials(i) {
-    let initialsDiv = document.getElementById(`initials${i}`);
-    let names = tasks[i]['assigned_to'];
-    let initials = names.map(name => name.split(' ').map(word => word[0]).join(''));
-    renderVisibleInitials(initials, initialsDiv);
-    renderHiddenInitials(names, initialsDiv);
-    initialColors(i);
+function changeCategoryColor(category, i) {
+    // let category = tasks[i]['category']
+    document.getElementById(`category${i}`).style.backgroundColor = setColors(category);
 }
 
-function initialColors(i) {
-    let myNames = tasks[i]['assigned_to'];
-    for (let f = 0; f < myNames.length; f++) {
-        let fullName = tasks[i]['assigned_to'][f];
-        let split = fullName.split(' ');
-        let lastName = split[1];
-        for (let c = 0; c < contacts.length; c++) {
-            let lastNameContacts = contacts[c]['lastname'];
-            let bgColor = contacts[c]['color'];
-            if (lastName == lastNameContacts) {
-                document.getElementById(`inits${i}`).style.backgroundColor = bgColor;
-            }
-        }
-    }
+
+///////////////////////             GET INITIALS     //////////////////////////
+//get the names of the CoWorkers and get the Initials of them
+function getInitials(names, i) {
+    let initialsDiv = document.getElementById(`initials${i}`);
+    let initials = names.map(name => name.split(' ').map(word => word[0]).join(''));
+    renderVisibleInitials(initials, initialsDiv, i);
+    renderHiddenInitials(names, initialsDiv);
 }
 
 
 // render the Initials of the first three names to have the task
-function renderVisibleInitials(initials, initialsDiv) {
+function renderVisibleInitials(initials, initialsDiv, i) {
     let divsCreated = 0;
     for (let s = 0; s < initials.length; s++) {
         if (divsCreated === 3) {
@@ -70,7 +79,8 @@ function renderVisibleInitials(initials, initialsDiv) {
         }
         divsCreated++;
         const oneInitial = initials[s];
-        initialsDiv.innerHTML += visibleInitialsHtml(oneInitial, s);
+        initialsDiv.innerHTML += visibleInitialsHtml(oneInitial, i, s);
+        initialColors(i, s);
     }
 }
 
@@ -87,19 +97,25 @@ function renderHiddenInitials(names, initialsDiv) {
 }
 
 
-// function searchTask() {
-//     let search = document.getElementById('searchInput').value;
-//     search = search.toLowerCase().trim();
-//     for (let i = 0; i < tasks.length; i++) {
-//         const element = tasks[i];
-//         if (tasks[i]['title'].toLowerCase().includes(search)) {
-//             document.getElementById('TODO').innerHTML = renderCardsHTML(element, i);
-//             renderCards();
-//         }
-//     }
-// }
+function initialColors(i, s) {
+    let myNames = tasks[i]['assigned_to'];
+    let lastName;
+    for (let f = 0; f < myNames.length; f++) {
+        let fullName = tasks[i]['assigned_to'][f];
+        let split = fullName.split(' ');
+        lastName = split[1];
+        for (let c = 0; c < contacts.length; c++) {
+            let lastNameContacts = contacts[c]['lastname'];
+            if (lastName == lastNameContacts) {
+                let bgColor = contacts[c]['color'];
+                document.getElementById(`inits${i}-${s}`).style.backgroundColor = bgColor;
+            }
+        }
+    }
+}
 
 
+///////////////////////       DRAG AND DROP /////////////////////////////
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -113,110 +129,126 @@ function startDragging(id) {
 function moveTo(progress) {
     tasks[currentDraggedElement]['progress'] = progress;
     renderCards();
+    jsonFromServer['tasks'] = tasks;
+    saveJSONToServer();
 }
 
 
-function renderCardsHTML(element, i) {
-    return `
-    <div class="to-do-cards" draggable="true" ondragstart="startDragging(${i})">
-         <div class="category" id="category${i}">
-             ${element['category']}
-         </div>
-   
-         <div class="title-descr">
-             <span class="to-do-title" id="toDoTitle">
-                 <b>${element['title']}</b>
-             </span>
-             <span class="description">
-                 ${element['description']}
-             </span>
-         </div> 
-         <div class="progress-div">
-             <div class="progress-bar"></div>
-             <div><span class="progress-info"> 1/2 Done</span></div>
-         </div>
+////////////////////     FILTER FUNCTION   ///////////////
+function searchTask() {
+    let search = document.getElementById('searchInput').value;
+    search = search.toLowerCase().trim();
 
-         <div id="initials${i}" class="initials-div">
-         </div>
-     </div>
-    `;
+    searchTasks = [];                                                   // leere die searchedTasks    
+    for (let i = 0; i < tasks.length; i++) {                            // iteriere durch die cards
+        if (tasks[i]['title'].toLowerCase().includes(search)) {         //  wenn search == title, dann  
+            if (getIndexFromArray(search) == -1) {                      //  wenn die Buchstabe nicht im Array vorhanden ist     
+                searchTasks.push(tasks[i]);                             //  dann pushe tasks[i]
+            }
+        }
+    }
+    console.log('Gefilterte Tasks:', searchTasks);
+    renderSearchedTask();
+
 }
 
 
-function visibleInitialsHtml(oneInitial, s) {
-    return `
-    <div class="initials" id="inits${s}">
-     ${oneInitial}
-    </div>
-    `;
+function renderSearchedTask() {
+    clearSections();
+    for (let i = 0; i < searchTasks.length; i++) {
+        let element = searchTasks[i];
+        let section = searchTasks[i]['progress'];
+        let category = searchTasks[i]['category'];
+        let names = searchTasks[i]['assigned_to'];
+        let prio = searchTasks[i]['prio'];
+        if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
+            document.getElementById(section).innerHTML += renderCardsHTML(element, i);
+        changeCategoryColor(category, i);
+        getInitials(names, i);
+        renderPrioImg(prio, i);
+    }
 }
 
 
-function displayOverlay() {
-    document.getElementById('overlayBg').classList.remove('d-none');
-    document.getElementById('popUp').classList.remove('d-none');
+function getIndexFromArray(value) {
+    let index = searchTasks.indexOf(value);
+    return index;
 }
 
 
-function removeOverlay() {
-    document.getElementById('overlayBg').classList.add('d-none');
-    document.getElementById('popUp').classList.add('d-none')
+/////////////////////////  BOARD-POPUP /////////////////////////
+function renderPopUpBoard(i) {
+    let popUp = document.getElementById('popUpOne');
+    popUp.innerHTML = '';
+    let element = tasks[i];
+
+    popUp.innerHTML += renderPopUpBoardHtml(element);
+    getNamesPopUp(i);
 }
 
 
-function highlight(id) {
-    document.getElementById(id).classList.add('dragarea-highlight');
+function getNamesPopUp(i) {
+    let nameDiv = document.getElementById('names');
+    nameDiv.innerHTML = '';
+    let myNames = tasks[i]['assigned_to'];
+    let names = tasks[i]['assigned_to'];
+    let initials = names.map(name => name.split(' ').map(word => word[0]).join(''));
+    for (let n = 0; n < myNames.length; n++) {
+        const names = myNames[n];
+        nameDiv.innerHTML += `
+        <div class="name-inits-child">
+            <div class="one-init">${initials[n]}</div>
+            <div>${names}</div>
+        </div>
+        `;
+    }
 }
 
 
-function removeHighlight(id) {
-    document.getElementById(id).classList.remove('dragarea-highlight');
+function renderPrioImg(prio, i) {
+    let prioImg = document.getElementById(`prioImg${i}`);
+    if (prio == 'low') {
+        prioImg.src = 'assets/img/prio_low.png';
+    }
+
+    if (prio == 'medium') {
+        prioImg.src = 'assets/img/prio_medium.png';
+    }
+
+    if (prio == 'high') {
+        prioImg.src = 'assets/img/prio_high.png';
+    }
 }
 
 
-function changeCategoryColor(i) {
-    let category = tasks[i]['category']
-    document.getElementById(`category${i}`).style.backgroundColor = setColors(category);
+function renderPopUpPrio(i) {
+    let prio = tasks[i]['prio'];
+    let popUpPrio = document.getElementById('popUpPrio');
+    let prioBg = document.getElementById('prioDiv');
+
+    if (prio == 'low') {
+        popUpPrio.src = 'assets/img/prio_low.png';
+        popUpPrio.classList.add('turn-white');
+        prioBg.style.backgroundColor = 'rgb(122,226,41)'
+    }
+
+    if (prio == 'medium') {
+        popUpPrio.src = 'assets/img/prio_medium.png';
+        popUpPrio.classList.add('turn-white');
+        prioBg.style.backgroundColor = 'rgb(255,168,0)';
+    }
+
+    if (prio == 'high') {
+        popUpPrio.src = 'assets/img/prio_high.png';
+        popUpPrio.classList.add('turn-white');
+        prioBg.style.backgroundColor = 'rgb(255,61,0)';
+    }
 }
 
 
-function setColors(category) {
-    let categorysAndColors = {
-        design: "rgb(239, 132, 41)",
-        Sales: "rgb(236, 126, 250)",
-        Backoffice: "rgb(100, 210, 193)",
-        Marketing: "rgb(18, 58, 248)",
-        Media: "rgb(247, 202, 57)",
-    };
-    return (categorysAndColors[category]);
+function removeSubtasks(i){
+    let len = tasks[i]['subtasks']['name'];
+    if(len.length == 0){
+        document.getElementById('subTitle').innerHTML = 'No Subtasks';
+    }
 }
-
-
-
-
-
-
-
-
-
-// function filterCards() {
-//     let search = document.getElementById('searchInput').value;
-//     search = search.toLowerCase().trim();
-//     let task = document.getElementById('task');
-//     task.innerHTML = '';
-
-//     for (let l = 0; l < myData.length; l++) {
-//         const currentCard = myData[l];
-//         if (myData[l]['title'].toLowerCase().includes(search)) {
-//             task.innerHTML += renderCardsHtml(currentCard, l);
-//             renderCoWorkes(l);
-//         }
-//     }
-// }
-
-
-
-
-
-
-

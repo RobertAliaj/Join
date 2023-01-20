@@ -1,0 +1,144 @@
+.card-bg {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0 0 0 / 20%);
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    box-sizing: border-box;
+    min-height: fit-content;
+    max-width: 100%;
+    width: 50vw;
+    background-color: white;
+    border-radius: 20px;
+    padding: 35px;
+    font-size: 20px;
+    position: relative;
+}
+
+.pop-up-category {
+    box-sizing: border-box;
+    background-color: aqua;
+    width: fit-content;
+    padding: 5px 20px 5px 20px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.pop-up-title {
+    color: rgb(42, 54, 71);
+    font-weight: bold;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.date {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.pop-up-priority {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+
+.prio-div {
+    padding: 2px 20px 2px 20px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.exit {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+}
+
+.name-inits{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.pop-up-names{
+    margin-bottom: 16px;
+}
+
+.pop-up-description{
+    margin-bottom: 16px;
+}
+
+.one-init{
+    width: 30px;
+    height: 30px;
+    background-color: lightskyblue;
+    border: 1px solid white;
+    border-radius: 50px;
+    margin: 0 -5px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(96, 88, 83);
+    padding: 2px;
+    font-size: 12px;
+}
+
+
+.name-inits-child{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.subtasks-parent{
+    margin-bottom: 16px;
+}
+
+.check-box{
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.subtasks-names{
+    display: flex;
+    gap: 25px;
+}
+
+.subtasks-child{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sub-title{
+    margin-bottom: 16px;
+}
+
+.turn-white{
+    filter: grayscale() brightness(100);
+}
