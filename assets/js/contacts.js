@@ -14,9 +14,9 @@ async function init() {
 //     await backend.deleteItem('contacts');
 // }
 
-function refreshContacts() {
+async function refreshContacts() {
     jsonFromServer['contacts'] = contacts;
-    saveJSONToServer()
+    await saveJSONToServer()
 }
 
 function submitContact() {
