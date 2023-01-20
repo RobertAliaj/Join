@@ -94,6 +94,7 @@ body {
     border: 1px solid rgb(0 0 0 / 10%);
     cursor: pointer;
     box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 8%);
+    position: relative;
 }
 
 .category {
@@ -136,7 +137,6 @@ body {
 .initials {
     width: 30px;
     height: 30px;
-    background-color: lightskyblue;
     border: 1px solid white;
     border-radius: 50px;
     margin: 0 -5px 0 0;
@@ -144,6 +144,9 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
+    background-color: rgb(96, 88, 83);
+    padding: 2px;
+    font-size: 12px;
 }
 
 .absolute {
@@ -171,7 +174,6 @@ body {
 
 .remaining-workers {
     background-color: rgb(41, 54, 70);
-    color: white;
     width: 30px;
     height: 30px;
     border: 1px solid white;
@@ -180,6 +182,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    padding: 2px;
+    font-size: 12px;
 }
 
 
@@ -226,3 +231,8 @@ body {
     border-radius: 10px;
 }
 
+.prio-img{
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+}

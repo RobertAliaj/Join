@@ -77,7 +77,7 @@
       {
         "title": "Website redesign",
         "description": "Modify the contents of the main website. Adjust the UI to the company's brand design. Check responsiv",
-        "category": "design",
+        "category": "Design",
         "assigned_to": ["Anton Mayer", "Tanja Wolf", "Benedikt Ziegler", "Christian Meyer"],
         "due_date": "2023-04-23",
         "prio": "low",
