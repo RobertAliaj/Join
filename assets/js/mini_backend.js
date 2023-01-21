@@ -24,7 +24,7 @@ const backend = {
 async function downloadFromServer() {
     let result = await loadJSONFromServer();
     jsonFromServer = JSON.parse(result);
-    console.log('Loaded', result);
+    console.log('Loaded', result, jsonFromServer);
 }
 
 function setURL(url) {
