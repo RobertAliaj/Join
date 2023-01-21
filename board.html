@@ -9,6 +9,7 @@
     <title>Join</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/boardPopUp.css">
     <link rel="stylesheet" href="assets/css/addTaskPopUp.css">
     <link rel="stylesheet" href="assets/css/board.css">
     <link rel="stylesheet" href="assets/css/desktop_top_template.css">
@@ -18,12 +19,15 @@
     <script src="assets/js/mini_backend.js"></script>
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
+
+    <script src="assets/js/boardHtml.js"></script>
+    <script src="assets/js/boardHelpFunctions.js"></script>
     <script src="assets/js/board.js"></script>
-    <script src="database.json"></script>
+    <script src="assets/js/add_task.js"></script>
 
 </head>
 
-<body onload="init(), renderContent()">
+<body onload="awaitHTML()">
 
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div class="absolute">
@@ -34,16 +38,57 @@
         <div class="title">
             <h1>Board</h1>
             <div class="search-div">
-                <input type="text" placeholder="Find Task" id="searchInput" onkeyup="filterCards()">
-                <button>Add task <span>+</span></button>
+                <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()">
+                <button onclick="displayOverlay()" class="board-button" >Add task <span>+</span></button>
             </div>
         </div>
         <div class="to-do-section" id="toDoSection">
+
+            <div class="status-parent">
+                <div class="status-title">
+                    <h4>To do</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
+                </div>
+                <div class="cards-parent" id="TODO" ondrop="moveTo('TODO'); removeHighlight('TODO')"
+                    ondragover="allowDrop(event); highlight('TODO')" ondragleave="removeHighlight('TODO')"></div>
+            </div>
+
+            <div class="status-parent">
+                <div class="status-title">
+                    <h4>In Progress</h4> <img src="assets/img/add_button.png" class="add-img"
+                        onclick="displayOverlay()">
+                </div>
+                <div class="cards-parent" id="inProgress" ondrop="moveTo('inProgress'); removeHighlight('inProgress')"
+                    ondragover="allowDrop(event); highlight('inProgress')" ondragleave="removeHighlight('inProgress')">
+                </div>
+            </div>
+
+            <div class="status-parent">
+                <div class="status-title">
+                    <h4>Awaiting Feedback</h4> <img src="assets/img/add_button.png" class="add-img"
+                        onclick="displayOverlay()">
+                </div>
+                <div class="cards-parent" id="feedback" ondrop="moveTo('feedback'); removeHighlight('feedback')"
+                    ondragover="allowDrop(event); highlight('feedback')" ondragleave="removeHighlight('feedback')">
+                </div>
+            </div>
+
+            <div class="status-parent">
+                <div class="status-title">
+                    <h4>Done</h4> <img src="assets/img/add_button.png" class="add-img" onclick="displayOverlay()">
+                </div>
+                <div class="cards-parent" id="done" ondrop="moveTo('done'); removeHighlight('done')"
+                    ondragover="allowDrop(event); highlight('done')" ondragleave="removeHighlight('done')"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-bg d-none" id="card" onclick="removeBoardPopUp()">
+        <div class="card" onclick="event.stopPropagation()" id="popUpOne">
         </div>
     </div>
 
     <div w3-include-html="assets/templates/add_task_popup_template.html"></div>
-
 
 </body>
 

@@ -24,7 +24,11 @@ const backend = {
 async function downloadFromServer() {
     let result = await loadJSONFromServer();
     jsonFromServer = JSON.parse(result);
+<<<<<<< HEAD
     console.log('Loaded', result, jsonFromServer);
+=======
+    // console.log('Loaded', result);
+>>>>>>> 9523ffa68e2aa9a08bb6bed25adf342980bb1441
 }
 
 function setURL(url) {
@@ -39,7 +43,6 @@ function setURL(url) {
 async function loadJSONFromServer() {
     let response = await fetch(BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime()));
     return await response.text();
-
 }
 
 function loadJSONFromServerOld() {

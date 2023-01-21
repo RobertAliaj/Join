@@ -1,3 +1,16 @@
+body {
+    position: relative;
+}
+
+.title h1{
+    margin-top: 0px;
+}
+
+.to-do-section h4{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -8,16 +21,18 @@
     width: calc(100vw - 16px);
 }
 
-.d-none{
+.d-none {
     display: none;
 }
 
 .title {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
     margin-bottom: 15px;
+    padding-left: 13px;
+    padding-right: 13px;
 }
 
 .to-do-section {
@@ -30,23 +45,6 @@
     width: 20%;
 }
 
-.task-divs-child {
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    font-weight: 700;
-}
-
-.task-divs-child img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-.container h1 {
-    margin-top: 0;
-}
 
 .search-div {
     display: flex;
@@ -54,7 +52,7 @@
     width: 35%;
 }
 
-input {
+.searchInput {
     border-radius: 10px;
     padding: 10px 21px;
     background-image: url(/assets/img/search.png);
@@ -65,11 +63,11 @@ input {
     width: 70%;
 }
 
-input:focus {
+.searchInput:focus {
     outline: 1px solid rgb(0 0 0 / 5%);
 }
 
-button {
+.board-button {
     background-color: rgb(42, 54, 71);
     color: white;
     border-radius: 10px;
@@ -81,7 +79,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.board-button:hover {
     background-color: #50aadf;
     border: none;
 }
@@ -95,10 +93,12 @@ button:hover {
     box-sizing: border-box;
     border: 1px solid rgb(0 0 0 / 10%);
     cursor: pointer;
+    box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 8%);
+    position: relative;
 }
 
 .category {
-    width: 50%;
+    width: fit-content;
     background-color: brown;
     border-radius: 10px;
     color: white;
@@ -106,24 +106,9 @@ button:hover {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    padding: 2px;
+    padding: 5px;
     font-size: 12px;
-    margin: 5px;
-}
-
-.add-img:hover {
-    cursor: pointer;
-    background-color: rgb(0 0 0 / 20%);
-    filter: hue-rotate(180deg);
-}
-
-.add-img {
-    filter: hue-rotate(180deg);
-}
-
-.to-do-title {
-    font-weight: bold;
-    font-size: 14px;
+    margin-bottom: 12px;
 }
 
 .progress-bar {
@@ -135,8 +120,9 @@ button:hover {
 
 .progress-div {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 8px;
 }
 
 .progress-info {
@@ -151,13 +137,16 @@ button:hover {
 .initials {
     width: 30px;
     height: 30px;
-    background-color: chocolate;
     border: 1px solid white;
     border-radius: 50px;
     margin: 0 -5px 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    background-color: rgb(96, 88, 83);
+    padding: 2px;
+    font-size: 12px;
 }
 
 .absolute {
@@ -166,26 +155,25 @@ button:hover {
 }
 
 .cards-parent {
-    height: 375px;
-    /* overflow: auto; */
+    height: 60vh;
+    overflow: auto;
+    width: 200px;
 }
 
 .cards-parent::-webkit-scrollbar {
     width: 0;
     height: 0;
     background: transparent;
-  }
-  
+}
 
-  .title-descr{
+
+.title-descr {
     display: flex;
     flex-direction: column;
-  }
+}
 
-
-  .remaining-workers{
-    background-color: black;
-    color: white;
+.remaining-workers {
+    background-color: rgb(41, 54, 70);
     width: 30px;
     height: 30px;
     border: 1px solid white;
@@ -194,4 +182,57 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    color: white;
+    padding: 2px;
+    font-size: 12px;
+}
+
+
+.borderLine {
+    height: 551px;
+    border: 1px solid #D1D1D1;
+    align-self: flex-start;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.sales {
+    background-color: chartreuse;
+}
+
+.status-parent {
+    width: 25%;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.description {
+    margin-bottom: 8px;
+}
+
+.status-title {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 7px;
+    padding-right: 7px;
+    box-sizing: border-box;
+}
+
+.add-img {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+
+.dragarea-highlight {
+    background: rgb(255 255 255 / 50%);
+    border: 1px dotted rgb(0 0 0 / 25%);
+    border-radius: 10px;
+}
+
+.prio-img{
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+}

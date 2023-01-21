@@ -6,19 +6,20 @@
             <div class="vertical-line-blue"></div>
             <span>Better with a team</span>
         </div>
-        <div class="contact-display"></div>
+        <div class="specific-contact" id="specificContact">
+        </div>
         <div onclick="openCreateContact()" class="new-contact-button">
             <b>New contact</b>
             <img src="assets/img/add-contact.png" alt="">
             <!--<a href="https://www.flaticon.com/free-icons/contact" title="contact icons">Contact icons created by Vector Stall - Flaticon</a> -->
         </div>
     </div>
-
+</div>
 
 </div>
 <div id="overlay" class="overlay d-none">
-    <div id="newContactContainer" class="new-contact-container">
-        <img onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">
+    <div id="newContactContainer" class="new-contact-container d-none">
+        <img onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
                 <img src="assets/img/join_small.png" alt="">
@@ -30,10 +31,10 @@
         <div class="contact-create-container">
             <img class="user" src="assets/img/user (1).png" alt="">
             <div class="contact-form">
-                <form>
+                <form onsubmit="return false">
                     <div class="input-fields">
                         <div>
-                            <input id="name" placeholder="Name" type="text" pattern="lls* lls*" required>
+                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" required>
                             <img src="assets/img/user.png" alt="">
                         </div>
                         <div>
@@ -46,15 +47,18 @@
                         </div>
                     </div>
                     <div class="submit-section">
-                        <div onclick="cancelCreateContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
+                        <div onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
                         </div>
-                        <div onclick="submitContact()" type="submit">Create contact <img
+                        <button onclick="submitContact()" type="submit">Create contact <img
                                 src="assets/img/create_task.png" alt="">
-                        </div>
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+    <div id="editContactContainer" class="edit-contact-container d-none">
+        
     </div>
 </div>
 

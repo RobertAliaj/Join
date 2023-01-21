@@ -1,107 +1,73 @@
-<div class="overlay-bg d-none">
-    <!-- ab hier ist der code von Gerald -->
-    <div>
-        <div>
-            <span>Add Task</span>
-        </div>
+<div class="overlay-bg d-none" id="overlayBg" onclick="removeOverlay()">
+
+    <div onclick="event.stopPropagation()" class="content d-none" id="popUp">
+        <span class="add-task">Add Task</span>
         <div >
-            <div >
-                <div >
-                    <div >Title</div>
-                    <input type="text" placeholder="Enter a title"  required>
-                </div>
+            <div class="content-child">
+                <div class="half">
+                    <div class="flex-column">
+                        <span>Title</span>
+                        <input type="text" placeholder="Enter a Title" class="task-input">
+                    </div>
 
-                <div >
-                    <div >Description</div>
-                    <textarea name="description" id="#" placeholder="Enter a description" 
-                        required></textarea>
-                </div>
+                    <div class="flex-column">
+                        <span>Description</span>
+                        <textarea placeholder="Enter a description"></textarea>
+                    </div>
 
-                <div >
-                    <div>Category</div>
-                    <div  id="category">
-                        <div 
-                            onclick="pullDownMenu('category', 'assingedTo', 'moreCategorys', 'morecontacts')">
-                            <div>Select task categoey</div>
-                            <img src="assets\img\drop_down.png">
-                        </div>
-                        <div class="d-none" id="moreCategorys">
-                            <div >
-                                <div>New category</div>
-                            </div>
-                            <div >
-                                <div>Sales</div>
-                            </div>
-                            <div >
-                                <div>Backoffice</div>
-                            </div>
+                    <div class="flex-column">
+                        <span>Category</span>
+                        <div class="select-category">
+                            <span>Select Task Category</span>
+                            <img src="assets/img/drop_down.png">
                         </div>
                     </div>
-                </div>
 
-                <div >
-                    <div >Assinged to</div>
-                    <div  id="assingedTo">
-                        <div 
-                            onclick="pullDownMenu('assingedTo', 'category', 'morecontacts', 'moreCategorys')">
-                            <div>Contacts to assing</div>
-                            <img src="assets\img\drop_down.png">
-                        </div>
-                        <div class="d-none" id="morecontacts">
-                            <div>
-                                <div>You</div>
-                            </div>
-                            <div >
-                                <div>Maximilian Vaogel</div>
-                            </div>
-                            <div >
-                                <div>Invite new contact</div>
-                            </div>
+                    <div class="flex-column">
+                        <span>Assigned to</span>
+                        <div class="select-category">
+                            <span>Select Task Category</span>
+                            <img src="assets/img/drop_down.png">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div >
-                <div >
-                    <div >Due date</div>
-                    <input type="text" placeholder="dd/mm/yyyy" required>
-                </div>
-
-                <div >
-                    <div >Prio</div>
-                    <div >
-                        <button >
-                            <div>Urgent</div>
-                            <img src="assets\img\prio_high.png">
-                        </button>
-                        <button >
-                            <div>Medium</div>
-                            <img src="assets\img\prio_medium.png">
-                        </button>
-                        <button >
-                            <div>Low</div>
-                            <img src="assets\img\prio_low.png">
-                        </button>
+            <div>
+                <div class="half">
+                    <div class="flex-column">
+                        <span>Due date</span>
+                        <div>
+                            <input type="text" placeholder="dd/mm/yyyy" required class="task-input">
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <div>Subtasks</div>
-                    <input type="text" placeholder="Add new subtask" required>
+                    <div>
+                        <span>Prio</span>
+                        <div class="prio-parent">
+                            <div class="prio-child"></div>
+                            <div class="prio-child"></div>
+                            <div class="prio-child"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex-column">
+                        <span>Subtasks</span>
+                        <input type="text" placeholder="Add new subtask" class="new-sub" class="task-input">
+                        <div>
+                            <div class="check"></div>
+                            <span>Subtask 1</span>
+                        </div>
+
+                        <div>
+                            <button>Cancel</button>
+                            <button>New task</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div>
-            <button>
-                Clear
-                <img src="assets\img\Clear_task.png">
-            </button>
-            <button >
-                Create Task
-                <img src="assets\img\create_task.png">
-            </button>
-        </div>
     </div>
+
 </div>
