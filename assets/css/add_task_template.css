@@ -272,9 +272,21 @@
     margin-right: 25px;
 }
 
+.clear-task:hover {
+    border: 2px solid rgb(83, 168, 223);
+    color: rgb(83, 168, 223);
+    transform: scale(0.98);
+    transition: all 200ms ease-in-out;
+    box-shadow: 0px 3px 6px rgb(190, 190, 190);
+}
+
 .clear-task img {
     width: 16px;
     height: 16px;
+}
+
+.clear-task img :hover {
+    stroke: #53a8df;
 }
 
 .create-task {
@@ -288,7 +300,9 @@
     font-weight: 700;
 }
 
-/* .create-task img {
-    width: 16px;
-    height: 12px;
-} */
+.create-task:hover {
+    background-color: rgb(83, 168, 223);
+    transform: scale(1.02);
+    transition: all 200ms ease-in-out;
+    box-shadow: 0px 3px 6px rgb(190, 190, 190);
+}

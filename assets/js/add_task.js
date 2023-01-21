@@ -115,6 +115,21 @@ function renderContacts() {
 }
 
 
+//     var clearButton = document.getElementById('clearButton');
+//     var clearButtonImg = document.getElementById('clearButtonImg');
+//     clearButton.addEventListener("mouseover", func(clearButtonImg), false);
+//     clearButton.addEventListener("mouseout", func1(clearButtonImg), false);
+
+
+// function func() {
+//     clearButtonImg.src = `assets/img/Clear_task-new-light_blue.svg`;
+// };
+
+// function func1() {  
+//     clearButtonImg.src = `assets/img/Clear_task-new.svg`;
+// };
+
+
 function combineNames(contacts, i) {
     let firstname =  contacts[i].firstname;
     let lastname = contacts[i].lastname;
