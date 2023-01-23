@@ -107,7 +107,7 @@
       "progress": "TODO"
     },
     {
-      "title": "Call potencial clients",
+      "title": "Call potential clients",
       "description": "Make the product presentation to prospective buyers",
       "category": "Sales",
       "assigned_to": [
@@ -134,8 +134,14 @@
       "due_date": "2023-02-13",
       "prio": "medium",
       "subtasks": {
-        "name": [],
-        "status": []
+        "name": [
+          "Subtask 1",
+          "Subtask 2"
+        ],
+        "status": [
+          false,
+          false
+        ]
       },
       "progress": "TODO"
     },

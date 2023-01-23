@@ -40,3 +40,15 @@ function setColors(category) {
     };
     return (categorysAndColors[category]);
 }
+
+
+function setPrioProperties(prio) {
+    let img = prio === 'low' ? 'assets/img/prio_low_old.png'
+        : prio === 'medium' ? 'assets/img/prio_medium_old.png'
+            : 'assets/img/prio_high_old.png';
+
+    let color = prio === 'low' ? 'rgb(122,226,41)'
+        : prio === 'medium' ? 'rgb(255,168,0)'
+            : 'rgb(255,61,0)';
+    return { img, color };
+}

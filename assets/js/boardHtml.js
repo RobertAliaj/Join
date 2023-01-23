@@ -1,19 +1,19 @@
-function renderCardsHTML(element, i) {
+function renderCardsHTML(task, i) {
     return `
     <div class="to-do-cards" 
     draggable="true" 
     ondragstart="startDragging(${i})" 
     onclick="showPopUp(${i})">
          <div class="category" id="category${i}">
-             ${element['category']}
+             ${task['category']}
          </div>
    
          <div class="title-descr">
              <span class="to-do-title" id="toDoTitle">
-                 <b>${element['title']}</b>
+                 <b>${task['title']}</b>
              </span>
              <span class="description">
-                 ${element['description']}
+                 ${task['description']}
              </span>
          </div> 
          <div class="progress-div" id="proDiv${i}">
@@ -42,31 +42,31 @@ function visibleInitialsHtml(oneInitial, i, s) {
 }
 
 
-function renderPopUpBoardHtml(element) {
+function renderPopUpBoardHtml(task) {
     return `
  
     <img src="assets/img/Clear_task.png" class="exit" onclick="removeBoardPopUp()">
 
     <div class="pop-up-category">
-        <span>${element.category}</span>
+        <span>${task.category}</span>
     </div>
 
     <div class="pop-up-title">
-        <h1>${element.title}</h1>
+        <h1>${task.title}</h1>
     </div>
 
     <div class="pop-up-description">
-        <span>${element.description}</span>
+        <span>${task.description}</span>
     </div>
 
     <div class="date">
         <span><b>Due Date:</b></span>
-        <div>${element.due_date}</div>
+        <div>${task.due_date}</div>
     </div>
 
     <div class="pop-up-priority" >
         <b>Priority:</b>
-        <div class="prio-div" id="prioDiv">${element.prio} <img src="assets/img/prio_low.png" id="popUpPrio"></div>
+        <div class="prio-div" id="prioDiv">${task.prio} <img src="assets/img/prio_low.png" id="popUpPrio"></div>
     </div>
 
     
@@ -89,4 +89,14 @@ function renderPopUpBoardHtml(element) {
         </div>
     </div>
         `;
+}
+
+
+function getNamesPopUpHtml(i, n, initials, names) {
+    return `
+<div class="name-inits-child">
+    <div class="one-init" id="popUpInitials${i}-${n}">${initials[n]}</div>
+    <div>${names}</div>
+</div>
+`;
 }
