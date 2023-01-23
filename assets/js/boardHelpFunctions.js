@@ -2,6 +2,7 @@ function displayBoardPopUp() {
     document.getElementById('card').classList.remove('d-none')
 }
 
+
 function removeBoardPopUp() {
     document.getElementById('card').classList.add('d-none')
 }

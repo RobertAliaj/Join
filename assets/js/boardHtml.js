@@ -1,7 +1,9 @@
 function renderCardsHTML(element, i) {
     return `
-    <div class="to-do-cards" draggable="true" ondragstart="startDragging(${i})" 
-    onclick="displayBoardPopUp(); renderPopUpBoard(${i});renderSubtasks(${i}); renderPopUpPrio(${i}); removeSubtasks(${i})">
+    <div class="to-do-cards" 
+    draggable="true" 
+    ondragstart="startDragging(${i})" 
+    onclick="showPopUp(${i})">
          <div class="category" id="category${i}">
              ${element['category']}
          </div>
@@ -14,9 +16,11 @@ function renderCardsHTML(element, i) {
                  ${element['description']}
              </span>
          </div> 
-         <div class="progress-div">
-             <div class="progress-bar"></div>
-             <div><span class="progress-info"> 1/2 Done</span></div>
+         <div class="progress-div" id="proDiv${i}">
+             <div class="progress-bar-bg" >
+            <div id="proBar${i}" class="progress-bar"></div>
+             </div>
+             <div id="progressNumbers${i}"></div>
          </div>
 
          <div id="initials${i}" class="initials-div">
