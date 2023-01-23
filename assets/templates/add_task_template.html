@@ -19,47 +19,44 @@
                 <div class="padding-10-bottom">Category</div>
                 <div class="dropdown-category-closed" id="category">
                     <div class="dd-placeholder"
-                        onclick="pullDownMenu('category', 'assingedTo', 'moreCategorys', 'morecontacts')">
-                        <div>Select task categoey</div>
+                        onclick="pullDownMenu('category', 'assingedTo', 'moreCategorys', 'moreContacts')">
+                        <div id="chosenCategory">Select task category</div>
                         <img src="assets/img/drop_down.png">
                     </div>
-                    <div class="d-none" id="moreCategorys">
+                    <div class="d-none more-content overflow-auto" id="moreCategorys">
                         <div class="dd-placeholder gray-hover">
                             <div>New category</div>
                         </div>
-                        <div class="dd-placeholder gray-hover">
-                            <div>Sales</div>
-                        </div>
-                        <div class="dd-placeholder gray-hover">
-                            <div>Backoffice</div>
-                        </div>
-                        <div class="dd-placeholder gray-hover">
-                            <div>Design</div>
-                        </div>
-                        <div class="dd-placeholder gray-hover">
-                            <div>Marketing</div>
-                        </div>
-                        <div class="dd-placeholder gray-hover">
-                            <div>Media</div>
-                        </div>
+                        <div id="loadedCategorys"></div>
                     </div>
                 </div>
             </div>
 
-            <div class="padding-36-bottom">
+            <div>
                 <div class="padding-10-bottom">Assinged to</div>
                 <div class="dropdown-category-closed" id="assingedTo">
-                    <div class="dd-placeholder"
-                        onclick="pullDownMenu('assingedTo', 'category', 'morecontacts', 'moreCategorys')">
-                        <div>Contacts to assing</div>
-                        <img src="assets/img/drop_down.png">
-                    </div>
-                    <div class="d-none" id="morecontacts">
-                        <div class="dd-placeholder gray-hover">
-                            <div>You</div>
+                    <div onclick="pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys')"
+                        class="dd-placeholder" id="contactsToAssingContainer">
+                        <div>Contacts
+                            to assing</div>
+                        <img id="ddArrow" src="assets/img/drop_down.png">
+                        <div class="center spcae-between clear-add-button-container d-none" id="clearAddButtons">
+                            <img class="clear-task-input pointer" onclick="clearContacts()" src="assets\img\Clear_task_input.png">
+                            <div>|</div>
+                            <img onclick="addContacts()" class="pointer" src="assets\img\create_subtask.png">
                         </div>
-                        <div class="dd-placeholder gray-hover">
-                            <div>Maximilian Vaogel</div>
+                    </div>
+                    <div class="d-none more-content overflow-auto" id="moreContacts">
+                        <div class="dd-placeholder gray-hover" onclick="selectedForTask('You', 'point')">
+                            <div>You</div>
+                            <div class="select-box center">
+                                <div id="point"></div>
+                            </div>
+                        </div>
+                        <div id="loadedContacts">
+                            <!-- <div class="dd-placeholder gray-hover">
+                                <div>Maximilian Vaogel</div>
+                            </div> -->
                         </div>
                         <div class="dd-placeholder gray-hover">
                             <div>Invite new contact</div>
@@ -67,28 +64,29 @@
                     </div>
                 </div>
             </div>
+            <div class="initials-container" id="initialsContainer"></div>
         </div>
 
         <div class="second-inforamtion">
             <div class="padding-36-bottom">
                 <div class="padding-10-bottom">Due date</div>
-                <input type="text" placeholder="dd/mm/yyyy" class="white-box no-outline" required>
+                <input type="text" placeholder="dd/mm/yyyy" id="date" class="white-box no-outline" required>
             </div>
 
             <div class="padding-36-bottom">
                 <div class="padding-10-bottom">Prio</div>
                 <div class="prio-container">
-                    <button class="prio-button">
+                    <button class="prio-button center pointer" onclick="priority('prioHigh', 'prioMedium', 'prioLow', 'prioHighImg')" id="prioHigh">
                         <div>Urgent</div>
-                        <img src="assets/img/prio_high.png">
+                        <img id="prioHighImg" src="assets/img/prio_high.svg">
                     </button>
-                    <button class="prio-button">
+                    <button class="prio-button center pointer" onclick="priority('prioMedium', 'prioHigh', 'prioLow', 'prioMediumImg')" id="prioMedium">
                         <div>Medium</div>
-                        <img src="assets/img/prio_medium.png">
+                        <img id="prioMediumImg" src="assets/img/prio_medium.svg">
                     </button>
-                    <button class="prio-button">
+                    <button class="prio-button center pointer" onclick="priority('prioLow', 'prioHigh', 'prioMedium', 'prioLowImg')" id="prioLow">
                         <div>Low</div>
-                        <img src="assets/img/prio_low.png">
+                        <img id="prioLowImg" src="assets/img/prio_low.svg">
                     </button>
                 </div>
             </div>
@@ -97,27 +95,28 @@
                 <div class="padding-10-bottom">Subtasks</div>
                 <div class="white-box subtask-container" id="subtask">
                     <input type="text" placeholder="Add new subtask" id="subtaskInput" class="subtask-input no-outline"
-                        onclick="changeIcons()" required>
+                        onclick="switchSubtaskIcons()" required>
                     <div class="center" id="addSubtask">
-                        <img onclick="changeIcons()" src="assets/img/add_subtask.png" class="add-subtask-button">
+                        <img onclick="switchSubtaskIcons()" class="padding-17-right pointer" src="assets/img/add_subtask.png">
                     </div>
-                    <div class="center spcae-between addtask-button-container d-none" id="createSubtask">
-                        <img class="clear-task-input" onclick="changeIcons()" src="assets\img\Clear_task_input.png">
+                    <div class="center spcae-between clear-add-button-container padding-17-right d-none"
+                        id="createSubtask">
+                        <img class="clear-task-input pointer" onclick="switchSubtaskIcons()" src="assets\img\Clear_task_input.png">
                         <div>|</div>
-                        <img onclick="addSubtask()" src="assets\img\create_subtask.png">
+                        <img onclick="addSubtask()" class="pointer" src="assets\img\create_subtask.png">
                     </div>
                 </div>
+                <div id="addetSubtasks"></div>
             </div>
-            <div id="subtask-list"></div>
         </div>
     </div>
 
     <div class="buttons">
-        <button class="clear-task spcae-evenly">
+        <button onclick="" id="clearButton" class="clear-task spcae-evenly">
             Clear
-            <img src="assets/img/Clear_task2.png">
+            <img id="clearButtonImg" src="assets\img\Clear_task-new.svg">
         </button>
-        <button class="create-task spcae-evenly">
+        <button onclick="collectAllInfos()" class="create-task spcae-evenly">
             Create Task
             <img src="assets/img/create_task.png">
         </button>

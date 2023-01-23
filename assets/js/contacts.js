@@ -14,9 +14,9 @@ async function init() {
 //     await backend.deleteItem('contacts');
 // }
 
-function refreshContacts() {
+async function refreshContacts() {
     jsonFromServer['contacts'] = contacts;
-    saveJSONToServer()
+    await saveJSONToServer()
 }
 
 function submitContact() {
@@ -132,8 +132,8 @@ function displayContacts() {
 }
 
 // function generateRandomColor() {
-//     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-//     return randomColor;
+//     var randomColor = Math.floor(Math.random()*16777215).toString(16);
+//         return randomColor;
 // }
 
 function setRandomColor(j) {
@@ -147,9 +147,9 @@ function setRandomColor(j) {
 }
 
 function generateRandomColor() {
-    let color = "#";
-    for (let i = 0; i < 3; i++)
-        color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+    let color = '#'+ Math.floor(Math.random()*16777215).toString(16);
+    // for (let i = 0; i < 3; i++)
+    //     color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
     return color;
 }
 
@@ -240,7 +240,7 @@ function contactHtml(j) {
 function specificContactHtml(idx) {
     return /*html*/ `
         <div class="specific-contact">
-            <div class="single-contact no-hover">
+            <div class="specific-single-contact">
                 <div class="name-tag bigger" id="specific${idx}">
                     ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
                 </div>

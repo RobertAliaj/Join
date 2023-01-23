@@ -353,6 +353,32 @@ button {
     gap: 30px;
 }
 
+.specific-single-contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.specific-single-contact div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.specific-single-contact div:last-child span:first-child {
+    font-size: 19px;
+}
+
+.specific-single-contact div:last-child span:last-child {
+    color: #007CEE;
+    font-size: 14px;
+}
+
 .bigger {
     width: 60px;
     height: 60px;
@@ -371,7 +397,7 @@ button {
 
 .name {
     font-size: 30px !important;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .contact-information {
