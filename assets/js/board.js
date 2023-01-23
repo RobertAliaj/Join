@@ -234,6 +234,7 @@ async function renderSubtasks(i) {
 
         if (statusArray[s] == true) {
             checkBox.innerHTML = `<img src="assets/img/check.png">`;
+
         }
 
         let subTaskName = document.createElement('div');
@@ -270,15 +271,15 @@ function renderPrioImg(prio, i) {
     let prioImg = document.getElementById(`prioImg${i}`);
     switch (prio) {
         case 'low':
-            prioImg.src = 'assets/img/prio_low.png';
+            prioImg.src = 'assets/img/prio_low_old.png';
             break;
 
         case 'medium':
-            prioImg.src = 'assets/img/prio_medium.png';
+            prioImg.src = 'assets/img/prio_medium_old.png';
             break;
 
         case 'high':
-            prioImg.src = 'assets/img/prio_high.png';
+            prioImg.src = 'assets/img/prio_high_old.png';
             break;
     }
 }
@@ -298,9 +299,9 @@ function renderPopUpPrio(i) {
 
 function setPrioProperties(prio) {
     let prioImg = {
-        low: 'assets/img/prio_low.png',
-        medium: 'assets/img/prio_medium.png',
-        high: 'assets/img/prio_high.png'
+        low: 'assets/img/prio_low_old.png',
+        medium: 'assets/img/prio_medium_old.png',
+        high: 'assets/img/prio_high_old.png'
     };
     let prioColor = {
         low: 'rgb(122,226,41)',
