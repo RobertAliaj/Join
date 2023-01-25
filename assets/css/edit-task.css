@@ -1,0 +1,79 @@
+.exit {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.border {
+    border-radius: 5px;
+    border: none;
+    outline: 1px solid rgb(0 0 0 /20%) !important;
+    padding: 8px;
+    width: 80%;
+}
+
+.description-input {
+    height: 80px !important;
+}
+
+.edit-prio-divs {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-ok {
+    box-sizing: border-box;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+}
+
+.edit-ok img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.edit-ok:hover {
+    transition: all 125ms ease-in-out;
+    cursor: pointer;
+    background-color: rgb(42, 171, 226);
+}
+
+.importance {
+    box-sizing: border-box;
+    border: 1px solid rgb(0 0 0 / 5%);
+    box-shadow: rgb(0 0 0 / 25%) 2px 2px 5px 0px;
+    padding: 8px;
+    border-radius: 10px;
+    min-width: 30%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.edit-initials {
+    display: flex;
+    gap: 10px;
+}
+

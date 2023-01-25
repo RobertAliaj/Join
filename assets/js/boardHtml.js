@@ -42,7 +42,7 @@ function visibleInitialsHtml(oneInitial, i, s) {
 }
 
 
-function renderPopUpBoardHtml(task) {
+function renderPopUpBoardHtml(task, i) {
     return `
  
     <img src="assets/img/Clear_task.png" class="exit" onclick="removeBoardPopUp()">
@@ -88,7 +88,12 @@ function renderPopUpBoardHtml(task) {
         <div class="name-inits" id="names">
         </div>
     </div>
-        `;
+ 
+
+    <div class="open-edit"  onclick="openEditTask(); editTask(${i})">
+    <img src="assets/img/pencil.png">
+    </div>
+    `;
 }
 
 
@@ -99,4 +104,59 @@ function getNamesPopUpHtml(i, n, initials, names) {
     <div>${names}</div>
 </div>
 `;
+}
+
+
+function editTaskHtml(i) {
+    let task = popUpTasks[i];
+    return `
+    <img src="assets/img/Clear_task.png" class="exit" onclick="closeEditTask()">
+    
+    <div class="edit-title column">
+    <span>Title</span>
+        <input id="inputTitle${i}" class="border" value="${task.title}">
+    </div>
+
+    <div class="edit-description column">
+        <span>Description</span>
+        <textarea id="inputDescription${i}" cols="0" rows="5" class="border description-input">${task.description}</textarea>
+    </div>
+
+    <div class="edit-date column">
+        <span>DueDate</span>
+        <input class="border" type="date" id="date${i}" name="datum" value="${task.due_date}">
+    </div>
+
+    <div class="edit-prio column">
+        <span>Prio</span>
+        <div class="edit-prio-divs">
+            <div class="importance" id="high">
+                <span>High</span>
+                <img src="assets/img/prio_high_old.png">
+            </div>
+            <div class="importance" id="medium">
+                <span>Medium</span>
+                <img src="assets/img/prio_medium_old.png">
+            </div>
+            <div class="importance" id="low">
+                <span>Low</span>
+                <img src="assets/img/prio_low_old.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-assigned column">
+        <span>Assigned To</span>
+        <select  name="My Choice" class="border" id="selectAssign${i}">
+        </select>
+    </div>
+
+    <div class="edit-initials" id="editInits${i}">
+    </div>
+
+    <div class="edit-ok">
+        <span>Ok</span>
+        <img src="assets/img/create_task2.png">
+    </div>
+</div>`;
 }

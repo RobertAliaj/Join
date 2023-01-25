@@ -74,22 +74,22 @@
     cursor: pointer;
 }
 
-.name-inits{
+.name-inits {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
 }
 
-.pop-up-names{
+.pop-up-names {
     margin-bottom: 16px;
 }
 
-.pop-up-description{
+.pop-up-description {
     margin-bottom: 16px;
 }
 
-.one-init{
+.one-init {
     width: 30px;
     height: 30px;
     background-color: lightskyblue;
@@ -106,7 +106,7 @@
 }
 
 
-.name-inits-child{
+.name-inits-child {
     width: 100%;
     display: flex;
     align-items: center;
@@ -114,11 +114,11 @@
 }
 
 
-.subtasks-parent{
+.subtasks-parent {
     margin-bottom: 16px;
 }
 
-.check-box{
+.check-box {
     width: 20px;
     height: 20px;
     border: 1px solid black;
@@ -128,26 +128,49 @@
     justify-content: center;
 }
 
-.check-box img{
+.check-box img {
     width: 12px;
     height: 12px;
 }
 
-.subtasks-names{
+.subtasks-names {
     display: flex;
     gap: 25px;
 }
 
-.subtasks-child{
+.subtasks-child {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 16px;
 }
 
-.sub-title{
+.sub-title {
     margin-bottom: 16px;
 }
 
-.turn-white{
+.turn-white {
     filter: grayscale() brightness(100);
+}
+
+.open-edit {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 10px;
+    background-color: rgb(42, 54, 71);
+    z-index: 15;
+}
+
+.open-edit:hover {
+    transition: all 125ms ease-in-out;
+    cursor: pointer;
+    background-color: rgb(42, 171, 226);
 }

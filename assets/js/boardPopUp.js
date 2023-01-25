@@ -19,7 +19,7 @@ function renderPopUpBoard(i) {
     let popUp = document.getElementById('popUpOne');
     popUp.innerHTML = '';
     let task = popUpTasks[i];
-    popUp.innerHTML += renderPopUpBoardHtml(task);
+    popUp.innerHTML += renderPopUpBoardHtml(task, i);
     getNamesPopUp(i);
 }
 
@@ -110,3 +110,4 @@ function removeSubtasks(i) {
     let noSub = popUpTasks[i]['subtasks']['name'];
     document.getElementById('subTitle').innerHTML = noSub.length == 0 ? 'No Subtasks' : 'Subtasks';
 }
+
