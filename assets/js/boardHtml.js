@@ -124,37 +124,42 @@ function editTaskHtml(i) {
 
     <div class="edit-date column">
         <span>DueDate</span>
-        <input class="border" type="date" id="date${i}" name="datum" value="${task.due_date}">
+        <input class="border edit-date" type="date" id="date${i}" name="datum" value="${task.due_date}" onclick="setTodayDate(${i})">
     </div>
 
     <div class="edit-prio column">
         <span>Prio</span>
         <div class="edit-prio-divs">
-            <div class="importance" id="high">
+            <div class="importance" id="high" onclick="editPriority(${i}, 'high', 'highImg')">
                 <span>High</span>
-                <img src="assets/img/prio_high_old.png">
+                <img src="assets/img/prio_high_old.png" id="highImg">
             </div>
-            <div class="importance" id="medium">
+            <div class="importance" id="medium" onclick="editPriority(${i}, 'medium', 'mediumImg')">
                 <span>Medium</span>
-                <img src="assets/img/prio_medium_old.png">
+                <img src="assets/img/prio_medium_old.png" id="mediumImg">
             </div>
-            <div class="importance" id="low">
+            <div class="importance" id="low" onclick="editPriority(${i}, 'low', 'lowImg')">
                 <span>Low</span>
-                <img src="assets/img/prio_low_old.png">
+                <img src="assets/img/prio_low_old.png" id="lowImg">
             </div>
         </div>
     </div>
 
     <div class="edit-assigned column">
         <span>Assigned To</span>
-        <select  name="My Choice" class="border" id="selectAssign${i}">
-        </select>
+        
+        <div class="border dropdown-div" id="dropdownDiv${i}" onclick="renderContactss(${i}); openEditToDropDown(${i})">
+        Select contacts to assign <img src="assets/img/drop_down.png">
+        </div>
+        <div id="dropdownElements${i}" class="dropDown-elemets border" style="display:none">
+        </div>
     </div>
+
 
     <div class="edit-initials" id="editInits${i}">
     </div>
 
-    <div class="edit-ok">
+    <div class="edit-ok" onclick="closeEditTask(); editDetails(${i}), showPopUp(${i})">
         <span>Ok</span>
         <img src="assets/img/create_task2.png">
     </div>

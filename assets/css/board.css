@@ -72,11 +72,16 @@ body {
     color: white;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
+    justify-content: center;
     width: 30%;
     border: 1px solid #2A3647;
     cursor: pointer;
+}
+
+.board-button img {
+    filter: invert(100%);
 }
 
 .board-button:hover {

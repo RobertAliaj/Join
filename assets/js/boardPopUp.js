@@ -11,7 +11,7 @@ function showPopUp(i) {
     renderPopUpBoard(i);
     renderSubtasksPopUp(i);
     renderPopUpPrio(i);
-    removeSubtasks(i);
+    proofSubtasks(i);
 }
 
 
@@ -106,7 +106,7 @@ function popUpInitialColor(i, n) {
 }
 
 
-function removeSubtasks(i) {
+function proofSubtasks(i) {
     let noSub = popUpTasks[i]['subtasks']['name'];
     document.getElementById('subTitle').innerHTML = noSub.length == 0 ? 'No Subtasks' : 'Subtasks';
 }
