@@ -1,5 +1,7 @@
 function displayBoardPopUp() {
     document.getElementById('card').classList.remove('d-none')
+    document.getElementById('editTask').classList.add('d-none');
+    document.getElementById('popUpOne').classList.remove('d-none');
 }
 
 
@@ -27,6 +29,17 @@ function highlight(id) {
 
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('dragarea-highlight');
+}
+
+
+function openEditTask() {
+    document.getElementById('editTask').classList.remove('d-none');
+    document.getElementById('popUpOne').classList.add('d-none');
+}
+
+function closeEditTask() {
+    document.getElementById('editTask').classList.add('d-none');
+    document.getElementById('popUpOne').classList.remove('d-none');
 }
 
 

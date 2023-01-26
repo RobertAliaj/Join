@@ -72,11 +72,16 @@ body {
     color: white;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
+    justify-content: center;
     width: 30%;
     border: 1px solid #2A3647;
     cursor: pointer;
+}
+
+.board-button img {
+    filter: invert(100%);
 }
 
 .board-button:hover {
@@ -95,6 +100,13 @@ body {
     cursor: pointer;
     box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 8%);
     position: relative;
+    width: 96%;
+}
+
+
+.to-do-cards:hover {
+    box-shadow: 0px 0px 5px 3px rgb(0 0 0 / 10%);
+    transition: all 125ms ease-in-out;
 }
 
 .category {
@@ -166,7 +178,10 @@ body {
 .cards-parent {
     height: 60vh;
     overflow: auto;
-    width: 200px;
+    /* width: 200px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cards-parent::-webkit-scrollbar {
@@ -255,4 +270,3 @@ body {
     bottom: 90px;
     margin-left: 80px;
 }*/
-

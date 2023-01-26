@@ -2,8 +2,8 @@ let allTasks = [];
 let searchTasks = [];
 let popUpTasks = [];
 let contacts = [];
-let currentDraggedElement;
 let colorAndInitials = [];
+let currentDraggedElement;
 
 
 async function init() {

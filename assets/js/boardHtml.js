@@ -42,7 +42,7 @@ function visibleInitialsHtml(oneInitial, i, s) {
 }
 
 
-function renderPopUpBoardHtml(task) {
+function renderPopUpBoardHtml(task, i) {
     return `
  
     <img src="assets/img/Clear_task.png" class="exit" onclick="removeBoardPopUp()">
@@ -88,7 +88,12 @@ function renderPopUpBoardHtml(task) {
         <div class="name-inits" id="names">
         </div>
     </div>
-        `;
+ 
+
+    <div class="open-edit"  onclick="openEditTask(); editTask(${i})">
+    <img src="assets/img/pencil.png">
+    </div>
+    `;
 }
 
 
@@ -99,4 +104,64 @@ function getNamesPopUpHtml(i, n, initials, names) {
     <div>${names}</div>
 </div>
 `;
+}
+
+
+function editTaskHtml(i) {
+    let task = popUpTasks[i];
+    return `
+    <img src="assets/img/Clear_task.png" class="exit" onclick="closeEditTask()">
+    
+    <div class="edit-title column">
+    <span>Title</span>
+        <input id="inputTitle${i}" class="border" value="${task.title}">
+    </div>
+
+    <div class="edit-description column">
+        <span>Description</span>
+        <textarea id="inputDescription${i}" cols="0" rows="5" class="border description-input">${task.description}</textarea>
+    </div>
+
+    <div class="edit-date column">
+        <span>DueDate</span>
+        <input class="border edit-date" type="date" id="date${i}" name="datum" value="${task.due_date}" onclick="setTodayDate(${i})">
+    </div>
+
+    <div class="edit-prio column">
+        <span>Prio</span>
+        <div class="edit-prio-divs">
+            <div class="importance" id="high" onclick="editPriority(${i}, 'high', 'highImg')">
+                <span>High</span>
+                <img src="assets/img/prio_high_old.png" id="highImg">
+            </div>
+            <div class="importance" id="medium" onclick="editPriority(${i}, 'medium', 'mediumImg')">
+                <span>Medium</span>
+                <img src="assets/img/prio_medium_old.png" id="mediumImg">
+            </div>
+            <div class="importance" id="low" onclick="editPriority(${i}, 'low', 'lowImg')">
+                <span>Low</span>
+                <img src="assets/img/prio_low_old.png" id="lowImg">
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-assigned column">
+        <span>Assigned To</span>
+        
+        <div class="border dropdown-div" id="dropdownDiv${i}" onclick="renderContactss(${i}); openEditToDropDown(${i})">
+        Select contacts to assign <img src="assets/img/drop_down.png">
+        </div>
+        <div id="dropdownElements${i}" class="dropDown-elemets border" style="display:none">
+        </div>
+    </div>
+
+
+    <div class="edit-initials" id="editInits${i}">
+    </div>
+
+    <div class="edit-ok" onclick="closeEditTask(); editDetails(${i}), showPopUp(${i})">
+        <span>Ok</span>
+        <img src="assets/img/create_task2.png">
+    </div>
+</div>`;
 }
