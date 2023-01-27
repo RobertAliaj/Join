@@ -1,32 +1,34 @@
-function renderCardsHTML(task, i) {
+function renderTasksHTML(task, i) {
     return `
     <div class="to-do-cards" 
     draggable="true" 
     ondragstart="startDragging(${i})" 
     onclick="showPopUp(${i})">
-         <div class="category" id="category${i}">
-             ${task['category']}
-         </div>
-   
-         <div class="title-descr">
+
+            <div class="category" id="category${i}">
+                ${task['category']}
+            </div>
+
+        <div class="title-descr">
              <span class="to-do-title" id="toDoTitle">
                  <b>${task['title']}</b>
              </span>
              <span class="description">
                  ${task['description']}
              </span>
-         </div> 
-         <div class="progress-div" id="proDiv${i}">
-             <div class="progress-bar-bg" >
-            <div id="proBar${i}" class="progress-bar"></div>
-             </div>
-             <div id="progressNumbers${i}"></div>
-         </div>
+        </div> 
+    
+        <div class="progress-div" id="proDiv${i}">
+            <div class="progress-bar-bg" >
+                <div id="proBar${i}" class="progress-bar"></div>
+                </div>
+            <div id="progressNumbers${i}"></div>
+        </div>
 
-         <div id="initials${i}" class="initials-div">
-         </div>
+        <div id="initials${i}" class="initials-div">
+        </div>
 
-         <img src="assets/img/prio_low.png" class="prio-img" id="prioImg${i}">    
+        <img src="assets/img/prio_low.png" class="prio-img" id="prioImg${i}">    
 
      </div>
     `;
@@ -36,7 +38,7 @@ function renderCardsHTML(task, i) {
 function visibleInitialsHtml(oneInitial, i, s) {
     return `
     <div class="initials" id="inits${i}-${s}">
-     ${oneInitial}
+        ${oneInitial}
     </div>
     `;
 }
@@ -75,7 +77,6 @@ function renderPopUpBoardHtml(task, i) {
 
         <div id="subtasks" class="subtasks-child">
         </div>
-
     </div>
 
     <div class="pop-up-names" >
@@ -90,10 +91,33 @@ function renderPopUpBoardHtml(task, i) {
     </div>
  
 
-    <div class="open-edit"  onclick="openEditTask(); editTask(${i})">
-    <img src="assets/img/pencil.png">
+    <div class="edit-or-delete">
+        <div class="edit-or-delete-child" onclick="openDeletePopUp(${i})">
+            <img src="assets/img/deleteTask.png" class="delete">
+        </div>
+
+        <div class="edit-or-delete-child" onclick="openEditTask(); renderEditTaskPopUp(${i})">
+            <img src="assets/img/pencil.png">
+        </div>
     </div>
-    `;
+
+        <div class="delete-bg d-none" id="openDeletePopUp${i}">
+            <div class="delete-pop-up">
+              <span>
+                Task unwiederruflich löschen ?
+              </span>
+              <div class="buttons-div">
+                <button class="delete-button red-btn" onclick="deleteTask(${i}); removeBoardPopUp()"> Ja</button>
+                <button class="delete-button white-btn"> Nein</button>
+              </div>
+              </div>
+        </div>
+        `;
+}
+
+
+function openDeletePopUp(i){
+    document.getElementById(`openDeletePopUp${i}`).classList.remove('d-none');
 }
 
 
@@ -107,13 +131,13 @@ function getNamesPopUpHtml(i, n, initials, names) {
 }
 
 
-function editTaskHtml(i) {
+function renderEditTaskPopUpHtml(i) {
     let task = popUpTasks[i];
     return `
-    <img src="assets/img/Clear_task.png" class="exit" onclick="closeEditTask()">
+    <img src="assets/img/Clear_task.png" class="exit" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})">
     
     <div class="edit-title column">
-    <span>Title</span>
+        <span>Title</span>
         <input id="inputTitle${i}" class="border" value="${task.title}">
     </div>
 
@@ -128,7 +152,9 @@ function editTaskHtml(i) {
     </div>
 
     <div class="edit-prio column">
+        
         <span>Prio</span>
+
         <div class="edit-prio-divs">
             <div class="importance" id="high" onclick="editPriority(${i}, 'high', 'highImg')">
                 <span>High</span>
@@ -143,14 +169,16 @@ function editTaskHtml(i) {
                 <img src="assets/img/prio_low_old.png" id="lowImg">
             </div>
         </div>
+    
     </div>
 
     <div class="edit-assigned column">
         <span>Assigned To</span>
         
-        <div class="border dropdown-div" id="dropdownDiv${i}" onclick="renderContactss(${i}); openEditToDropDown(${i})">
-        Select contacts to assign <img src="assets/img/drop_down.png">
+        <div class="border dropdown-div" id="dropdownDiv${i}" onclick="editPopUpContacts(${i}); openEditDropDown(${i})">
+            Select contacts to assign <img src="assets/img/drop_down.png">
         </div>
+        
         <div id="dropdownElements${i}" class="dropDown-elemets border" style="display:none">
         </div>
     </div>
@@ -159,9 +187,8 @@ function editTaskHtml(i) {
     <div class="edit-initials" id="editInits${i}">
     </div>
 
-    <div class="edit-ok" onclick="closeEditTask(); editDetails(${i}), showPopUp(${i})">
+    <div class="edit-ok" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})">
         <span>Ok</span>
         <img src="assets/img/create_task2.png">
-    </div>
-</div>`;
+    </div>`;
 }

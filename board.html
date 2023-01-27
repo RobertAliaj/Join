@@ -22,7 +22,7 @@
     <script src="assets/js/include.js"></script>
 
     <script src="assets/js/board.js"></script>
-    <script src="assets/js/editTask.js"></script>
+    <script src="assets/js/boardEditTask.js"></script>
     <script src="assets/js/boardProperties.js"></script>
     <script src="assets/js/boardHtml.js"></script>
     <script src="assets/js/boardPopUp.js"></script>
@@ -41,7 +41,8 @@
             <h1>Board</h1>
             <div class="search-div">
                 <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()">
-                <button onclick="displayOverlay()" class="board-button">Add task <img src="assets/img/add_subtask.png" alt=""></button>
+                <button onclick="displayOverlay()" class="board-button">Add task <img src="assets/img/add_subtask.png"
+                        alt=""></button>
             </div>
         </div>
         <div class="to-do-section" id="toDoSection">
@@ -93,7 +94,12 @@
         <div class="card d-none" id="editTask" onclick="event.stopPropagation()">
         </div>
 
-        <div w3-include-html="assets/templates/add_task_popup_template.html"></div>
+    </div>
+
+    <div w3-include-html="assets/templates/add_task_popup_template.html"></div>
+
+
+
 
 </body>
 

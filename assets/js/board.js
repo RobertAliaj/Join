@@ -4,6 +4,7 @@ let popUpTasks = [];
 let contacts = [];
 let colorAndInitials = [];
 let currentDraggedElement;
+let existingNames;
 
 
 async function init() {
@@ -19,69 +20,24 @@ async function init() {
 function renderTasks() {
     clearSections();
     for (let i = 0; i < allTasks.length; i++) {
-        let task = allTasks[i];
-        let section = allTasks[i]['progress'];
-        let category = allTasks[i]['category'];
-        let names = allTasks[i]['assigned_to']
-        let prio = allTasks[i]['prio'];
-        let statusArray = allTasks[i]['subtasks']['status'];
+        let [task, section, category, names, prio, statusArray] = getAllTasksDetails(i);
+
         if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
-            document.getElementById(section).innerHTML += renderCardsHTML(task, i);
+            document.getElementById(section).innerHTML += renderTasksHTML(task, i);
+
         taskDetails(names, category, prio, statusArray, i);
     }
 }
 
 
-function taskDetails(names, category, prio, statusArray, i) {
-    getInitials(names, i);
-    changeCategoryColor(category, i);
-    renderPrioImg(prio, i);
-    updateProgressBar(statusArray, i);
-}
-
-
-function renderVisibleInitials(initials, initialsDiv, i) {
-    let divsCreated = 0;
-    for (let s = 0; s < initials.length; s++) {
-        if (divsCreated === 3) {
-            break;
-        }
-        divsCreated++;
-        const oneInitial = initials[s];
-        initialsDiv.innerHTML += visibleInitialsHtml(oneInitial, i, s);
-        renderInitialsColors(i, s);
-    }
-}
-
-
-function renderInitialsColors(i, s) {
-    let bubble = document.getElementById(`inits${i}-${s}`);
-    for (let j = 0; j < colorAndInitials.length; j++) {
-        if (bubble.textContent.includes(colorAndInitials[j].name)) {
-            bubble.style.backgroundColor = colorAndInitials[j].color;
-            break;
-        }
-    }
-}
-
-
-function getContactColorsandInitials() {
-    for (let i = 0; i < contacts.length; i++) {
-        let contactColor = contacts[i]['color'];
-        let contact = contacts[i];
-        let firstInitial = contact.firstname[0];
-        let lastInitial = contact.lastname[0];
-        let initials = (firstInitial + lastInitial);
-        colorAndInitials.push(setContactColors(contactColor, initials));
-    }
-}
-
-
-function setContactColors(contactColor, initials) {
-    return {
-        name: initials,
-        color: contactColor
-    }
+function getAllTasksDetails(i) {
+    let task = allTasks[i];
+    let section = allTasks[i]['progress'];
+    let category = allTasks[i]['category'];
+    let names = allTasks[i]['assigned_to']
+    let prio = allTasks[i]['prio'];
+    let statusArray = allTasks[i]['subtasks']['status'];
+    return [task, section, category, names, prio, statusArray];
 }
 
 
@@ -93,17 +49,36 @@ function clearSections() {
 }
 
 
-function changeCategoryColor(category, i) {
-    document.getElementById(`category${i}`).style.backgroundColor = setColors(category);
+function taskDetails(names, category, prio, statusArray, i) {
+    getInitials(names, i);
+    changeCategoryColor(category, i);
+    renderPrioImg(prio, i);
+    updateProgressBar(statusArray, i);
 }
 
 
-///////////////////////             GET INITIALS     //////////////////////////
 function getInitials(names, i) {
     let initialsDiv = document.getElementById(`initials${i}`);
     let initials = names.map(name => name.split(' ').map(word => word[0]).join(''));
+
     renderVisibleInitials(initials, initialsDiv, i);
     renderHiddenInitials(names, initialsDiv);
+}
+
+
+function renderVisibleInitials(initials, initialsDiv, i) {
+    let divsCreated = 0;
+    for (let s = 0; s < initials.length; s++) {
+
+        if (divsCreated === 3) {
+            break;
+        }
+
+        divsCreated++;
+        const oneInitial = initials[s];
+        initialsDiv.innerHTML += visibleInitialsHtml(oneInitial, i, s);
+        renderInitialsColors(i, s);
+    }
 }
 
 
@@ -114,6 +89,44 @@ function renderHiddenInitials(names, initialsDiv) {
         remainingWorkers.innerHTML = `+${names.length - 3}`;
         remainingWorkers.classList.add("remaining-workers");
         initialsDiv.appendChild(remainingWorkers);
+    }
+}
+
+
+function renderInitialsColors(i, s) {
+    let bubble = document.getElementById(`inits${i}-${s}`);
+
+    for (let j = 0; j < colorAndInitials.length; j++) {
+        if (bubble.textContent.includes(colorAndInitials[j].name)) {
+            bubble.style.backgroundColor = colorAndInitials[j].color;
+            break;
+        }
+    }
+}
+
+
+function changeCategoryColor(category, i) {
+    document.getElementById(`category${i}`).style.backgroundColor = setColors(category);
+}
+
+
+function renderPrioImg(prio, i) {
+    let prioImg = document.getElementById(`prioImg${i}`);
+    prioImg.src = setPrioProperties(prio).img;
+}
+
+
+
+function updateProgressBar(statusArray, i) {
+    let trueCount = statusArray.filter(val => val === true).length;
+    let progressPercent = (trueCount / statusArray.length) * 100;
+    let progressBar = document.getElementById(`proBar${i}`);
+
+    if (statusArray.length > 0) {
+        progressBar.style.width = progressPercent + "%";
+        document.getElementById(`progressNumbers${i}`).innerHTML = `${trueCount}/${statusArray.length} Done`;
+    } else {
+        document.getElementById(`proDiv${i}`).style = 'display : none;';
     }
 }
 
@@ -132,9 +145,12 @@ function startDragging(id) {
 async function moveTo(progress) {
     allTasks[currentDraggedElement]['progress'] = progress;
     renderTasks();
+
     jsonFromServer['tasks'] = allTasks;
     await saveJSONToServer();
 }
+
+
 
 
 ////////////////////     FILTER FUNCTION   ///////////////
@@ -149,6 +165,7 @@ function searchTask() {
             }
         }
     }
+
     renderSearchedTask();
 }
 
@@ -162,33 +179,22 @@ function getSearchIndex(value) {
 function renderSearchedTask() {
     clearSections();
     for (let i = 0; i < searchTasks.length; i++) {
-        let task = searchTasks[i];
-        let names = searchTasks[i]['assigned_to'];
-        let section = searchTasks[i]['progress'];
-        let category = searchTasks[i]['category'];
-        let prio = searchTasks[i]['prio'];
-        let statusArray = searchTasks[i]['subtasks']['status'];
+        let [task, section, category, names, prio, statusArray] = getSearchedTasksDetails(i);
+
         if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
-            document.getElementById(section).innerHTML += renderCardsHTML(task, i);
+            document.getElementById(section).innerHTML += renderTasksHTML(task, i);
+
         taskDetails(names, category, prio, statusArray, i);
     }
 }
 
 
-function renderPrioImg(prio, i) {
-    let prioImg = document.getElementById(`prioImg${i}`);
-    prioImg.src = setPrioProperties(prio).img;
-}
-
-
-function updateProgressBar(statusArray, i) {
-    let trueCount = statusArray.filter(val => val === true).length;
-    let progressPercent = (trueCount / statusArray.length) * 100;
-    let progressBar = document.getElementById(`proBar${i}`);
-    if (statusArray.length > 0) {
-        progressBar.style.width = progressPercent + "%";
-        document.getElementById(`progressNumbers${i}`).innerHTML = `${trueCount}/${statusArray.length} Done`;
-    } else {
-        document.getElementById(`proDiv${i}`).style = 'display : none;';
-    }
+function getSearchedTasksDetails(i) {
+    let task = searchTasks[i];
+    let names = searchTasks[i]['assigned_to'];
+    let section = searchTasks[i]['progress'];
+    let category = searchTasks[i]['category'];
+    let prio = searchTasks[i]['prio'];
+    let statusArray = searchTasks[i]['subtasks']['status'];
+    return [task, section, category, names, prio, statusArray];
 }
