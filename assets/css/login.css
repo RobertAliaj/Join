@@ -1,0 +1,39 @@
+body {
+    background-color: #f6f7f8;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.scale-animation {
+    animation: move 3s ease infinite;
+    animation: scale-down-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.join-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 200px;
+}
+
+@keyframes move {
+    100% {
+        top: 20px !important;
+        left: 20px !important;
+    }
+}
+
+@keyframes scale-down-center {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    100% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+}
