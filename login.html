@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/img/join_small.png">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <script src="assets/js/mini_backend.js"></script>
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
@@ -17,7 +19,13 @@
 
     <title>Document</title>
 </head>
-<body onload="showAnimation()">
-    <img class="join-animation" id="joinImg" src="assets/img/Join_big.png" alt="">
+
+<body onload="animate()">
+    <div class="container">
+        <div class="img-div" id="imgDiv">
+            <img id="joinImg" src="assets/img/Join_big.png" alt="">
+        </div>
+    </div>
 </body>
+
 </html>
