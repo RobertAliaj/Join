@@ -72,7 +72,7 @@
     cursor: pointer;
 }
 
-.importance:hover{
+.importance:hover {
     scale: 1.03;
 }
 
@@ -89,7 +89,7 @@
     box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
     z-index: 5;
     flex-direction: column;
-    height: 100px;
+    height: 150px;
     overflow: auto;
     box-sizing: border-box;
     gap: 3px;
@@ -126,12 +126,6 @@
     background-color: rgb(0 0 0 / 5%);
 }
 
-.editCheckBox {
-    width: 15px;
-    height: 15px;
-    border: 1px solid black;
-}
-
 
 .editContacts {
     width: 100%;
@@ -151,6 +145,6 @@
     cursor: pointer;
 }
 
-.high{
+.high {
     background-color: red;
 }

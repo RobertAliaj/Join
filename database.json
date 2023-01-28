@@ -55,6 +55,20 @@
             "email": "RoboJames@blabla.com",
             "phone": "+497777777777",
             "color": "#3ad288"
+        },
+        {
+            "firstname": "Christian",
+            "lastname": "Meyer",
+            "email": "chris@blabla.com",
+            "phone": "+497777777777",
+            "color": "#3ad368"
+        },
+        {
+            "firstname": "Mareike",
+            "lastname": "Schneider",
+            "email": "mareike@gmail.com",
+            "phone": "+49764677777",
+            "color": "#4ad368"
         }
     ],
     "categorys": [

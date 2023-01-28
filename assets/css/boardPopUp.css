@@ -15,8 +15,8 @@
 
 .card {
     box-sizing: border-box;
-    min-height: 95%;
     max-width: 100%;
+    min-height: 95%;
     width: 50vw;
     background-color: white;
     border-radius: 20px;
@@ -153,14 +153,11 @@
     filter: grayscale() brightness(100);
 }
 
-.open-edit {
+.edit-or-delete-child {
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    bottom: 25px;
-    right: 30px;
     width: 50px;
     height: 50px;
     object-fit: contain;
@@ -169,8 +166,85 @@
     z-index: 15;
 }
 
-.open-edit:hover {
+.delete{
+    width: 30px;
+    height: 30px;
+}
+
+.edit-or-delete-child:hover {
     transition: all 125ms ease-in-out;
     cursor: pointer;
     background-color: rgb(42, 171, 226);
+}
+
+.edit-or-delete {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+.delete-pop-up{
+    width: fit-content;
+    height: 200px;
+    background-color: white;
+    display: flex;
+    border-radius: 20px;
+    flex-direction: column;
+    padding: 16px;
+    padding-top: 44px;
+    box-sizing: border-box;
+    gap: 30px;
+    font-weight: bold;
+}
+
+.delete-bg {
+    max-width: 100%;
+    background-color: rgb(0 0 0 / 20%);
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.buttons-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+
+.delete-button{
+    width: 30%;
+    background-color: red;
+    border-radius: 20px;
+    border: 1px solid grey;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.red-btn:hover{
+    background-color: rgb(144, 0, 0);
+}
+
+
+.white-btn{
+    background-color: rgb(0 0 0 / 50%);
+}
+
+.white-btn:hover{
+    background-color: rgb(0 0 0 / 40%);
 }

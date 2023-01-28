@@ -65,3 +65,23 @@ function setPrioProperties(prio) {
             : 'rgb(255,61,0)';
     return { img, color };
 }
+
+
+function getContactColorsandInitials() {
+    for (let i = 0; i < contacts.length; i++) {
+        let contactColor = contacts[i]['color'];
+        let contact = contacts[i];
+        let firstInitial = contact.firstname[0];
+        let lastInitial = contact.lastname[0];
+        let initials = (firstInitial + lastInitial);
+        colorAndInitials.push(setContactColors(contactColor, initials));
+    }
+}
+
+
+function setContactColors(contactColor, initials) {
+    return {
+        name: initials,
+        color: contactColor
+    }
+}
