@@ -5,6 +5,7 @@ let contacts = [];
 let colorAndInitials = [];
 let currentDraggedElement;
 let existingNames;
+let editTaskCheck = false;
 
 
 async function init() {

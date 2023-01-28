@@ -43,6 +43,19 @@ function closeEditTask() {
 }
 
 
+function openDeletePopUp(i) {
+    document.getElementById(`openDeletePopUp${i}`).classList.remove('d-none');
+    // console.log('allTasks', allTasks);
+    // console.log('popUpTasks', popUpTasks);
+    // console.log('searchTasks', searchTasks);
+}
+
+function closeDeletePopUp(i) {
+    document.getElementById(`openDeletePopUp${i}`).classList.add('d-none');
+}
+
+
+
 function setColors(category) {
     let categorysAndColors = {
         design: "rgb(239, 132, 41)",

@@ -5,6 +5,7 @@ function renderTasksHTML(task, i) {
     ondragstart="startDragging(${i})" 
     onclick="showPopUp(${i})">
 
+
             <div class="category" id="category${i}">
                 ${task['category']}
             </div>
@@ -31,8 +32,25 @@ function renderTasksHTML(task, i) {
         <img src="assets/img/prio_low.png" class="prio-img" id="prioImg${i}">    
 
      </div>
+
+     <div class="delete-bg d-none" id="openDeletePopUp${i}">
+     <div class="delete-pop-up">
+       <span>
+         Task unwiederruflich löschen ?
+       </span>
+       <div class="buttons-div">
+         <button class="delete-button red-btn"; onclick="removeBoardPopUp(); deleteTask(${i})"> Ja</button>
+         <button class="delete-button white-btn" onclick="removeBoardPopUp()"> Nein</button>
+       </div>
+       </div>
+
+       hiiiiiiierrr
+ </div>
     `;
 }
+
+
+
 
 
 function visibleInitialsHtml(oneInitial, i, s) {
@@ -92,32 +110,15 @@ function renderPopUpBoardHtml(task, i) {
  
 
     <div class="edit-or-delete">
-        <div class="edit-or-delete-child" onclick="openDeletePopUp(${i})">
+        <div class="edit-or-delete-child" onclick="openDeletePopUp(${i})" title="Löschen">
             <img src="assets/img/deleteTask.png" class="delete">
         </div>
 
-        <div class="edit-or-delete-child" onclick="openEditTask(); renderEditTaskPopUp(${i})">
+        <div class="edit-or-delete-child" onclick="openEditTask(); renderEditTaskPopUp(${i})" title="Bearbeiten">
             <img src="assets/img/pencil.png">
         </div>
     </div>
-
-        <div class="delete-bg d-none" id="openDeletePopUp${i}">
-            <div class="delete-pop-up">
-              <span>
-                Task unwiederruflich löschen ?
-              </span>
-              <div class="buttons-div">
-                <button class="delete-button red-btn" onclick="deleteTask(${i}); removeBoardPopUp()"> Ja</button>
-                <button class="delete-button white-btn"> Nein</button>
-              </div>
-              </div>
-        </div>
         `;
-}
-
-
-function openDeletePopUp(i){
-    document.getElementById(`openDeletePopUp${i}`).classList.remove('d-none');
 }
 
 
@@ -187,7 +188,7 @@ function renderEditTaskPopUpHtml(i) {
     <div class="edit-initials" id="editInits${i}">
     </div>
 
-    <div class="edit-ok" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})">
+    <div class="edit-ok" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})" title="Speichern">
         <span>Ok</span>
         <img src="assets/img/create_task2.png">
     </div>`;

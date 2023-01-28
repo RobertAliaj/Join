@@ -261,12 +261,6 @@ body {
     bottom: 18px;
 }
 
-/* .probgress-bg {
-    width: 80vw;
-    height: fit-content;
-    border-radius: 10px;
-    background-color: grey;
-    position: absolute;
-    bottom: 90px;
-    margin-left: 80px;
-}*/
+.probe{
+    filter: invert(100%);
+}

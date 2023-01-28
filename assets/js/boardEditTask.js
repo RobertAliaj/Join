@@ -1,7 +1,8 @@
 function renderEditTaskPopUp(i) {
     let editPopUp = document.getElementById('editTask');
     editPopUp.innerHTML = renderEditTaskPopUpHtml(i);
-
+    editTaskCheck = true;
+    addOnclickToBg();
     renderEditInitials(i);
 }
 
@@ -20,10 +21,12 @@ function renderEditInitials(i) {
 
 function renderEditInitialColors(i, s) {
     let bubble = document.getElementById(`editInits${i}-${s}`);
-    for (let j = 0; j < colorAndInitials.length; j++) {
-        if (bubble.textContent.includes(colorAndInitials[j].name)) {
-            bubble.style.backgroundColor = colorAndInitials[j].color;
-            break;
+    if (bubble) {
+        for (let j = 0; j < colorAndInitials.length; j++) {
+            if (bubble.textContent.includes(colorAndInitials[j].name)) {
+                bubble.style.backgroundColor = colorAndInitials[j].color;
+                break;
+            }
         }
     }
 }
@@ -77,7 +80,7 @@ function setNewPriority(i, prio) {
 
 function openEditDropDown(i) {
     let dropdownMenu = document.getElementById(`dropdownElements${i}`);
-    
+
     if (dropdownMenu.style.display === "none") {
         dropdownMenu.style.display = "flex";
         document.getElementById(`editInits${i}`).classList.add('d-none');
@@ -161,4 +164,13 @@ async function renderEditedDetails(i) {
 function chooseArrayToRender() {
     let search = document.getElementById('searchInput').value;
     search.length > 0 ? renderSearchedTask() : renderTasks();
+}
+
+
+function addOnclickToBg() {
+    if (editTaskCheck == true) {
+        document.getElementById('card').removeEventListener("click", removeBoardPopUp);
+    } else {
+        document.getElementById('card').addEventListener("click", removeBoardPopUp);
+    }
 }

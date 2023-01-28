@@ -205,7 +205,7 @@
 .delete-bg {
     max-width: 100%;
     background-color: rgb(0 0 0 / 20%);
-    z-index: 5;
+    z-index: 999;
     position: absolute;
     left: 0;
     right: 0;
@@ -228,7 +228,7 @@
 .delete-button{
     width: 30%;
     background-color: red;
-    border-radius: 20px;
+    border-radius: 12px;
     border: 1px solid grey;
     color: white;
     font-weight: bold;

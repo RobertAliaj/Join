@@ -1,4 +1,6 @@
 function showPopUp(i) {
+    editTaskCheck = false;
+    addOnclickToBg();
     proofInput();
     displayBoardPopUp();
     renderPopUpBoard(i);
@@ -6,7 +8,6 @@ function showPopUp(i) {
     renderPopUpPrio(i);
     proofSubtasks(i);
 }
-
 
 function proofInput() {
     let search = document.getElementById('searchInput').value;
@@ -116,9 +117,24 @@ function proofSubtasks(i) {
 
 
 async function deleteTask(i) {
-    let task = popUpTasks[i];
-    allTasks.splice(allTasks.indexOf(task), 1);
+    let search = document.getElementById('searchInput').value;
 
+    if (search.length > 0) {
+        popUpTasks = searchTasks;
+    } else {
+        popUpTasks = allTasks;
+    }
+
+    let task = popUpTasks[i];
+    let taskTitle = task.title;
+
+    popUpTasks.splice(popUpTasks.indexOf(task), 1);
+
+    let index = allTasks.findIndex(x => x.title === taskTitle);
+    if (index != -1 && allTasks[index].title === taskTitle) {
+        allTasks.splice(index, 1);
+    }
+    document.getElementById('searchInput').value = '';
     await saveJSONToServer();
-    chooseArrayToRender();
+    renderTasks();
 }
