@@ -16,13 +16,14 @@
 .card {
     box-sizing: border-box;
     max-width: 100%;
-    min-height: 95%;
+    height: 95%;
     width: 50vw;
     background-color: white;
     border-radius: 20px;
     padding: 35px;
     font-size: 20px;
     position: relative;
+    overflow: auto;
 }
 
 .pop-up-category {
@@ -78,21 +79,22 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 92%;
-    overflow: auto;
-    height: 140px;
+    width: 100%;
+    /* overflow: auto;
+    height: 140px; */
 }
 
 
-.name-inits::-webkit-scrollbar {
+.card::-webkit-scrollbar {
     width: 10px;
-    background-color: #F5F5F5;
+    background-color: rgb(0 0 0 / 0%);
 }
 
-/* Change the color and shape of the scrollbar thumb */
-.name-inits::-webkit-scrollbar-thumb {
+
+/* Change the color and shape of the scrollbar thumb */ 
+.card::-webkit-scrollbar-thumb {
     border-radius: 2px;
-    background-color: rgb(0 0 0 / 50%);
+    background-color: rgb(0 0 0 / 0%);
 }
 
 .pop-up-names {
@@ -180,7 +182,7 @@
     z-index: 15;
 }
 
-.delete{
+.delete {
     width: 30px;
     height: 30px;
 }
@@ -202,7 +204,7 @@
     gap: 15px;
 }
 
-.delete-pop-up{
+.delete-pop-up {
     width: fit-content;
     height: 200px;
     background-color: white;
@@ -231,7 +233,7 @@
     border-radius: 20px;
 }
 
-.buttons-div{
+.buttons-div {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -239,7 +241,7 @@
     align-items: center;
 }
 
-.delete-button{
+.delete-button {
     width: 30%;
     background-color: red;
     border-radius: 12px;
@@ -250,14 +252,14 @@
     cursor: pointer;
 }
 
-.red-btn:hover{
+.red-btn:hover {
     background-color: rgb(144, 0, 0);
 }
 
-.white-btn{
+.white-btn {
     background-color: rgb(0 0 0 / 50%);
 }
 
-.white-btn:hover{
+.white-btn:hover {
     background-color: rgb(0 0 0 / 40%);
 }
