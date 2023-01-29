@@ -6,7 +6,7 @@ html {
   margin: 0;
 }
 
-.img-div{
+.img-div {
   width: auto;
   margin: 0 auto;
   display: inline-block;
@@ -15,5 +15,20 @@ html {
 }
 
 .img-div img {
-    width: 100%;
+  width: 100%;
+}
+
+.select-box {
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgb(0 0 0);
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px rgb(88 88 88);
+}
+
+.point {
+  height: 6px;
+  width: 6px;
+  background-color: black;
+  border-radius: 2px;
 }
