@@ -1,4 +1,5 @@
 {
+    "users": [],
     "contacts": [
         {
             "firstname": "Anton",
@@ -100,9 +101,12 @@
             "category": "Design",
             "assigned_to": [
                 "Anton Mayer",
-                "Tanja Wolf",
                 "Benedikt Ziegler",
-                "Christian Meyer"
+                "Christian Meyer",
+                "Sofia Müller",
+                "Tanja Wolf",
+                "Herbert Braun",
+                "David Eisenberg"
             ],
             "due_date": "2023-04-23",
             "prio": "low",
@@ -113,9 +117,9 @@
                     "Revise the homepage responsively"
                 ],
                 "status": [
-                    false,
-                    false,
-                    false
+                    true,
+                    true,
+                    true
                 ]
             },
             "progress": "TODO"
@@ -153,8 +157,8 @@
                     "Subtask 2"
                 ],
                 "status": [
-                    false,
-                    false
+                    true,
+                    true
                 ]
             },
             "progress": "feedback"
@@ -176,9 +180,9 @@
                     "Created accounts for all common social media platforms"
                 ],
                 "status": [
-                    false,
-                    false,
-                    false
+                    true,
+                    true,
+                    true
                 ]
             },
             "progress": "done"
@@ -197,7 +201,7 @@
                 "name": [],
                 "status": []
             },
-            "progress": "TODO"
+            "progress": "done"
         }
     ]
 }

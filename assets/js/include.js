@@ -1,8 +1,7 @@
 async function awaitHTML() {
     await includeHTML();
-    await init();
+    // await init();
 }
-
 
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
