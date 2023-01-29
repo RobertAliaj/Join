@@ -7,6 +7,7 @@ function showPopUp(i) {
     renderSubtasksPopUp(i);
     renderPopUpPrio(i);
     proofSubtasks(i);
+    popUpCategoryColor(i);
 }
 
 function proofInput() {
@@ -46,6 +47,13 @@ function popUpInitialColor(i, n) {
             break;
         }
     }
+}
+
+
+function popUpCategoryColor(i) {
+    let category = popUpTasks[i]['category'];
+    let popUpCategory = document.getElementById(`popUpCategory${i}`);
+    popUpCategory.style.backgroundColor = setColors(category);
 }
 
 
@@ -116,15 +124,14 @@ function proofSubtasks(i) {
 }
 
 
-async function deleteTask(i) {
-    let search = document.getElementById('searchInput').value;
+function deleteTask(i) {
+    proofInput();
+    deleteTaskFromArrays(i);
+    renderAndSave();
+}
 
-    if (search.length > 0) {
-        popUpTasks = searchTasks;
-    } else {
-        popUpTasks = allTasks;
-    }
 
+function deleteTaskFromArrays(i) {
     let task = popUpTasks[i];
     let taskTitle = task.title;
 
@@ -134,7 +141,11 @@ async function deleteTask(i) {
     if (index != -1 && allTasks[index].title === taskTitle) {
         allTasks.splice(index, 1);
     }
+}
+
+
+function renderAndSave() {
     document.getElementById('searchInput').value = '';
-    await saveJSONToServer();
+    saveJSONToServer();
     renderTasks();
 }

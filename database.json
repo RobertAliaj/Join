@@ -136,7 +136,7 @@
                 "name": [],
                 "status": []
             },
-            "progress": "TODO"
+            "progress": "inProgress"
         },
         {
             "title": "Accounting invoices",
@@ -157,7 +157,7 @@
                     false
                 ]
             },
-            "progress": "TODO"
+            "progress": "feedback"
         },
         {
             "title": "Social media strategy",
@@ -181,7 +181,7 @@
                     false
                 ]
             },
-            "progress": "TODO"
+            "progress": "done"
         },
         {
             "title": "Video cut",

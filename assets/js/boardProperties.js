@@ -45,9 +45,6 @@ function closeEditTask() {
 
 function openDeletePopUp(i) {
     document.getElementById(`openDeletePopUp${i}`).classList.remove('d-none');
-    // console.log('allTasks', allTasks);
-    // console.log('popUpTasks', popUpTasks);
-    // console.log('searchTasks', searchTasks);
 }
 
 function closeDeletePopUp(i) {
@@ -58,7 +55,7 @@ function closeDeletePopUp(i) {
 
 function setColors(category) {
     let categorysAndColors = {
-        design: "rgb(239, 132, 41)",
+        Design: "rgb(239, 132, 41)",
         Sales: "rgb(236, 126, 250)",
         Backoffice: "rgb(100, 210, 193)",
         Marketing: "rgb(18, 58, 248)",

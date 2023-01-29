@@ -39,12 +39,10 @@ function renderTasksHTML(task, i) {
          Task unwiederruflich löschen ?
        </span>
        <div class="buttons-div">
-         <button class="delete-button red-btn"; onclick="removeBoardPopUp(); deleteTask(${i})"> Ja</button>
-         <button class="delete-button white-btn" onclick="removeBoardPopUp()"> Nein</button>
+         <button class="delete-button red-btn"; onclick="removeBoardPopUp(); closeDeletePopUp(${i}); deleteTask(${i})"> Ja</button>
+         <button class="delete-button white-btn" onclick="closeDeletePopUp(${i})"> Nein</button>
        </div>
        </div>
-
-       hiiiiiiierrr
  </div>
     `;
 }
@@ -67,7 +65,7 @@ function renderPopUpBoardHtml(task, i) {
  
     <img src="assets/img/Clear_task.png" class="exit" onclick="removeBoardPopUp()">
 
-    <div class="pop-up-category">
+    <div class="pop-up-category" id="popUpCategory${i}">
         <span>${task.category}</span>
     </div>
 
