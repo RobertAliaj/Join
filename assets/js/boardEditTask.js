@@ -60,6 +60,7 @@ function clearPriorityDivs() {
         div.style.backgroundColor = 'initial';                                   // setze background color auf auf den Ursprünglichen Wert zurück
         let img = div.querySelector('img');                                      // Hier wird das erste Element gefunden, das ein Kind von dem aktuellen Element ist und das ein img-Element ist und es in einer Variable namens "img" gespeichert.   
         img.classList.remove('turn-white');                                      // classe wird entfernt
+        div.classList.remove('white-span');
     });
 }
 
@@ -69,6 +70,7 @@ function setBgColor(prio, imgId) {
     let prioImg = document.getElementById(imgId);
     let { color } = setPrioProperties(prio);
     prioDiv.style.backgroundColor = color;
+    prioDiv.classList.add('white-span');
     prioImg.classList.add('turn-white');
 }
 
@@ -167,10 +169,30 @@ function chooseArrayToRender() {
 }
 
 
-function addOnclickToBg() {
-    if (editTaskCheck == true) {
-        document.getElementById('card').removeEventListener("click", removeBoardPopUp);
-    } else {
-        document.getElementById('card').addEventListener("click", removeBoardPopUp);
-    }
+function dragAndDropResponsive(i, progressId, dropField) {
+    clearProgressDivs();
+    setProgressColor(progressId);
+    setNewProgress(i, dropField);
+}
+
+
+function clearProgressDivs() {
+    let allProgressDivs = document.querySelectorAll('.edit-progress-divs .progress-divs');
+    allProgressDivs.forEach(div => {
+        div.style.backgroundColor = 'initial';
+        div.classList.remove('white-span');
+    });
+}
+
+
+function setProgressColor(progressId) {
+    let progressDiv = document.getElementById(progressId);
+    let myColor = newProgressColor(progressId);
+    progressDiv.style.backgroundColor = myColor;
+    progressDiv.classList.add('white-span');
+}
+
+
+function setNewProgress(i, dropField) {
+    popUpTasks[i]['progress'] = dropField;
 }

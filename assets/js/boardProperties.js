@@ -7,6 +7,7 @@ function displayBoardPopUp() {
 
 function removeBoardPopUp() {
     document.getElementById('card').classList.add('d-none')
+    document.getElementsByTagName('body')[0].style.overflow = 'auto';
 }
 
 
@@ -52,6 +53,23 @@ function closeDeletePopUp(i) {
 }
 
 
+function bodyOverflowHidden() {
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+}
+
+
+function turnToTrue() {
+    editTaskCheck = false;
+}
+
+function addOnclickToBg() {
+    if (editTaskCheck == true) {
+        document.getElementById('card').removeEventListener("click", removeBoardPopUp);
+    } else {
+        document.getElementById('card').addEventListener("click", removeBoardPopUp);
+    }
+}
+
 
 function setColors(category) {
     let categorysAndColors = {
@@ -94,4 +112,15 @@ function setContactColors(contactColor, initials) {
         name: initials,
         color: contactColor
     }
+}
+
+
+function newProgressColor(progressId) {
+    let progressColors = {
+        neWTODO: "#d9534f",
+        newInProgress: "#5bc0de",
+        newFeedback: "#f0ad4e",
+        newDone: "#5cb85c"
+    };
+    return (progressColors[progressId])
 }

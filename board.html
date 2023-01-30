@@ -9,9 +9,11 @@
     <title>Join</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/edit-task.css">
+    <link rel="stylesheet" href="assets/css/boardEditTask.css">
     <link rel="stylesheet" href="assets/css/boardPopUp.css">
+    <link rel="stylesheet" href="assets/css/boardPopUp-responsive.css">
     <link rel="stylesheet" href="assets/css/board.css">
+    <link rel="stylesheet" href="assets/css/board-responsive.css">
     <link rel="stylesheet" href="assets/css/addTaskPopUp.css">
     <link rel="stylesheet" href="assets/css/desktop_top_template.css">
     <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css">
@@ -29,7 +31,7 @@
     <script src="assets/js/add_task.js"></script>
 </head>
 
-<body onload="awaitHTML(); init()">
+<body onload="awaitHTML(); init();">
 
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div class="absolute">
@@ -65,6 +67,7 @@
                 </div>
             </div>
 
+
             <div class="status-parent">
                 <div class="status-title">
                     <h4>Awaiting Feedback</h4> <img src="assets/img/add_button.png" class="add-img"
@@ -91,8 +94,8 @@
         <div class="card" onclick="event.stopPropagation()" id="popUpOne">
         </div>
 
-        <div class="card d-none" id="editTask" onclick="event.stopPropagation()">
-        </div>
+            <div class="card d-none" id="editTask" onclick="event.stopPropagation()">
+            </div>
 
     </div>
 

@@ -1,5 +1,6 @@
 function showPopUp(i) {
-    editTaskCheck = false;
+    bodyOverflowHidden();
+    turnToTrue();
     addOnclickToBg();
     proofInput();
     displayBoardPopUp();
@@ -8,7 +9,9 @@ function showPopUp(i) {
     renderPopUpPrio(i);
     proofSubtasks(i);
     popUpCategoryColor(i);
+    changeHeightofAssignedTo(i);
 }
+
 
 function proofInput() {
     let search = document.getElementById('searchInput').value;
@@ -26,7 +29,7 @@ function renderPopUpBoard(i) {
 
 
 function getNamesPopUp(i) {
-    let nameDiv = document.getElementById('names');
+    let nameDiv = document.getElementById(`names${i}`);
     nameDiv.innerHTML = '';
     let myNames = popUpTasks[i]['assigned_to'];
     let names = popUpTasks[i]['assigned_to'];
@@ -77,6 +80,7 @@ function createSubtaskDiv(sub, statusArray, s, i) {
     subTaskDiv.appendChild(checkBox);                           // füge checkBox zu Subtaskdiv hinzu
 
     let subTaskName = document.createElement('div');            // kreiere ein Div-Element(der Div mit dem Namen)
+    subTaskName.classList.add('width');
     subTaskName.innerText = sub;                                // zeige den Namen von der Subtask an
     subTaskDiv.appendChild(subTaskName);                        // füge die den Namen zu subTaskDiv hinzu
 
@@ -120,7 +124,10 @@ function renderPopUpPrio(i) {
 
 function proofSubtasks(i) {
     let noSub = popUpTasks[i]['subtasks']['name'];
-    document.getElementById('subTitle').innerHTML = noSub.length == 0 ? 'No Subtasks' : 'Subtasks';
+    if(noSub.length == 0){
+        document.getElementById('subTitle').innerHTML = 'No Subtasks';
+        document.getElementById('subParent').style.marginBottom = '0px';
+    }
 }
 
 
@@ -148,4 +155,14 @@ function renderAndSave() {
     document.getElementById('searchInput').value = '';
     saveJSONToServer();
     renderTasks();
+}
+
+
+function changeHeightofAssignedTo(i) {
+    if (allTasks[i]['subtasks']['name'].length >= 3) {
+        document.getElementById(`names${i}`).style.height = '90px';
+    }
+    else {
+        document.getElementById(`names${i}`).style.height = '180px';
+    }
 }

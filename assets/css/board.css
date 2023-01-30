@@ -11,6 +11,7 @@ body {
     margin-bottom: 5px;
 }
 
+
 .container {
     display: flex;
     flex-direction: column;
@@ -37,7 +38,7 @@ body {
 
 .to-do-section {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     box-sizing: border-box;
 }
 
@@ -145,11 +146,6 @@ body {
     align-items: center;
     margin-bottom: 8px;
 }
-
-/* .progress-info {
-    font-size: 14px;
-    display: flex;
-} */
 
 .initials-div {
     display: flex;

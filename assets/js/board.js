@@ -145,7 +145,9 @@ function startDragging(id) {
 
 async function moveTo(progress) {
     allTasks[currentDraggedElement]['progress'] = progress;
-    renderTasks();
+    
+    let search = document.getElementById('searchInput').value;
+    search.length > 0 ? renderSearchedTask() : renderTasks();
 
     jsonFromServer['tasks'] = allTasks;
     await saveJSONToServer();
