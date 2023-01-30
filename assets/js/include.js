@@ -3,6 +3,11 @@ async function awaitHTML() {
     // await init();
 }
 
+async function includePlusInit() {
+    await includeHTML();
+    await init();
+}
+
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
