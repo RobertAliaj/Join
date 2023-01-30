@@ -21,11 +21,40 @@
 </head>
 
 <body onload="animate()">
-    <div class="container">
-        <div class="img-div" id="imgDiv">
-            <img id="joinImg" src="assets/img/Join_big.png" alt="">
+    <div class="outer-div">
+        <div class="animation-container">
+            <div class="img-div" id="imgDiv">
+                <img id="joinImg" src="assets/img/Join_big.png" alt="">
+            </div>
         </div>
     </div>
+    <div class="outer-div-2">
+        <div class="login-container">
+            <span>Log in</span>
+            <div class="horizontal-blue-line"></div>
+            <form onsubmit="login()">
+                <div>
+                    <input type="email" placeholder="Email" id="email">
+                    <img src="assets/img/mail.png" alt="">
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" id="password">
+                    <img src="" alt="">
+                </div>
+            </form>
+            <div>
+                <div class="select-box"></div>
+                <span>Remember me</span>
+                <a>Forgot my password</a>
+            </div>
+            <div>
+                <div class="login-button"></div>
+                <div class="guest-login-button"></div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 
 </html>
