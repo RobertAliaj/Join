@@ -4,6 +4,8 @@ html {
   height: 100%;
   position: relative;
   margin: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 .img-div {
@@ -19,8 +21,8 @@ html {
 }
 
 .outer-div {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: absolute;
   z-index: 3;
 }
@@ -35,6 +37,7 @@ html {
 }
 
 .outer-div-2 {
+  opacity: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -56,9 +59,10 @@ html {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  position: relative;
 }
 
-.login-container span:first-child {
+.login-container span:first-child{
   font-size: 50px;
   font-weight: 700;
 }
@@ -88,7 +92,12 @@ form {
 }
 
 form div {
+  width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 form div img {
@@ -131,6 +140,7 @@ form input::placeholder {
 .login-button {
   background-color: #293646;
   color: white;
+  border: none;
 }
 
 .guest-login-button {
@@ -144,7 +154,7 @@ form input::placeholder {
   gap: 20px;
 }
 
-.buttons div {
+.buttons button {
   width: 110px;
   cursor: pointer;
   box-sizing: border-box;
@@ -155,6 +165,7 @@ form input::placeholder {
   align-items: center;
   justify-content: center;
   font-size: 15px;
+
 }
 
 /*************  SIGN UP ************/
@@ -179,4 +190,16 @@ form input::placeholder {
   font-size: 12px;
   border-radius: 7px;
   cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+}
+
+.sign-up-span {
+  font-size: 50px;
+  font-weight: 700;
 }
