@@ -101,10 +101,14 @@ function bodyOverflowHidden() {
 /**
  * This function is used to turn the value of the variable to false.
  */
-function turnToTrue() {
+function turnToFalse() {
     editTaskCheck = false;
 }
 
+
+function turnToTrue() {
+    editTaskCheck = true;
+}
 
 /**
  * This function is used to add/remove an onclick to the Edit-Task-Bg (remove onlick while you are editing the task, so you can olny save the Edits through the "Ok-Button").
@@ -156,9 +160,9 @@ function setPrioProperties(prio) {
  * This function is used to get the color and the initial of every name in the contacts and push it into the colorAndInitials array.
  */
 function getContactColorsandInitials() {
-    for (let i = 0; i < contacts.length; i++) {
-        let contactColor = contacts[i]['color'];
-        let contact = contacts[i];
+    for (let i = 0; i < contactsBoard.length; i++) {
+        let contactColor = contactsBoard[i]['color'];
+        let contact = contactsBoard[i];
         let firstInitial = contact.firstname[0];
         let lastInitial = contact.lastname[0];
         let initials = (firstInitial + lastInitial);

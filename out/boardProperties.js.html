@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: boardProperties.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: boardProperties.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This function is used to show the Board-Popup.
+ */
+function displayBoardPopUp() {
+    document.getElementById('card').classList.remove('d-none')
+    document.getElementById('editTask').classList.add('d-none');
+    document.getElementById('popUpOne').classList.remove('d-none');
+}
+
+
+/**
+ * This function is used to remove the Board-Popup.
+ */
+function removeBoardPopUp() {
+    document.getElementById('card').classList.add('d-none')
+    document.getElementsByTagName('body')[0].style.overflow = 'auto';
+}
+
+
+
+/**
+ * This function is used to show the Add-task-Popup on the boardpage.
+ */
+function showAddTaskPopUp() {
+    document.getElementById('overlayBg').classList.remove('d-none');
+    document.getElementById('popUp').classList.remove('d-none');
+}
+
+
+/**
+ * This function is used to remove the Add-Task-Popup.
+ */
+function removeAddTaskPopUp() {
+    document.getElementById('overlayBg').classList.add('d-none');
+    document.getElementById('popUp').classList.add('d-none')
+}
+
+
+/**
+ * This function is used to highlight the area where you drag and drop an Element.
+ * 
+ * @param {string} id - The id of the Element where you can move the task to.
+ */
+function highlight(id) {
+    document.getElementById(id).classList.add('dragarea-highlight');
+}
+
+
+/**
+ * This function is used to remove the highlight if drag and drop as soon as you're done drag-and-dropping.
+ * 
+ * @param {string} id - The id of the Element where you can move the task to.
+ */
+function removeHighlight(id) {
+    document.getElementById(id).classList.remove('dragarea-highlight');
+}
+
+
+/**
+ * This function is used to show the Edit-Task Popup.
+ */
+function openEditTask() {
+    document.getElementById('editTask').classList.remove('d-none');
+    document.getElementById('popUpOne').classList.add('d-none');
+}
+
+
+/**
+ * This function is used to remove the Edit-Task Popup.
+ */
+function closeEditTask() {
+    document.getElementById('editTask').classList.add('d-none');
+    document.getElementById('popUpOne').classList.remove('d-none');
+}
+
+
+/**
+ * This function is used to show the Delete-Popup.
+ */
+function openDeletePopUp(i) {
+    document.getElementById(`openDeletePopUp${i}`).classList.remove('d-none');
+}
+
+
+/**
+ * This function is used to close the Delete-Popup.
+ */
+function closeDeletePopUp(i) {
+    document.getElementById(`openDeletePopUp${i}`).classList.add('d-none');
+}
+
+
+/**
+ * This function is used to remoce the scrollbar from the body.
+ */
+function bodyOverflowHidden() {
+    document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+}
+
+
+/**
+ * This function is used to turn the value of the variable to false.
+ */
+function turnToFalse() {
+    editTaskCheck = false;
+}
+
+
+function turnToTrue() {
+    editTaskCheck = true;
+}
+
+/**
+ * This function is used to add/remove an onclick to the Edit-Task-Bg (remove onlick while you are editing the task, so you can olny save the Edits through the "Ok-Button").
+ */
+function addOnclickToBg() {
+    if (editTaskCheck == true) {
+        document.getElementById('card').removeEventListener("click", removeBoardPopUp);
+    } else {
+        document.getElementById('card').addEventListener("click", removeBoardPopUp);
+    }
+}
+
+
+/**
+ * This function returns the Colors for the Categories.
+ *
+ *  @param {string} category - The category name of the task.
+ */
+function setCategoryColor(category) {
+    let categorysAndColors = {
+        Design: "rgb(239, 132, 41)",
+        Sales: "rgb(236, 126, 250)",
+        Backoffice: "rgb(100, 210, 193)",
+        Marketing: "rgb(18, 58, 248)",
+        Media: "rgb(247, 202, 57)",
+    };
+    return (categorysAndColors[category]);
+}
+
+
+/**
+ *  This function returns the Priority img and backgroundcolor.
+ *  
+ * @param {string} prio - Priority name (low, medium or urgent).
+ */
+function setPrioProperties(prio) {
+    let img = prio === 'low' ? 'assets/img/prio_low_old.png'
+        : prio === 'medium' ? 'assets/img/prio_medium_old.png'
+            : 'assets/img/prio_high_old.png';
+
+    let color = prio === 'low' ? 'rgb(122,226,41)'
+        : prio === 'medium' ? 'rgb(255,168,0)'
+            : 'rgb(255,61,0)';
+    return { img, color };
+}
+
+
+/**
+ * This function is used to get the color and the initial of every name in the contacts and push it into the colorAndInitials array.
+ */
+function getContactColorsandInitials() {
+    for (let i = 0; i &lt; contactsBoard.length; i++) {
+        let contactColor = contactsBoard[i]['color'];
+        let contact = contactsBoard[i];
+        let firstInitial = contact.firstname[0];
+        let lastInitial = contact.lastname[0];
+        let initials = (firstInitial + lastInitial);
+        colorAndInitials.push(setContactColors(contactColor, initials));
+    }
+}
+
+
+/**
+ *  This function returns the color and the initial of everyname in the contacts.
+ *  
+ * @param {string} contactColor - The color of the contact name.
+ * @param {string} initials     - The initials of the contact name.
+ */
+function setContactColors(contactColor, initials) {
+    return {
+        name: initials,
+        color: contactColor
+    }
+}
+
+
+/**
+ *  This function returns the color for each Progresssection-Button (4 Buttons instead of drag and drop in the responsive: To do, In Progress, Awating Feedback, Done).
+ * 
+ * @param {string} progressId - Progresssection id.
+ */
+function newProgressColor(progressId) {
+    let progressColors = {
+        neWTODO: "#d9534f",
+        newInProgress: "#5bc0de",
+        newFeedback: "#f0ad4e",
+        newDone: "#5cb85c"
+    };
+    return (progressColors[progressId])
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addClickEvent">addClickEvent</a></li><li><a href="global.html#addOnclickToBg">addOnclickToBg</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#bodyOverflowHidden">bodyOverflowHidden</a></li><li><a href="global.html#changeCategoryColor">changeCategoryColor</a></li><li><a href="global.html#changeHeightofAssignedTo">changeHeightofAssignedTo</a></li><li><a href="global.html#checkboxClicked">checkboxClicked</a></li><li><a href="global.html#chooseArrayToRender">chooseArrayToRender</a></li><li><a href="global.html#clearPriorityDivs">clearPriorityDivs</a></li><li><a href="global.html#clearProgressButtons">clearProgressButtons</a></li><li><a href="global.html#clearSections">clearSections</a></li><li><a href="global.html#closeDeletePopUp">closeDeletePopUp</a></li><li><a href="global.html#closeEditTask">closeEditTask</a></li><li><a href="global.html#createCheckBox">createCheckBox</a></li><li><a href="global.html#createCheckbox">createCheckbox</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#createContactsAndCheckboxes">createContactsAndCheckboxes</a></li><li><a href="global.html#createSubtaskDiv">createSubtaskDiv</a></li><li><a href="global.html#deleteTaskFromArrays">deleteTaskFromArrays</a></li><li><a href="global.html#displayBoardPopUp">displayBoardPopUp</a></li><li><a href="global.html#dragAndDropResponsive">dragAndDropResponsive</a></li><li><a href="global.html#editDetails">editDetails</a></li><li><a href="global.html#editPriority">editPriority</a></li><li><a href="global.html#getAllTasksDetails">getAllTasksDetails</a></li><li><a href="global.html#getContactColorsandInitials">getContactColorsandInitials</a></li><li><a href="global.html#getDataBase">getDataBase</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getNamesPopUp">getNamesPopUp</a></li><li><a href="global.html#getSearchIndex">getSearchIndex</a></li><li><a href="global.html#getSearchedTasksDetails">getSearchedTasksDetails</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newProgressColor">newProgressColor</a></li><li><a href="global.html#openDeletePopUp">openDeletePopUp</a></li><li><a href="global.html#openEditDropDown">openEditDropDown</a></li><li><a href="global.html#openEditTask">openEditTask</a></li><li><a href="global.html#popUpCategoryColor">popUpCategoryColor</a></li><li><a href="global.html#popUpInitialColor">popUpInitialColor</a></li><li><a href="global.html#proofInput">proofInput</a></li><li><a href="global.html#proofSubtasks">proofSubtasks</a></li><li><a href="global.html#removeAddTaskPopUp">removeAddTaskPopUp</a></li><li><a href="global.html#removeBoardPopUp">removeBoardPopUp</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderAndSave">renderAndSave</a></li><li><a href="global.html#renderContactsOnDropDown">renderContactsOnDropDown</a></li><li><a href="global.html#renderEditInitialColors">renderEditInitialColors</a></li><li><a href="global.html#renderEditInitials">renderEditInitials</a></li><li><a href="global.html#renderEditTaskPopUp">renderEditTaskPopUp</a></li><li><a href="global.html#renderEditedDetails">renderEditedDetails</a></li><li><a href="global.html#renderHiddenInitials">renderHiddenInitials</a></li><li><a href="global.html#renderInitialsColors">renderInitialsColors</a></li><li><a href="global.html#renderPopUpBoard">renderPopUpBoard</a></li><li><a href="global.html#renderPopUpPrio">renderPopUpPrio</a></li><li><a href="global.html#renderPrioImg">renderPrioImg</a></li><li><a href="global.html#renderSearchedTask">renderSearchedTask</a></li><li><a href="global.html#renderSubtasksPopUp">renderSubtasksPopUp</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#renderVisibleInitials">renderVisibleInitials</a></li><li><a href="global.html#searchTask">searchTask</a></li><li><a href="global.html#setBgColor">setBgColor</a></li><li><a href="global.html#setCategoryColor">setCategoryColor</a></li><li><a href="global.html#setContactColors">setContactColors</a></li><li><a href="global.html#setNewPriority">setNewPriority</a></li><li><a href="global.html#setNewProgress">setNewProgress</a></li><li><a href="global.html#setPrioProperties">setPrioProperties</a></li><li><a href="global.html#setProgressColor">setProgressColor</a></li><li><a href="global.html#setTodayDate">setTodayDate</a></li><li><a href="global.html#showAddTaskPopUp">showAddTaskPopUp</a></li><li><a href="global.html#showEditPopUp">showEditPopUp</a></li><li><a href="global.html#showPopUp">showPopUp</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#taskDetails">taskDetails</a></li><li><a href="global.html#turnToFalse">turnToFalse</a></li><li><a href="global.html#updateProgressBar">updateProgressBar</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Tue Jan 31 2023 17:11:53 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
