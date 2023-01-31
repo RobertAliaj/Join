@@ -1,8 +1,12 @@
 let collectedContact = [];
 let initials = [];
+let selectedCategory;
 let prio;
 let subtasks = [];
 let subtaskStatus = [];
+let contacts = [];
+let categorys = [];
+let category = [];
 let tasks = [];
 let task = {
     "title": "",
@@ -12,18 +16,22 @@ let task = {
     "due_date": "",
     "prio": "",
     "subtasks": {
-      "name": [],
-      "status": []
-      },
+        "name": [],
+        "status": []
+    },
     "progress": ""
-  };
-
+};
+let newCategory;
+let colorForNewCategory;
+let required = true;
 let initialsRenderd = false;
 
 async function loadInfos() {
     await downloadFromServer();
     await includeHTML();
-    tasks = jsonFromServer['tasks']
+    tasks = JSON.parse(backend.getItem('tasks'));
+    contacts = JSON.parse(backend.getItem('contacts'));
+    categorys = JSON.parse(backend.getItem('categorys'));
     renderCategorys();
     renderContacts();
     datePicker();
@@ -80,15 +88,15 @@ function datePicker() {
 function renderCategorys() {
     categoryContainer = document.getElementById('loadedCategorys');
     categoryContainer.innerHTML = '';
-    categorys =jsonFromServer['categorys'];
+    // categorys =jsonFromServer['categorys'];
     for (let i = 0; i < categorys.length; i++) {
-        let category =  categorys[i].name;
+        let category = categorys[i].name;
         let categoryColor = categorys[i].color;
         categoryContainer.innerHTML += `
         <div class="dd-placeholder gray-hover" onclick="selectCategory('${category}', '${categoryColor}')">
             <div class="center">
                 <div class="padding-17-right">${category}</div>
-                <div class="category-color" style="background-color: ${categoryColor};"></div>
+                <div class="category-color" style="background-color: ${categoryColor}"></div>
             </div>
         </div>`;
     }
@@ -101,7 +109,6 @@ function renderCategorys() {
 function renderContacts() {
     contactContainer = document.getElementById('loadedContacts');
     contactContainer.innerHTML = '';
-    contacts = jsonFromServer['contacts'];
     for (let i = 0; i < contacts.length; i++) {
         let contact = (combineNames(contacts, i))
         contactContainer.innerHTML += `
@@ -115,23 +122,8 @@ function renderContacts() {
 }
 
 
-//     var clearButton = document.getElementById('clearButton');
-//     var clearButtonImg = document.getElementById('clearButtonImg');
-//     clearButton.addEventListener("mouseover", func(clearButtonImg), false);
-//     clearButton.addEventListener("mouseout", func1(clearButtonImg), false);
-
-
-// function func() {
-//     clearButtonImg.src = `assets/img/Clear_task-new-light_blue.svg`;
-// };
-
-// function func1() {  
-//     clearButtonImg.src = `assets/img/Clear_task-new.svg`;
-// };
-
-
 function combineNames(contacts, i) {
-    let firstname =  contacts[i].firstname;
+    let firstname = contacts[i].firstname;
     let lastname = contacts[i].lastname;
     let contact = firstname + ' ' + lastname;
     return contact;
@@ -144,9 +136,11 @@ function selectCategory(category, categoryColor) {
                 <div class="padding-17-right">${category}</div>
                 <div class="category-color" style="background-color: ${categoryColor};"></div>
             </div>`
-
-
-    pullDownMenu('category', 'assingedTo', 'moreCategorys', 'moreContacts');
+    selectedCategory = category;
+    openOrClose = document.getElementById('category').classList[1];
+    if (openOrClose == 'dropdown-category-open') {
+        pullDownMenu('category', 'assingedTo', 'moreCategorys', 'moreContacts');
+    }
 }
 
 
@@ -346,11 +340,11 @@ function switchSubtaskIcons() {
 
 
 function getClass(i) {
-        if (subtaskStatus[i] == true) {
-            return setClass = '';
-        } else {
-            return setClass = 'd-none';
-        }
+    if (subtaskStatus[i] == true) {
+        return setClass = '';
+    } else {
+        return setClass = 'd-none';
+    }
 }
 
 
@@ -364,49 +358,166 @@ function setStatus(divID, i) {
     }
 }
 
+
+function openCreateCategory() {
+    document.getElementById('categoryPlaceholder').classList.add('d-none');
+    document.getElementById('newCategoryContainer').classList.remove('d-none');
+    document.getElementById('color-picker').classList.remove('d-none');
+    pullDownMenu('category', 'assingedTo', 'moreCategorys', 'moreContacts');
+    getRandomColor();
+}
+
+
+function closeCreateCategory() {
+    document.getElementById('categoryPlaceholder').classList.remove('d-none');
+    document.getElementById('newCategoryContainer').classList.add('d-none');
+    document.getElementById('color-picker').classList.add('d-none');
+}
+
+
+function addCategory() {
+    categoryInputFiled = document.getElementById('categoryInput');
+    newCategory = categoryInputFiled.value;
+    if (newCategory == undefined || colorForNewCategory == undefined) {
+        if (newCategory == '') {
+            alert('Please insert new Category')
+        }
+        if (colorForNewCategory == undefined) {
+            alert('Please collect new Color')
+        }
+    } else {
+        console.log('New category', newCategory);
+        categoryInputFiled.value = '';
+        closeCreateCategory();
+        selectCategory(newCategory, colorForNewCategory);
+        saveNewCategory();
+    }
+
+}
+
+
+function getRandomColor() {
+    for (let index = 0; index < 6; index++) {
+        generatedColor = generateRandomColor();
+        onclickColor = `selectedColor(#${generatedColor})`;
+        colorCircle = document.getElementById('colorPickCircle' + index);
+        colorCircle.style = `background-color: #${generatedColor}`;
+        setOnclickForColorpicker(colorCircle);
+    }
+}
+
+
+function generateRandomColor() {
+    var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return randomColor
+}
+
+
+function setOnclickForColorpicker(colorCircle) {
+    rgbColor = colorCircle.style['cssText'];
+    i = rgbColor.length;
+    onclickColor = rgbColor.slice(22, i - 2);
+    colorCircle.setAttribute("onclick", `selectedColor(${onclickColor})`);
+}
+
+
+function selectedColor(r, g, b) {
+    colorForNewCategory = `rgb(${r}, ${g}, ${b})`;
+}
+
+
+async function saveNewCategory() {
+    category = {
+        "name": `${newCategory}`,
+        "color": `${colorForNewCategory}`
+    };
+    await pushCategoryInCategorys();
+}
+
+
+async function pushCategoryInCategorys() {
+    i = categorys.length;
+    categorys.splice(i, 0, category);
+    renderCategorys();
+    await saveOnServer('categorys', categorys);
+}
+
+
 function getTitle() {
     let title = document.getElementById('tileInput').value;
-    return title;
+    if (title == '') {
+        document.getElementById('titleReport').classList.remove('d-none');
+        required = true;
+    } else {
+        required = false;
+        return title;
+    }
 }
 
 function getDescription() {
     let description = document.getElementById('descriptionInput').value;
-    return description;
+    if (description == '') {
+        document.getElementById('descriptionReport').classList.remove('d-none');
+        required = true;
+    } else {
+        required = false;
+        return description;
+    }
 }
 
 
-function getCategorys() {
-    let selectedCategory = document.getElementById('chosenCategory').innerText;
-    return selectedCategory;
+function getCategory() {
+    if (selectedCategory == undefined) {
+        document.getElementById('categoryReport').classList.remove('d-none');
+        required = true;
+    } else {
+        required = false;
+        return selectedCategory;
+    }
+}
+
+
+function getContact() {
+    if (collectedContact == '') {
+        document.getElementById('contactReport').classList.remove('d-none');
+        required = true;
+    } else {
+        required = false;
+        return collectedContact;
+    }
 }
 
 
 function getDate() {
     let chosenDate = document.getElementById('date').value;
-    return chosenDate;
+    if (chosenDate == '') {
+        document.getElementById('dateReport').classList.remove('d-none');
+        required = true;
+    } 
+    // if (chosenDate == ) {
+        
+    // } 
+    else {
+        required = false;
+        return chosenDate;
+    }
 }
 
 
-function collectAllInfos() {
-    task.title = getTitle();
-    task.description = getDescription();
-    task.category = getCategorys();
-    task.assigned_to = collectedContact;
-    task.due_date = getDate();
-    task.prio = prio;
-    pushSubtask();
-    pushStatus();
-    // task.subtasks.name.push(subtasks);
-    // task.subtasks.status.push(subtaskStatus);
-    task.progress = 'TODO';
-    // pushTaskInTasks();
+function getPrio() {
+    if (prio == undefined) {
+        document.getElementById('prioReport').classList.remove('d-none');
+        required = true;
+    } else {
+        required = false;
+        return prio;
+    }
 }
 
 
 function pushSubtask() {
     for (let i = 0; i < subtasks.length; i++) {
         task.subtasks.name.push(subtasks[i]) || [];
-        
     }
 }
 
@@ -418,12 +529,29 @@ function pushStatus() {
 }
 
 
-// function pushTaskInTasks() {
-//     tasks.push(task);
-//     //saveTasktoJson();
-// }
+async function collectAllInfos() {
+    task.title = getTitle();
+    task.description = getDescription();
+    task.category = getCategory();
+    task.assigned_to = getContact();
+    task.due_date = getDate();
+    task.prio = getPrio();
+    pushSubtask();
+    pushStatus();
+    task.progress = 'TODO'; 
+}
 
 
-async function saveTasktoJson() {
-    await backend.setItem('tasks', JSON.stringify(task));
+async function pushTaskInTasks() {
+    if (required == false) {
+        i = tasks.length;
+        tasks.splice(i, 0, task);
+        await saveOnServer('tasks', tasks);
     }
+}
+
+
+async function saveOnServer(key, item) {
+    itemAsString = JSON.stringify(item);
+    await backend.setItem(key, itemAsString);
+}
