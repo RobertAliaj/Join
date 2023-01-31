@@ -20,38 +20,43 @@
     <title>Document</title>
 </head>
 
-<body onload="animate()">
-    <div class="outer-div">
+<body id="body" onload="animate()">
+    <div class="outer-div" id="outerDiv">
         <div class="animation-container">
             <div class="img-div" id="imgDiv">
                 <img id="joinImg" src="assets/img/Join_big.png" alt="">
             </div>
         </div>
     </div>
-    <div class="outer-div-2">
-        <div class="login-container">
+    <div class="outer-div-2" id="contentDiv">
+        <div class="sign-up" id="signUp">
+            <span>Not a Join user?</span>
+            <div onclick="openSignUp()">Sign up</div>
+        </div>
+        <div class="login-container" id="loginContainer">
             <span>Log in</span>
             <div class="horizontal-blue-line"></div>
             <form onsubmit="login()">
                 <div>
-                    <input type="email" placeholder="Email" id="email">
+                    <input type="email" placeholder="Email" id="email" required>
                     <img src="assets/img/mail.png" alt="">
                 </div>
                 <div>
-                    <input type="password" placeholder="Password" id="password">
-                    <img src="" alt="">
+                    <input type="password" placeholder="Password" id="password" required>
+                    <img src="assets/img/schloss.png" alt="">
+                </div>
+
+                <div class="remember-me">
+                    <div class="select-box"></div>
+                    <span>Remember me</span>
+                    <a>Forgot my password</a>
+                </div>
+                <div class="buttons">
+                    <button type="submit" class="login-button"> Log in</button>
+                    <button onclick="location.href = 'index.html'; saveGreetingName('Guest')" class="guest-login-button">
+                        Guest Log in</button>
                 </div>
             </form>
-            <div>
-                <div class="select-box"></div>
-                <span>Remember me</span>
-                <a>Forgot my password</a>
-            </div>
-            <div>
-                <div class="login-button"></div>
-                <div class="guest-login-button"></div>
-            </div>
-
         </div>
     </div>
 

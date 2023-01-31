@@ -12,3 +12,10 @@ async function prepareContacts() {
         }
     }
 }
+
+async function setGreetingName() {
+    await includeHTML();
+    let name = localStorage.getItem("greetingName")
+    console.log(name)
+    document.getElementById('greetingName').innerHTML = name;
+}
