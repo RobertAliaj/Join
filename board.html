@@ -9,9 +9,11 @@
     <title>Join</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/css/edit-task.css">
+    <link rel="stylesheet" href="assets/css/boardEditTask.css">
     <link rel="stylesheet" href="assets/css/boardPopUp.css">
+    <link rel="stylesheet" href="assets/css/boardPopUp-responsive.css">
     <link rel="stylesheet" href="assets/css/board.css">
+    <link rel="stylesheet" href="assets/css/board-responsive.css">
     <link rel="stylesheet" href="assets/css/addTaskPopUp.css">
     <link rel="stylesheet" href="assets/css/desktop_top_template.css">
     <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css">
@@ -21,15 +23,16 @@
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
 
-    <script src="assets/js/board.js"></script>
-    <script src="assets/js/boardEditTask.js"></script>
-    <script src="assets/js/boardProperties.js"></script>
-    <script src="assets/js/boardHtml.js"></script>
-    <script src="assets/js/boardPopUp.js"></script>
     <script src="assets/js/add_task.js"></script>
+
+    <script src="assets/js/board/board.js"></script>
+    <script src="assets/js/board/boardEditTask.js"></script>
+    <script src="assets/js/board/boardProperties.js"></script>
+    <script src="assets/js/board/boardHtml.js"></script>
+    <script src="assets/js/board/boardPopUp.js"></script>
 </head>
 
-<body onload="awaitHTML(); init()">
+<body onload="awaitHTML(); init();">
 
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div class="absolute">
@@ -41,8 +44,8 @@
             <h1>Board</h1>
             <div class="search-div">
                 <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()">
-                <button onclick="displayOverlay()" class="board-button">Add task <img src="assets/img/add_subtask.png"
-                        alt=""></button>
+                <button onclick="showAddTaskPopUp()" class="board-button">Add task <img
+                        src="assets/img/add_subtask.png"></button>
             </div>
         </div>
         <div class="to-do-section" id="toDoSection">
@@ -64,6 +67,7 @@
                     ondragover="allowDrop(event); highlight('inProgress')" ondragleave="removeHighlight('inProgress')">
                 </div>
             </div>
+
 
             <div class="status-parent">
                 <div class="status-title">

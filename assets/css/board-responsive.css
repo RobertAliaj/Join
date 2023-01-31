@@ -1,0 +1,53 @@
+@media(max-width: 1100px) {
+    .status-parent {
+        width: 50%;
+    }
+
+    .cards-parent {
+        overflow: hidden;
+        min-height: 200px;
+        height: fit-content;
+    }
+}
+
+@media(max-width: 800px) {
+    .status-parent {
+        width: 100%;
+    }
+
+    .cards-parent {
+        overflow: hidden;
+        min-height: 200px;
+        height: fit-content;
+    }
+
+    .container {
+        padding: 40px;
+        padding-top: 100px;
+        padding-left: 40px;
+    }
+
+    .search-div {
+        width: 50%;
+    }
+
+    .board-button {
+        font-size: 11px;
+        width: 50%;
+    }
+    
+    .container{
+        width: 100vw;
+    }
+}
+
+
+@media(max-width: 500px) {
+    .search-div {
+        width: 100%;
+    }
+
+    .title {
+        flex-direction: column;
+    }
+}

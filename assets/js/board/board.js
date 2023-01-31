@@ -9,15 +9,25 @@ let editTaskCheck = false;
 
 
 async function init() {
-    await downloadFromServer();
-    allTasks = jsonFromServer['tasks'];
-    contacts = jsonFromServer['contacts'];
+    await getDataBase();
     getContactColorsandInitials();
     renderTasks();
 }
 
 
-////////////////////////// ALL TASKS /////////////////////7
+/**
+ * This function is used to get the Data from server
+ */
+async function getDataBase() {
+    await downloadFromServer();
+    allTasks = jsonFromServer['tasks'];
+    contacts = jsonFromServer['contacts'];
+}
+
+
+/**
+ * This function is used to render the Tasks
+ */
 function renderTasks() {
     clearSections();
     for (let i = 0; i < allTasks.length; i++) {
@@ -31,6 +41,20 @@ function renderTasks() {
 }
 
 
+/**
+ * This Function is used to clear all Sections/Columns
+ */
+function clearSections() {
+    document.getElementById('TODO').innerHTML = '';
+    document.getElementById('inProgress').innerHTML = '';
+    document.getElementById('feedback').innerHTML = '';
+    document.getElementById('done').innerHTML = '';
+}
+
+
+/**
+ * This Function is used to get all the Details from the allTasks Array
+ */
 function getAllTasksDetails(i) {
     let task = allTasks[i];
     let section = allTasks[i]['progress'];
@@ -42,14 +66,12 @@ function getAllTasksDetails(i) {
 }
 
 
-function clearSections() {
-    document.getElementById('TODO').innerHTML = '';
-    document.getElementById('inProgress').innerHTML = '';
-    document.getElementById('feedback').innerHTML = '';
-    document.getElementById('done').innerHTML = '';
-}
 
-
+/**
+ * @param {string} names - The names of the employees who have to do the job.
+ * @param {string} category - The Categoryname of the task.
+ * @param {string} prio    - The priority of the task.
+ */
 function taskDetails(names, category, prio, statusArray, i) {
     getInitials(names, i);
     changeCategoryColor(category, i);
@@ -58,6 +80,11 @@ function taskDetails(names, category, prio, statusArray, i) {
 }
 
 
+/**
+ * This function is used to get the Initials of each name
+ *  
+ * @param {string} names - The names of the employees who have to do the job.
+ */
 function getInitials(names, i) {
     let initialsDiv = document.getElementById(`initials${i}`);
     let initials = names.map(name => name.split(' ').map(word => word[0]).join(''));
@@ -67,6 +94,11 @@ function getInitials(names, i) {
 }
 
 
+/**
+ * This function is used to render the three first initials
+ * 
+ * @param {string} initials - initials of each name.
+ */
 function renderVisibleInitials(initials, initialsDiv, i) {
     let divsCreated = 0;
     for (let s = 0; s < initials.length; s++) {
@@ -83,7 +115,11 @@ function renderVisibleInitials(initials, initialsDiv, i) {
 }
 
 
-//if theres more than 3 CoWO in one Task, then display a div with the number of the remaining Workers
+/**
+ * This function is used to render the number of the remaining Coworkers, if there are more than three.
+ * 
+ * @param {string} names - The names of the employees who have to do the job.
+ */
 function renderHiddenInitials(names, initialsDiv) {
     if (names.length > 3) {
         let remainingWorkers = document.createElement("div");
@@ -94,6 +130,10 @@ function renderHiddenInitials(names, initialsDiv) {
 }
 
 
+
+/**
+ *  This function is used to give each Initial a color
+*/
 function renderInitialsColors(i, s) {
     let bubble = document.getElementById(`inits${i}-${s}`);
 
@@ -106,11 +146,21 @@ function renderInitialsColors(i, s) {
 }
 
 
+/**
+ *  This function is used to give each Category a color
+ *  
+ * @param {string} category - The Categoryname of the task.
+ */
 function changeCategoryColor(category, i) {
-    document.getElementById(`category${i}`).style.backgroundColor = setColors(category);
+    document.getElementById(`category${i}`).style.backgroundColor = setCategoryColor(category);
 }
 
 
+/**
+ *  This function is used to render the Priority img.
+ *  
+ * @param {string} prio - The name of the Priority.
+ */
 function renderPrioImg(prio, i) {
     let prioImg = document.getElementById(`prioImg${i}`);
     prioImg.src = setPrioProperties(prio).img;
@@ -118,6 +168,9 @@ function renderPrioImg(prio, i) {
 
 
 
+/**
+ *  This function is used to update the Progressbar of the Subtasks.
+ */
 function updateProgressBar(statusArray, i) {
     let trueCount = statusArray.filter(val => val === true).length;
     let progressPercent = (trueCount / statusArray.length) * 100;
@@ -132,29 +185,47 @@ function updateProgressBar(statusArray, i) {
 }
 
 
-///////////////////////       DRAG AND DROP /////////////////////////////
+/**
+ * This function is used to make an Element available for the drag and drop.
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 
+/**
+ * This function is used to start dragging. 
+ */
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
 
+/**
+ * This function is used to move the task to another ProgressSection (To do, In Progress, Awating Feedback, Done).
+ * 
+ * @param {string} progress - The id of the ProgressSection where you can move the task to.
+ */
 async function moveTo(progress) {
-    allTasks[currentDraggedElement]['progress'] = progress;
-    renderTasks();
+    let search = document.getElementById('searchInput').value;
 
-    jsonFromServer['tasks'] = allTasks;
-    await saveJSONToServer();
+    if (search.length > 0) {
+        searchTasks[currentDraggedElement]['progress'] = progress;
+        document.getElementById('searchInput').value = '';
+        await saveJSONToServer();
+        renderTasks();
+    } else {
+        allTasks[currentDraggedElement]['progress'] = progress;
+        jsonFromServer['tasks'] = allTasks;
+        await saveJSONToServer();
+        renderTasks();
+    }
 }
 
 
-
-
-////////////////////     FILTER FUNCTION   ///////////////
+/**
+ * This funcion is used to push the searched task/s into the searchTasks.
+ */
 function searchTask() {
     let search = document.getElementById('searchInput').value;
     search = search.toLowerCase().trim();
@@ -166,17 +237,24 @@ function searchTask() {
             }
         }
     }
-
     renderSearchedTask();
 }
 
 
+/**
+ * This function is used to get the index of searchTasks array.
+ * 
+ * @param {string} value - This is the value of the search input. 
+ */
 function getSearchIndex(value) {
     let index = searchTasks.indexOf(value);
     return index;
 }
 
 
+/**
+ * This function is used to render the searched task.
+ */
 function renderSearchedTask() {
     clearSections();
     for (let i = 0; i < searchTasks.length; i++) {
@@ -190,6 +268,9 @@ function renderSearchedTask() {
 }
 
 
+/**
+ * This Function is used to get all the Details from the searchTasks Array
+ */
 function getSearchedTasksDetails(i) {
     let task = searchTasks[i];
     let names = searchTasks[i]['assigned_to'];

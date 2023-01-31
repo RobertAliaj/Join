@@ -3,7 +3,7 @@
     height: 100vh;
     background-color: rgb(0 0 0 / 20%);
     z-index: 5;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     top: 0;
@@ -15,15 +15,13 @@
 
 .card {
     box-sizing: border-box;
-    max-width: 100%;
     height: 95%;
     width: 50vw;
     background-color: white;
     border-radius: 20px;
-    padding: 35px;
+    padding: 50px;
     font-size: 20px;
     position: relative;
-    overflow: auto;
 }
 
 .pop-up-category {
@@ -80,19 +78,20 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    /* overflow: auto;
-    height: 140px; */
+    overflow: auto;
+    /* height: 200px; */
+    cursor: n-resize;
 }
 
 
-.card::-webkit-scrollbar {
+.name-inits::-webkit-scrollbar {
     width: 10px;
     background-color: rgb(0 0 0 / 0%);
 }
 
 
 /* Change the color and shape of the scrollbar thumb */ 
-.card::-webkit-scrollbar-thumb {
+ .name-inits::-webkit-scrollbar-thumb {
     border-radius: 2px;
     background-color: rgb(0 0 0 / 0%);
 }
@@ -135,13 +134,14 @@
 }
 
 .check-box {
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px  !important;
     border: 1px solid black;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 4px;
 }
 
 .check-box img {
@@ -179,7 +179,6 @@
     object-fit: contain;
     border-radius: 10px;
     background-color: rgb(42, 54, 71);
-    z-index: 15;
 }
 
 .delete {
@@ -205,7 +204,9 @@
 }
 
 .delete-pop-up {
-    width: fit-content;
+    width: 40%;
+    font-size: 26px;
+    align-items: center;
     height: 200px;
     background-color: white;
     display: flex;
@@ -222,10 +223,10 @@
     max-width: 100%;
     background-color: rgb(0 0 0 / 20%);
     z-index: 999;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
-    top: 0;
+    top: 0; 
     bottom: 0;
     display: flex;
     align-items: center;

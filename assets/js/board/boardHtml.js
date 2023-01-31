@@ -36,11 +36,11 @@ function renderTasksHTML(task, i) {
      <div class="delete-bg d-none" id="openDeletePopUp${i}">
      <div class="delete-pop-up">
        <span>
-         Task unwiederruflich löschen ?
+         Permanently delete ?
        </span>
        <div class="buttons-div">
-         <button class="delete-button red-btn"; onclick="removeBoardPopUp(); closeDeletePopUp(${i}); deleteTask(${i})"> Ja</button>
-         <button class="delete-button white-btn" onclick="closeDeletePopUp(${i})"> Nein</button>
+         <button class="delete-button red-btn"; onclick="removeBoardPopUp(); closeDeletePopUp(${i}); deleteTask(${i})"> Yes</button>
+         <button class="delete-button white-btn" onclick="closeDeletePopUp(${i})"> No</button>
        </div>
        </div>
  </div>
@@ -102,7 +102,7 @@ function renderPopUpBoardHtml(task, i) {
     <div class="pop-up-assigned">
         <div id="initsPopUp" class="pop-up-inits"></div>
 
-        <div class="name-inits" id="names">
+        <div class="name-inits" id="names${i}">
         </div>
     </div>
  
@@ -156,7 +156,7 @@ function renderEditTaskPopUpHtml(i) {
 
         <div class="edit-prio-divs">
             <div class="importance" id="high" onclick="editPriority(${i}, 'high', 'highImg')">
-                <span>High</span>
+                <span>Urgent</span>
                 <img src="assets/img/prio_high_old.png" id="highImg">
             </div>
             <div class="importance" id="medium" onclick="editPriority(${i}, 'medium', 'mediumImg')">
@@ -168,8 +168,11 @@ function renderEditTaskPopUpHtml(i) {
                 <img src="assets/img/prio_low_old.png" id="lowImg">
             </div>
         </div>
-    
+
     </div>
+
+
+    
 
     <div class="edit-assigned column">
         <span>Assigned To</span>
@@ -184,6 +187,25 @@ function renderEditTaskPopUpHtml(i) {
 
 
     <div class="edit-initials" id="editInits${i}">
+    </div>
+
+
+    <div class="edit-progress-divs d-none">
+        <div class="progress-divs" id="neWTODO" onclick="dragAndDropResponsive(${i}, 'neWTODO', 'TODO')">
+            <span>To Do</span>
+        </div>
+
+        <div class="progress-divs" id="newInProgress" onclick="dragAndDropResponsive(${i}, 'newInProgress', 'inProgress')">
+            <span>In Progress</span>
+        </div>
+        
+        <div class="progress-divs" id="newFeedback" onclick="dragAndDropResponsive(${i}, 'newFeedback', 'feedback')">
+            <span>Feedback</span>
+        </div>
+
+        <div class="progress-divs" id="newDone" onclick="dragAndDropResponsive(${i}, 'newDone', 'done')">
+            <span>Done</span>
+        </div>
     </div>
 
     <div class="edit-ok" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})" title="Speichern">
