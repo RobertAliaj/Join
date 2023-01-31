@@ -135,9 +135,9 @@ window.addEventListener('resize', replaceXThroughArrow);
 function replaceXThroughArrow() {
     if (popUpOpen == true) {
         if (window.matchMedia("(max-width: 450px)").matches) {
-            document.getElementById('exitPopUp').src = "../assets/img/Vector.png";
+            document.getElementById('exitPopUp').src = "assets/img/Vector.png";
         } else {
-            document.getElementById('exitPopUp').src = "../assets/img/Clear_task.png";
+            document.getElementById('exitPopUp').src = "assets/img/Clear_task.png";
         }
     }
 }
