@@ -1,3 +1,6 @@
+/**
+ * This function is used to render the Edit-Popup.
+ */
 function renderEditTaskPopUp(i) {
     let editPopUp = document.getElementById('editTask');
     editPopUp.innerHTML = renderEditTaskPopUpHtml(i);

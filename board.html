@@ -23,12 +23,13 @@
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
 
-    <script src="assets/js/board.js"></script>
-    <script src="assets/js/boardEditTask.js"></script>
-    <script src="assets/js/boardProperties.js"></script>
-    <script src="assets/js/boardHtml.js"></script>
-    <script src="assets/js/boardPopUp.js"></script>
     <script src="assets/js/add_task.js"></script>
+
+    <script src="assets/js/board/board.js"></script>
+    <script src="assets/js/board/boardEditTask.js"></script>
+    <script src="assets/js/board/boardProperties.js"></script>
+    <script src="assets/js/board/boardHtml.js"></script>
+    <script src="assets/js/board/boardPopUp.js"></script>
 </head>
 
 <body onload="awaitHTML(); init();">
@@ -43,8 +44,8 @@
             <h1>Board</h1>
             <div class="search-div">
                 <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()">
-                <button onclick="displayOverlay()" class="board-button">Add task <img src="assets/img/add_subtask.png"
-                        alt=""></button>
+                <button onclick="showAddTaskPopUp()" class="board-button">Add task <img
+                        src="assets/img/add_subtask.png"></button>
             </div>
         </div>
         <div class="to-do-section" id="toDoSection">
@@ -94,8 +95,8 @@
         <div class="card" onclick="event.stopPropagation()" id="popUpOne">
         </div>
 
-            <div class="card d-none" id="editTask" onclick="event.stopPropagation()">
-            </div>
+        <div class="card d-none" id="editTask" onclick="event.stopPropagation()">
+        </div>
 
     </div>
 
