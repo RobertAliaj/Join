@@ -1,17 +1,14 @@
 let contacts = [];
 let letters = [];
 
-
+ setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
 
 async function init() {
-    setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
+   
     await downloadFromServer();
     contacts = jsonFromServer['contacts'];
-    // await loadJSONFromServer();
-    // contacts =  JSON.parse('contacts') || [];
-
-    await downloadFromServer();
-    contacts = JSON.parse(backend.getItem("contacts")) || [];
+    // await downloadFromServer();
+    // contacts = JSON.parse(backend.getItem("contacts")) || [];
 
     showContacts()
 }
