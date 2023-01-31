@@ -3,7 +3,7 @@
  */
 function showPopUp(i) {
     bodyOverflowHidden();
-    turnToTrue();
+    turnToFalse();
     addOnclickToBg();
 
     proofInput();

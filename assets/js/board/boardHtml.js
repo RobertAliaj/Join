@@ -112,7 +112,7 @@ function renderPopUpBoardHtml(task, i) {
             <img src="assets/img/deleteTask.png" class="delete">
         </div>
 
-        <div class="edit-or-delete-child" onclick="openEditTask(); renderEditTaskPopUp(${i})" title="Bearbeiten">
+        <div class="edit-or-delete-child" onclick="openEditTask(); showEditPopUp(${i})" title="Bearbeiten">
             <img src="assets/img/pencil.png">
         </div>
     </div>
@@ -177,7 +177,7 @@ function renderEditTaskPopUpHtml(i) {
     <div class="edit-assigned column">
         <span>Assigned To</span>
         
-        <div class="border dropdown-div" id="dropdownDiv${i}" onclick="editPopUpContacts(${i}); openEditDropDown(${i})">
+        <div class="border dropdown-div" id="dropdownDiv${i}" onclick="renderContactsOnDropDown(${i}); openEditDropDown(${i})">
             Select contacts to assign <img src="assets/img/drop_down.png">
         </div>
         

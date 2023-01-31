@@ -1,7 +1,7 @@
 let allTasks = [];
 let searchTasks = [];
 let popUpTasks = [];
-let contacts = [];
+let contactsBoard = [];
 let colorAndInitials = [];
 let currentDraggedElement;
 let existingNames;
@@ -21,7 +21,7 @@ async function init() {
 async function getDataBase() {
     await downloadFromServer();
     allTasks = jsonFromServer['tasks'];
-    contacts = jsonFromServer['contacts'];
+    contactsBoard = jsonFromServer['contacts'];
 }
 
 
