@@ -84,13 +84,13 @@ function popUpInitialColor(i, n) {
  * This function is use to render the Subtasks on the Popup.
  */
 async function renderSubtasksPopUp(i) {
-    let subtasks = popUpTasks[i]['subtasks']['name'],                           // == [Modify content, usww]
-        statusArray = popUpTasks[i]['subtasks']['status'],                      // == [true, false, usw]
-        subtasksContainer = document.getElementById('subtasks');           // == der Div wo sich alle subtasks drin befinden 
+    let subtasks = popUpTasks[i]['subtasks']['name'],                           
+        statusArray = popUpTasks[i]['subtasks']['status'],                      
+        subtasksContainer = document.getElementById('subtasks');                
 
-    subtasks.forEach((sub, s) => {                                         // == for-schleife, sub ist der name von der subtask, und s ist der index
-        let subTaskDiv = createSubtaskDiv(sub, statusArray, s, i);         //rufe die funktion auf 
-        subtasksContainer.appendChild(subTaskDiv);                         // füge subTaskDiv zum subTaskContainer hinzu
+    subtasks.forEach((sub, s) => {                                              
+        let subTaskDiv = createSubtaskDiv(sub, statusArray, s, i);              
+        subtasksContainer.appendChild(subTaskDiv);                              
     });
 }
 
@@ -101,18 +101,18 @@ async function renderSubtasksPopUp(i) {
  * @param {string} sub - The name/description of the subtask.
  */
 function createSubtaskDiv(sub, statusArray, s, i) {
-    let subTaskDiv = document.createElement('div');             // kreiere ein div-elemet (der parent div von checkBox und Name) 
-    subTaskDiv.classList.add('subtasks-names');                 // füge eine klasse hinzu 
+    let subTaskDiv = document.createElement('div');            
+    subTaskDiv.classList.add('subtasks-names');                
 
-    let checkBox = createCheckbox(statusArray, s, i);           // rufe die function auf
-    subTaskDiv.appendChild(checkBox);                           // füge checkBox zu Subtaskdiv hinzu
+    let checkBox = createCheckbox(statusArray, s, i);          
+    subTaskDiv.appendChild(checkBox);                          
 
-    let subTaskName = document.createElement('div');            // kreiere ein Div-Element(der Div mit dem Namen)
+    let subTaskName = document.createElement('div');           
     subTaskName.classList.add('width');
-    subTaskName.innerText = sub;                                // zeige den Namen von der Subtask an
-    subTaskDiv.appendChild(subTaskName);                        // füge die den Namen zu subTaskDiv hinzu
+    subTaskName.innerText = sub;                               
+    subTaskDiv.appendChild(subTaskName);                       
 
-    return subTaskDiv;                                          // gebe subTaskDiv zurück
+    return subTaskDiv;                                         
 }
 
 
@@ -121,26 +121,26 @@ function createSubtaskDiv(sub, statusArray, s, i) {
  * This function is used to create the Check-Box on the Popup.
  */
 function createCheckbox(statusArray, s, i) {
-    let checkBox = document.createElement('div');                                                       // keriere ein Div-Element(der CheckBox) 
-    checkBox.classList.add('check-box');                                                                // füge eine klasse hinzu
-    checkBox.id = `checkBox${i}-${s}`;                                                                  // füge eine Id hinzu
+    let checkBox = document.createElement('div');                                                     
+    checkBox.classList.add('check-box');                                                              
+    checkBox.id = `checkBox${i}-${s}`;                                                               
 
-    checkBox.addEventListener('click', () => checkboxClicked(statusArray, s, checkBox, i));            // füge den Event Listener hinzu
-    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';                      // wenn der wert "true" ist dann behalte das Bild in der CheckBox, damit das Bild beim neuladen der Seite nicht verschwindet
-    return checkBox;                                                                                    // gebe Checkbox Zurück
+    checkBox.addEventListener('click', () => checkboxClicked(statusArray, s, checkBox, i));        
+    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';                  
+    return checkBox;                                                                                
 }
 
 
 /**
  * This function is used to cross out the Check-Box when a subtask is done.
  */
-async function checkboxClicked(statusArray, s, checkBox, i) {                           // die separate Funktion
-    statusArray[s] = !statusArray[s];                                                   // der Wert wird hier umgedreht, von true auf false und von false auf true
-    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';      // wenn der Wert true "?" ist dann füge das Bild hinzu, andernfalls ":" leere den Div
+async function checkboxClicked(statusArray, s, checkBox, i) {                        
+    statusArray[s] = !statusArray[s];                                                
+    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';   
 
-    updateProgressBar(statusArray, i);                                                  // führe die Funktion aus bei dem klicken damit der Progressbar den Wert herauslesen kann und somit die länge vom progressbar dementsprechend ändern kann 
-    jsonFromServer['tasks'] = popUpTasks;                                                    // das "Alte" array == array mit den neuen Werten
-    await saveJSONToServer();                                                           // speicher das ganze im Backend
+    updateProgressBar(statusArray, i);                                              
+    jsonFromServer['tasks'] = popUpTasks;                                           
+    await saveJSONToServer();                                                       
 }
 
 
@@ -184,13 +184,13 @@ function deleteTask(i) {
  */
 function deleteTaskFromArrays(i) {
     let task = popUpTasks[i];
-    let taskTitle = task.title;
+    let taskTitle = task.title;                                                 // der Titel von dem jeweiligen Task in der popUpTasks
 
-    popUpTasks.splice(popUpTasks.indexOf(task), 1);
+    popUpTasks.splice(popUpTasks.indexOf(task), 1);                             // lösche die Task aus dem Array popUpTasks
 
-    let index = allTasks.findIndex(x => x.title === taskTitle);
-    if (index != -1 && allTasks[index].title === taskTitle) {
-        allTasks.splice(index, 1);
+    let index = allTasks.findIndex(x => x.title === taskTitle);                 // index = der Titel im allTasks der mit taskTitle (der Title von der Task die gelöscht wurde) übereinstimmt
+    if (index != -1 && allTasks[index].title === taskTitle) {                   // wenn index existiert (!= -1 (nicht minus 1 heisst true, also heisst das es ist im Array Vorhanden)) und der Titel von der Task im allTask == der titel von der gelöschten Task
+        allTasks.splice(index, 1);                                              // dann lösche die Task auch aus dem allTasks
     }
 }
 

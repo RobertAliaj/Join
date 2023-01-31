@@ -88,11 +88,11 @@ function editPriority(i, prio, imgId) {
  * This function is used to clear the style of the Priority-Divs- and Imgs on the Priority Popup.
  */
 function clearPriorityDivs() {
-    let allPrioDivs = document.querySelectorAll('.edit-prio-divs .importance');  // hol dir aus dem Div mit class="edit-prio-divs" alle divs mit class="importance"
-    allPrioDivs.forEach(div => {                                                 // gehe mit einer "for-Schleife" durch diese Divs, div ist die variable von der zu beabeitenden div
-        div.style.backgroundColor = 'initial';                                   // setze background color auf auf den Ursprünglichen Wert zurück
-        let img = div.querySelector('img');                                      // Hier wird das erste Element gefunden, das ein Kind von dem aktuellen Element ist und das ein img-Element ist und es in einer Variable namens "img" gespeichert.   
-        img.classList.remove('turn-white');                                      // classe wird entfernt
+    let allPrioDivs = document.querySelectorAll('.edit-prio-divs .importance');
+    allPrioDivs.forEach(div => {
+        div.style.backgroundColor = 'initial';
+        let img = div.querySelector('img');
+        img.classList.remove('turn-white');
         div.classList.remove('white-span');
     });
 }
@@ -120,7 +120,7 @@ function setBgColor(prio, imgId) {
  * @param {string} prio - The id of the Priority-Divs on the Edit-Task-Popup. 
  */
 function setNewPriority(i, prio) {
-    popUpTasks[i]['prio'] = prio;                                           // ändere den Wert von prio im JSON zu dem neuen Wert (der div wo man drauf klickt)
+    popUpTasks[i]['prio'] = prio;
 }
 
 
@@ -143,7 +143,7 @@ function openEditDropDown(i) {
     renderEditInitialColors(i);
 };
 
- 
+
 /**
  * This function is used to render the contacts and Check-Boxes in the DropDown on the Edit-Task-Popup.
  */

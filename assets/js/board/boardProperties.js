@@ -123,6 +123,24 @@ function addOnclickToBg() {
 
 
 /**
+ * This function is used to call the replaceXthroughArray function.
+ */
+window.addEventListener('resize', replaceXThroughArrow);
+
+
+/**
+ * This function is used to change the "x" img of the Board-Popup.
+ */
+function replaceXThroughArrow(){
+    if (window.matchMedia("(max-width: 450px)").matches) {
+        document.getElementById('exitPopUp').src = "../assets/img/Vector.png";
+    }else{
+        document.getElementById('exitPopUp').src = "../assets/img/Clear_task.png";
+    }
+}
+
+
+/**
  * This function returns the Colors for the Categories.
  *
  *  @param {string} category - The category name of the task.

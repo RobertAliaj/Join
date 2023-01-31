@@ -229,11 +229,11 @@ async function moveTo(progress) {
 function searchTask() {
     let search = document.getElementById('searchInput').value;
     search = search.toLowerCase().trim();
-    searchTasks = [];                                                       // leere die searchedTasks    
-    for (let i = 0; i < allTasks.length; i++) {                            // iteriere durch die cards
-        if (allTasks[i]['title'].toLowerCase().includes(search)) {         //  wenn search == title, dann  
-            if (getSearchIndex(search) == -1) {                             //  wenn die Buchstabe nicht im Array vorhanden ist     
-                searchTasks.push(allTasks[i]);                             //  dann pushe tasks[i]
+    searchTasks = [];                                                      
+    for (let i = 0; i < allTasks.length; i++) {                          
+        if (allTasks[i]['title'].toLowerCase().includes(search)) {        
+            if (getSearchIndex(search) == -1) {                           
+                searchTasks.push(allTasks[i]);                            
             }
         }
     }
