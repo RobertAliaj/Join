@@ -7,11 +7,11 @@ html {
 }
 
 .img-div {
-  width: auto;
-  margin: 0 auto;
+  /* width: auto; */
+  /* margin: 0 auto; */
   display: inline-block;
   transform-origin: top left;
-  padding: 150px;
+  /* padding: 150px; */
 }
 
 .img-div img {
@@ -22,7 +22,16 @@ html {
   width: 100vw;
   height: 100vh;
   position: absolute;
-  background-color: #f6f7f8;
+  z-index: 3;
+}
+
+.animation-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .outer-div-2 {
@@ -31,7 +40,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f6f7f8;
+  background-color: #f6f7f8;  
 }
 
 .login-container {
@@ -46,7 +55,7 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .login-container span:first-child {
@@ -60,6 +69,7 @@ html {
   border: 1px solid rgb(0 0 0);
   border-radius: 4px;
   box-shadow: 1px 1px 1px rgb(88 88 88);
+  cursor: pointer;
 }
 
 .horizontal-blue-line {
@@ -102,4 +112,71 @@ form input {
 
 form input::placeholder {
   color: #d1d1d1;
+}
+
+.remember-me {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.remember-me a {
+  margin-left: 10px;
+  color: #29ABE2;
+  cursor: pointer;
+}
+
+.login-button {
+  background-color: #293646;
+  color: white;
+}
+
+.guest-login-button {
+  color: #293646;
+  border: 1px solid #293646;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.buttons div {
+  width: 110px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 8px 6px 8px 6px;
+  border-radius: 7px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+/*************  SIGN UP ************/
+
+.sign-up {
+  z-index: 1;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.sign-up div {
+  color: white;
+  background-color: #293646;
+  font-weight: 600;
+  padding: 10px 8px 10px 8px;
+  box-sizing: border-box;
+  font-size: 12px;
+  border-radius: 7px;
+  cursor: pointer;
 }
