@@ -14,6 +14,7 @@ function displayBoardPopUp() {
 function removeBoardPopUp() {
     document.getElementById('card').classList.add('d-none')
     document.getElementsByTagName('body')[0].style.overflow = 'auto';
+    popUpOpenFalse();
 }
 
 
@@ -131,12 +132,31 @@ window.addEventListener('resize', replaceXThroughArrow);
 /**
  * This function is used to change the "x" img of the Board-Popup.
  */
-function replaceXThroughArrow(){
-    if (window.matchMedia("(max-width: 450px)").matches) {
-        document.getElementById('exitPopUp').src = "../assets/img/Vector.png";
-    }else{
-        document.getElementById('exitPopUp').src = "../assets/img/Clear_task.png";
+function replaceXThroughArrow() {
+    if (popUpOpen == true) {
+        if (window.matchMedia("(max-width: 450px)").matches) {
+            document.getElementById('exitPopUp').src = "../assets/img/Vector.png";
+        } else {
+            document.getElementById('exitPopUp').src = "../assets/img/Clear_task.png";
+        }
     }
+}
+
+
+/**
+ * This function is used to turn the Variable to true (for design).
+ */
+function popUpOpenTrue() {
+    popUpOpen = true;
+}
+
+
+
+/**
+ *  This function is used to turn the Variable to false (for design).
+ */
+function popUpOpenFalse() {
+    popUpOpen = false;
 }
 
 
