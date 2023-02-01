@@ -20,10 +20,13 @@ async function setGreetingName() {
 
     let name = localStorage.getItem("greetingName");
     document.getElementById('greetingName').innerHTML = name;
-    if(name !== ' ') {
-        document.getElementById('goodMorning').innerHTML = 'Good Morning,'
+    let goodMorning = document.getElementById('goodMorning');
+    if (name !== ' ') {
+        goodMorning.innerHTML = 'Good Morning,'
     } else {
-        document.getElementById('goodMorning').innerHTML = 'Good Morning'
+        goodMorning.innerHTML = 'Good Morning';
+        goodMorning.style.fontWeight = '700';
+        goodMorning.style.fontSize = '45px'
     }
-    
+
 }
