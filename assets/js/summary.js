@@ -5,6 +5,8 @@ function openBoard() {
 async function prepareContacts() {
     await downloadFromServer();
     contacts = jsonFromServer['contacts'];
+    // await loadJSONFromServer()
+    // contacts = JSON.parse(backend.getItem("contact")) || [];
     for (j = 0; j < contacts.length; j++) {
         if (contacts[j]['color'] == '') {
             contacts[j]['color'] = generateRandomColor();
