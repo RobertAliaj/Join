@@ -103,7 +103,6 @@ function lsRememberMe() {
     emailInput.value = localStorage.username;
   } else {
     rmCheck.removeAttribute("checked");
-    // emailInput.value = "";
   }
 
   if (rmCheck.checked) {
@@ -138,7 +137,7 @@ function LoginContainerHtml() {
         </div>
         <div class="buttons">
           <button type="submit" onclick="logIn()" class="login-button"> Log in</button>
-          <button type="submit" onclick="location.href = 'index.html'; saveGreetingName('Guest')" class="guest-login-button">Guest Log in</button>
+          <button type="submit" onclick="location.href = 'index.html'; saveGreetingName(' ')" class="guest-login-button">Guest Log in</button>
         </div> 
       </form>
   `;

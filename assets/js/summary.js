@@ -17,7 +17,13 @@ async function prepareContacts() {
 
 async function setGreetingName() {
     await includeHTML();
-    let name = localStorage.getItem("greetingName")
-    console.log(name)
+
+    let name = localStorage.getItem("greetingName");
     document.getElementById('greetingName').innerHTML = name;
+    if(name !== ' ') {
+        document.getElementById('goodMorning').innerHTML = 'Good Morning,'
+    } else {
+        document.getElementById('goodMorning').innerHTML = 'Good Morning'
+    }
+    
 }
