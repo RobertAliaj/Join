@@ -9,11 +9,8 @@ html {
 }
 
 .img-div {
-  /* width: auto; */
-  /* margin: 0 auto; */
   display: inline-block;
   transform-origin: top left;
-  /* padding: 150px; */
 }
 
 .img-div img {
@@ -62,7 +59,7 @@ html {
   position: relative;
 }
 
-.login-container span:first-child{
+.login-span{
   font-size: 50px;
   font-weight: 700;
 }
@@ -203,6 +200,18 @@ form input::placeholder {
 .sign-up-span {
   font-size: 50px;
   font-weight: 700;
+}
+
+.alert {
+  color: red;
+  font-size: 12px !important;
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+}
+
+.d-none {
+  display: none;
 }
 
 
