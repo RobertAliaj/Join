@@ -7,8 +7,8 @@ async function init() {
    
     await downloadFromServer();
     contacts = jsonFromServer['contacts'];
-    // await downloadFromServer();
-    // contacts = JSON.parse(backend.getItem("contacts")) || [];
+    // await loadJSONFromServer()
+    // contacts = JSON.parse(backend.getItem("contact")) || [];
 
     showContacts()
 }

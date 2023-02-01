@@ -103,7 +103,7 @@ function SignUpContainerHtml() {
 
 
 // let users = []
-// let contacts = [{
+// let contact = [{
 //   "firstname": "Anton",
 //   "lastname": "Mayer",
 //   "email": "antom@gmail.com",
@@ -311,7 +311,7 @@ function SignUpContainerHtml() {
 // async function loadEverything() {
 //   setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
 //   backend.setItem('users', JSON.stringify(users));
-//   backend.setItem('contacts', JSON.stringify(contacts));
+//   backend.setItem('contact', JSON.stringify(contact));
 //   backend.setItem('categorys', JSON.stringify(categorys));
 //   backend.setItem('tasks', JSON.stringify(tasks));
 
