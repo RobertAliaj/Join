@@ -3,14 +3,20 @@ let searchTasks = [];
 let popUpTasks = [];
 let contactsBoard = [];
 let colorAndInitials = [];
+let categories = [];
+let categoriesAndColors = [];
 let currentDraggedElement;
 let existingNames;
 let editTaskCheck = false;
 let popUpOpen = false;
 
 
+/**
+ * This function is used to call the functions that get the data from Backend and render them
+ */
 async function init() {
     await getDataBase();
+    getCategoryColorAndName();
     getContactColorsandInitials();
     renderTasks();
 }
@@ -23,6 +29,7 @@ async function getDataBase() {
     await downloadFromServer();
     allTasks = jsonFromServer['tasks'];
     contactsBoard = jsonFromServer['contacts'];
+    categories = jsonFromServer['categorys'];
 }
 
 
@@ -32,12 +39,12 @@ async function getDataBase() {
 function renderTasks() {
     clearSections();
     for (let i = 0; i < allTasks.length; i++) {
-        let [task, section, category, names, prio, statusArray] = getAllTasksDetails(i);
+        let [task, section, names, prio, statusArray] = getAllTasksDetails(i);
 
         if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
             document.getElementById(section).innerHTML += renderTasksHTML(task, i);
 
-        taskDetails(names, category, prio, statusArray, i);
+        taskDetails(names, prio, statusArray, i);
     }
 }
 
@@ -59,23 +66,21 @@ function clearSections() {
 function getAllTasksDetails(i) {
     let task = allTasks[i];
     let section = allTasks[i]['progress'];
-    let category = allTasks[i]['category'];
     let names = allTasks[i]['assigned_to']
     let prio = allTasks[i]['prio'];
     let statusArray = allTasks[i]['subtasks']['status'];
-    return [task, section, category, names, prio, statusArray];
+    return [task, section, names, prio, statusArray];
 }
 
 
 
 /**
  * @param {string} names - The names of the employees who have to do the job.
- * @param {string} category - The Categoryname of the task.
  * @param {string} prio    - The priority of the task.
  */
-function taskDetails(names, category, prio, statusArray, i) {
+function taskDetails(names, prio, statusArray, i) {
     getInitials(names, i);
-    changeCategoryColor(category, i);
+    changeCategoryColor(i);
     renderPrioImg(prio, i);
     updateProgressBar(statusArray, i);
 }
@@ -149,11 +154,15 @@ function renderInitialsColors(i, s) {
 
 /**
  *  This function is used to give each Category a color
- *  
- * @param {string} category - The Categoryname of the task.
  */
-function changeCategoryColor(category, i) {
-    document.getElementById(`category${i}`).style.backgroundColor = setCategoryColor(category);
+function changeCategoryColor(i) {
+    let categoryName = document.getElementById(`category${i}`);
+    for (let n = 0; n < categoriesAndColors.length; n++) {
+        if (categoryName.textContent.includes(categoriesAndColors[n].name)) {
+            categoryName.style.backgroundColor = categoriesAndColors[n].color;
+            break;
+        }
+    }
 }
 
 
@@ -259,12 +268,12 @@ function getSearchIndex(value) {
 function renderSearchedTask() {
     clearSections();
     for (let i = 0; i < searchTasks.length; i++) {
-        let [task, section, category, names, prio, statusArray] = getSearchedTasksDetails(i);
+        let [task, section, names, prio, statusArray] = getSearchedTasksDetails(i);
 
         if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
             document.getElementById(section).innerHTML += renderTasksHTML(task, i);
 
-        taskDetails(names, category, prio, statusArray, i);
+        taskDetails(names, prio, statusArray, i);
     }
 }
 
@@ -276,8 +285,7 @@ function getSearchedTasksDetails(i) {
     let task = searchTasks[i];
     let names = searchTasks[i]['assigned_to'];
     let section = searchTasks[i]['progress'];
-    let category = searchTasks[i]['category'];
     let prio = searchTasks[i]['prio'];
     let statusArray = searchTasks[i]['subtasks']['status'];
-    return [task, section, category, names, prio, statusArray];
+    return [task, section, names, prio, statusArray];
 }

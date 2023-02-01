@@ -31,14 +31,20 @@ let searchTasks = [];
 let popUpTasks = [];
 let contactsBoard = [];
 let colorAndInitials = [];
+let categories = [];
+let categoriesAndColors = [];
 let currentDraggedElement;
 let existingNames;
 let editTaskCheck = false;
 let popUpOpen = false;
 
 
+/**
+ * This function is used to call the functions that get the data from Backend and render them
+ */
 async function init() {
     await getDataBase();
+    getCategoriesFromJSON();
     getContactColorsandInitials();
     renderTasks();
 }
@@ -51,6 +57,7 @@ async function getDataBase() {
     await downloadFromServer();
     allTasks = jsonFromServer['tasks'];
     contactsBoard = jsonFromServer['contacts'];
+    categories = jsonFromServer['categorys'];
 }
 
 
@@ -60,12 +67,12 @@ async function getDataBase() {
 function renderTasks() {
     clearSections();
     for (let i = 0; i &lt; allTasks.length; i++) {
-        let [task, section, category, names, prio, statusArray] = getAllTasksDetails(i);
+        let [task, section, names, prio, statusArray] = getAllTasksDetails(i);
 
         if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
             document.getElementById(section).innerHTML += renderTasksHTML(task, i);
 
-        taskDetails(names, category, prio, statusArray, i);
+        taskDetails(names, prio, statusArray, i);
     }
 }
 
@@ -87,23 +94,21 @@ function clearSections() {
 function getAllTasksDetails(i) {
     let task = allTasks[i];
     let section = allTasks[i]['progress'];
-    let category = allTasks[i]['category'];
     let names = allTasks[i]['assigned_to']
     let prio = allTasks[i]['prio'];
     let statusArray = allTasks[i]['subtasks']['status'];
-    return [task, section, category, names, prio, statusArray];
+    return [task, section, names, prio, statusArray];
 }
 
 
 
 /**
  * @param {string} names - The names of the employees who have to do the job.
- * @param {string} category - The Categoryname of the task.
  * @param {string} prio    - The priority of the task.
  */
-function taskDetails(names, category, prio, statusArray, i) {
+function taskDetails(names, prio, statusArray, i) {
     getInitials(names, i);
-    changeCategoryColor(category, i);
+    changeCategoryColor(i);
     renderPrioImg(prio, i);
     updateProgressBar(statusArray, i);
 }
@@ -177,11 +182,15 @@ function renderInitialsColors(i, s) {
 
 /**
  *  This function is used to give each Category a color
- *  
- * @param {string} category - The Categoryname of the task.
  */
-function changeCategoryColor(category, i) {
-    document.getElementById(`category${i}`).style.backgroundColor = setCategoryColor(category);
+function changeCategoryColor(i) {
+    let categoryName = document.getElementById(`category${i}`);
+    for (let n = 0; n &lt; categoriesAndColors.length; n++) {
+        if (categoryName.textContent.includes(categoriesAndColors[n].name)) {
+            categoryName.style.backgroundColor = categoriesAndColors[n].color;
+            break;
+        }
+    }
 }
 
 
@@ -287,12 +296,12 @@ function getSearchIndex(value) {
 function renderSearchedTask() {
     clearSections();
     for (let i = 0; i &lt; searchTasks.length; i++) {
-        let [task, section, category, names, prio, statusArray] = getSearchedTasksDetails(i);
+        let [task, section, names, prio, statusArray] = getSearchedTasksDetails(i);
 
         if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
             document.getElementById(section).innerHTML += renderTasksHTML(task, i);
 
-        taskDetails(names, category, prio, statusArray, i);
+        taskDetails(names, prio, statusArray, i);
     }
 }
 
@@ -304,10 +313,9 @@ function getSearchedTasksDetails(i) {
     let task = searchTasks[i];
     let names = searchTasks[i]['assigned_to'];
     let section = searchTasks[i]['progress'];
-    let category = searchTasks[i]['category'];
     let prio = searchTasks[i]['prio'];
     let statusArray = searchTasks[i]['subtasks']['status'];
-    return [task, section, category, names, prio, statusArray];
+    return [task, section, names, prio, statusArray];
 }</code></pre>
         </article>
     </section>
@@ -318,13 +326,13 @@ function getSearchedTasksDetails(i) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addClickEvent">addClickEvent</a></li><li><a href="global.html#addOnclickToBg">addOnclickToBg</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#bodyOverflowHidden">bodyOverflowHidden</a></li><li><a href="global.html#changeCategoryColor">changeCategoryColor</a></li><li><a href="global.html#changeHeightofAssignedTo">changeHeightofAssignedTo</a></li><li><a href="global.html#checkboxClicked">checkboxClicked</a></li><li><a href="global.html#chooseArrayToRender">chooseArrayToRender</a></li><li><a href="global.html#clearPriorityDivs">clearPriorityDivs</a></li><li><a href="global.html#clearProgressButtons">clearProgressButtons</a></li><li><a href="global.html#clearSections">clearSections</a></li><li><a href="global.html#closeDeletePopUp">closeDeletePopUp</a></li><li><a href="global.html#closeEditTask">closeEditTask</a></li><li><a href="global.html#createCheckBox">createCheckBox</a></li><li><a href="global.html#createCheckbox">createCheckbox</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#createContactsAndCheckboxes">createContactsAndCheckboxes</a></li><li><a href="global.html#createSubtaskDiv">createSubtaskDiv</a></li><li><a href="global.html#deleteTaskFromArrays">deleteTaskFromArrays</a></li><li><a href="global.html#displayBoardPopUp">displayBoardPopUp</a></li><li><a href="global.html#dragAndDropResponsive">dragAndDropResponsive</a></li><li><a href="global.html#editDetails">editDetails</a></li><li><a href="global.html#editPriority">editPriority</a></li><li><a href="global.html#getAllTasksDetails">getAllTasksDetails</a></li><li><a href="global.html#getContactColorsandInitials">getContactColorsandInitials</a></li><li><a href="global.html#getDataBase">getDataBase</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getNamesPopUp">getNamesPopUp</a></li><li><a href="global.html#getSearchIndex">getSearchIndex</a></li><li><a href="global.html#getSearchedTasksDetails">getSearchedTasksDetails</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newProgressColor">newProgressColor</a></li><li><a href="global.html#openDeletePopUp">openDeletePopUp</a></li><li><a href="global.html#openEditDropDown">openEditDropDown</a></li><li><a href="global.html#openEditTask">openEditTask</a></li><li><a href="global.html#popUpCategoryColor">popUpCategoryColor</a></li><li><a href="global.html#popUpInitialColor">popUpInitialColor</a></li><li><a href="global.html#popUpOpenFalse">popUpOpenFalse</a></li><li><a href="global.html#popUpOpenTrue">popUpOpenTrue</a></li><li><a href="global.html#proofInput">proofInput</a></li><li><a href="global.html#proofSubtasks">proofSubtasks</a></li><li><a href="global.html#removeAddTaskPopUp">removeAddTaskPopUp</a></li><li><a href="global.html#removeBoardPopUp">removeBoardPopUp</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderAndSave">renderAndSave</a></li><li><a href="global.html#renderContactsOnDropDown">renderContactsOnDropDown</a></li><li><a href="global.html#renderEditInitialColors">renderEditInitialColors</a></li><li><a href="global.html#renderEditInitials">renderEditInitials</a></li><li><a href="global.html#renderEditTaskPopUp">renderEditTaskPopUp</a></li><li><a href="global.html#renderEditedDetails">renderEditedDetails</a></li><li><a href="global.html#renderHiddenInitials">renderHiddenInitials</a></li><li><a href="global.html#renderInitialsColors">renderInitialsColors</a></li><li><a href="global.html#renderPopUpBoard">renderPopUpBoard</a></li><li><a href="global.html#renderPopUpPrio">renderPopUpPrio</a></li><li><a href="global.html#renderPrioImg">renderPrioImg</a></li><li><a href="global.html#renderSearchedTask">renderSearchedTask</a></li><li><a href="global.html#renderSubtasksPopUp">renderSubtasksPopUp</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#renderVisibleInitials">renderVisibleInitials</a></li><li><a href="global.html#replaceXThroughArrow">replaceXThroughArrow</a></li><li><a href="global.html#searchTask">searchTask</a></li><li><a href="global.html#setBgColor">setBgColor</a></li><li><a href="global.html#setCategoryColor">setCategoryColor</a></li><li><a href="global.html#setContactColors">setContactColors</a></li><li><a href="global.html#setNewPriority">setNewPriority</a></li><li><a href="global.html#setNewProgress">setNewProgress</a></li><li><a href="global.html#setPrioProperties">setPrioProperties</a></li><li><a href="global.html#setProgressColor">setProgressColor</a></li><li><a href="global.html#setTodayDate">setTodayDate</a></li><li><a href="global.html#showAddTaskPopUp">showAddTaskPopUp</a></li><li><a href="global.html#showEditPopUp">showEditPopUp</a></li><li><a href="global.html#showPopUp">showPopUp</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#taskDetails">taskDetails</a></li><li><a href="global.html#turnToFalse">turnToFalse</a></li><li><a href="global.html#updateProgressBar">updateProgressBar</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addClickEvent">addClickEvent</a></li><li><a href="global.html#addOnclickToBg">addOnclickToBg</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#bodyOverflowHidden">bodyOverflowHidden</a></li><li><a href="global.html#changeCategoryColor">changeCategoryColor</a></li><li><a href="global.html#changeHeightofAssignedTo">changeHeightofAssignedTo</a></li><li><a href="global.html#checkboxClicked">checkboxClicked</a></li><li><a href="global.html#chooseArrayToRender">chooseArrayToRender</a></li><li><a href="global.html#clearPriorityDivs">clearPriorityDivs</a></li><li><a href="global.html#clearProgressButtons">clearProgressButtons</a></li><li><a href="global.html#clearSections">clearSections</a></li><li><a href="global.html#closeDeletePopUp">closeDeletePopUp</a></li><li><a href="global.html#closeEditTask">closeEditTask</a></li><li><a href="global.html#createCheckBox">createCheckBox</a></li><li><a href="global.html#createCheckbox">createCheckbox</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#createContactsAndCheckboxes">createContactsAndCheckboxes</a></li><li><a href="global.html#createSubtaskDiv">createSubtaskDiv</a></li><li><a href="global.html#deleteTaskFromArrays">deleteTaskFromArrays</a></li><li><a href="global.html#displayBoardPopUp">displayBoardPopUp</a></li><li><a href="global.html#dragAndDropResponsive">dragAndDropResponsive</a></li><li><a href="global.html#editDetails">editDetails</a></li><li><a href="global.html#editPriority">editPriority</a></li><li><a href="global.html#getAllTasksDetails">getAllTasksDetails</a></li><li><a href="global.html#getCategoryColorAndName">getCategoryColorAndName</a></li><li><a href="global.html#getContactColorsandInitials">getContactColorsandInitials</a></li><li><a href="global.html#getDataBase">getDataBase</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getNamesPopUp">getNamesPopUp</a></li><li><a href="global.html#getSearchIndex">getSearchIndex</a></li><li><a href="global.html#getSearchedTasksDetails">getSearchedTasksDetails</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newProgressColor">newProgressColor</a></li><li><a href="global.html#openDeletePopUp">openDeletePopUp</a></li><li><a href="global.html#openEditDropDown">openEditDropDown</a></li><li><a href="global.html#openEditTask">openEditTask</a></li><li><a href="global.html#popUpCategoryColor">popUpCategoryColor</a></li><li><a href="global.html#popUpInitialColor">popUpInitialColor</a></li><li><a href="global.html#popUpOpenFalse">popUpOpenFalse</a></li><li><a href="global.html#popUpOpenTrue">popUpOpenTrue</a></li><li><a href="global.html#proofInput">proofInput</a></li><li><a href="global.html#proofSubtasks">proofSubtasks</a></li><li><a href="global.html#removeAddTaskPopUp">removeAddTaskPopUp</a></li><li><a href="global.html#removeBoardPopUp">removeBoardPopUp</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderAndSave">renderAndSave</a></li><li><a href="global.html#renderContactsOnDropDown">renderContactsOnDropDown</a></li><li><a href="global.html#renderEditInitialColors">renderEditInitialColors</a></li><li><a href="global.html#renderEditInitials">renderEditInitials</a></li><li><a href="global.html#renderEditTaskPopUp">renderEditTaskPopUp</a></li><li><a href="global.html#renderEditedDetails">renderEditedDetails</a></li><li><a href="global.html#renderHiddenInitials">renderHiddenInitials</a></li><li><a href="global.html#renderInitialsColors">renderInitialsColors</a></li><li><a href="global.html#renderPopUpBoard">renderPopUpBoard</a></li><li><a href="global.html#renderPopUpPrio">renderPopUpPrio</a></li><li><a href="global.html#renderPrioImg">renderPrioImg</a></li><li><a href="global.html#renderSearchedTask">renderSearchedTask</a></li><li><a href="global.html#renderSubtasksPopUp">renderSubtasksPopUp</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#renderVisibleInitials">renderVisibleInitials</a></li><li><a href="global.html#replaceXThroughArrow">replaceXThroughArrow</a></li><li><a href="global.html#searchTask">searchTask</a></li><li><a href="global.html#setBgColor">setBgColor</a></li><li><a href="global.html#setCategoryColor">setCategoryColor</a></li><li><a href="global.html#setContactColors">setContactColors</a></li><li><a href="global.html#setNewPriority">setNewPriority</a></li><li><a href="global.html#setNewProgress">setNewProgress</a></li><li><a href="global.html#setPrioProperties">setPrioProperties</a></li><li><a href="global.html#setProgressColor">setProgressColor</a></li><li><a href="global.html#setTodayDate">setTodayDate</a></li><li><a href="global.html#showAddTaskPopUp">showAddTaskPopUp</a></li><li><a href="global.html#showEditPopUp">showEditPopUp</a></li><li><a href="global.html#showPopUp">showPopUp</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#taskDetails">taskDetails</a></li><li><a href="global.html#turnToFalse">turnToFalse</a></li><li><a href="global.html#updateProgressBar">updateProgressBar</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Feb 01 2023 00:33:00 GMT+0100 (Mitteleuropäische Normalzeit)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Feb 01 2023 14:14:57 GMT+0100 (Mitteleuropäische Normalzeit)
 </footer>
 
 <script> prettyPrint(); </script>

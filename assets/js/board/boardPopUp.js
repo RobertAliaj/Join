@@ -70,14 +70,17 @@ function popUpInitialColor(i, n) {
 }
 
 
-
 /**
  * This function is used to give the Category on the Popup the color.
  */
- function popUpCategoryColor(i) {
-    let category = popUpTasks[i]['category'];
+function popUpCategoryColor(i) {
     let popUpCategory = document.getElementById(`popUpCategory${i}`);
-    popUpCategory.style.backgroundColor = setCategoryColor(category);
+    for (let n = 0; n < categoriesAndColors.length; n++) {
+        if (popUpCategory.textContent.includes(categoriesAndColors[n].name)) {
+            popUpCategory.style.backgroundColor = categoriesAndColors[n].color;
+            break;
+        }
+    }
 }
 
 
@@ -85,13 +88,13 @@ function popUpInitialColor(i, n) {
  * This function is use to render the Subtasks on the Popup.
  */
 async function renderSubtasksPopUp(i) {
-    let subtasks = popUpTasks[i]['subtasks']['name'],                           
-        statusArray = popUpTasks[i]['subtasks']['status'],                      
-        subtasksContainer = document.getElementById('subtasks');                
+    let subtasks = popUpTasks[i]['subtasks']['name'],
+        statusArray = popUpTasks[i]['subtasks']['status'],
+        subtasksContainer = document.getElementById('subtasks');
 
-    subtasks.forEach((sub, s) => {                                              
-        let subTaskDiv = createSubtaskDiv(sub, statusArray, s, i);              
-        subtasksContainer.appendChild(subTaskDiv);                              
+    subtasks.forEach((sub, s) => {
+        let subTaskDiv = createSubtaskDiv(sub, statusArray, s, i);
+        subtasksContainer.appendChild(subTaskDiv);
     });
 }
 
@@ -102,18 +105,18 @@ async function renderSubtasksPopUp(i) {
  * @param {string} sub - The name/description of the subtask.
  */
 function createSubtaskDiv(sub, statusArray, s, i) {
-    let subTaskDiv = document.createElement('div');            
-    subTaskDiv.classList.add('subtasks-names');                
+    let subTaskDiv = document.createElement('div');
+    subTaskDiv.classList.add('subtasks-names');
 
-    let checkBox = createCheckbox(statusArray, s, i);          
-    subTaskDiv.appendChild(checkBox);                          
+    let checkBox = createCheckbox(statusArray, s, i);
+    subTaskDiv.appendChild(checkBox);
 
-    let subTaskName = document.createElement('div');           
+    let subTaskName = document.createElement('div');
     subTaskName.classList.add('width');
-    subTaskName.innerText = sub;                               
-    subTaskDiv.appendChild(subTaskName);                       
+    subTaskName.innerText = sub;
+    subTaskDiv.appendChild(subTaskName);
 
-    return subTaskDiv;                                         
+    return subTaskDiv;
 }
 
 
@@ -122,26 +125,26 @@ function createSubtaskDiv(sub, statusArray, s, i) {
  * This function is used to create the Check-Box on the Popup.
  */
 function createCheckbox(statusArray, s, i) {
-    let checkBox = document.createElement('div');                                                     
-    checkBox.classList.add('check-box');                                                              
-    checkBox.id = `checkBox${i}-${s}`;                                                               
+    let checkBox = document.createElement('div');
+    checkBox.classList.add('check-box');
+    checkBox.id = `checkBox${i}-${s}`;
 
-    checkBox.addEventListener('click', () => checkboxClicked(statusArray, s, checkBox, i));        
-    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';                  
-    return checkBox;                                                                                
+    checkBox.addEventListener('click', () => checkboxClicked(statusArray, s, checkBox, i));
+    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';
+    return checkBox;
 }
 
 
 /**
  * This function is used to cross out the Check-Box when a subtask is done.
  */
-async function checkboxClicked(statusArray, s, checkBox, i) {                        
-    statusArray[s] = !statusArray[s];                                                
-    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';   
+async function checkboxClicked(statusArray, s, checkBox, i) {
+    statusArray[s] = !statusArray[s];
+    checkBox.innerHTML = statusArray[s] ? `<img src="assets/img/check.png">` : '';
 
-    updateProgressBar(statusArray, i);                                              
-    jsonFromServer['tasks'] = popUpTasks;                                           
-    await saveJSONToServer();                                                       
+    updateProgressBar(statusArray, i);
+    jsonFromServer['tasks'] = popUpTasks;
+    await saveJSONToServer();
 }
 
 
@@ -165,7 +168,7 @@ function renderPopUpPrio(i) {
  */
 function proofSubtasks(i) {
     let noSub = popUpTasks[i]['subtasks']['name'];
-    if(noSub.length == 0){
+    if (noSub.length == 0) {
         document.getElementById('subTitle').innerHTML = 'No Subtasks';
         document.getElementById('subParent').style.marginBottom = '0px';
     }
