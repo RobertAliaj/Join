@@ -159,21 +159,29 @@ function popUpOpenFalse() {
     popUpOpen = false;
 }
 
+/**
+ * This function is used to get the color and the name of every category in the categoryJSON and push it into the categoriesAndColors array.
+ */
+function getCategoryColorAndName() {
+    for (let i = 0; i < categories.length; i++) {
+        let categoryName = categories[i]['name'];
+        let categoryColor = categories[i]['color'];
+        categoriesAndColors.push(setCategoryColor(categoryName, categoryColor));
+    }
+}
+
 
 /**
- * This function returns the Colors for the Categories.
- *
- *  @param {string} category - The category name of the task.
+ *  This function returns the color and the name of every Category in the CategoryJSON.
+ *  
+ * @param {string} categoryName - The name of the Category.
+ * @param {string} categoryColor     - The color of the Category.
  */
-function setCategoryColor(category) {
-    let categorysAndColors = {
-        Design: "rgb(239, 132, 41)",
-        Sales: "rgb(236, 126, 250)",
-        Backoffice: "rgb(100, 210, 193)",
-        Marketing: "rgb(18, 58, 248)",
-        Media: "rgb(247, 202, 57)",
-    };
-    return (categorysAndColors[category]);
+function setCategoryColor(categoryName, categoryColor) {
+    return {
+        name: categoryName,
+        color: categoryColor
+    }
 }
 
 
