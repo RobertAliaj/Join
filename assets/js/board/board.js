@@ -16,7 +16,7 @@ let popUpOpen = false;
  */
 async function init() {
     await getDataBase();
-    getCategoriesFromJSON();
+    getCategoryColorAndName();
     getContactColorsandInitials();
     renderTasks();
 }
