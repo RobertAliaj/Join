@@ -29,9 +29,12 @@ let initialsRenderd = false;
 async function loadInfos() {
     await downloadFromServer();
     await includeHTML();
-    tasks = JSON.parse(backend.getItem('tasks'));
-    contacts = JSON.parse(backend.getItem('contacts'));
-    categorys = JSON.parse(backend.getItem('categorys'));
+    // tasks = JSON.parse(backend.getItem('tasks'));
+    tasks = jsonFromServer['tasks']
+    // contacts = JSON.parse(backend.getItem('contacts'));
+    contacts = jsonFromServer['contacts']
+    // categorys = JSON.parse(backend.getItem('categorys'));
+    categorys = jsonFromServer['categorys']
     renderCategorys();
     renderContacts();
     datePicker();
@@ -438,8 +441,9 @@ async function saveNewCategory() {
 async function pushCategoryInCategorys() {
     i = categorys.length;
     categorys.splice(i, 0, category);
+    jsonFromServer['categorys'] = categorys 
     renderCategorys();
-    await saveOnServer('categorys', categorys);
+    await saveJSONToServer();
 }
 
 
@@ -539,19 +543,23 @@ async function collectAllInfos() {
     pushSubtask();
     pushStatus();
     task.progress = 'TODO'; 
+    pushTaskInTasks()
 }
 
 
 async function pushTaskInTasks() {
     if (required == false) {
-        i = tasks.length;
-        tasks.splice(i, 0, task);
-        await saveOnServer('tasks', tasks);
+        // i = tasks.length;
+        // tasks.splice(i, 0, task);
+        // await saveOnServer('tasks', tasks);
+        tasks.push(task);
+        jsonFromServer['tasks'] = tasks;
+        await saveJSONToServer()
     }
 }
 
 
-async function saveOnServer(key, item) {
-    itemAsString = JSON.stringify(item);
-    await backend.setItem(key, itemAsString);
-}
+// async function saveOnServer(key, item) {
+//     itemAsString = JSON.stringify(item);
+//     await backend.setItem(key, itemAsString);
+// }
