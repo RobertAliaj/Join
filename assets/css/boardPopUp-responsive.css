@@ -111,4 +111,8 @@
     .progress-divs{
         font-size: 15px;
     }
+
+    .edit-exit{
+        display: none;
+    }
 }
