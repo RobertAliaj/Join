@@ -197,9 +197,12 @@ form input::placeholder {
   top: 20px;
   left: 20px;
   width: 30px;
+  cursor: pointer;
 }
 
 .sign-up-span {
   font-size: 50px;
   font-weight: 700;
 }
+
+
