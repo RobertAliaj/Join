@@ -1,7 +1,11 @@
 .summary-container {
     font-family: 'Inter';
     Padding: 50px 50px 50px 120px;
-    
+    position: absolute;
+    top: 90px;
+    left: 232px;
+    right: 0px;
+    bottom: 0;
 }
 
 .headline {
@@ -42,7 +46,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 50%;
+    width: 500px;
     gap: 20px;
 }
 
@@ -192,7 +196,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    margin-left: 10%;
 }
 
 .greeting span {
@@ -202,4 +206,177 @@
 .greeting b {
     color: #29ABE2;
     font-size: 55px;
+}
+
+@media (max-width: 1250px) {
+
+    .greeting span {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 1100px) {
+
+    .summary-container {
+        Padding: 50px 100px 50px 100px;
+    }
+
+    .summary-content {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .task-menu-container {
+        width: 100%;
+    }
+
+    .greeting {
+        align-items: flex-start;
+        margin: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .summary-container {
+        position: unset;
+        Padding: 100px 50px 100px 50px;
+        width: 100vw;
+        box-sizing: border-box;
+    }
+
+    .task-menu-container {
+        opacity: 0;
+    }
+
+    .headline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+        opacity: 0;
+    }
+
+    .vertical-line-blue {
+        width: 100px;
+        height: unset;
+        margin: 0;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+    }
+
+    .summary-content {
+        margin-top: 50px;
+    }
+
+    .task-menu-container .row>* {
+        height: 120px;
+        width: 100px;
+    }
+
+    .task b {
+        font-size: 43px;
+    }
+
+    .task span {
+        font-size: 12px;
+    }
+
+    .todo-done div b {
+        font-size: 43px;
+    }
+
+    .todo-done span {
+        font-size: 12px;
+    }
+
+    .urgent-container div b {
+        font-size: 43px;
+    }
+
+    .urgent-container div span {
+        font-size: 12px;
+    }
+
+    .responsive-greeting {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .task-menu-container .row>* {
+        height: 100px;
+        width: 100px;
+    }
+
+    .task-menu-container .row {
+        gap: 25px;
+    }
+
+    .task b {
+        font-size: 38px;
+    }
+
+    .task span {
+        font-size: 10px;
+    }
+
+    .todo-done div b {
+        font-size: 38px;
+    }
+
+    .todo-done div span {
+        font-size: 10px;
+    }
+
+    .summary-container {
+        Padding: 100px 40px 100px 40px;
+    }
+
+    .task-menu-container .row>*:hover {
+        transform: scale(1.05);
+    }
+
+    .vertical-line-grey {
+        height: 60px;
+    }
+
+    .deadline-container {
+        gap: 0;
+        font-size: 10px;
+    }
+
+    .urgent-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .urgent-container div b {
+        font-size: 38px;
+    }
+
+    .urgent-container div span {
+        font-size: 10px;
+    }
+    
+    .todo-done div b {
+        font-size: 38px;
+    }
+
+    .todo-done div span {
+        font-size: 10px;
+    }
+
+    .todo-done img {
+        width: 40px;
+        height: 40px;
+    }
+    
 }

@@ -1,6 +1,6 @@
 let users = [];
 
-async function init() {
+async function initLogin() {
   await downloadFromServer();
   users = jsonFromServer['users'];
   openLogIn();
@@ -8,6 +8,14 @@ async function init() {
 }
 
 function animate() {
+  if (window.innerWidth < 501) {
+    animateResponsive();
+  } else {
+    animateNormal()
+  }
+}
+
+function animateNormal() {
   let height = document.getElementById('outerDiv').clientHeight;
   let width = document.getElementById('outerDiv').clientWidth;
   let imgHeight = document.getElementById('imgDiv').clientHeight;
@@ -26,6 +34,37 @@ function animate() {
         x: (-width / 2) + (imgWidth / 2) + 50,
         y: (-height / 2) + (imgHeight / 2) + 50,
         scale: 0.3,
+        ease: "power1.out",
+        duration: 1
+      }, 0)
+      .to("#contentDiv", {
+        opacity: 1,
+        duration: 1
+      }, 0);
+  }, 1000);
+
+  document.getElementById('outerDiv').style.zIndex = 1;
+}
+
+function animateResponsive() {
+  let height = document.getElementById('outerDiv').clientHeight;
+  let width = document.getElementById('outerDiv').clientWidth;
+  let imgHeight = document.getElementById('imgDiv').clientHeight;
+  let imgWidth = document.getElementById('imgDiv').clientWidth;
+  setTimeout(function () {
+    const animation = gsap.timeline()
+      .set("#imgDiv", {
+        x: 0,
+        y: 0,
+        scale: 1
+      }, 0)
+      .set("#contentDiv", {
+        opacity: 0
+      }, 0)
+      .to("#imgDiv", {
+        x: (-width / 2) + (imgWidth / 2) + 20,
+        y: (-height / 2) + (imgHeight / 2) + 20,
+        scale: 0.2,
         ease: "power1.out",
         duration: 1
       }, 0)
@@ -87,7 +126,7 @@ function logIn() {
   let user = users.find(u => u.email == email.value && u.password == password.value);
   if (user) {
     // alert.classList.add('d-none');
-    
+
     saveGreetingName(user['name'])
     location.href = 'index.html';
 
@@ -140,8 +179,10 @@ function LoginContainerHtml() {
           <span> You've got the wrong email or password </span>
         </div>
         <div class="remember-me">
-          <input type="checkbox" id="rememberMe" onclick="lsRememberMe()" value="lsRememberMe" class="select-box">
-          <span>Remember me</span>
+          <div>
+            <input type="checkbox" id="rememberMe" onclick="lsRememberMe()" value="lsRememberMe" class="select-box">
+            <span>Remember me</span>
+          </div>
           <a onclick="openForgotPassword()">Forgot my password</a>
         </div>
         <div class="buttons">

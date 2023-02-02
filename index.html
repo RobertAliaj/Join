@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/img/join_small.png">
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <script src="assets/js/mini_backend.js"></script>
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
@@ -22,11 +23,11 @@
 
     <title>Join</title>
 </head>
-<body onload="includeHTML(); prepareContacts(); greetingTime()">
+<body onload="includeHTML(); initSummary()">
 
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div w3-include-html="assets/templates/desktop_top_template.html"></div>
-    <div class="content-container" w3-include-html="assets/templates/summary_template.html"></div>
+    <div w3-include-html="assets/templates/summary_template.html"></div>
     
 </body>
 </html>

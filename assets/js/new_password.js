@@ -38,7 +38,7 @@ function correctPassword() {
         <div id="blueAlert" class="blue-alert">Dein Passwort wurde erfolgreich geändert. In ein paar Sekunden wirst du zur Login Seite weitergeleitet!</div>
     `;
     setTimeout(function() {
-        window.open('login.html')
+        location.href = 'index.html';
         document.getElementById('blueAlert').classList.add('d-none')
     }, 3000)
 }

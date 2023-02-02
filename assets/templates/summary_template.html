@@ -1,22 +1,22 @@
 <div class="summary-container" >
-    <div class="headline">
+    <div id="headline" class="headline">
         <span>Summary</span>
         <div class="vertical-line-blue"></div>
         <span>Everything in a Nutshell</span>
     </div>
-    <div class="summary-content">
-        <div class="task-menu-container">
+    <div  class="summary-content">
+        <div id="summaryContent" class="task-menu-container">
             <div class="row">
                 <div class="task" onclick="openBoard()">
-                    <b>5</b>
-                    <span>Tasks in Board</span>
+                    <b id="tasksInBoard"></b>
+                    <span id="tasksInBoardSpan">Tasks in Board</span>
                 </div>
                 <div class="task" onclick="openBoard()">
-                    <b>2</b>
-                    <span>Tasks in Progress</span>
+                    <b id="tasksInProgress"></b>
+                    <span id="tasksInProgressSpan">Tasks in Progress</span>
                 </div>
                 <div class="task" onclick="openBoard()">
-                    <b>2</b>
+                    <b id="awaitingFeedback"></b>
                     <span>Awaiting Feedback</span>
                 </div>
             </div>
@@ -26,13 +26,13 @@
                         <img src="assets/img/arrows.png" class="urgent-icon">
                         </img>
                         <div>
-                            <b>1</b>
+                            <b id="urgent"></b>
                             <span>Urgent</span>
                         </div>
                     </div>
                     <div class="vertical-line-grey"></div>
                     <div class="deadline-container">
-                        <b>Oktober 16, 2022</b>
+                        <b id="upcomingDeadline"></b>
                         <span>Upcoming Deadline</span>
                     </div>
                 </div>
@@ -41,21 +41,21 @@
                 <div class="todo-done" onclick="openBoard()">
                     <img src="assets/img/edit.png" alt="">
                     <div>
-                        <b>1</b>
+                        <b id="todo"></b>
                         <span>To-do</span>
                     </div>
                 </div>
                 <div class="todo-done" onclick="openBoard()">
                     <img src="assets/img/edit.png" alt="">
                     <div>
-                        <b>1</b>
+                        <b id="done"></b>
                         <span>Done</span>
                     </div>
                 </div>
 
             </div>
         </div>
-        <div class="greeting">
+        <div id="greeting" class="greeting">
             <span id="goodMorning"></span>
             <b id="greetingName"></b>
         </div>
