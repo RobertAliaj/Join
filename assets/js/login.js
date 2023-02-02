@@ -56,6 +56,13 @@ function openLogIn() {
   loginContainer.innerHTML += LoginContainerHtml();
 }
 
+function openForgotPassword() {
+  document.getElementById('signUp').style.display = 'none';
+  let loginContainer = document.getElementById('loginContainer')
+  loginContainer.innerHTML = '';
+  loginContainer.innerHTML += PasswordContainerHtml();
+}
+
 function signUp() {
   signUpName = document.getElementById('signUpName')
   signUpEmail = document.getElementById('signUpEmail')
@@ -92,8 +99,6 @@ function logIn() {
   }
 }
 
-
-
 function lsRememberMe() {
   const rmCheck = document.getElementById('rememberMe'),
     emailInput = document.getElementById('email');
@@ -112,6 +117,10 @@ function lsRememberMe() {
     localStorage.username = "";
     localStorage.checkbox = "";
   }
+}
+
+function submitForm() {
+  document.querySelector("form").submit();
 }
 
 function LoginContainerHtml() {
@@ -133,7 +142,7 @@ function LoginContainerHtml() {
         <div class="remember-me">
           <input type="checkbox" id="rememberMe" onclick="lsRememberMe()" value="lsRememberMe" class="select-box">
           <span>Remember me</span>
-          <a>Forgot my password</a>
+          <a onclick="openForgotPassword()">Forgot my password</a>
         </div>
         <div class="buttons">
           <button type="submit" onclick="logIn()" class="login-button"> Log in</button>
@@ -147,23 +156,41 @@ function SignUpContainerHtml() {
   return `
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
       <span class="sign-up-span" >Sign up</span>
-        <div class="horizontal-blue-line"></div>
-        <form onsubmit="return false">
-          <div>
-            <input placeholder="Name" id="signUpName" required>
-            <img src="assets/img/user.png" alt="">
-          </div>
-          <div>
-            <input type="email" placeholder="Email" id="signUpEmail" required>
-            <img src="assets/img/mail.png" alt="">
-          </div>
-          <div>
-            <input type="password" placeholder="Password" id="signUpPassword" required>
-            <img src="assets/img/schloss.png" alt="">
-          </div>
-          <div class="buttons">
-            <button type="submit" onclick="signUp(); openLogIn()" class="login-button"> Sign Up</button>
-          </div>
-      </form>
+      <div class="horizontal-blue-line"></div>
+      <form onsubmit="return false">
+        <div>
+          <input placeholder="Name" id="signUpName" required>
+          <img src="assets/img/user.png" alt="">
+        </div>
+        <div>
+          <input type="email" placeholder="Email" id="signUpEmail" required>
+          <img src="assets/img/mail.png" alt="">
+        </div>
+        <div>
+          <input type="password" placeholder="Password" id="signUpPassword" required>
+          <img src="assets/img/schloss.png" alt="">
+        </div>
+        <div class="buttons">
+          <button type="submit" onclick="signUp(); openLogIn()" class="login-button"> Sign Up</button>
+        </div>
+     </form>
   `;
+}
+
+function PasswordContainerHtml() {
+  return `
+      <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
+      <span class="forgot-password-span" >Forgot Password</span>
+      <div class="horizontal-blue-line"></div>
+      <form action="https://gruppe-join-421.developerakademie.net/Robert/send_mail.php" method="POST">
+        <div>
+          <input name="name" type="email" placeholder="Email" id="forgotPasswordEmail" required>
+          <img src="assets/img/mail.png" alt="">
+
+        </div>
+        <div class="buttons">
+          <button type="submit" class="login-button"> Send Mail </button>
+        </div>
+     </form>
+      `;
 }

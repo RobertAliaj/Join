@@ -168,6 +168,8 @@ form input::placeholder {
   font-weight: 700 !important;
 }
 
+
+
 /*************  SIGN UP ************/
 
 .sign-up {
@@ -215,6 +217,31 @@ form input::placeholder {
 
 .d-none {
   display: none;
+}
+
+/********** FORGOT PASSWORD **************/
+
+.forgot-password-span {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.blue-alert {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -40px;
+  color:#293646;
+  text-align: center;
+}
+
+.red-alert {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -40px;
+  color: red;
+  text-align: center;
 }
 
 
