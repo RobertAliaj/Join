@@ -1,7 +1,7 @@
 let contacts = [];
 let letters = [];
 
- setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
+setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
 
 async function initContacts() {
     await downloadFromServer();
@@ -55,6 +55,7 @@ function WordCount(str) {
 function openCreateContact() {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('newContactContainer').classList.remove('d-none');
+    document.getElementById('newContactContainer').innerHTML = createContactHtml();
     fadeIn();
     slideIn('newContactContainer');
 }
@@ -71,6 +72,9 @@ function closeNewContact() {
 }
 
 function showContacts() {
+    if (window.innerWidth < 1001) {
+        document.getElementById('newContactButtonResponsive').style.display = 'flex';
+    }
     createLetters();
     displayContacts();
 }
@@ -166,26 +170,40 @@ function generateRandomColor() {
 function openSpecificContact(idx) {
     document.getElementById('specificContact').innerHTML = specificContactHtml(idx);
     document.getElementById(`specific${idx}`).style.backgroundColor = contacts[idx]['color'];
+    if (window.innerWidth < 1001) {
+        document.getElementById('contacts').style.display = 'none';
+        document.getElementById('rightSection').style.display = 'block';
+        document.getElementById('arrow').style.display = 'block';
+        document.getElementById('editContactButton').style.display = 'block';
+        document.getElementById('editSpan').style.display = 'none';
+        document.getElementById('newContactButton').style.display = 'none';
+    }
+}
+
+function closeSpecificContact() {
+    document.getElementById('contacts').style.display = 'block';
+    document.getElementById('rightSection').style.display = 'none';
+    document.getElementById('arrow').style.display = 'block';
+    document.getElementById('editContactButton').style.display = 'none';
+    document.getElementById('editSpan').style.display = 'flex';
+    document.getElementById('newContactButton').style.display = 'block';
 }
 
 function editContact(idx) {
     document.getElementById('overlay').classList.remove('d-none');
-    document.getElementById('editContactContainer').classList.remove('d-none');
-    fadeIn();
-    slideIn('editContactContainer');
-    showEditContactContainer(idx)
-}
+    document.getElementById('newContactContainer').classList.remove('d-none');
+    document.getElementById('newContactContainer').innerHTML = editContactHtml(idx);
 
-function showEditContactContainer(idx) {
-    document.getElementById('editContactContainer').innerHTML = editContactHtml(idx)
+    fadeIn();
+    slideIn('newContactContainer');
 }
 
 function closeEditContact() {
-    slideOut('editContactContainer');
+    slideOut('newContactContainer');
     fadeOut();
     setTimeout(function () {
         document.getElementById('overlay').classList.add('d-none');
-        document.getElementById('editContactContainer').classList.add('d-none')
+        document.getElementById('newContactContainer').classList.add('d-none')
 
     }, 400)
     showContacts()
@@ -227,7 +245,7 @@ function changeContact(idx) {
 
 function createLetterHtml(i) {
     return /*html*/`
-        <div class="letter" onclick="searchLetter(${i})">${letters[i].toUpperCase()}</div>
+        <div class="letter" >${letters[i].toUpperCase()}</div>
         <div class="letter-block" id="${letters[i]}">
         </div>
     `;
@@ -260,7 +278,8 @@ function specificContactHtml(idx) {
                 </div>
             </div>
             <div class="contact-information">
-                <div>
+                <img onclick="editContact(${idx})" class="edit" id="editContactButton" src="assets/img/edit.png" alt="" style="display: none;">
+                <div class="edit-span" id="editSpan">
                     <span>Contact Information</span>
                     <span onclick="editContact(${idx})">Edit Contact</span>
                 </div>
@@ -278,24 +297,82 @@ function specificContactHtml(idx) {
 function editContactHtml(idx) {
     return /*html*/ `
         <img onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
-        <div class="name-section">
-            <b class="big-name">ALINA WETTER</b>
-            <div class="horizontal-blue-line" style="width: 100%;"></div>
-        </div>
-        <div class="input-fields">
-            <input id="contactFirstname" type="text" value="${contacts[idx]['firstname']}">
-            <input id="contactLastname" type="text" value="${contacts[idx]['lastname']}">
-            <input id="contactEmail" type="email" value="${contacts[idx]['email']}">
-            <input id="contactPhone" type="tel" value="${contacts[idx]['phone']}">
-        </div>
-        <div class="submit-section" style="justify-content: center;">
-            <div onclick="closeEditContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
-            </div>
-            <div onclick="changeContact(${idx})" type="submit">Submit change<img
-                    src="assets/img/create_task.png" alt="">
+        <div class="blue-side">
+            <div class="flex-blue-side">
+                <img src="assets/img/join_small.png" alt="">
+                <b>Edit contact</b>
+                <div class="horizontal-blue-line"></div>
             </div>
         </div>
-        <div class="delete-button" onclick="deleteContact(${idx})" type="submit">Delete contact
+        <div class="contact-create-container">
+            <div class="name-tag bigger" id="specific${idx}" style="backgroundColor: contacts[${idx}]['color'] ">
+                ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
+            </div>           
+            <div class="contact-form">
+                <form onsubmit="return false">
+                    <div class="input-fields">
+                        <div>
+                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" value="${contacts[idx]['firstname']} ${contacts[idx]['lastname']}" required>
+                            <img src="assets/img/user.png" alt="">
+                        </div>
+                        <div>
+                            <input id="mail" placeholder="Email" type="email" value="${contacts[idx]['email']}" required>
+                            <img src="assets/img/mail.png" alt="">
+                        </div>
+                        <div>
+                            <input id="phone" placeholder="Phone" type="tel" value="${contacts[idx]['phone']}" required>
+                            <img src="assets/img/mobile.png" alt="">
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <button id="submit" onclick="changeContact(${idx})" type="submit">Save<img
+                                src="assets/img/create_task.png" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    `;
+}
+
+function createContactHtml() {
+    return /*html*/ `
+        <img onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
+        <div class="blue-side">
+            <div class="flex-blue-side">
+                <img src="assets/img/join_small.png" alt="">
+                <b id="overlayHeadline">Add contact</b>
+                <span id="overlaySubline">Tasks are better with a team!</span>
+                <div class="horizontal-blue-line"></div>
+            </div>
+        </div>
+        <div class="contact-create-container">
+            <img class="user" src="assets/img/user (1).png" alt="">
+            <div class="contact-form">
+                <form onsubmit="return false">
+                    <div class="input-fields">
+                        <div>
+                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" required>
+                            <img src="assets/img/user.png" alt="">
+                        </div>
+                        <div>
+                            <input id="mail" placeholder="Email" type="email" required>
+                            <img src="assets/img/mail.png" alt="">
+                        </div>
+                        <div>
+                            <input id="phone" placeholder="Phone" type="tel" required>
+                            <img src="assets/img/mobile.png" alt="">
+                        </div>
+                    </div>
+                    <div class="submit-section">
+                        <div id="cancle" onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
+                        </div>
+                        <button id="submit" onclick="submitContact()" type="submit">Create contact <img
+                                src="assets/img/create_task.png" alt="">
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     `;
 }

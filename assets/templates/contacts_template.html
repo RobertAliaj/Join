@@ -1,6 +1,12 @@
 <div class="contacts-page" onload="createLetters(); displayContacts()">
-    <div id="contacts" class="left-section"></div>
-    <div class="right-section">
+    <div id="contacts" class="left-section">
+        <div id="newContactButtonResponsive" style="display: none;" onclick="openCreateContact()" class="new-contact-button-responsive">
+            <b>New contact</b>
+            <img src="assets/img/add-contact.png" alt="">
+        </div>
+    </div>
+    <div id="rightSection" class="right-section">
+        <img onclick="closeSpecificContact()" id="arrow" class="arrow" style="display: none;" src="assets/img/left-arrow.png" alt="">
         <div class="headline">
             <span>Contacts</span>
             <div class="vertical-line-blue"></div>
@@ -8,7 +14,7 @@
         </div>
         <div class="specific-contact" id="specificContact">
         </div>
-        <div onclick="openCreateContact()" class="new-contact-button">
+        <div id="newContactButton" onclick="openCreateContact()" class="new-contact-button">
             <b>New contact</b>
             <img src="assets/img/add-contact.png" alt="">
         </div>
@@ -18,47 +24,6 @@
 </div>
 <div id="overlay" class="overlay d-none">
     <div id="newContactContainer" class="new-contact-container d-none">
-        <img onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
-        <div class="blue-side">
-            <div class="flex-blue-side">
-                <img src="assets/img/join_small.png" alt="">
-                <b>Add contact</b>
-                <span>Tasks are better with a team!</span>
-                <div class="horizontal-blue-line"></div>
-            </div>
-        </div>
-        <div class="contact-create-container">
-            <img class="user" src="assets/img/user (1).png" alt="">
-            <div class="contact-form">
-                <form onsubmit="return false">
-                    <div class="input-fields">
-                        <div>
-                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" required>
-                            <img src="assets/img/user.png" alt="">
-                        </div>
-                        <div>
-                            <input id="mail" placeholder="Email" type="email" required>
-                            <img src="assets/img/mail.png" alt="">
-                        </div>
-                        <div>
-                            <input id="phone" placeholder="Phone" type="tel" required>
-                            <img src="assets/img/mobile.png" alt="">
-                        </div>
-                    </div>
-                    <div class="submit-section">
-                        <div onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
-                        </div>
-                        <button onclick="submitContact()" type="submit">Create contact <img
-                                src="assets/img/create_task.png" alt="">
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
-    <div id="editContactContainer" class="edit-contact-container d-none">
-        
-    </div>
+
 </div>
-
-
