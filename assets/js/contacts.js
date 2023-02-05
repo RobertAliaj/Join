@@ -9,13 +9,14 @@ async function initContacts() {
     showContacts()
 }
 
-// async function deleteUser() {
-//     await backend.deleteItem('contacts');
-// }
-
 async function refreshContacts() {
     jsonFromServer['contacts'] = contacts;
     await saveJSONToServer()
+}
+
+function createNewContact() {
+    submitContact(); 
+    closeNewContact();
 }
 
 function submitContact() {
@@ -43,8 +44,6 @@ function submitContact() {
 
         contacts.push(contact);
     }
-
-    closeNewContact();
 }
 
 function WordCount(str) {
@@ -134,11 +133,6 @@ function displayContacts() {
     }
 }
 
-// function generateRandomColor() {
-//     var randomColor = Math.floor(Math.random()*16777215).toString(16);
-//         return randomColor;
-// }
-
 function setRandomColor(j) {
     if (!contacts[j]['color'] == '') {
         document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
@@ -161,9 +155,6 @@ function generateRandomColor() {
         g = parseInt(color.substring(3, 5), 16);
         b = parseInt(color.substring(5, 7), 16);
     }
-    // let color = '#'+ Math.floor(Math.random()*16777215).toString(16);
-    // for (let i = 0; i < 3; i++)
-    //     color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
     return color;
 }
 
@@ -196,9 +187,10 @@ function editContact(idx) {
 
     fadeIn();
     slideIn('newContactContainer');
+    document.getElementById(`edit${idx}`).style.backgroundColor = contacts[idx]['color'];
 }
 
-function closeEditContact() {
+function closeEditContact(idx) {
     slideOut('newContactContainer');
     fadeOut();
     setTimeout(function () {
@@ -206,21 +198,24 @@ function closeEditContact() {
         document.getElementById('newContactContainer').classList.add('d-none')
 
     }, 400)
+    if (window.innerWidth < 1001) {
+        // openSpecificContact(idx)
+        closeSpecificContact()
+    }
     showContacts()
 }
 
 function deleteContact(idx) {
     contacts.splice(idx, 1)
     refreshContacts();
-    closeEditContact();
     document.getElementById('specificContact').innerHTML = '';
 }
 
 function changeContact(idx) {
-    let firstname = document.getElementById('contactFirstname').value;
-    let lastname = document.getElementById('contactLastname').value;
-    let email = document.getElementById('contactEmail').value;
-    let phone = document.getElementById('contactPhone').value;
+    let firstname = document.getElementById('name').value.split(' ')[0];
+    let lastname = document.getElementById('name').value.split(' ')[1];
+    let email = document.getElementById('mail').value;
+    let phone = document.getElementById('phone').value;
 
     contacts[idx]['firstname'] = firstname;
     contacts[idx]['lastname'] = lastname;
@@ -229,7 +224,7 @@ function changeContact(idx) {
 
     refreshContacts();
     closeEditContact();
-    openSpecificContact(idx)
+
 }
 
 
@@ -296,7 +291,7 @@ function specificContactHtml(idx) {
 
 function editContactHtml(idx) {
     return /*html*/ `
-        <img onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
+        <img onclick="closeEditContact(${idx})" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
                 <img src="assets/img/join_small.png" alt="">
@@ -305,7 +300,7 @@ function editContactHtml(idx) {
             </div>
         </div>
         <div class="contact-create-container">
-            <div class="name-tag bigger" id="specific${idx}" style="backgroundColor: contacts[${idx}]['color'] ">
+            <div class="name-tag bigger" id="edit${idx}">
                 ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
             </div>           
             <div class="contact-form">
@@ -337,7 +332,7 @@ function editContactHtml(idx) {
 
 function createContactHtml() {
     return /*html*/ `
-        <img onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
+        <img onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
                 <img src="assets/img/join_small.png" alt="">
@@ -367,7 +362,7 @@ function createContactHtml() {
                     <div class="submit-section">
                         <div id="cancle" onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
                         </div>
-                        <button id="submit" onclick="submitContact()" type="submit">Create contact <img
+                        <button id="submit" onclick="createNewContact()" type="submit">Create contact <img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>

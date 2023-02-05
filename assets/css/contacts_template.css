@@ -16,6 +16,9 @@
     overflow-y: scroll;
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .right-section {
@@ -24,6 +27,7 @@
     background-color: #f6f7f8;
     Padding: 50px 50px 50px 50px;
     box-sizing: border-box;
+    
 }
 
 
@@ -262,6 +266,9 @@ button {
 
 /**************** LEFT SIDE ***************/
 
+.contacts {
+    width: 100%;
+}
 
 .letter {
     padding: 15px;
@@ -406,7 +413,7 @@ button {
     font-size: 13px;
 }
 
-.edit-span{
+.edit-span {
     display: flex;
     flex-direction: row;
     gap: 100px;
@@ -607,15 +614,24 @@ button {
 
     .new-contact-button-responsive {
         cursor: pointer;
-        position: absolute;
-        top: 40px;
-        right: 40px;
+        width: 130px;
+        height: 35px;
         display: flex;
         align-items: center;
-        font-size: 14px;
+        justify-content: space-evenly;
+        font-size: 16px;
         color: white;
         background-color: #293646;
         padding: 5px;
         border-radius: 8px;
+
+    }
+
+    .new-contact-button-responsive img {
+        width: 30px;
+    }
+
+    .new-contact-container {
+        width: 95vw;
     }
 }
