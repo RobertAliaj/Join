@@ -331,7 +331,7 @@ function editContactHtml(idx) {
                         </div>
                     </div>
                     <div class="submit-section">
-                        <button id="submit" onclick="changeContact(${idx})" type="submit">Save<img
+                        <button class="contacts-button" id="submit" onclick="changeContact(${idx})" type="submit">Save<img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>
@@ -373,7 +373,7 @@ function createContactHtml() {
                     <div class="submit-section">
                         <div id="cancle" onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
                         </div>
-                        <button id="submit" onclick="createNewContact()" type="submit">Create contact <img
+                        <button class="contacts-button" id="submit" onclick="createNewContact()" type="submit">Create contact <img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>

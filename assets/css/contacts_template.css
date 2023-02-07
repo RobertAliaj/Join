@@ -234,7 +234,7 @@
     height: 8px;
 }
 
-button {
+.contacts-button {
     box-sizing: border-box;
     background-color: #293646;
     padding: 12px 8px 12px 8px;
