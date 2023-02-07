@@ -17,6 +17,7 @@ async function refreshContacts() {
 function createNewContact() {
     submitContact(); 
     closeNewContact();
+    showContacts();
 }
 
 function submitContact() {
@@ -55,6 +56,11 @@ function openCreateContact() {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('newContactContainer').classList.remove('d-none');
     document.getElementById('newContactContainer').innerHTML = createContactHtml();
+    if(window.innerWidth < 801) {
+        document.getElementById('close').src = 'assets/img/close_white.png'
+        document.getElementById('joinSmall').style.display = 'none'
+        document.getElementById('cancle').style.display = 'none'
+    }
     fadeIn();
     slideIn('newContactContainer');
 }
@@ -67,7 +73,6 @@ function closeNewContact() {
         document.getElementById('newContactContainer').classList.add('d-none')
 
     }, 400)
-    showContacts()
 }
 
 function showContacts() {
@@ -184,6 +189,12 @@ function editContact(idx) {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('newContactContainer').classList.remove('d-none');
     document.getElementById('newContactContainer').innerHTML = editContactHtml(idx);
+    if(window.innerWidth < 801) {
+        document.getElementById('close').src = 'assets/img/close_white.png';
+        document.getElementById('joinSmall').style.display = 'none'
+
+    }
+    
 
     fadeIn();
     slideIn('newContactContainer');
@@ -291,10 +302,10 @@ function specificContactHtml(idx) {
 
 function editContactHtml(idx) {
     return /*html*/ `
-        <img onclick="closeEditContact(${idx})" class="close" src="assets/img/Clear_task.png" alt="">
+        <img id="close" onclick="closeEditContact(${idx})" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
-                <img src="assets/img/join_small.png" alt="">
+                <img id="joinSmall" src="assets/img/join_small.png" alt="">
                 <b>Edit contact</b>
                 <div class="horizontal-blue-line"></div>
             </div>
@@ -332,10 +343,10 @@ function editContactHtml(idx) {
 
 function createContactHtml() {
     return /*html*/ `
-        <img onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">
+        <img id="close" onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
-                <img src="assets/img/join_small.png" alt="">
+                <img id="joinSmall" src="assets/img/join_small.png" alt="">
                 <b id="overlayHeadline">Add contact</b>
                 <span id="overlaySubline">Tasks are better with a team!</span>
                 <div class="horizontal-blue-line"></div>
