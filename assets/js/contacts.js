@@ -75,10 +75,10 @@ function closeNewContact() {
     }, 400)
 }
 
-async function showContacts() {
-    // if (window.innerWidth < 1001) {
-    //     document.getElementById('newContactButtonResponsive').style.display = 'flex';
-    // }
+function showContacts() {
+    if (window.innerWidth < 1001) {
+        document.getElementById('newContactButtonResponsive').style.display = 'flex';
+    }
     createLetters();
     displayContacts();
 }
