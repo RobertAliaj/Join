@@ -6,7 +6,7 @@ setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
 async function initContacts() {
     await downloadFromServer();
     contacts = jsonFromServer['contacts'];
-    showContacts()
+    await showContacts()
 }
 
 async function refreshContacts() {
