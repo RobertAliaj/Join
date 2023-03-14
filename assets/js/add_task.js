@@ -52,6 +52,8 @@ async function loadInfos() {
  * @param {*} visible - This is the id where the classlist "d-none" will removed
  * @param {*} notVisible - This is the id where the classlist "d-none" will added
  */
+
+
 function pullDownMenu(clicked, notClicked, visible, notVisible) {
     let openMenu = document.getElementById(clicked).classList;
     if (openMenu == 'dropdown-category-closed') {
@@ -233,21 +235,16 @@ function renderInitials() {
     for (let i = 0; i < initials.length; i++) {
         initialsContainer.innerHTML += `
     <div class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
-
     }
 }
 
-
 /**
- * 
- *  
- * 
  * @param {*} clicked 
  * @param {*} notClicked 
  * @param {*} alsoNotClicked 
  */
 function priority(clicked, notClicked, alsoNotClicked, img) {
-    resetPrioButtom(notClicked, alsoNotClicked);
+    resetPrioButton(notClicked, alsoNotClicked);
     if (clicked == 'prioHigh') {
         document.getElementById(clicked).style = `background-color: rgb(236, 85, 32);`
         changeColor(img);
@@ -264,7 +261,7 @@ function priority(clicked, notClicked, alsoNotClicked, img) {
 }
 
 
-function resetPrioButtom(notClicked, alsoNotClicked) {
+function resetPrioButton(notClicked, alsoNotClicked) {
     document.getElementById(notClicked).style = ``;
     document.getElementById(alsoNotClicked).style = ``;
     document.getElementById('prioHighImg').src = `assets/img/prio_high.svg`;
@@ -301,7 +298,7 @@ function removeSubtask(i) {
 
 
 function renderSubtasks() {
-    let subtaskContainer = document.getElementById('addetSubtasks');
+    let subtaskContainer = document.getElementById('addedSubtasks');
     subtaskContainer.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
         let setClass = getClass(i);
@@ -441,14 +438,14 @@ async function saveNewCategory() {
 async function pushCategoryInCategorys() {
     i = categorys.length;
     categorys.splice(i, 0, category);
-    jsonFromServer['categorys'] = categorys 
+    jsonFromServer['categorys'] = categorys
     renderCategorys();
     await saveJSONToServer();
 }
 
 
 function getTitle() {
-    let title = document.getElementById('tileInput').value;
+    let title = document.getElementById('titleInput').value;
     if (title == '') {
         document.getElementById('titleReport').classList.remove('d-none');
         required = true;
@@ -497,9 +494,9 @@ function getDate() {
     if (chosenDate == '') {
         document.getElementById('dateReport').classList.remove('d-none');
         required = true;
-    } 
+    }
     // if (chosenDate == ) {
-        
+
     // } 
     else {
         required = false;
@@ -542,8 +539,43 @@ async function collectAllInfos() {
     task.prio = getPrio();
     pushSubtask();
     pushStatus();
-    task.progress = 'TODO'; 
+    task.progress = 'TODO';
     pushTaskInTasks()
+    clearTaskFields();
+}
+
+function clearTaskFields() {
+    let title = document.getElementById('titleInput');
+    let description = document.getElementById('descriptionInput');
+    let chosenDate = document.getElementById('date');
+    let category = document.getElementById('chosenCategory');
+    let contact = document.getElementById('initialsContainer');
+
+    let high = document.getElementById('prioHigh');
+    let mid = document.getElementById('prioMedium');
+    let low = document.getElementById('prioLow');
+
+    high.style.background = 'white';
+    mid.style.background = 'white';
+    low.style.background = 'white';
+    
+    document.getElementById('prioHighImg').src = `assets/img/prio_high.svg`;
+    document.getElementById('prioMediumImg').src = `assets/img/prio_medium.svg`;
+    document.getElementById('prioLowImg').src = `assets/img/prio_low.svg`;
+
+    subtasks = [];
+    renderSubtasks()
+
+
+
+    title.value = ``;
+    description.value = ``;
+    chosenDate.value = ``;
+    category.innerHTML = `Select task category`;
+    category.value = ``;
+    contact.innerHTML = ``;
+
+
 }
 
 
@@ -556,6 +588,7 @@ async function pushTaskInTasks() {
         jsonFromServer['tasks'] = tasks;
         await saveJSONToServer()
     }
+    console.log(tasks)
 }
 
 
