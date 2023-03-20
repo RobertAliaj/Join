@@ -545,37 +545,46 @@ async function collectAllInfos() {
 }
 
 function clearTaskFields() {
-    let title = document.getElementById('titleInput');
-    let description = document.getElementById('descriptionInput');
-    let chosenDate = document.getElementById('date');
-    let category = document.getElementById('chosenCategory');
-    let contact = document.getElementById('initialsContainer');
+    let valuesOfInputs = getIdsOfInputFields();
+    setPrioButtonsToDefault();
+    clearValues(valuesOfInputs);
+    task = [];
+}
 
-    let high = document.getElementById('prioHigh');
-    let mid = document.getElementById('prioMedium');
-    let low = document.getElementById('prioLow');
+function getIdsOfInputFields() {
+    let titleField = document.getElementById('titleInput');
+    let descriptionField = document.getElementById('descriptionInput');
+    let chosenDateField = document.getElementById('date');
+    let categoryField = document.getElementById('chosenCategory');
+    let contactField = document.getElementById('initialsContainer');
 
-    high.style.background = 'white';
-    mid.style.background = 'white';
-    low.style.background = 'white';
-    
+    return { titleField, descriptionField, chosenDateField, categoryField, contactField }
+}
+
+function setPrioButtonsToDefault() {
+    let highPrio = document.getElementById('prioHigh');
+    let midPrio = document.getElementById('prioMedium');
+    let lowPrio = document.getElementById('prioLow');
+
+    highPrio.style.background = 'white';
+    midPrio.style.background = 'white';
+    lowPrio.style.background = 'white';
+
     document.getElementById('prioHighImg').src = `assets/img/prio_high.svg`;
     document.getElementById('prioMediumImg').src = `assets/img/prio_medium.svg`;
     document.getElementById('prioLowImg').src = `assets/img/prio_low.svg`;
+}
 
+function clearValues(valuesOfInputs) {
     subtasks = [];
-    renderSubtasks()
+    renderSubtasks();
 
-
-
-    title.value = ``;
-    description.value = ``;
-    chosenDate.value = ``;
-    category.innerHTML = `Select task category`;
-    category.value = ``;
-    contact.innerHTML = ``;
-
-
+    valuesOfInputs.titleField.value = ``;
+    valuesOfInputs.descriptionField.value = ``;
+    valuesOfInputs.chosenDateField.value = ``;
+    valuesOfInputs.categoryField.innerHTML = `Select task category`;
+    valuesOfInputs.categoryField.value = ``;
+    valuesOfInputs.contactField.innerHTML = ``;
 }
 
 
@@ -586,9 +595,25 @@ async function pushTaskInTasks() {
         // await saveOnServer('tasks', tasks);
         tasks.push(task);
         jsonFromServer['tasks'] = tasks;
-        await saveJSONToServer()
+        await saveJSONToServer();
+
     }
     console.log(tasks)
+}
+
+function taskUploaded() {
+    let popUpId = document.getElementById('successfulUpload');
+
+    popUpId.classList.remove('d-none');
+    popUpId.classList.add('popUp');
+
+    setTimeout(function() {
+        popUpId.innerHTML = `redirecting to the board...`
+    }, 500);
+    setTimeout(function() {
+        window.location.href = 'board.html'
+    }, 1000);
+
 }
 
 

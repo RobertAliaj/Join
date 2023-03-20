@@ -1,0 +1,23 @@
+.popUp{
+    height: 120px;
+    width: 500px;
+    color: white;
+    background: rgb(44 54 70);
+    bottom: 0px;
+    display: flex;
+    font-size: 21px;
+    position: absolute;
+    left: 50%;
+    border-radius: 10px;
+    border: 1px solid rgb(209, 209, 209);
+    transform: translate(-50% , -50%);
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.checkIcon{
+    height: 30px;
+    width: 30px;
+    padding-left: 20px;
+}
