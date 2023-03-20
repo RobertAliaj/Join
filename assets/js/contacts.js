@@ -1,12 +1,10 @@
-let contacts = [];
+let newContacts = [];
 let letters = [];
 
-setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
-
-async function initContacts() {
+async function initContacts() {    
+    //await backend.deleteItem('contacts');
+    await init();
     await includeHTML();
-    await downloadFromServer();
-    contacts = jsonFromServer['contacts'];
     showContacts()
 }
 
@@ -16,36 +14,41 @@ async function refreshContacts() {
 }
 
 function createNewContact() {
-    submitContact(); 
+    submitContact();
     closeNewContact();
     showContacts();
 }
 
-function submitContact() {
+async function submitContact() {
     let name = document.getElementById('name');
     let mail = document.getElementById('mail');
     let phone = document.getElementById('phone');
 
     if (WordCount(name) === 1) {
-        let contact = {
+        let newContact = {
             "firstname": name.value,
             "lastname": '',
             "email": mail.value,
             "phone": phone.value,
             "color": generateRandomColor()
         };
-        contacts.push(contact);
+        contacts.push(newContact);
+        await backend.setItem('contacts', JSON.stringify(contacts));
+
     } if (WordCount(name) === 2) {
-        let contact = {
+        let newContact = {
             "firstname": name.value.split(' ')[0],
             "lastname": name.value.split(' ')[1],
             "email": mail.value,
             "phone": phone.value,
             "color": generateRandomColor()
         };
+        contacts.push(newContact)
+        await backend.setItem('contacts', JSON.stringify(contacts));
 
-        contacts.push(contact);
+
     }
+
 }
 
 function WordCount(str) {
@@ -57,7 +60,7 @@ function openCreateContact() {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('newContactContainer').classList.remove('d-none');
     document.getElementById('newContactContainer').innerHTML = createContactHtml();
-    if(window.innerWidth < 801) {
+    if (window.innerWidth < 801) {
         document.getElementById('close').src = 'assets/img/close_white.png'
         document.getElementById('joinSmall').style.display = 'none'
         document.getElementById('cancle').style.display = 'none'
@@ -117,25 +120,38 @@ function slideOut(container) {
 }
 
 function createLetters() {
-    document.getElementById('contacts').innerHTML = '';
+    let contactContainer = document.getElementById('contacts');
 
-    for (j = 0; j < contacts.length; j++) {
-        let str = contacts[j]['firstname'].toLowerCase();
-        if (!letters.includes(str.charAt(0))) {
-            letters.push(str.charAt(0));
+    if (contacts.length > 0) {
+        contactContainer.innerHTML = '';
+
+        for (j = 0; j < contacts.length; j++) {
+            let str = contacts[j]['firstname'].toLowerCase();
+            if (!letters.includes(str.charAt(0))) {
+                letters.push(str.charAt(0));
+            }
         }
+
+        for (i = 0; i < letters.length; i++) {
+            document.getElementById('contacts').innerHTML += createLetterHtml(i);
+        }
+
+    } else {
+
+        contactContainer.innerHTML = `no contacts selectable`;
+
     }
 
-    for (i = 0; i < letters.length; i++) {
-        document.getElementById('contacts').innerHTML += createLetterHtml(i);
-    }
 }
 
 function displayContacts() {
-    for (j = 0; j < contacts.length; j++) {
-        let id = contacts[j]['firstname'].charAt(0).toLowerCase();
-        document.getElementById(id).innerHTML += contactHtml(j);
-        setRandomColor(j);
+
+    if (contacts.length > 0) {
+        for (j = 0; j < contacts.length; j++) {
+            let id = contacts[j]['firstname'].charAt(0).toLowerCase();
+            document.getElementById(id).innerHTML += contactHtml(j);
+            setRandomColor(j);
+        }
     }
 }
 
@@ -190,12 +206,12 @@ function editContact(idx) {
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('newContactContainer').classList.remove('d-none');
     document.getElementById('newContactContainer').innerHTML = editContactHtml(idx);
-    if(window.innerWidth < 801) {
+    if (window.innerWidth < 801) {
         document.getElementById('close').src = 'assets/img/close_white.png';
         document.getElementById('joinSmall').style.display = 'none'
 
     }
-    
+
 
     fadeIn();
     slideIn('newContactContainer');

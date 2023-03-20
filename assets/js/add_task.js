@@ -38,6 +38,7 @@ async function loadInfos() {
     renderCategorys();
     renderContacts();
     datePicker();
+      
 }
 
 
@@ -596,6 +597,8 @@ async function pushTaskInTasks() {
         tasks.push(task);
         jsonFromServer['tasks'] = tasks;
         await saveJSONToServer();
+        taskUploaded();
+        await backend.deleteItem('users');
 
     }
     console.log(tasks)

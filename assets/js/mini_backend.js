@@ -91,7 +91,7 @@ function saveJSONToServer() {
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send(JSON.stringify(jsonFromServer));
 
-        console.log(xhttp)
+        
 
     });
 }
