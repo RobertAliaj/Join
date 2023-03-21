@@ -27,18 +27,12 @@ let required = true;
 let initialsRenderd = false;
 
 async function loadInfos() {
-    await downloadFromServer();
+    await init()
     await includeHTML();
-    // tasks = JSON.parse(backend.getItem('tasks'));
-    tasks = jsonFromServer['tasks']
-    // contacts = JSON.parse(backend.getItem('contacts'));
-    contacts = jsonFromServer['contacts']
-    // categorys = JSON.parse(backend.getItem('categorys'));
-    categorys = jsonFromServer['categorys']
     renderCategorys();
     renderContacts();
     datePicker();
-      
+
 }
 
 
@@ -116,17 +110,23 @@ function renderContacts() {
     contactContainer = document.getElementById('loadedContacts');
     contactContainer.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
-        let contact = (combineNames(contacts, i))
+        let contactName = (combineNames(contacts, i))
+        let colorOfContact = contacts[i].color
         contactContainer.innerHTML += `
-        <div class="dd-placeholder gray-hover" onclick="selectedForTask('${contact}', 'contact${[i]}')">
-            <div>${contact}</div>
+        <div class="dd-placeholder gray-hover" onclick="selectedForTask('${contactName}', 'contactName${[i]}','${colorOfContact}')">
+            <div>${contactName}</div>
             <div class="select-box center">
-                <div id="contact${[i]}"></div>
+                <div id="contactName${[i]}"></div>
             </div>
         </div>`;
     }
 }
 
+function getColorFromSelectedContact(contacts, i) {
+
+    document.documentElement.style.setProperty('--userColor', contacts[i].color);
+
+}
 
 function combineNames(contacts, i) {
     let firstname = contacts[i].firstname;
@@ -150,11 +150,11 @@ function selectCategory(category, categoryColor) {
 }
 
 
-function selectedForTask(selectedContact, selected) {
+function selectedForTask(selectedContact, selected, colorOfContact) {
     if (collectedContact.includes(selectedContact) == false) {
         collectedContact.push(selectedContact);
         addSelectedPoint(selected);
-        manageInitials(selectedContact);
+        manageInitials(selectedContact, colorOfContact);
         switchContactIcons();
     } else {
         contactToRemove = collectedContact.indexOf(selectedContact)
@@ -171,8 +171,8 @@ function addSelectedPoint(selected) {
 }
 
 
-function manageInitials(selectedContact) {
-    initial = getFirstLetters(selectedContact);
+function manageInitials(selectedContact, colorOfContact) {
+    let initial = getFirstLetters(selectedContact);
     if (initials.includes(initial) == false) {
         initials.push(initial);
         selectedContact = '';
@@ -233,9 +233,11 @@ function addContacts() {
 function renderInitials() {
     initialsContainer = document.getElementById('initialsContainer');
     initialsContainer.innerHTML = '';
+   
     for (let i = 0; i < initials.length; i++) {
+        let colorOfContacts = contacts[i].color;
         initialsContainer.innerHTML += `
-    <div class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
+    <div style="background-color:${colorOfContacts}" class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
     }
 }
 
@@ -610,10 +612,10 @@ function taskUploaded() {
     popUpId.classList.remove('d-none');
     popUpId.classList.add('popUp');
 
-    setTimeout(function() {
+    setTimeout(function () {
         popUpId.innerHTML = `redirecting to the board...`
     }, 500);
-    setTimeout(function() {
+    setTimeout(function () {
         window.location.href = 'board.html'
     }, 1000);
 
