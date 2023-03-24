@@ -423,6 +423,13 @@
     border: 1px solid rgb(209, 209, 209);
 }
 
+.show-if-mobile{
+    display: none;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 @media (max-width:1300px) {
 
     body {
@@ -442,10 +449,11 @@
     }
 
     .buttons{
-        top: -25px !important;
+        top: 15px !important;
         right: 25px !important;
         bottom: unset !important;
         position: fixed !important;
+        padding-top: unset !important;
         z-index: 5;
     }
     .prio-container {
@@ -518,7 +526,8 @@
          margin-top: unset !important;
     }
 
-    .showIfMobile{
+    .show-if-mobile{
+        display: unset !important;
         width: 100%;
         margin-top: 30px;
         margin-bottom: 30px;
@@ -597,6 +606,10 @@
         width: 135px;
     }
 
+    .buttons{
+        top: 23px !important;
+    }
+
 }
 
 @media(max-width: 600px) {
@@ -604,6 +617,7 @@
         font-size: 0.8rem;
     }
 
+    
 
     .prio-button{
         min-width: 80px !important;
