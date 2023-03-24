@@ -4,12 +4,13 @@
     <div id="successfulUpload" class="d-none">
         succesfully Upload! <img class="checkIcon" src="assets/img/successfull_check.png" alt="">
     </div>
-
+    <span class="showIfMobile">Kanban Project Managment Tool</span>
     <div class="headline">
+        
         <span>Add Task</span>
     </div>
     <div class="input-section">
-        <div class="main-inforamtion">
+        <div class="main-information">
             <div class="padding-36-bottom">
                 <div class="display-flex">
                     <div class="padding-10-bottom padding-17-right">Title</div>
@@ -57,8 +58,8 @@
 
 
                     <div class="d-none more-content overflow-auto" id="moreCategorys">
-                        <div class="dd-placeholder gray-hover">
-                            <div onclick="openCreateCategory()">New category</div>
+                        <div onclick="openCreateCategory()" class="dd-placeholder gray-hover">
+                            <div >New category</div>
                         </div>
                         <div id="loadedCategorys"></div>
                     </div>
@@ -85,10 +86,16 @@
                             to assing</div>
                         <img id="ddArrow" src="assets/img/drop_down.png">
                         <div class="center space-between clear-add-button-container d-none" id="clearAddButtons">
-                            <img class="clear-input pointer" onclick="clearContacts()"
+                            <div class="onclickArea" onclick="clearContacts()">
+                                <img class="clear-input pointer" 
                                 src="assets\img\Clear_task_input.png">
+                            </div>
+                         
                             <div>|</div>
-                            <img onclick="addContacts()" class="pointer" src="assets\img\create_subtask.png">
+                            <div class="onclickArea" onclick="addContacts()">
+                                <img  class="pointer" src="assets\img\create_subtask.png">
+                            </div>
+                        
                         </div>
                     </div>
                     <div class="d-none more-content overflow-auto" id="moreContacts">
@@ -107,8 +114,8 @@
             </div>
             <div class="initials-container" id="initialsContainer"></div>
         </div>
-
-        <div class="second-inforamtion">
+        <div class="bigBorder"></div>
+        <div class="second-information">
             <div class="padding-36-bottom">
                 <div class="display-flex">
                     <div class="padding-10-bottom padding-17-right">Due date</div>

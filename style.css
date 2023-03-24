@@ -2,18 +2,32 @@ body {
     display: flex;
     margin: 0;
     font-family: 'inter';
-    background-color: #f6f7f8;  
+    background-color: #f6f7f8;
 }
 
-.content-container {
-    position: absolute;
-    top: 90px;
-    left: 232px;
-    right: 0px;
-    bottom: 0;
+.logoForMobile {
+    height: 70px;
+    width: 101px;
+    object-fit: contain;
 }
 
 .z-index {
     z-index: 3;
     height: max-content;
+}
+
+@media (max-width:1300px) {
+    .side-container-mobile {
+        background-color: rgb(44, 54, 70);
+        position: fixed;
+        width: 100% !important;
+        bottom: 0px !important;
+        height: 70px !important;
+        min-height: unset !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 5;
+    }
 }
