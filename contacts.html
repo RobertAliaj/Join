@@ -10,6 +10,7 @@
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
     <script src="assets/js/contacts.js"></script>
+    <script src="assets/js/add_task.js"></script>
 
     <link rel="stylesheet" href="assets/css/contacts_template.css">
     <link rel="stylesheet" href="assets/css/desktop_top_template.css">
@@ -19,9 +20,14 @@
 
     <title>Join</title>
 </head>
-<body onload="initContacts()">
-
+<body onload="includeHTML(); initContacts()">
+    <div id="greyBackground"></div>
+    
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
+    <div class="absolute">
+        <div w3-include-html="assets/templates/desktop_top_template.html"></div>
+    </div>
+    <div w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
     <div class="z-index" w3-include-html="assets/templates/desktop_top_template.html"></div>
     <div w3-include-html="assets/templates/contacts_template.html"></div>
     

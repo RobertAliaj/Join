@@ -354,11 +354,14 @@
 
 /************ SPECIFIC CONTACT **************/
 
+
 .specific-contact {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
+
+
 
 .specific-single-contact {
     display: flex;
@@ -385,6 +388,8 @@
     color: #007CEE;
     font-size: 14px;
 }
+
+
 
 .bigger {
     width: 60px;
@@ -568,6 +573,14 @@
 
     100% {
         opacity: 0;
+    }
+}
+
+
+@media (max-width: 1300px){
+    .right-section {
+        display: none;
+        width: 100%;
     }
 }
 
