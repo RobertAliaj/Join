@@ -23,6 +23,7 @@ async function submitContact() {
     let name = document.getElementById('name');
     let mail = document.getElementById('mail');
     let phone = document.getElementById('phone');
+    let color = generateRandomColor();
 
     if (WordCount(name) === 1) {
         let newContact = {
@@ -30,7 +31,7 @@ async function submitContact() {
             "lastname": '',
             "email": mail.value,
             "phone": phone.value,
-            "color": generateRandomColor()
+            "color": color,
         };
         contacts.push(newContact);
         await backend.setItem('contacts', JSON.stringify(contacts));
@@ -41,7 +42,7 @@ async function submitContact() {
             "lastname": name.value.split(' ')[1],
             "email": mail.value,
             "phone": phone.value,
-            "color": generateRandomColor()
+            "color": color
         };
         contacts.push(newContact)
         await backend.setItem('contacts', JSON.stringify(contacts));
@@ -57,6 +58,7 @@ function WordCount(str) {
 }
 
 function openCreateContact() {
+
     document.getElementById('overlay').classList.remove('d-none');
     document.getElementById('newContactContainer').classList.remove('d-none');
     document.getElementById('newContactContainer').innerHTML = createContactHtml();
@@ -156,11 +158,14 @@ function displayContacts() {
 }
 
 function setRandomColor(j) {
+
     if (!contacts[j]['color'] == '') {
-        document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
+        document.getElementById(`${j}`).style.backgroundColor = `#${contacts[j]['color']}`;
+
     } else {
         contacts[j]['color'] = generateRandomColor();
-        document.getElementById(`${j}`).style.backgroundColor = contacts[j]['color'];
+        document.getElementById(`${j}`).style.backgroundColor = `#${contacts[j]['color']}`;
+
     }
     refreshContacts();
 }
@@ -182,20 +187,22 @@ function generateRandomColor() {
 
 function openSpecificContact(idx) {
     document.getElementById('specificContact').innerHTML = specificContactHtml(idx);
-   
+
     document.getElementById(`specific${idx}`).style.backgroundColor = contacts[idx]['color'];
-    if (window.innerWidth < 1001) {
+    if (window.innerWidth < 1300) {
+        document.getElementById('leftSection').style.display = 'none';
         document.getElementById('contacts').style.display = 'none';
         document.getElementById('rightSection').style.display = 'block';
         document.getElementById('arrow').style.display = 'block';
         document.getElementById('editContactButton').style.display = 'block';
         document.getElementById('editSpan').style.display = 'none';
         document.getElementById('newContactButton').style.display = 'none';
-        
+
     }
 }
 
 function closeSpecificContact() {
+    document.getElementById('leftSection').style.display = 'flex';
     document.getElementById('contacts').style.display = 'block';
     document.getElementById('rightSection').style.display = 'none';
     document.getElementById('arrow').style.display = 'block';
@@ -257,13 +264,94 @@ function changeContact(idx) {
 
 }
 
-function openAddTaskContainer(){
-    let greyBackground = document.getElementById('greyBackground').classList.add('grey-background');
+function openAddTaskContainer() {
+    let greyBackground = document.getElementById('greyBackground');
+    let addTaskPopUp = document.getElementById('addTaskWrapper');
+    let rightSection = document.getElementById('rightSection');
+    let contactsTemplate = document.getElementById('contactsTemplate');
+    let bottomMenu = document.getElementById('bottomMenuTemplate');
+    let kanbanTitle = document.getElementById('kanbanTitle');
+    let addTaskTemplate = document.getElementById('addTaskTemplate');
+    let createTaskBtn = document.getElementById('createTaskBtn');
+    
 
-    let addTaskTemplate = createAddTaskTemplate();
-    console.log(addTaskTemplate)
+    if (window.innerWidth < 1300) {
+        addTaskPopUp.classList.add('add-task-wrapper');
+        addTaskPopUp.classList.add('slide-in');
+        addTaskPopUp.classList.remove('d-none');
+        addTaskPopUp.classList.remove('slide-out');
+        createTaskBtn.classList.remove('hide');
+        kanbanTitle.classList.remove('show-if-mobile')
 
-    greyBackground.innerHTML = ` ${addTaskTemplate}`;
+        rightSection.classList.add('d-none');
+        contactsTemplate.classList.add('d-none');
+        bottomMenu.classList.add('d-none');
+        kanbanTitle.classList.add('d-none');
+        addTaskTemplate.classList.add('flex-center');
+        
+
+    } else {
+
+        greyBackground.classList.remove('d-none');
+
+        addTaskPopUp.classList.add('add-task-wrapper');
+        addTaskPopUp.classList.add('slide-in');
+
+        addTaskPopUp.classList.remove('d-none');
+        addTaskPopUp.classList.remove('slide-out')
+    }
+
+}
+
+function closeAddTaskWrapper() {
+    let greyBackground = document.getElementById('greyBackground');
+    let addTaskPopUp = document.getElementById('addTaskWrapper');
+    let rightSection = document.getElementById('rightSection');
+    let contactsTemplate = document.getElementById('contactsTemplate');
+    let bottomMenu = document.getElementById('bottomMenuTemplate');
+    let kanbanTitle = document.getElementById('kanbanTitle');
+    let addTaskTemplate = document.getElementById('addTaskTemplate');
+    let createTaskBtn = document.getElementById('createTaskBtn');
+
+    if (window.innerWidth > 1300) {
+        addTaskPopUp.classList.remove('slide-in')
+        addTaskPopUp.classList.add('slide-out');
+     
+        setTimeout(function () {
+
+
+            greyBackground.classList.add('d-none');
+            addTaskPopUp.classList.add('d-none')
+            addTaskPopUp.classList.remove('add-task-wrapper');
+
+        }, 400)
+
+    } else {
+        addTaskPopUp.classList.remove('slide-in')
+        addTaskPopUp.classList.add('slide-out');
+
+        rightSection.classList.remove('d-none');
+        contactsTemplate.classList.remove('d-none');
+        bottomMenu.classList.remove('d-none');
+        kanbanTitle.classList.remove('d-none');
+        addTaskTemplate.classList.remove('d-none');
+        createTaskBtn.classList.remove('d-none');
+       
+        setTimeout(function () {
+
+            addTaskPopUp.classList.add('d-none')
+            addTaskPopUp.classList.remove('add-task-wrapper');
+
+        }, 400)
+    }
+
+
+
+
+
+
+
+
 }
 
 
@@ -273,7 +361,7 @@ function openAddTaskContainer(){
 /************ HTML ************/
 /**************************** */
 
-function createAddTaskTemplate(){
+function createAddTaskTemplate() {
     return /*html*/`
     <div class="add-task-container">
         
@@ -472,7 +560,7 @@ function createLetterHtml(i) {
 function contactHtml(j) {
     return /*html*/ `
         <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
-            <div class="name-tag" id="${j}">
+            <div style="background-color:#${contacts[j].color}" class="name-tag" id="${j}">
                 ${contacts[j]['firstname'].charAt(0).toUpperCase()}${contacts[j]['lastname'].charAt(0).toUpperCase()}
             </div>
             <div>
@@ -487,7 +575,7 @@ function specificContactHtml(idx) {
     return /*html*/ `
         <div class="specific-contact">
             <div class="specific-single-contact">
-                <div class="name-tag bigger" id="specific${idx}">
+                <div style="background-color:#${contacts[idx].color}" class="name-tag bigger" id="specific${idx}">
                     ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
                 </div>
                 <div>
@@ -499,7 +587,9 @@ function specificContactHtml(idx) {
                 <img onclick="editContact(${idx})" class="edit" id="editContactButton" src="assets/img/edit.png" alt="" style="display: none;">
                 <div class="edit-span" id="editSpan">
                     <span>Contact Information</span>
-                    <span onclick="editContact(${idx})">Edit Contact</span>
+                    <span style="cursor:pointer" onclick="editContact(${idx})">
+                    <img style="height:20px" src="assets/img/edit_pen_img.png">
+                    Edit Contact</span>
                 </div>
                 <div>
                     <b>Email</b>
@@ -523,7 +613,7 @@ function editContactHtml(idx) {
             </div>
         </div>
         <div class="contact-create-container">
-            <div class="name-tag bigger" id="edit${idx}">
+            <div style="background-color:#${contacts[idx].color}" class="name-tag bigger" id="edit${idx}">
                 ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
             </div>           
             <div class="contact-form">

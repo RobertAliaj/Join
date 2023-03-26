@@ -237,7 +237,7 @@ function renderInitials() {
     for (let i = 0; i < initials.length; i++) {
         let colorOfContacts = contacts[i].color;
         initialsContainer.innerHTML += `
-    <div style="background-color:${colorOfContacts}" class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
+    <div style="background-color:#${colorOfContacts}" class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
     }
 }
 

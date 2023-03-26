@@ -4,7 +4,7 @@
     <div id="successfulUpload" class="d-none">
         succesfully Upload! <img class="checkIcon" src="assets/img/successfull_check.png" alt="">
     </div>
-    <span class="show-if-mobile" style="max-width: 100% !important">Kanban Project Managment Tool</span>
+    <span id="kanbanTitle" class="show-if-mobile" style="max-width: 100% !important">Kanban Project Managment Tool</span>
     <div class="headline">
         
         <h1>Add Task</h1>
@@ -170,11 +170,7 @@
         </div>
     </div>
 
-    <div class="buttons">
-        <button onclick="" id="clearButton" class="clear-task space-evenly">
-            Clear
-            <img id="clearButtonImg" src="assets\img\Clear_task-new.svg">
-        </button>
+    <div id="idOfAddTaskButtons" class="buttons">
         <button onclick="collectAllInfos()" class="create-task space-evenly">
             Create Task
             <img src="assets/img/create_task.png">

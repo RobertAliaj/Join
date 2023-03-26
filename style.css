@@ -10,6 +10,17 @@ body {
     height: max-content;
 }
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
 .grey-background{
     background-color: black;
     position: absolute;
@@ -38,6 +49,31 @@ body {
     display: none;
 }
 
+.add-task-wrapper{
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    height: 90%;
+    width: 80%;
+    z-index: 9;
+    background: white;
+    border-radius: 20px;
+}
+.hide-pop-up{
+    display: none
+}
+
+.close-btn{
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 9;
+}
 
 
 @media (max-width:1300px) {
@@ -67,7 +103,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        z-index: 5;
+        z-index: 9999;
     }
 
 
