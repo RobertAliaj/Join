@@ -165,11 +165,9 @@ function selectedForTask(selectedContact, selected, colorOfContact) {
     }
 }
 
-
 function addSelectedPoint(selected) {
     document.getElementById(selected).classList.add('selection-point');
 }
-
 
 function manageInitials(selectedContact, colorOfContact) {
     let initial = getFirstLetters(selectedContact);
@@ -237,7 +235,7 @@ function renderInitials() {
     for (let i = 0; i < initials.length; i++) {
         let colorOfContacts = contacts[i].color;
         initialsContainer.innerHTML += `
-    <div style="background-color:#${colorOfContacts}" class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
+    <div style="background-color:${colorOfContacts}" class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
     }
 }
 
