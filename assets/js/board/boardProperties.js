@@ -207,7 +207,7 @@ function setPrioProperties(prio) {
  */
 function getContactColorsandInitials() {
     for (let i = 0; i < contactsBoard.length; i++) {
-        let contactColor = contactsBoard[i]['color'];
+        let contactColor = '#' + contactsBoard[i]['color'];
         let contact = contactsBoard[i];
         let firstInitial = contact.firstname[0];
         let lastInitial = contact.lastname[0];
