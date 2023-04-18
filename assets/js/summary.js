@@ -12,7 +12,6 @@ async function initSummary() {
     prepareContacts();
     loadTasks();
     greetingTime();
-
 }
 
 function prepareContacts() {

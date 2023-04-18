@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datenschutz</title>
 
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/privacy.css">
     <link rel="stylesheet" href="assets/css/desktop_top_template.css">
     <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
 
     <script src="assets/js/mini_backend.js"></script>
     <script src="script.js"></script>
@@ -17,12 +19,15 @@
 </head>
 
 <body onload="awaitHTML()">
+
+    
+    <div  id="bottomMenuTemplate" w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div>
         <div w3-include-html="assets/templates/desktop_top_template.html"></div>
     </div>
 
-    <div class="impressum">
+    <div style="padding-top:120px; padding-bottom: 0px" class="impressum">
         <h1>Impressum</h1>
 
         <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
@@ -39,7 +44,7 @@
 
 
 
-    <div class="impressum">
+    <div style="padding-bottom:120px; padding-top:0px"  class="impressum">
         <h1>Datenschutzerklärung</h1>
         <p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO),
             ist:</p>
@@ -245,6 +250,7 @@
                     rel="noopener">externe
                     Datenschutzbeauftragte</a> (Version #2020-09-30).</em></p>
     </div>
+
 </body>
 
 </html>

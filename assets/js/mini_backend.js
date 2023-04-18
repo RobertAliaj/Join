@@ -46,9 +46,6 @@ function loadJSONFromServerOld() {
         let proxy = determineProxySettings();
         let serverURL = proxy + BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime());
 
-
-
-
         xhttp.open('GET', serverURL);
 
         xhttp.onreadystatechange = function(oEvent) {
@@ -93,6 +90,8 @@ function saveJSONToServer() {
 
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send(JSON.stringify(jsonFromServer));
+
+        
 
     });
 }

@@ -18,11 +18,14 @@
     <link rel="stylesheet" href="assets/css/desktop_top_template.css">
     <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/css/add_task_template.css">
+    <link rel="stylesheet" href="assets\node_modules\js-datepicker\dist\datepicker.min.css">
 
     <script src="assets/js/mini_backend.js"></script>
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
 
+    <script src="assets\node_modules\js-datepicker\dist\datepicker.min.js"></script>
     <script src="assets/js/add_task.js"></script>
 
     <script src="assets/js/board/board.js"></script>
@@ -32,19 +35,22 @@
     <script src="assets/js/board/boardPopUp.js"></script>
 </head>
 
-<body onload="awaitHTML(); init()">
+<body onload="awaitHTML(); init();">
 
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div class="absolute">
         <div w3-include-html="assets/templates/desktop_top_template.html"></div>
     </div>
 
+    <div w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
+
     <div class="container">
+        <span class="show-if-mobile" style="padding: 10px">Kanban Project Managment Tool</span>
         <div class="title">
             <h1>Board</h1>
             <div class="search-div">
                 <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()">
-                <button onclick="showAddTaskPopUp()" class="board-button">Add task <img
+                <button onclick="showAddTaskTemplate() ;loadInfos();" class="board-button">Add task <img
                         src="assets/img/add_subtask.png"></button>
             </div>
         </div>
@@ -89,6 +95,7 @@
         </div>
     </div>
 
+ 
 
     <div class="card-bg d-none" id="card">
 
@@ -100,7 +107,11 @@
 
     </div>
 
-    <div w3-include-html="assets/templates/add_task_popup_template.html"></div>
+    <div class="hide-pop-up" id="greyBackground"></div>
+    <div id="addTaskWrapper" class="hide-pop-up">
+        <div onclick="closeAddTaskWrapper()" class="close-btn"><img src="assets/img/Clear_task.png" alt=""></div>
+        <div w3-include-html="assets/templates/add_task_template.html"></div>
+    </div>
 
 
 

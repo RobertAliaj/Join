@@ -27,17 +27,12 @@ let required = true;
 let initialsRenderd = false;
 
 async function loadInfos() {
-    await downloadFromServer();
+    await init()
     await includeHTML();
-    // tasks = JSON.parse(backend.getItem('tasks'));
-    tasks = jsonFromServer['tasks']
-    // contacts = JSON.parse(backend.getItem('contacts'));
-    contacts = jsonFromServer['contacts']
-    // categorys = JSON.parse(backend.getItem('categorys'));
-    categorys = jsonFromServer['categorys']
     renderCategorys();
     renderContacts();
     datePicker();
+
 }
 
 
@@ -52,6 +47,8 @@ async function loadInfos() {
  * @param {*} visible - This is the id where the classlist "d-none" will removed
  * @param {*} notVisible - This is the id where the classlist "d-none" will added
  */
+
+
 function pullDownMenu(clicked, notClicked, visible, notVisible) {
     let openMenu = document.getElementById(clicked).classList;
     if (openMenu == 'dropdown-category-closed') {
@@ -113,17 +110,23 @@ function renderContacts() {
     contactContainer = document.getElementById('loadedContacts');
     contactContainer.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
-        let contact = (combineNames(contacts, i))
+        let contactName = (combineNames(contacts, i))
+        let colorOfContact = contacts[i].color
         contactContainer.innerHTML += `
-        <div class="dd-placeholder gray-hover" onclick="selectedForTask('${contact}', 'contact${[i]}')">
-            <div>${contact}</div>
+        <div class="dd-placeholder gray-hover" onclick="selectedForTask('${contactName}', 'contactName${[i]}','${colorOfContact}')">
+            <div>${contactName}</div>
             <div class="select-box center">
-                <div id="contact${[i]}"></div>
+                <div id="contactName${[i]}"></div>
             </div>
         </div>`;
     }
 }
 
+function getColorFromSelectedContact(contacts, i) {
+
+    document.documentElement.style.setProperty('--userColor', contacts[i].color);
+
+}
 
 function combineNames(contacts, i) {
     let firstname = contacts[i].firstname;
@@ -147,11 +150,11 @@ function selectCategory(category, categoryColor) {
 }
 
 
-function selectedForTask(selectedContact, selected) {
+function selectedForTask(selectedContact, selected, colorOfContact) {
     if (collectedContact.includes(selectedContact) == false) {
         collectedContact.push(selectedContact);
         addSelectedPoint(selected);
-        manageInitials(selectedContact);
+        manageInitials(selectedContact, colorOfContact);
         switchContactIcons();
     } else {
         contactToRemove = collectedContact.indexOf(selectedContact)
@@ -168,8 +171,8 @@ function addSelectedPoint(selected) {
 }
 
 
-function manageInitials(selectedContact) {
-    initial = getFirstLetters(selectedContact);
+function manageInitials(selectedContact, colorOfContact) {
+    let initial = getFirstLetters(selectedContact);
     if (initials.includes(initial) == false) {
         initials.push(initial);
         selectedContact = '';
@@ -230,24 +233,21 @@ function addContacts() {
 function renderInitials() {
     initialsContainer = document.getElementById('initialsContainer');
     initialsContainer.innerHTML = '';
+   
     for (let i = 0; i < initials.length; i++) {
+        let colorOfContacts = contacts[i].color;
         initialsContainer.innerHTML += `
-    <div class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
-
+    <div style="background-color:#${colorOfContacts}" class="initials" id="contactInitials${[i]}">${initials[i]}</div>`
     }
 }
 
-
 /**
- * 
- *  
- * 
  * @param {*} clicked 
  * @param {*} notClicked 
  * @param {*} alsoNotClicked 
  */
 function priority(clicked, notClicked, alsoNotClicked, img) {
-    resetPrioButtom(notClicked, alsoNotClicked);
+    resetPrioButton(notClicked, alsoNotClicked);
     if (clicked == 'prioHigh') {
         document.getElementById(clicked).style = `background-color: rgb(236, 85, 32);`
         changeColor(img);
@@ -264,7 +264,7 @@ function priority(clicked, notClicked, alsoNotClicked, img) {
 }
 
 
-function resetPrioButtom(notClicked, alsoNotClicked) {
+function resetPrioButton(notClicked, alsoNotClicked) {
     document.getElementById(notClicked).style = ``;
     document.getElementById(alsoNotClicked).style = ``;
     document.getElementById('prioHighImg').src = `assets/img/prio_high.svg`;
@@ -301,7 +301,7 @@ function removeSubtask(i) {
 
 
 function renderSubtasks() {
-    let subtaskContainer = document.getElementById('addetSubtasks');
+    let subtaskContainer = document.getElementById('addedSubtasks');
     subtaskContainer.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
         let setClass = getClass(i);
@@ -441,14 +441,14 @@ async function saveNewCategory() {
 async function pushCategoryInCategorys() {
     i = categorys.length;
     categorys.splice(i, 0, category);
-    jsonFromServer['categorys'] = categorys 
+    jsonFromServer['categorys'] = categorys
     renderCategorys();
     await saveJSONToServer();
 }
 
 
 function getTitle() {
-    let title = document.getElementById('tileInput').value;
+    let title = document.getElementById('titleInput').value;
     if (title == '') {
         document.getElementById('titleReport').classList.remove('d-none');
         required = true;
@@ -497,9 +497,9 @@ function getDate() {
     if (chosenDate == '') {
         document.getElementById('dateReport').classList.remove('d-none');
         required = true;
-    } 
+    }
     // if (chosenDate == ) {
-        
+
     // } 
     else {
         required = false;
@@ -542,8 +542,52 @@ async function collectAllInfos() {
     task.prio = getPrio();
     pushSubtask();
     pushStatus();
-    task.progress = 'TODO'; 
+    task.progress = 'TODO';
     pushTaskInTasks()
+    clearTaskFields();
+}
+
+function clearTaskFields() {
+    let valuesOfInputs = getIdsOfInputFields();
+    setPrioButtonsToDefault();
+    clearValues(valuesOfInputs);
+    task = [];
+}
+
+function getIdsOfInputFields() {
+    let titleField = document.getElementById('titleInput');
+    let descriptionField = document.getElementById('descriptionInput');
+    let chosenDateField = document.getElementById('date');
+    let categoryField = document.getElementById('chosenCategory');
+    let contactField = document.getElementById('initialsContainer');
+
+    return { titleField, descriptionField, chosenDateField, categoryField, contactField }
+}
+
+function setPrioButtonsToDefault() {
+    let highPrio = document.getElementById('prioHigh');
+    let midPrio = document.getElementById('prioMedium');
+    let lowPrio = document.getElementById('prioLow');
+
+    highPrio.style.background = 'white';
+    midPrio.style.background = 'white';
+    lowPrio.style.background = 'white';
+
+    document.getElementById('prioHighImg').src = `assets/img/prio_high.svg`;
+    document.getElementById('prioMediumImg').src = `assets/img/prio_medium.svg`;
+    document.getElementById('prioLowImg').src = `assets/img/prio_low.svg`;
+}
+
+function clearValues(valuesOfInputs) {
+    subtasks = [];
+    renderSubtasks();
+
+    valuesOfInputs.titleField.value = ``;
+    valuesOfInputs.descriptionField.value = ``;
+    valuesOfInputs.chosenDateField.value = ``;
+    valuesOfInputs.categoryField.innerHTML = `Select task category`;
+    valuesOfInputs.categoryField.value = ``;
+    valuesOfInputs.contactField.innerHTML = ``;
 }
 
 
@@ -554,8 +598,27 @@ async function pushTaskInTasks() {
         // await saveOnServer('tasks', tasks);
         tasks.push(task);
         jsonFromServer['tasks'] = tasks;
-        await saveJSONToServer()
+        await saveJSONToServer();
+        taskUploaded();
+        await backend.deleteItem('users');
+
     }
+    console.log(tasks)
+}
+
+function taskUploaded() {
+    let popUpId = document.getElementById('successfulUpload');
+
+    popUpId.classList.remove('d-none');
+    popUpId.classList.add('popUp');
+
+    setTimeout(function () {
+        popUpId.innerHTML = `redirecting to the board...`
+    }, 500);
+    setTimeout(function () {
+        window.location.href = 'board.html'
+    }, 1000);
+
 }
 
 

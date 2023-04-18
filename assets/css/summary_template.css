@@ -208,10 +208,31 @@
     font-size: 55px;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1300px) {
 
     .greeting span {
         font-size: 30px;
+    }
+
+    .summary-container{
+        font-family: 'Inter';
+        Padding: unset !important;
+        height: 100% !important;
+        width: 100vw !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        flex-direction: column !important;
+        position: unset !important;
+    } 
+    .show-if-mobile{
+        display: unset !important;
+        width: 100% !important;
+        margin-top: 30px !important;
+        margin-bottom: 20px !important;
+        font-size: 1rem !important;
+        text-align: start !important;
+        width: 500px !important;
     }
 }
 
@@ -224,10 +245,6 @@
     .summary-content {
         flex-direction: column;
         gap: 50px;
-    }
-
-    .task-menu-container {
-        width: 100%;
     }
 
     .greeting {
@@ -244,16 +261,13 @@
         box-sizing: border-box;
     }
 
-    .task-menu-container {
-        opacity: 0;
-    }
-
     .headline {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+        max-width: 500px;
         position: relative;
-        opacity: 0;
+        width: 80%;
     }
 
     .vertical-line-blue {
@@ -271,7 +285,7 @@
 
     .task-menu-container .row>* {
         height: 120px;
-        width: 100px;
+        width: auto;
     }
 
     .task b {
@@ -314,6 +328,10 @@
     .task-menu-container .row>* {
         height: 100px;
         width: 100px;
+    }
+
+    .task-menu-container{
+        width:auto !important;
     }
 
     .task-menu-container .row {
@@ -379,4 +397,22 @@
         height: 40px;
     }
     
+}
+
+@media (max-height:750px){
+
+    .headline{
+        margin-bottom: unset !important;
+
+    }
+    .headline span:first-of-type {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px !important;
+        line-height: unset !important;
+    }
+
+    .show-if-mobile{
+        margin-top: unset !important;
+    }
 }
