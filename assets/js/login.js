@@ -1,8 +1,9 @@
 let users = [];
 
 async function initLogin() {
-  await downloadFromServer();
-  users = jsonFromServer['users'];
+  // await downloadFromServer();
+  // users = jsonFromServer['users'];
+  init();
   openLogIn();
   lsRememberMe();
 }
