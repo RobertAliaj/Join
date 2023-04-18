@@ -5,7 +5,7 @@ async function initContacts() {
     //await backend.deleteItem('contacts');
     await init();
     await includeHTML();
-    showContacts()
+    showContacts();
 }
 
 async function refreshContacts() {
@@ -318,8 +318,6 @@ function closeAddTaskWrapper() {
         addTaskPopUp.classList.add('slide-out');
      
         setTimeout(function () {
-
-
             greyBackground.classList.add('d-none');
             addTaskPopUp.classList.add('d-none')
             addTaskPopUp.classList.remove('add-task-wrapper');
