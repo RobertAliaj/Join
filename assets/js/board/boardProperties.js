@@ -165,7 +165,7 @@ function popUpOpenFalse() {
 function getCategoryColorAndName() {
     for (let i = 0; i < categories.length; i++) {
         let categoryName = categories[i]['name'];
-        let categoryColor = '#' + categories[i]['color'];
+        let categoryColor = categories[i]['color'];
         categoriesAndColors.push(setCategoryColor(categoryName, categoryColor));
     }
 }
@@ -207,7 +207,7 @@ function setPrioProperties(prio) {
  */
 function getContactColorsandInitials() {
     for (let i = 0; i < contactsBoard.length; i++) {
-        let contactColor = contactsBoard[i]['color'];
+        let contactColor = '#' + contactsBoard[i]['color'];
         let contact = contactsBoard[i];
         let firstInitial = contact.firstname[0];
         let lastInitial = contact.lastname[0];
