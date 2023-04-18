@@ -19,7 +19,7 @@ async function init() {
     getCategoryColorAndName();
     getContactColorsandInitials();
     renderTasks();
-    renderCategorys();
+    // renderCategorys();
 }
 
 
