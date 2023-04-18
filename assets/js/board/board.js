@@ -14,7 +14,8 @@ let popUpOpen = false;
 /**
  * This function is used to call the functions that get the data from Backend and render them
  */
-async function init() {
+async function initBoard() {
+    await init();
     await getDataBase();
     getCategoryColorAndName();
     getContactColorsandInitials();
