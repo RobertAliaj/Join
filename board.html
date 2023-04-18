@@ -35,7 +35,7 @@
     <script src="assets/js/board/boardPopUp.js"></script>
 </head>
 
-<body onload="awaitHTML(); init();">
+<body onload="awaitHTML(); initBoard(); loadInfos()">
 
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div class="absolute">
@@ -50,7 +50,7 @@
             <h1>Board</h1>
             <div class="search-div">
                 <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()">
-                <button onclick="showAddTaskTemplate() ;loadInfos();" class="board-button">Add task <img
+                <button onclick="showAddTaskTemplate()" class="board-button">Add task <img
                         src="assets/img/add_subtask.png"></button>
             </div>
         </div>
