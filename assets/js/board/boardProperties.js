@@ -164,8 +164,8 @@ function popUpOpenFalse() {
  */
 function getCategoryColorAndName() {
     for (let i = 0; i < categories.length; i++) {
-        let categoryName = categories[i]['name'];
-        let categoryColor = categories[i]['color'];
+        let categoryName = '#' + categories[i]['name'];
+        let categoryColor = '#' + categories[i]['color'];
         categoriesAndColors.push(setCategoryColor(categoryName, categoryColor));
     }
 }
