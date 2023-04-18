@@ -560,7 +560,7 @@ function createLetterHtml(i) {
 function contactHtml(j) {
     return /*html*/ `
         <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
-            <div style="background-color:#${contacts[j].color}" class="name-tag" id="${j}">
+            <div style="background-color:${contacts[j].color}" class="name-tag" id="${j}">
                 ${contacts[j]['firstname'].charAt(0).toUpperCase()}${contacts[j]['lastname'].charAt(0).toUpperCase()}
             </div>
             <div>
@@ -575,7 +575,7 @@ function specificContactHtml(idx) {
     return /*html*/ `
         <div class="specific-contact">
             <div class="specific-single-contact">
-                <div style="background-color:#${contacts[idx].color}" class="name-tag bigger" id="specific${idx}">
+                <div style="background-color:${contacts[idx].color}" class="name-tag bigger" id="specific${idx}">
                     ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
                 </div>
                 <div>
@@ -613,7 +613,7 @@ function editContactHtml(idx) {
             </div>
         </div>
         <div class="contact-create-container">
-            <div style="background-color:#${contacts[idx].color}" class="name-tag bigger" id="edit${idx}">
+            <div style="background-color:${contacts[idx].color}" class="name-tag bigger" id="edit${idx}">
                 ${contacts[idx]['firstname'].charAt(0).toUpperCase()}${contacts[idx]['lastname'].charAt(0).toUpperCase()}
             </div>           
             <div class="contact-form">
