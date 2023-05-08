@@ -531,7 +531,7 @@ function createLetterHtml(i) {
 function contactHtml(j) {
   return /*html*/ `
         <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
-            <div style="background-color:#${
+            <div style="background-color:${
               contacts[j].color
             }" class="name-tag" id="${j}">
                 ${contacts[j]["firstname"].charAt(0).toUpperCase()}${contacts[
