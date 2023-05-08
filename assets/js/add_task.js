@@ -26,13 +26,16 @@ let colorForNewCategory;
 let required = true;
 let initialsRenderd = false;
 
-async function loadInfos() {
+async function initAddTask() {
     await init()
     await includeHTML();
+    loadInfos();
+}
+
+function loadInfos() {
     renderCategorys();
     renderContacts();
     datePicker();
-
 }
 
 
