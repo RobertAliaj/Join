@@ -10,30 +10,28 @@ let existingNames;
 let editTaskCheck = false;
 let popUpOpen = false;
 
+
 /**
  * This function is used to call the functions that get the data from Backend and render them
  */
 async function initBoard() {
-    // await init();
     await getDataBase();
     getCategoryColorAndName();
     getContactColorsandInitials();
     renderTasks();
-    // renderCategorys();
 }
 
-  // renderCategorys();
-// }
 
 /**
  * This function is used to get the Data from server
  */
 async function getDataBase() {
-  await downloadFromServer();
-  allTasks = jsonFromServer["tasks"];
-  contactsBoard = jsonFromServer["contacts"];
-  categories = jsonFromServer["categorys"];
+  await init();
+  allTasks = tasks;
+  contactsBoard = contacts;
+  categories = categorys;
 }
+
 
 /**
  * This function is used to render the Tasks

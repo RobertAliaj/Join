@@ -349,6 +349,7 @@
     background-color: rgb(44, 54, 70);
     font-size: 21px;
     color: rgb(246, 247, 248);
+    cursor: pointer;
 
     height: 60px;
     border: none;

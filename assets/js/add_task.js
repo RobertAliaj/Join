@@ -491,11 +491,7 @@ function getDate() {
   if (chosenDate == "") {
     document.getElementById("dateReport").classList.remove("d-none");
     required = true;
-  }
-  // if (chosenDate == ) {
-
-  // }
-  else {
+  } else {
     required = false;
     return chosenDate;
   }
@@ -593,17 +589,14 @@ function clearValues(valuesOfInputs) {
 
 async function pushTaskInTasks() {
   if (required == false) {
-    // i = tasks.length;
-    // tasks.splice(i, 0, task);
-    // await saveOnServer('tasks', tasks);
     tasks.push(task);
     jsonFromServer["tasks"] = tasks;
     await saveJSONToServer();
     taskUploaded();
-    await backend.deleteItem("users");
+    // await backend.deleteItem("users");
   }
-  console.log(tasks);
 }
+
 
 function taskUploaded() {
   let popUpId = document.getElementById("successfulUpload");
@@ -618,8 +611,3 @@ function taskUploaded() {
     window.location.href = "board.html";
   }, 1000);
 }
-
-// async function saveOnServer(key, item) {
-//     itemAsString = JSON.stringify(item);
-//     await backend.setItem(key, itemAsString);
-// }
