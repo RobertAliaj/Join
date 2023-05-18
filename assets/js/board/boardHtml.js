@@ -213,3 +213,7 @@ function renderEditTaskPopUpHtml(i) {
         <img src="assets/img/create_task2.png">
     </div>`;
 }
+
+
+
+//  <input type="text" placeholder="dd/mm/yyyy" id="date" class="white-box no-outline"></input>
