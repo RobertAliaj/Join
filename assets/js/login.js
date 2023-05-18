@@ -12,70 +12,104 @@ function animate() {
   if (window.innerWidth < 501) {
     animateResponsive();
   } else {
-    animateNormal()
+    animateNormal();
   }
 }
 
 function animateNormal() {
-  let height = document.getElementById('outerDiv').clientHeight;
-  let width = document.getElementById('outerDiv').clientWidth;
-  let imgHeight = document.getElementById('imgDiv').clientHeight;
-  let imgWidth = document.getElementById('imgDiv').clientWidth;
+  let height = document.getElementById("outerDiv").clientHeight;
+  let width = document.getElementById("outerDiv").clientWidth;
+  let imgHeight = document.getElementById("imgDiv").clientHeight;
+  let imgWidth = document.getElementById("imgDiv").clientWidth;
   setTimeout(function () {
-    const animation = gsap.timeline()
-      .set("#imgDiv", {
-        x: 0,
-        y: 0,
-        scale: 0.9
-      }, 0)
-      .set("#contentDiv", {
-        opacity: 0
-      }, 0)
-      .to("#imgDiv", {
-        x: (-width / 2) + (imgWidth / 2) + 50,
-        y: (-height / 2) + (imgHeight / 2) + 50,
-        scale: 0.3,
-        ease: "power1.out",
-        duration: 1
-      }, 0)
-      .to("#contentDiv", {
-        opacity: 1,
-        duration: 1
-      }, 0);
+    const animation = gsap
+      .timeline()
+      .set(
+        "#imgDiv",
+        {
+          x: 0,
+          y: 0,
+          scale: 0.9,
+        },
+        0
+      )
+      .set(
+        "#contentDiv",
+        {
+          opacity: 0,
+        },
+        0
+      )
+      .to(
+        "#imgDiv",
+        {
+          x: -width / 2 + imgWidth / 2 + 50,
+          y: -height / 2 + imgHeight / 2 + 50,
+          scale: 0.3,
+          ease: "power1.out",
+          duration: 1,
+        },
+        0
+      )
+      .to(
+        "#contentDiv",
+        {
+          opacity: 1,
+          duration: 1,
+        },
+        0
+      );
   }, 1000);
 
-  document.getElementById('outerDiv').style.zIndex = 1;
+  document.getElementById("outerDiv").style.zIndex = 1;
 }
 
 function animateResponsive() {
-  let height = document.getElementById('outerDiv').clientHeight;
-  let width = document.getElementById('outerDiv').clientWidth;
-  let imgHeight = document.getElementById('imgDiv').clientHeight;
-  let imgWidth = document.getElementById('imgDiv').clientWidth;
+  let height = document.getElementById("outerDiv").clientHeight;
+  let width = document.getElementById("outerDiv").clientWidth;
+  let imgHeight = document.getElementById("imgDiv").clientHeight;
+  let imgWidth = document.getElementById("imgDiv").clientWidth;
   setTimeout(function () {
-    const animation = gsap.timeline()
-      .set("#imgDiv", {
-        x: 0,
-        y: 0,
-        scale: 1
-      }, 0)
-      .set("#contentDiv", {
-        opacity: 0
-      }, 0)
-      .to("#imgDiv", {
-        x: (-width / 2) + (imgWidth / 2) + 20,
-        y: (-height / 2) + (imgHeight / 2) + 20,
-        scale: 0.2,
-        ease: "power1.out",
-        duration: 1
-      }, 0)
-      .to("#contentDiv", {
-        opacity: 1,
-        duration: 1
-      }, 0);
+    const animation = gsap
+      .timeline()
+      .set(
+        "#imgDiv",
+        {
+          x: 0,
+          y: 0,
+          scale: 1,
+        },
+        0
+      )
+      .set(
+        "#contentDiv",
+        {
+          opacity: 0,
+        },
+        0
+      )
+      .to(
+        "#imgDiv",
+        {
+          x: -width / 2 + imgWidth / 2 + 20,
+          y: -height / 2 + imgHeight / 2 + 20,
+          scale: 0.2,
+          ease: "power1.out",
+          duration: 1,
+        },
+        0
+      )
+      .to(
+        "#contentDiv",
+        {
+          opacity: 1,
+          duration: 1,
+        },
+        0
+      );
   }, 1000);
 
-  document.getElementById('outerDiv').style.zIndex = 1;
+  document.getElementById("outerDiv").style.zIndex = 1;
 }
 
 function saveGreetingName(name) {
@@ -83,65 +117,66 @@ function saveGreetingName(name) {
 }
 
 function openSignUp() {
-  document.getElementById('signUp').style.display = 'none';
-  let loginContainer = document.getElementById('loginContainer')
-  loginContainer.innerHTML = '';
+  document.getElementById("signUp").style.display = "none";
+  let loginContainer = document.getElementById("loginContainer");
+  loginContainer.innerHTML = "";
   loginContainer.innerHTML += SignUpContainerHtml();
 }
 
 function openLogIn() {
-  document.getElementById('signUp').style.display = 'flex';
-  let loginContainer = document.getElementById('loginContainer')
-  loginContainer.innerHTML = '';
+  document.getElementById("signUp").style.display = "flex";
+  let loginContainer = document.getElementById("loginContainer");
+  loginContainer.innerHTML = "";
   loginContainer.innerHTML += LoginContainerHtml();
 }
 
 function openForgotPassword() {
-  document.getElementById('signUp').style.display = 'none';
-  let loginContainer = document.getElementById('loginContainer')
-  loginContainer.innerHTML = '';
+  document.getElementById("signUp").style.display = "none";
+  let loginContainer = document.getElementById("loginContainer");
+  loginContainer.innerHTML = "";
   loginContainer.innerHTML += PasswordContainerHtml();
 }
 
 function signUp() {
-  signUpName = document.getElementById('signUpName')
-  signUpEmail = document.getElementById('signUpEmail')
-  signUpPassword = document.getElementById('signUpPassword')
+  signUpName = document.getElementById("signUpName");
+  signUpEmail = document.getElementById("signUpEmail");
+  signUpPassword = document.getElementById("signUpPassword");
   let user = {
-    'name': signUpName.value,
-    'email': signUpEmail.value,
-    'password': signUpPassword.value
+    name: signUpName.value,
+    email: signUpEmail.value,
+    password: signUpPassword.value,
   };
   pushUser(user);
 }
 
 async function pushUser(user) {
   users.push(user);
-  jsonFromServer['users'] = users
+  jsonFromServer["users"] = users;
   await saveJSONToServer();
 }
 
 function logIn() {
-  let email = document.getElementById('email');
-  let password = document.getElementById('password');
-  let user = users.find(u => u.email == email.value && u.password == password.value);
+  let email = document.getElementById("email");
+  let password = document.getElementById("password");
+  let user = users.find(
+    (u) => u.email == email.value && u.password == password.value
+  );
   if (user) {
     // alert.classList.add('d-none');
 
-    saveGreetingName(user['name'])
-    location.href = 'index.html';
-
+    saveGreetingName(user["name"]);
+    location.href = "index.html";
   } else {
-    email.value = '';
-    password.value = '';
-    let alert = document.getElementById('alert');
-    alert.classList.remove('d-none');
+    email.value = "";
+    password.value = "";
+    let alert = document.getElementById("alert");
+    alert.classList.remove("d-none");
   }
 }
 
 function lsRememberMe() {
-  const rmCheck = document.getElementById('rememberMe'),
-    emailInput = document.getElementById('email');
+  const rmCheck = document.getElementById("rememberMe"),
+    emailInput = document.getElementById("email");
 
   if (localStorage.checkbox && localStorage.checkbox !== "") {
     rmCheck.setAttribute("checked", "checked");
@@ -224,7 +259,7 @@ function PasswordContainerHtml() {
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
       <span class="forgot-password-span" >Forgot Password</span>
       <div class="horizontal-blue-line"></div>
-      <form action="https://gruppe-join-421.developerakademie.net/Robert/send_mail.php" method="POST">
+      <form action="https://gruppe-join-421.developerakademie.net/send_mail.php" method="POST">
         <div>
           <input name="name" type="email" placeholder="Email" id="forgotPasswordEmail" required>
           <img src="assets/img/mail.png" alt="">
