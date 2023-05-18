@@ -1,4 +1,3 @@
-let newContacts = [];
 let letters = [];
 let currentUser;
 
@@ -7,12 +6,10 @@ async function initContacts() {
   showContacts();
 }
 
-
 async function refreshContacts() {
   jsonFromServer["contacts"] = contacts;
   await saveJSONToServer();
 }
-
 
 function createNewContact() {
   submitContact();
@@ -20,7 +17,7 @@ function createNewContact() {
   showContacts();
 }
 
-function submitContact() {
+async function submitContact() {
   let name = document.getElementById("name");
   let mail = document.getElementById("mail");
   let phone = document.getElementById("phone");
@@ -348,11 +345,9 @@ function closeAddTaskWrapper() {
   }
 }
 
-
 /**************************** */
 /************ HTML ************/
 /**************************** */
-
 
 function createLetterHtml(i) {
   return /*html*/ `

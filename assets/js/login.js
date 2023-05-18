@@ -1,5 +1,4 @@
 let users = [];
-let contacts = [];
 
 async function initLogin() {
   // await downloadFromServer();
@@ -144,7 +143,7 @@ function signUp() {
   let signUpPassword = document.getElementById("signUpPassword");
   let phone = "";
 
-  if (!contacts.contain(signUpEmail)) {
+  if (!isEmailAlreadyExists(signUpEmail.value)) {
     let color = generateRandomColor();
     let user = {
       name: signUpName.value,
@@ -154,10 +153,21 @@ function signUp() {
     pushUser(user);
     newContact(signUpName, signUpEmail, phone, color);
     refreshContacts();
+    openLogIn();
   } else {
     let alert = document.getElementById("emailAlert");
     alert.classList.remove("d-none");
   }
+}
+
+function isEmailAlreadyExists(email) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].email === email) {
+      return true; // E-Mail bereits vorhanden
+    }
+  }
+
+  return false; // E-Mail nicht gefunden
 }
 
 async function pushUser(user) {
@@ -262,7 +272,7 @@ function SignUpContainerHtml() {
           <span> This email is already taken</span>
         </div>
         <div class="buttons">
-          <button type="submit" onclick="signUp(); openLogIn()" class="login-button"> Sign Up</button>
+          <button type="submit" onclick="signUp()" class="login-button"> Sign Up</button>
         </div>
      </form>
   `;
