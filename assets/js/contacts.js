@@ -238,9 +238,11 @@ function closeEditContact(idx) {
   showContacts();
 }
 
-function deleteContact(idx) {
+async function deleteContact(idx) {
   contacts.splice(idx, 1);
-  refreshContacts();
+  await refreshContacts();
+  location.reload();
+  initContacts();
   document.getElementById("specificContact").innerHTML = "";
 }
 
@@ -634,6 +636,9 @@ function editContactHtml(idx) {
                     </div>
                     <div class="submit-section">
                         <button class="contacts-button" id="submit" onclick="changeContact(${idx})" type="submit">Save<img
+                                src="assets/img/create_task.png" alt="">
+                        </button>
+                        <button class="contacts-button" onclick="deleteContact(${idx})" type="submit">Delete<img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>

@@ -165,7 +165,7 @@ function logIn() {
     // alert.classList.add('d-none');
 
     saveGreetingName(user["name"]);
-    location.href = "index.html";
+    window.location.replace("index.html");
   } else {
     email.value = "";
     password.value = "";
