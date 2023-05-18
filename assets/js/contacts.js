@@ -1,4 +1,3 @@
-let newContacts = [];
 let letters = [];
 let currentUser;
 

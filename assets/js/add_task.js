@@ -26,20 +26,17 @@ let colorForNewCategory;
 let required = true;
 let initialsRenderd = false;
 
-
 async function initAddTask() {
   await init();
   await includeHTML();
   loadInfos();
 }
 
-
 function loadInfos() {
   renderCategorys();
   renderContacts();
   datePicker();
 }
-
 
 /**
  * This function is used to change the height of a div and display its contents
@@ -463,7 +460,6 @@ function getDescription() {
   }
 }
 
-
 function getCategory() {
   if (selectedCategory == undefined) {
     document.getElementById("categoryReport").classList.remove("d-none");
@@ -474,7 +470,6 @@ function getCategory() {
   }
 }
 
-
 function getContact() {
   if (collectedContact == "") {
     document.getElementById("contactReport").classList.remove("d-none");
@@ -484,7 +479,6 @@ function getContact() {
     return collectedContact;
   }
 }
-
 
 function getDate() {
   let chosenDate = document.getElementById("date").value;
@@ -501,7 +495,6 @@ function getDate() {
   }
 }
 
-
 function getPrio() {
   if (prio == undefined) {
     document.getElementById("prioReport").classList.remove("d-none");
@@ -512,20 +505,17 @@ function getPrio() {
   }
 }
 
-
 function pushSubtask() {
   for (let i = 0; i < subtasks.length; i++) {
     task.subtasks.name.push(subtasks[i]) || [];
   }
 }
 
-
 function pushStatus() {
   for (let i = 0; i < subtaskStatus.length; i++) {
     task.subtasks.status.push(subtaskStatus[i]);
   }
 }
-
 
 async function collectAllInfos() {
   task.title = getTitle();
@@ -540,7 +530,6 @@ async function collectAllInfos() {
   pushTaskInTasks();
   clearTaskFields();
 }
-
 
 function clearTaskFields() {
   let valuesOfInputs = getIdsOfInputFields();
