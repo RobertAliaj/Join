@@ -80,12 +80,15 @@ function pullDownMenu(clicked, notClicked, visible, notVisible) {
 function datePicker() {
   const picker = datepicker("#date", {
     startDay: 1,
-    formatter: (input, date, instance) => {
-      const value = date.toLocaleDateString();
-      input.value = value; // => '1/1/2099'
+    formatter: (input, date) => {
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const year = date.getFullYear();
+      input.value = `${day}-${month}-${year}`; // => '01-01-2024'
     },
   });
 }
+
 
 function renderCategorys() {
   categoryContainer = document.getElementById("loadedCategorys");
@@ -115,8 +118,8 @@ function renderContacts() {
     let colorOfContact = contacts[i].color;
     contactContainer.innerHTML += `
         <div class="dd-placeholder gray-hover" onclick="selectedForTask('${contactName}', 'contactName${[
-      i,
-    ]}','${colorOfContact}')">
+        i,
+      ]}','${colorOfContact}')">
             <div>${contactName}</div>
             <div class="select-box center">
                 <div id="contactName${[i]}"></div>
@@ -263,8 +266,8 @@ function renderInitials() {
     let colorOfContacts = contacts[i].color;
     initialsContainer.innerHTML += `
     <div style="background-color:${colorOfContacts}" class="initials" id="contactInitials${[
-      i,
-    ]}">${initials[i]}</div>`;
+        i,
+      ]}">${initials[i]}</div>`;
   }
 }
 
@@ -543,7 +546,7 @@ function pushStatus() {
 async function collectAllInfos() {
   task.title = getTitle();
   task.description = getDescription();
-  task.category = getCategory();getDate
+  task.category = getCategory(); getDate
   task.assigned_to = getContact();
   task.due_date = getDate();
   task.prio = getPrio();

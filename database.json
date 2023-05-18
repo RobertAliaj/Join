@@ -173,7 +173,7 @@
       "description": "Edit the new company video",
       "category": "Media",
       "assigned_to": ["Tanja Wolf", "Robo James"],
-      "due_date": "05-08-2023",
+      "due_date": "02-03-2023",
       "prio": "medium",
       "subtasks": {
         "name": [],
