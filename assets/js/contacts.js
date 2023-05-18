@@ -291,6 +291,7 @@ function openAddTaskContainer() {
     addTaskPopUp.classList.remove("d-none");
     addTaskPopUp.classList.remove("slide-out");
   }
+  loadInfos();
 }
 
 function closeAddTaskWrapper() {

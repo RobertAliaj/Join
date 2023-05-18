@@ -304,6 +304,7 @@ function showAddTaskTemplate(){
     addTaskPopUp.classList.add('add-task-wrapper');
     addTaskPopUp.classList.add('slide');
     addTaskPopUp.classList.remove('hide-pop-up');
+    loadInfos();
 }
 
 function closeAddTaskWrapper(){
