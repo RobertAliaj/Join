@@ -7,12 +7,10 @@ async function initContacts() {
   showContacts();
 }
 
-
 async function refreshContacts() {
   jsonFromServer["contacts"] = contacts;
   await saveJSONToServer();
 }
-
 
 function createNewContact() {
   submitContact();
@@ -20,12 +18,7 @@ function createNewContact() {
   showContacts();
 }
 
-<<<<<<< HEAD
-
 async function submitContact() {
-=======
-function submitContact() {
->>>>>>> ddbc31dded1fd5a936ffd68c75a56e34874d3b97
   let name = document.getElementById("name");
   let mail = document.getElementById("mail");
   let phone = document.getElementById("phone");
@@ -353,11 +346,9 @@ function closeAddTaskWrapper() {
   }
 }
 
-
 /**************************** */
 /************ HTML ************/
 /**************************** */
-
 
 function createLetterHtml(i) {
   return /*html*/ `
