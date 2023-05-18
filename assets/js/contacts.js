@@ -555,7 +555,7 @@ function specificContactHtml(idx) {
   return /*html*/ `
         <div class="specific-contact">
             <div class="specific-single-contact">
-                <div style="background-color:#${
+                <div style="background-color:${
                   contacts[idx].color
                 }" class="name-tag bigger" id="specific${idx}">
                     ${contacts[idx]["firstname"]
