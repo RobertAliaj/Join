@@ -8,4 +8,3 @@ async function init() {
     contacts = backend.getItem('contacts') || [];
     categorys = backend.getItem('categorys') || [];
 }
-

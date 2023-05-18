@@ -15,12 +15,11 @@ let popUpOpen = false;
  * This function is used to call the functions that get the data from Backend and render them
  */
 async function initBoard() {
-    await init();
+    // await init();
     await getDataBase();
     getCategoryColorAndName();
     getContactColorsandInitials();
     renderTasks();
-    
     // renderCategorys();
 }
 
@@ -294,27 +293,28 @@ function getSearchedTasksDetails(i) {
 }
 
 
-function showAddTaskTemplate(){
-    let greyBackground = document.getElementById('greyBackground');
-    let addTaskPopUp = document.getElementById('addTaskWrapper');
+// function showAddTaskTemplate(){
+//     let greyBackground = document.getElementById('greyBackground');
+//     let addTaskPopUp = document.getElementById('addTaskWrapperBoard');
 
-    greyBackground.classList.add('grey-background');
-    greyBackground.classList.remove('hide-pop-up');
+//     greyBackground.classList.add('grey-background');
+//     greyBackground.classList.remove('hide-pop-up');
 
-    addTaskPopUp.classList.add('add-task-wrapper');
-    addTaskPopUp.classList.add('slide');
-    addTaskPopUp.classList.remove('hide-pop-up');
-    loadInfos();
-}
+//     addTaskPopUp.classList.add('add-task-wrapper');
+//     addTaskPopUp.classList.add('slide');
+//     addTaskPopUp.classList.remove('hide-pop-up');
+//     loadInfos();
+// }
 
-function closeAddTaskWrapper(){
-    let greyBackground = document.getElementById('greyBackground');
-    let addTaskPopUp = document.getElementById('addTaskWrapper');
 
-    greyBackground.classList.remove('grey-background');
-    greyBackground.classList.add('hide-pop-up');
+// function closeAddTaskWrapper(){
+//     let greyBackground = document.getElementById('greyBackground');
+//     let addTaskPopUp = document.getElementById('addTaskWrapperBoard');
 
-    addTaskPopUp.classList.remove('add-task-wrapper');
-    addTaskPopUp.classList.remove('slide');
-    addTaskPopUp.classList.add('hide-pop-up');
-}
+//     greyBackground.classList.remove('grey-background');
+//     greyBackground.classList.add('hide-pop-up');
+
+//     addTaskPopUp.classList.remove('add-task-wrapper');
+//     addTaskPopUp.classList.remove('slide');
+//     addTaskPopUp.classList.add('hide-pop-up');
+// }

@@ -1,8 +1,10 @@
 let tasks = [];
 
+
 function openBoard() {
-    location.href = 'https://gruppe-join-421.developerakademie.net/Robert/board.html'
+    location.href = 'https://gruppe-join-421.developerakademie.net/board.html'
 }
+
 
 async function initSummary() {
     await includeHTML();
@@ -13,6 +15,7 @@ async function initSummary() {
     loadTasks();
     greetingTime();
 }
+
 
 function prepareContacts() {
     for (j = 0; j < contacts.length; j++) {
