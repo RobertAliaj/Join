@@ -184,7 +184,7 @@ function logIn() {
   );
   if (user) {
     // alert.classList.add('d-none');
-
+    saveCurrentUser(user["email"]);
     saveGreetingName(user["name"]);
     window.location.replace("index.html");
   } else {
@@ -193,6 +193,10 @@ function logIn() {
     let alert = document.getElementById("alert");
     alert.classList.remove("d-none");
   }
+}
+
+function saveCurrentUser(currentUser) {
+  localStorage.setItem("currentUser", currentUser);
 }
 
 function lsRememberMe() {
