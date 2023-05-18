@@ -1,5 +1,6 @@
 let newContacts = [];
 let letters = [];
+let currentUser;
 
 async function initContacts() {
   await includePlusInit();
@@ -19,19 +20,27 @@ function createNewContact() {
   showContacts();
 }
 
+<<<<<<< HEAD
 
 async function submitContact() {
+=======
+function submitContact() {
+>>>>>>> ddbc31dded1fd5a936ffd68c75a56e34874d3b97
   let name = document.getElementById("name");
   let mail = document.getElementById("mail");
   let phone = document.getElementById("phone");
   let color = generateRandomColor();
 
+  newContact(name, mail, phone, color);
+}
+
+async function newContact(name, mail, phone, color) {
   if (WordCount(name) === 1) {
     let newContact = {
       firstname: name.value,
       lastname: "",
       email: mail.value,
-      phone: phone.value,
+      phone: probe(phone),
       color: color,
     };
     contacts.push(newContact);
@@ -42,11 +51,19 @@ async function submitContact() {
       firstname: name.value.split(" ")[0],
       lastname: name.value.split(" ")[1],
       email: mail.value,
-      phone: phone.value,
+      phone: probe(phone),
       color: color,
     };
     contacts.push(newContact);
     await backend.setItem("contacts", JSON.stringify(contacts));
+  }
+}
+
+function probe(phone) {
+  if (phone.value) {
+    return phone.value;
+  } else {
+    return "";
   }
 }
 
@@ -241,9 +258,11 @@ function closeEditContact(idx) {
   showContacts();
 }
 
-function deleteContact(idx) {
+async function deleteContact(idx) {
   contacts.splice(idx, 1);
-  refreshContacts();
+  await refreshContacts();
+  location.reload();
+  initContacts();
   document.getElementById("specificContact").innerHTML = "";
 }
 
@@ -374,7 +393,7 @@ function specificContactHtml(idx) {
   return /*html*/ `
         <div class="specific-contact">
             <div class="specific-single-contact">
-                <div style="background-color:#${
+                <div style="background-color:${
                   contacts[idx].color
                 }" class="name-tag bigger" id="specific${idx}">
                     ${contacts[idx]["firstname"]
@@ -453,6 +472,9 @@ function editContactHtml(idx) {
                     </div>
                     <div class="submit-section">
                         <button class="contacts-button" id="submit" onclick="changeContact(${idx})" type="submit">Save<img
+                                src="assets/img/create_task.png" alt="">
+                        </button>
+                        <button class="contacts-button" onclick="deleteContact(${idx})" type="submit">Delete<img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>

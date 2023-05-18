@@ -1,4 +1,5 @@
 let users = [];
+let contacts = [];
 
 async function initLogin() {
   // await downloadFromServer();
@@ -138,15 +139,19 @@ function openForgotPassword() {
 }
 
 function signUp() {
-  signUpName = document.getElementById("signUpName");
-  signUpEmail = document.getElementById("signUpEmail");
-  signUpPassword = document.getElementById("signUpPassword");
+  let signUpName = document.getElementById("signUpName");
+  let signUpEmail = document.getElementById("signUpEmail");
+  let signUpPassword = document.getElementById("signUpPassword");
+  let phone = "1234";
+  let color = generateRandomColor();
   let user = {
     name: signUpName.value,
     email: signUpEmail.value,
     password: signUpPassword.value,
   };
   pushUser(user);
+  newContact(signUpName, signUpEmail, phone, color);
+  refreshContacts();
 }
 
 async function pushUser(user) {
@@ -165,7 +170,7 @@ function logIn() {
     // alert.classList.add('d-none');
 
     saveGreetingName(user["name"]);
-    location.href = "index.html";
+    window.location.replace("index.html");
   } else {
     email.value = "";
     password.value = "";
