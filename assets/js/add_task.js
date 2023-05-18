@@ -27,8 +27,7 @@ let required = true;
 let initialsRenderd = false;
 
 async function initAddTask() {
-  await init();
-  await includeHTML();
+  await includePlusInit();
   loadInfos();
 }
 
@@ -81,14 +80,13 @@ function datePicker() {
   const picker = datepicker("#date", {
     startDay: 1,
     formatter: (input, date) => {
-      const day = date.getDate().toString().padStart(2, '0');
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const year = date.getFullYear();
       input.value = `${day}-${month}-${year}`; // => '01-01-2024'
     },
   });
 }
-
 
 function renderCategorys() {
   categoryContainer = document.getElementById("loadedCategorys");
@@ -113,10 +111,14 @@ function renderContacts() {
   renderYouContact();
   contactContainer = document.getElementById("loadedContacts");
   contactContainer.innerHTML = "";
+
   for (let i = 0; i < contacts.length; i++) {
-    let contactName = combineNames(contacts, i);
-    let colorOfContact = contacts[i].color;
-    contactContainer.innerHTML += `
+    let you = localStorage.getItem("currentUser");
+
+    if (contacts[i]["email"] !== you) {
+      let contactName = combineNames(contacts, i);
+      let colorOfContact = contacts[i]["color"];
+      contactContainer.innerHTML += `
         <div class="dd-placeholder gray-hover" onclick="selectedForTask('${contactName}', 'contactName${[
         i,
       ]}','${colorOfContact}')">
@@ -125,15 +127,16 @@ function renderContacts() {
                 <div id="contactName${[i]}"></div>
             </div>
         </div>`;
+    }
   }
 }
 
 function renderYouContact() {
   let you = localStorage.getItem("currentUser");
   for (let i = 0; i < contacts.length; i++) {
-    if (contacts[i].email === you) {
+    if (contacts[i]["email"] === you) {
       let contactName = combineNames(contacts, i);
-      let color = contacts[i][color];
+      let color = contacts[i]["color"];
       renderYou(contactName, color);
     }
   }
@@ -188,7 +191,7 @@ function selectedForTask(selectedContact, selected, colorOfContact) {
   } else {
     contactToRemove = collectedContact.indexOf(selectedContact);
     collectedContact.splice(contactToRemove, 1);
-    manageInitials(selectedContact);
+    manageInitials(selectedContact, colorOfContact);
     document.getElementById(selected).classList.remove("selection-point");
     switchContactIcons();
   }
@@ -200,12 +203,17 @@ function addSelectedPoint(selected) {
 
 function manageInitials(selectedContact, colorOfContact) {
   let initial = getFirstLetters(selectedContact);
-  if (initials.includes(initial) == false) {
-    initials.push(initial);
+  const exists = initials.some((obj) => obj.initial === initial);
+
+  if (!exists) {
+    initials.push({
+      initial: initial,
+      color: colorOfContact,
+    });
     selectedContact = "";
   } else {
-    initialToRemove = initials.indexOf(initial);
-    initials.splice(initialToRemove, 1);
+    const indexToRemove = initials.findIndex((obj) => obj.initial === initial);
+    initials.splice(indexToRemove, 1);
     selectedContact = "";
   }
 }
@@ -263,11 +271,10 @@ function renderInitials() {
   initialsContainer.innerHTML = "";
 
   for (let i = 0; i < initials.length; i++) {
-    let colorOfContacts = contacts[i].color;
     initialsContainer.innerHTML += `
     <div style="background-color:${colorOfContacts}" class="initials" id="contactInitials${[
-        i,
-      ]}">${initials[i]}</div>`;
+      i,
+    ]}">${initials[i]}</div>`;
   }
 }
 
@@ -546,7 +553,8 @@ function pushStatus() {
 async function collectAllInfos() {
   task.title = getTitle();
   task.description = getDescription();
-  task.category = getCategory(); getDate
+  task.category = getCategory();
+  getDate;
   task.assigned_to = getContact();
   task.due_date = getDate();
   task.prio = getPrio();
