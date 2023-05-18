@@ -272,9 +272,11 @@ function renderInitials() {
 
   for (let i = 0; i < initials.length; i++) {
     initialsContainer.innerHTML += `
-    <div style="background-color:${colorOfContacts}" class="initials" id="contactInitials${[
-      i,
-    ]}">${initials[i]}</div>`;
+    <div style="background-color:${
+      initials[i]["color"]
+    }" class="initials" id="contactInitials${[i]}">${
+      initials[i]["initial"]
+    }</div>`;
   }
 }
 
