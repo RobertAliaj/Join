@@ -90,7 +90,6 @@ function datePicker() {
 function renderCategorys() {
   categoryContainer = document.getElementById("loadedCategorys");
   categoryContainer.innerHTML = "";
-  // categorys =jsonFromServer['categorys'];
   for (let i = 0; i < categorys.length; i++) {
     let category = categorys[i].name;
     let categoryColor = categorys[i].color;
@@ -516,7 +515,7 @@ function pushStatus() {
 async function collectAllInfos() {
   task.title = getTitle();
   task.description = getDescription();
-  task.category = getCategory();
+  task.category = getCategory();getDate
   task.assigned_to = getContact();
   task.due_date = getDate();
   task.prio = getPrio();

@@ -108,7 +108,7 @@
         "Herbert Braun",
         "David Eisenberg"
       ],
-      "due_date": "2023-04-23",
+      "due_date": "23-04-2023",
       "prio": "low",
       "subtasks": {
         "name": [
@@ -130,7 +130,7 @@
         "Tanja Wolf",
         "Sofia Müller"
       ],
-      "due_date": "2023-06-28",
+      "due_date": "28-06-2023",
       "prio": "high",
       "subtasks": {
         "name": [],
@@ -143,7 +143,7 @@
       "description": "Write open invoices for customer",
       "category": "Backoffice",
       "assigned_to": ["Herbert Braun"],
-      "due_date": "2023-02-13",
+      "due_date": "13-02-2023",
       "prio": "medium",
       "subtasks": {
         "name": ["Subtask 1", "Subtask 2"],
@@ -156,7 +156,7 @@
       "description": "Develop an ad campaign for brand positioning",
       "category": "Marketing",
       "assigned_to": ["Sofia Müller", "Marcel Bauer"],
-      "due_date": "2023-03-02",
+      "due_date": "02-03-2023",
       "prio": "low",
       "subtasks": {
         "name": [
@@ -173,7 +173,7 @@
       "description": "Edit the new company video",
       "category": "Media",
       "assigned_to": ["Tanja Wolf", "Robo James"],
-      "due_date": "2023-03-02",
+      "due_date": "05-08-2023",
       "prio": "medium",
       "subtasks": {
         "name": [],
