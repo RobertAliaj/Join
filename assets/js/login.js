@@ -142,16 +142,22 @@ function signUp() {
   let signUpName = document.getElementById("signUpName");
   let signUpEmail = document.getElementById("signUpEmail");
   let signUpPassword = document.getElementById("signUpPassword");
-  let phone = "1234";
-  let color = generateRandomColor();
-  let user = {
-    name: signUpName.value,
-    email: signUpEmail.value,
-    password: signUpPassword.value,
-  };
-  pushUser(user);
-  newContact(signUpName, signUpEmail, phone, color);
-  refreshContacts();
+  let phone = "";
+
+  if (!contacts.contain(signUpEmail)) {
+    let color = generateRandomColor();
+    let user = {
+      name: signUpName.value,
+      email: signUpEmail.value,
+      password: signUpPassword.value,
+    };
+    pushUser(user);
+    newContact(signUpName, signUpEmail, phone, color);
+    refreshContacts();
+  } else {
+    let alert = document.getElementById("emailAlert");
+    alert.classList.remove("d-none");
+  }
 }
 
 async function pushUser(user) {
@@ -251,6 +257,9 @@ function SignUpContainerHtml() {
         <div>
           <input type="password" placeholder="Password" id="signUpPassword" required>
           <img src="assets/img/schloss.png" alt="">
+        </div>
+        <div id="emailAlert" class="alert d-none">
+          <span> This email is already taken</span>
         </div>
         <div class="buttons">
           <button type="submit" onclick="signUp(); openLogIn()" class="login-button"> Sign Up</button>
