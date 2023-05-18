@@ -108,6 +108,7 @@ function renderCategorys() {
  * This function renders all available contact
  */
 function renderContacts() {
+  renderYouContact();
   contactContainer = document.getElementById("loadedContacts");
   contactContainer.innerHTML = "";
   for (let i = 0; i < contacts.length; i++) {
@@ -123,6 +124,33 @@ function renderContacts() {
             </div>
         </div>`;
   }
+}
+
+function renderYouContact() {
+  let you = localStorage.getItem("currentUser");
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].email === you) {
+      let contactName = combineNames(contacts, i);
+      let color = contacts[i][color];
+      renderYou(contactName, color);
+    }
+  }
+}
+
+function renderYou(contactName, colorOfContact) {
+  let container = document.getElementById("selectYouContainer");
+  container.innerHTML += `
+    <div
+      class="dd-placeholder gray-hover"
+      id="youContact"
+      onclick="selectedForTask('${contactName}', 'point','${colorOfContact}')"
+    >
+      <div>You</div>
+      <div class="select-box center">
+        <div id="point"></div>
+      </div>
+    </div>
+  `;
 }
 
 function getColorFromSelectedContact(contacts, i) {
@@ -585,7 +613,6 @@ async function pushTaskInTasks() {
     // await backend.deleteItem("users");
   }
 }
-
 
 function taskUploaded() {
   let popUpId = document.getElementById("successfulUpload");
