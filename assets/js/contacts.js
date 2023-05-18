@@ -1,5 +1,6 @@
 let newContacts = [];
 let letters = [];
+let currentUser;
 
 async function initContacts() {
   await includePlusInit();
@@ -17,18 +18,22 @@ function createNewContact() {
   showContacts();
 }
 
-async function submitContact() {
+function submitContact() {
   let name = document.getElementById("name");
   let mail = document.getElementById("mail");
   let phone = document.getElementById("phone");
   let color = generateRandomColor();
 
+  newContact(name, mail, phone, color);
+}
+
+async function newContact(name, mail, phone, color) {
   if (WordCount(name) === 1) {
     let newContact = {
       firstname: name.value,
       lastname: "",
       email: mail.value,
-      phone: phone.value,
+      phone: probe(phone),
       color: color,
     };
     contacts.push(newContact);
@@ -39,11 +44,19 @@ async function submitContact() {
       firstname: name.value.split(" ")[0],
       lastname: name.value.split(" ")[1],
       email: mail.value,
-      phone: phone.value,
+      phone: probe(phone),
       color: color,
     };
     contacts.push(newContact);
     await backend.setItem("contacts", JSON.stringify(contacts));
+  }
+}
+
+function probe(phone) {
+  if (phone.value) {
+    return phone.value;
+  } else {
+    return "";
   }
 }
 

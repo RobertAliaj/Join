@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/img/join_small.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/img/join_small.png" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <script src="assets/js/mini_backend.js"></script>
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
     <script src="assets/js/login.js"></script>
+    <script src="assets/js/contacts.js"></script>
 
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/fonts/fonts.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/login.css" />
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <title>Document</title>
-</head>
+  </head>
 
-<body id="body" onload="animate(); initLogin()">
+  <body id="body" onload="animate(); initLogin()">
     <div class="outer-div" id="outerDiv">
-        <div class="animation-container">
-            <div class="img-div" id="imgDiv">
-                <img id="joinImg" src="assets/img/Join_big.png" alt="">
-            </div>
+      <div class="animation-container">
+        <div class="img-div" id="imgDiv">
+          <img id="joinImg" src="assets/img/Join_big.png" alt="" />
         </div>
+      </div>
     </div>
     <div class="outer-div-2" id="contentDiv">
-        <div class="sign-up" id="signUp">
-            <span>Not a Join user?</span>
-            <div onclick="openSignUp()">Sign up</div>
-        </div>
-        <div class="login-container" id="loginContainer">
-        </div>
+      <div class="sign-up" id="signUp">
+        <span>Not a Join user?</span>
+        <div onclick="openSignUp()">Sign up</div>
+      </div>
+      <div class="login-container" id="loginContainer"></div>
     </div>
-
-</body>
-
+  </body>
 </html>
