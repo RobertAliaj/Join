@@ -1,22 +1,46 @@
 let letters = [];
 let currentUser;
 
+/**
+ * initialization of the contacts page
+ */
 async function initContacts() {
   await includePlusInit();
   showContacts();
 }
 
+/**
+ * refreshing contacts in the Json from the Server
+ */
 async function refreshContacts() {
   jsonFromServer["contacts"] = contacts;
   await saveJSONToServer();
 }
 
+/**
+ * create a new contact
+ */
 function createNewContact() {
   submitContact();
   closeNewContact();
   showContacts();
 }
 
+/**
+ * show all the contacts on the left side of the page
+ */
+function showContacts() {
+  if (window.innerWidth < 1001) {
+    document.getElementById("newContactButtonResponsive").style.display =
+      "flex";
+  }
+  createLetters();
+  displayContacts();
+}
+
+/**
+ * getting all parameters for the new contact
+ */
 async function submitContact() {
   let name = document.getElementById("name");
   let mail = document.getElementById("mail");
@@ -26,6 +50,14 @@ async function submitContact() {
   newContact(name, mail, phone, color);
 }
 
+/**
+ *creating the object for a new contact depending on wheather there are 2 names or just one
+ *
+ * @param {*} name name of the contact
+ * @param {*} mail mail of the contact
+ * @param {*} phone number of the contact
+ * @param {*} color color for the contact
+ */
 async function newContact(name, mail, phone, color) {
   if (WordCount(name) === 1) {
     let newContact = {
@@ -43,7 +75,7 @@ async function newContact(name, mail, phone, color) {
       firstname: name.value.split(" ")[0],
       lastname: name.value.split(" ")[1],
       email: mail.value,
-      phone: probe(phone),
+      phone: gettingPhoneNumber(phone),
       color: color,
     };
     contacts.push(newContact);
@@ -51,7 +83,13 @@ async function newContact(name, mail, phone, color) {
   }
 }
 
-function probe(phone) {
+/**
+ * This function is made for a true return instead of a default
+ *
+ * @param {*} phone number of the contact
+ * @returns phone number or no phone number
+ */
+function gettingPhoneNumber(phone) {
   if (phone.value) {
     return phone.value;
   } else {
@@ -59,11 +97,19 @@ function probe(phone) {
   }
 }
 
+/**
+ *
+ * @param {*} str the name of the contact
+ * @returns how many words are in the contacts name
+ */
 function WordCount(str) {
   let arr = str.value.split(" ");
   return arr.filter((word) => word !== "").length;
 }
 
+/**
+ * slides in the createContact Container
+ */
 function openCreateContact() {
   document.getElementById("overlay").classList.remove("d-none");
   document.getElementById("newContactContainer").classList.remove("d-none");
@@ -78,6 +124,9 @@ function openCreateContact() {
   slideIn("newContactContainer");
 }
 
+/**
+ * slides out the new contact container
+ */
 function closeNewContact() {
   slideOut("newContactContainer");
   fadeOut();
@@ -87,20 +136,19 @@ function closeNewContact() {
   }, 400);
 }
 
-function showContacts() {
-  if (window.innerWidth < 1001) {
-    document.getElementById("newContactButtonResponsive").style.display =
-      "flex";
-  }
-  createLetters();
-  displayContacts();
-}
-
+/**
+ * an animation for fading in
+ */
 function fadeIn() {
   document.getElementById("overlay").classList.remove("fade-out");
   document.getElementById("overlay").classList.add("fade-in");
 }
 
+/**
+ * an animation for sliding in
+ *
+ * @param {*} container the container that is supposed to slide in
+ */
 function slideIn(container) {
   if (container === "newContactContainer") {
     document
@@ -115,11 +163,19 @@ function slideIn(container) {
   }
 }
 
+/**
+ * an animation for fading out
+ */
 function fadeOut() {
   document.getElementById("overlay").classList.remove("fade-in");
   document.getElementById("overlay").classList.add("fade-out");
 }
 
+/**
+ * an animation for slinding out
+ *
+ * @param {*} container  the container that is supposed to slide out
+ */
 function slideOut(container) {
   if (container === "newContactContainer") {
     document.getElementById("newContactContainer").classList.remove("slide-in");
@@ -132,6 +188,9 @@ function slideOut(container) {
   }
 }
 
+/**
+ * creating the letters for the contacts sorting system
+ */
 function createLetters() {
   let contactContainer = document.getElementById("contacts");
 
@@ -154,6 +213,9 @@ function createLetters() {
   }
 }
 
+/**
+ * displaying all Contacts
+ */
 function displayContacts() {
   if (contacts.length > 0) {
     for (j = 0; j < contacts.length; j++) {
@@ -164,6 +226,11 @@ function displayContacts() {
   }
 }
 
+/**
+ * A function that creates a random color
+ *
+ * @param {*} j the index of which contact is getting a color
+ */
 function setRandomColor(j) {
   if (!contacts[j]["color"] == "") {
     document.getElementById(
@@ -178,6 +245,10 @@ function setRandomColor(j) {
   refreshContacts();
 }
 
+/**
+ *
+ * @returns a random color
+ */
 function generateRandomColor() {
   let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
   let r = parseInt(color.substring(1, 3), 16);
@@ -193,6 +264,11 @@ function generateRandomColor() {
   return color;
 }
 
+/**
+ * opens specific contact
+ *
+ * @param {*} idx the index of which contact in the array is opened
+ */
 function openSpecificContact(idx) {
   document.getElementById("specificContact").innerHTML =
     specificContactHtml(idx);
@@ -210,6 +286,9 @@ function openSpecificContact(idx) {
   }
 }
 
+/**
+ * removing all css that is made for the specific contact
+ */
 function closeSpecificContact() {
   document.getElementById("leftSection").style.display = "flex";
   document.getElementById("contacts").style.display = "block";
@@ -220,6 +299,11 @@ function closeSpecificContact() {
   document.getElementById("newContactButton").style.display = "block";
 }
 
+/**
+ * editing a contact in the json
+ *
+ * @param {*} idx the index of the contact that is going to be edited
+ */
 function editContact(idx) {
   document.getElementById("overlay").classList.remove("d-none");
   document.getElementById("newContactContainer").classList.remove("d-none");
@@ -236,7 +320,10 @@ function editContact(idx) {
     contacts[idx]["color"];
 }
 
-function closeEditContact(idx) {
+/**
+ * closing the editing div and showing the refreshed contacts
+ */
+async function closeEditContact() {
   slideOut("newContactContainer");
   fadeOut();
   setTimeout(function () {
@@ -244,12 +331,17 @@ function closeEditContact(idx) {
     document.getElementById("newContactContainer").classList.add("d-none");
   }, 400);
   if (window.innerWidth < 1001) {
-    // openSpecificContact(idx)
     closeSpecificContact();
   }
+  await refreshContacts();
   showContacts();
 }
 
+/**
+ * deleting a contact out of the json
+ *
+ * @param {*} idx the index of the contact
+ */
 async function deleteContact(idx) {
   contacts.splice(idx, 1);
   await refreshContacts();
@@ -258,6 +350,11 @@ async function deleteContact(idx) {
   document.getElementById("specificContact").innerHTML = "";
 }
 
+/**
+ * changing the parameters of the contact
+ *
+ * @param {*} idx index of contact
+ */
 function changeContact(idx) {
   let firstname = document.getElementById("name").value.split(" ")[0];
   let lastname = document.getElementById("name").value.split(" ")[1];
@@ -273,6 +370,9 @@ function changeContact(idx) {
   closeEditContact();
 }
 
+/**
+ * opening the addTask container
+ */
 function openAddTaskContainer() {
   let greyBackground = document.getElementById("greyBackground");
   let addTaskPopUp = document.getElementById("addTaskWrapper");
@@ -308,6 +408,9 @@ function openAddTaskContainer() {
   loadInfos();
 }
 
+/**
+ * closing the add task container
+ */
 function closeAddTaskWrapper() {
   let greyBackground = document.getElementById("greyBackground");
   let addTaskPopUp = document.getElementById("addTaskWrapper");
@@ -420,7 +523,7 @@ function specificContactHtml(idx) {
 
 function editContactHtml(idx) {
   return /*html*/ `
-        <img id="close" onclick="closeEditContact(${idx})" class="close" src="assets/img/Clear_task.png" alt="">
+        <img id="close" onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
         <div class="blue-side">
             <div class="flex-blue-side">
                 <img id="joinSmall" src="assets/img/join_small.png" alt="">
