@@ -286,32 +286,4 @@ function getSearchedTasksDetails(i) {
   return [task, section, names, prio, statusArray];
 }
 
-// function showAddTaskTemplate() {
-//   let greyBackground = document.getElementById("greyBackground");
-//   let addTaskPopUp = document.getElementById("addTaskWrapper");
 
-// function showAddTaskTemplate(){
-//     let greyBackground = document.getElementById('greyBackground');
-//     let addTaskPopUp = document.getElementById('addTaskWrapperBoard');
-
-//     greyBackground.classList.add('grey-background');
-//     greyBackground.classList.remove('hide-pop-up');
-
-//     addTaskPopUp.classList.add('add-task-wrapper');
-//     addTaskPopUp.classList.add('slide');
-//     addTaskPopUp.classList.remove('hide-pop-up');
-//     loadInfos();
-// }
-
-
-// function closeAddTaskWrapper(){
-//     let greyBackground = document.getElementById('greyBackground');
-//     let addTaskPopUp = document.getElementById('addTaskWrapperBoard');
-
-//     greyBackground.classList.remove('grey-background');
-//     greyBackground.classList.add('hide-pop-up');
-
-//     addTaskPopUp.classList.remove('add-task-wrapper');
-//     addTaskPopUp.classList.remove('slide');
-//     addTaskPopUp.classList.add('hide-pop-up');
-// }

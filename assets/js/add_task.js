@@ -2,12 +2,16 @@ let collectedContact = [];
 let initials = [];
 let selectedCategory;
 let prio;
+
 let subtasks = [];
 let subtaskStatus = [];
+
 let contacts = [];
 let categorys = [];
 let category = [];
+
 let tasks = [];
+
 let task = {
   title: "",
   description: "",
@@ -21,6 +25,8 @@ let task = {
   },
   progress: "",
 };
+
+
 let newCategory;
 let colorForNewCategory;
 let required = true;
@@ -29,6 +35,12 @@ let initialsRenderd = false;
 async function initAddTask() {
   await includePlusInit();
   loadInfos();
+
+  setInterval(() => {
+    console.log(task);
+    // console.log('Subtasks.length', subtasks.length);
+    // console.log('Name', task.subtasks.name);
+  }, 1000);
 }
 
 function loadInfos() {
@@ -83,7 +95,7 @@ function datePicker() {
       const day = date.getDate().toString().padStart(2, "0");
       const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const year = date.getFullYear();
-      input.value = `${day}-${month}-${year}`; // => '01-01-2024'
+      input.value = `${year}-${month}-${day}`; // => '01-01-2024'
     },
   });
 }
@@ -120,8 +132,8 @@ function renderContacts() {
       let colorOfContact = contacts[i]["color"];
       contactContainer.innerHTML += `
         <div class="dd-placeholder gray-hover" onclick="selectedForTask('${contactName}', 'contactName${[
-        i,
-      ]}','${colorOfContact}')">
+          i,
+        ]}','${colorOfContact}')">
             <div>${contactName}</div>
             <div class="select-box center">
                 <div id="contactName${[i]}"></div>
@@ -272,11 +284,9 @@ function renderInitials() {
 
   for (let i = 0; i < initials.length; i++) {
     initialsContainer.innerHTML += `
-    <div style="background-color:${
-      initials[i]["color"]
-    }" class="initials" id="contactInitials${[i]}">${
-      initials[i]["initial"]
-    }</div>`;
+    <div style="background-color:${initials[i]["color"]
+      }" class="initials" id="contactInitials${[i]}">${initials[i]["initial"]
+      }</div>`;
   }
 }
 
@@ -530,6 +540,7 @@ function getDate() {
   }
 }
 
+
 function getPrio() {
   if (prio == undefined) {
     document.getElementById("prioReport").classList.remove("d-none");
@@ -540,17 +551,20 @@ function getPrio() {
   }
 }
 
+
 function pushSubtask() {
   for (let i = 0; i < subtasks.length; i++) {
     task.subtasks.name.push(subtasks[i]) || [];
   }
 }
 
-function pushStatus() {
-  for (let i = 0; i < subtaskStatus.length; i++) {
-    task.subtasks.status.push(subtaskStatus[i]);
-  }
-}
+
+// function pushStatus() {
+//     for (let i = 0; i < subtaskStatus.length; i++) {
+//       task.subtasks.status.push(subtaskStatus[i]);
+//   }
+// }
+
 
 async function collectAllInfos() {
   task.title = getTitle();
@@ -631,6 +645,7 @@ function taskUploaded() {
 
   popUpId.classList.remove("d-none");
   popUpId.classList.add("popUp");
+
 
   setTimeout(function () {
     popUpId.innerHTML = `redirecting to the board...`;

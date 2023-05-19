@@ -147,7 +147,7 @@ function renderEditTaskPopUpHtml(i) {
 
     <div class="edit-date column">
         <span>DueDate</span>
-        <input class="border edit-date" type="date" id="date${i}" name="datum" value="${task.due_date}" onclick="setTodayDate(${i})">
+        <input class="border edit-date" type="date" id="date${i}" value="${task.due_date}" onclick="setTodayDate(${i})">
     </div>
 
     <div class="edit-prio column">
@@ -190,7 +190,7 @@ function renderEditTaskPopUpHtml(i) {
     </div>
 
 
-    <div class="edit-progress-divs d-none">
+    <div class="edit-progress-divs">
         <div class="progress-divs" id="neWTODO" onclick="dragAndDropResponsive(${i}, 'neWTODO', 'TODO')">
             <span>To Do</span>
         </div>
@@ -213,7 +213,3 @@ function renderEditTaskPopUpHtml(i) {
         <img src="assets/img/create_task2.png">
     </div>`;
 }
-
-
-
-//  <input type="text" placeholder="dd/mm/yyyy" id="date" class="white-box no-outline"></input>

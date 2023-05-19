@@ -34,7 +34,7 @@ function renderPopUpBoard(i) {
     let popUp = document.getElementById('popUpOne');
     popUp.innerHTML = '';
     let task = popUpTasks[i];
-    console.log(task.due_date);
+    console.log('Board Pop Up',task.due_date);
     popUp.innerHTML += renderPopUpBoardHtml(task, i);
     getNamesPopUp(i);
 }
