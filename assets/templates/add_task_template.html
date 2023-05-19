@@ -262,7 +262,10 @@
   </div>
 
   <div id="idOfAddTaskButtons" class="buttons">
-    <button onclick="collectAllInfos()" class="create-task space-evenly">
+    <button
+      onclick="await collectAllInfos(); closeAddTask()"
+      class="create-task space-evenly"
+    >
       Create Task
       <img src="assets/img/create_task.png" />
     </button>

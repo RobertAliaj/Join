@@ -578,6 +578,9 @@ async function collectAllInfos() {
   pushStatus();
   task.progress = "TODO";
   pushTaskInTasks();
+}
+
+function closeAddTask() {
   clearTaskFields();
 }
 
