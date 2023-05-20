@@ -598,8 +598,11 @@ function collectAllInfos() {
 
   if (collectedContact.length > 0 && task.category && task.title && task.description && task.assigned_to && task.due_date) {
     pushTaskInTasks();
-    // clearTaskFields();
   }
+}
+
+function closeAddTask() {
+  clearTaskFields();
 }
 
 function clearTaskFields() {

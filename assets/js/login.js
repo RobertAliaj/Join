@@ -248,7 +248,7 @@ function LoginContainerHtml() {
         </div>
         <div class="buttons">
           <button type="submit" onclick="logIn()" class="login-button"> Log in</button>
-          <button type="submit" onclick="location.href = 'index.html'; saveGreetingName(' ')" class="guest-login-button">Guest Log in</button>
+          <button type="submit" onclick="window.location.replace('index.html'); saveGreetingName('Guest')" class="guest-login-button">Guest Log in</button>
         </div> 
       </form>
   `;
