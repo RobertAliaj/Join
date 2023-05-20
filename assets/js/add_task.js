@@ -40,7 +40,6 @@ async function initAddTask() {
 function loadInfos() {
   renderCategorys();
   renderContacts();
-  datePicker();
 }
 
 /**
@@ -78,21 +77,13 @@ function pullDownMenu(clicked, notClicked, visible, notVisible) {
   }
 }
 
-/**
- * This function shows a datepicker.
- * Source: https://github.com/qodesmith/datepicker
- */
-function datePicker() {
-  const picker = datepicker("#date", {
-    startDay: 1,
-    formatter: (input, date) => {
-      const day = date.getDate().toString().padStart(2, "0");
-      const month = (date.getMonth() + 1).toString().padStart(2, "0");
-      const year = date.getFullYear();
-      input.value = `${year}-${month}-${day}`; // => '01-01-2024'
-    },
-  });
+
+function addTaskSetDate() {
+  let today = new Date();
+  let dateInput = document.getElementById('date');
+  dateInput.value = today.toISOString().slice(0, 10);
 }
+
 
 function renderCategorys() {
   categoryContainer = document.getElementById("loadedCategorys");
@@ -469,16 +460,15 @@ function setOnclickForColorpicker(colorCircle) {
   rgbColor = colorCircle.style["cssText"];
   i = rgbColor.length;
   onclickColor = rgbColor.slice(22, i - 2);
-  console.log(onclickColor);
   colorCircle.setAttribute("onclick", `selectedColor(${onclickColor})`);
 }
 
 
 function selectedColor(r, g, b) {
-    colorForNewCategory = `rgb(${r}, ${g}, ${b})`;
-    // document.getElementById('colorPickCircle' + index).classList.add('choosenCategory');
-    //   console.log("Der ausgewählte Kreis hat den Index:", index);
-  }
+  colorForNewCategory = `rgb(${r}, ${g}, ${b})`;
+  // document.getElementById('colorPickCircle' + index).classList.add('choosenCategory');
+  //   console.log("Der ausgewählte Kreis hat den Index:", index);
+}
 
 
 async function saveNewCategory() {
@@ -592,13 +582,11 @@ function collectAllInfos() {
   task.prio = getPrio();
   task.progress = "TODO";
 
-  getDate;
   pushSubtask();
   pushStatus();
 
   if (collectedContact.length > 0 && task.category && task.title && task.description && task.assigned_to && task.due_date) {
     pushTaskInTasks();
-    // clearTaskFields();
   }
 }
 
@@ -685,7 +673,9 @@ function taskUploaded() {
     clearTaskFields();
   }, 500);
   setTimeout(function () {
-    window.location.href = "board.html";
+    // if (!window.location.href  == 'http://127.0.0.1:5501/board.html') {
+      window.location.href = "board.html";
+    // }
   }, 1000);
 }
 
@@ -756,10 +746,6 @@ function taskUploaded() {
 // async function initAddTask() {
 //   await includePlusInit();
 //   loadInfos();
-
-//   setInterval(() => {
-//     console.log(task);
-//   }, 1000);
 // }
 
 // function loadInfos() {

@@ -109,7 +109,7 @@
     border: 1px solid rgb(209, 209, 209);
     border-radius: 10px;
     font-size: 21px;
-    padding-left: 21px;
+    padding: 17px;
     font-family: 'Inter';
     font-weight: 400;
     background-color: rgb(255, 255, 255);
@@ -156,7 +156,7 @@
 }
 
 
-.choosenCategory{
+.choosenCategory {
     height: 32px !important;
     width: 32px !important;
 }
@@ -292,7 +292,7 @@
     width: 14px;
 }
 
-.delete-subtask{
+.delete-subtask {
     position: absolute;
     right: 18px;
     top: 4px;
