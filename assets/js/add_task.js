@@ -590,6 +590,10 @@ function collectAllInfos() {
   }
 }
 
+function closeAddTask() {
+  clearTaskFields();
+}
+
 function clearTaskFields() {
   let valuesOfInputs = getIdsOfInputFields();
   setPrioButtonsToDefault();
