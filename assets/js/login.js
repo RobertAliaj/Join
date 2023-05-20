@@ -184,7 +184,6 @@ function logIn() {
   );
   if (user) {
     // alert.classList.add('d-none');
-    saveCurrentUser(user["email"]);
     saveGreetingName(user["name"]);
     window.location.replace("index.html");
   } else {
@@ -193,10 +192,6 @@ function logIn() {
     let alert = document.getElementById("alert");
     alert.classList.remove("d-none");
   }
-}
-
-function saveCurrentUser(currentUser) {
-  localStorage.setItem("currentUser", currentUser);
 }
 
 function lsRememberMe() {
@@ -221,6 +216,15 @@ function lsRememberMe() {
 
 function submitForm() {
   document.querySelector("form").submit();
+}
+
+function openLogOutContainer() {
+  document.getElementById('logOut').classList.toggle('d-none')
+}
+
+function logOut() {
+  localStorage.removeItem('greetingName');
+  window.location.replace('login.html');
 }
 
 function LoginContainerHtml() {

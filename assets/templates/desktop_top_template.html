@@ -1,11 +1,14 @@
-<div id="head" class="header">
-    <div class="hide-if-not-mobile"> <img class="logo-for-mobile" src="assets/img/Join_big.png" alt=""></div>
-    <span class="hide">Kanban Project Managment Tool</span>
+<div class="head">
+    <div id="head" class="header">
+        <div class="hide-if-not-mobile"> <img class="logo-for-mobile" src="assets/img/Join_big.png" alt=""></div>
+        <span class="hide">Kanban Project Managment Tool</span>
 
-    <div class="user-info">
-        <a href="help.html">
-            <img class="help hide" src="assets\img\help.png">
-        </a>
-        <img class="user-img" src="assets\img\guest_login_img.png">
+        <div class="user-info">
+            <a href="help.html">
+                <img class="help hide" src="assets\img\help.png">
+            </a>
+            <img onclick="openLogOutContainer()" class="user-img" src="assets\img\guest_login_img.png">
+        </div>
     </div>
+    <div onclick="logOut()" id="logOut" class="log-out d-none">Log Out</div>
 </div>
