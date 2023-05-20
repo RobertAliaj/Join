@@ -332,12 +332,12 @@ function changeColor(img) {
 
 function addSubtask() {
   let subtaskInput = document.getElementById("subtaskInput");
-  // if (subtaskInput.value.length > 0) {
-  subtasks.push(subtaskInput.value);
-  subtaskStatus.push(false);
-  renderSubtasks();
-  switchSubtaskIcons();
-  // }
+  if (subtaskInput.value.length > 0) {
+    subtasks.push(subtaskInput.value);
+    subtaskStatus.push(false);
+    renderSubtasks();
+    switchSubtaskIcons();
+  }
 }
 
 function removeSubtask(i) {
@@ -356,7 +356,7 @@ function renderSubtasks() {
           <div onclick="setStatus('selectboxSubtask${i}', ${i})" class="selectbox-subtask">
             <img class="subtaskDone ${setClass}" id="selectboxSubtask${i}" src="assets/img/create_subtask.png">
           </div>
-          <div>${subtasks[i]}</div>
+          <div class="subtask-text">${subtasks[i]}</div>
             <img class="clear-input pointer delete-subtask" onclick="removeSubtask(${i}), ${i}" src="assets/img/Clear_task_input.png" alt="${subtasks[i]}">
         </div>
         `;
@@ -453,6 +453,7 @@ function getRandomColor() {
 
 function generateRandomColor() {
   var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  console.log(randomColor);
   return randomColor;
 }
 
@@ -592,6 +593,8 @@ function collectAllInfos() {
 
 function closeAddTask() {
   clearTaskFields();
+  clearContacts();
+  // switchSubtaskIcons();
 }
 
 function clearTaskFields() {
@@ -666,21 +669,28 @@ async function pushTaskInTasks() {
 }
 
 function taskUploaded() {
-  let popUpId = document.getElementById("successfulUpload");
+  if (window.location.href == 'http://127.0.0.1:5501/board.html') {
+    closeAddTask();
+    closeAddTaskWrapper();
+    initBoard();
+    // location.reload();
+  } else {
+    let popUpId = document.getElementById("successfulUpload");
 
-  popUpId.classList.remove("d-none");
-  popUpId.classList.add("popUp");
+    popUpId.classList.remove("d-none");
+    popUpId.classList.add("popUp");
 
 
-  setTimeout(function () {
-    popUpId.innerHTML = `redirecting to the board...`;
-    clearTaskFields();
-  }, 500);
-  setTimeout(function () {
-    // if (!window.location.href  == 'http://127.0.0.1:5501/board.html') {
+    setTimeout(function () {
+      popUpId.innerHTML = `redirecting to the board...`;
+      clearTaskFields();
+    }, 500);
+
+    setTimeout(function () {
       window.location.href = "board.html";
-    // }
-  }, 1000);
+    }, 1000);
+  }
+
 }
 
 

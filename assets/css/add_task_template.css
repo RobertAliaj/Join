@@ -270,9 +270,13 @@
     margin-bottom: 10px;
 }
 
+.subtask-text{
+    width: 80%;
+    word-break: break-all;
+}
+
 .input-cat-sub {
-    height: 48px;
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
     border: none;
     border-radius: 10px;
