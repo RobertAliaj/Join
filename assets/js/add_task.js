@@ -452,9 +452,18 @@ function getRandomColor() {
 }
 
 function generateRandomColor() {
-  var randomColor = Math.floor(Math.random() * 16777215).toString(16);
-  console.log(randomColor);
-  return randomColor;
+  let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  let r = parseInt(color.substring(1, 3), 16);
+  let g = parseInt(color.substring(3, 5), 16);
+  let b = parseInt(color.substring(5, 7), 16);
+
+  while (r + g + b < (255 * 3) / 2) {
+    color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    r = parseInt(color.substring(1, 3), 16);
+    g = parseInt(color.substring(3, 5), 16);
+    b = parseInt(color.substring(5, 7), 16);
+  }
+  return color;
 }
 
 function setOnclickForColorpicker(colorCircle) {
