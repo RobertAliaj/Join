@@ -147,6 +147,7 @@ function popUpOpenFalse() {
  * This function is used to get the color and the name of every category in the categoryJSON and push it into the categoriesAndColors array.
  */
 function getCategoryColorAndName() {
+  categoriesAndColors = [];
   for (let i = 0; i < categories.length; i++) {
     let categoryName = categories[i]["name"];
     let categoryColor = categories[i]["color"];

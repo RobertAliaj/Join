@@ -157,8 +157,7 @@
 
 
 .choosenCategory {
-    height: 32px !important;
-    width: 32px !important;
+    scale: 1.5;
 }
 
 .more-content {

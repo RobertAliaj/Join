@@ -19,6 +19,9 @@ async function initBoard() {
     getCategoryColorAndName();
     getContactColorsandInitials();
     renderTasks();
+    // setInterval(() => {
+    //   console.log(categories);
+    // }, 500);
 }
 
 
@@ -151,6 +154,7 @@ function renderInitialsColors(i, s) {
   }
 }
 
+
 /**
  *  This function is used to give each Category a color
  */
@@ -163,6 +167,7 @@ function changeCategoryColor(i) {
     }
   }
 }
+
 
 /**
  *  This function is used to render the Priority img.
@@ -285,5 +290,3 @@ function getSearchedTasksDetails(i) {
   let statusArray = searchTasks[i]["subtasks"]["status"];
   return [task, section, names, prio, statusArray];
 }
-
-
