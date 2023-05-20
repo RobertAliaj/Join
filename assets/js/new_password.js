@@ -20,7 +20,6 @@ async function createNewPassword() {
   if (password1 === password2) {
     for (let i = 0; i < users.length; i++) {
       if (users[i]["email"] === localStorage.email) {
-        console.log(i);
         users[i]["password"] = password1;
         await saveJSONToServer();
         correctPassword();

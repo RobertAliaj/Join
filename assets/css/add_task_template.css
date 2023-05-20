@@ -149,9 +149,16 @@
 }
 
 .category-color {
+    cursor: pointer;
     height: 16px;
     width: 16px;
     border-radius: 50%;
+}
+
+
+.choosenCategory{
+    height: 32px !important;
+    width: 32px !important;
 }
 
 .more-content {
@@ -285,11 +292,18 @@
     width: 14px;
 }
 
+.delete-subtask{
+    position: absolute;
+    right: 18px;
+    top: 4px;
+}
+
 .sub-task {
     display: flex;
     align-items: center;
     font-size: 16px;
     padding-bottom: 5px;
+    position: relative;
 }
 
 .selectbox-subtask {

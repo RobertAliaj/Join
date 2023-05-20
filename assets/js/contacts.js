@@ -408,6 +408,7 @@ function openAddTaskContainer() {
   loadInfos();
 }
 
+
 /**
  * closing the add task container
  */

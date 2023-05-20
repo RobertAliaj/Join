@@ -243,14 +243,11 @@
 }
 
 .delete-button {
+    position: unset !important;
     width: 30%;
-    background-color: red;
-    border-radius: 12px;
-    border: 1px solid grey;
+    border: none;
     color: white;
     font-weight: bold;
-    padding: 8px;
-    cursor: pointer;
 }
 
 .red-btn:hover {
