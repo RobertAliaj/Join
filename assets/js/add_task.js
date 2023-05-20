@@ -446,7 +446,7 @@ function getRandomColor() {
     generatedColor = generateRandomColor();
     onclickColor = `selectedColor(#${generatedColor})`;
     colorCircle = document.getElementById("colorPickCircle" + index);
-    colorCircle.style = `background-color: #${generatedColor}`;
+    colorCircle.style = `background-color: ${generatedColor}`;
     setOnclickForColorpicker(colorCircle);
   }
 }
