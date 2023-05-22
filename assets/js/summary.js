@@ -11,7 +11,7 @@ async function initSummary() {
   await includePlusInit();
   saveCurrentUser()
   greetingTime();
-  setProfilePicture();
+  // setProfilePicture();
   loadTasks();
 
 }
