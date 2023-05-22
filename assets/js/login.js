@@ -1,11 +1,15 @@
+
 let users = [];
 
 async function initLogin() {
-  // await downloadFromServer();
-  // users = jsonFromServer['users'];
-  init();
+  await init();
   openLogIn();
   lsRememberMe();
+}
+
+async function refreshUsers() {
+  jsonFromServer["users"] = users;
+  await saveJSONToServer();
 }
 
 function animate() {
@@ -112,9 +116,7 @@ function animateResponsive() {
   document.getElementById("outerDiv").style.zIndex = 1;
 }
 
-function saveGreetingName(name) {
-  localStorage.setItem("greetingName", name);
-}
+
 
 function openSignUp() {
   document.getElementById("signUp").style.display = "none";
@@ -149,6 +151,7 @@ function signUp() {
       name: signUpName.value,
       email: signUpEmail.value,
       password: signUpPassword.value,
+      gender: '',
     };
     pushUser(user);
     newContact(signUpName, signUpEmail, phone, color);
@@ -172,26 +175,39 @@ function isEmailAlreadyExists(email) {
 
 async function pushUser(user) {
   users.push(user);
-  jsonFromServer["users"] = users;
-  await saveJSONToServer();
+  refreshUsers();
 }
 
-function logIn() {
+async function logIn() {
   let email = document.getElementById("email");
   let password = document.getElementById("password");
   let user = users.find(
     (u) => u.email == email.value && u.password == password.value
   );
   if (user) {
-    // alert.classList.add('d-none');
-    saveGreetingName(user["name"]);
-    window.location.replace("index.html");
+
+    saveGreetingNameToLocalStorage(user["name"]);
+    saveCurrentUserToLocalStorage(user["email"]);
+    await replaceLocation();
+
   } else {
     email.value = "";
     password.value = "";
     let alert = document.getElementById("alert");
     alert.classList.remove("d-none");
   }
+}
+
+async function replaceLocation() {
+  window.location.replace("index.html");
+}
+
+function saveGreetingNameToLocalStorage(name) {
+  localStorage.setItem("greetingName", name);
+}
+
+function saveCurrentUserToLocalStorage(email) {
+  localStorage.setItem("currentUser", email);
 }
 
 function lsRememberMe() {
@@ -252,7 +268,7 @@ function LoginContainerHtml() {
         </div>
         <div class="buttons">
           <button type="submit" onclick="logIn()" class="login-button"> Log in</button>
-          <button type="submit" onclick="window.location.replace('index.html'); saveGreetingName('Guest')" class="guest-login-button">Guest Log in</button>
+          <button type="submit" onclick="window.location.replace('index.html'); saveGreetingNameToLocalStorage('Guest')" class="guest-login-button">Guest Log in</button>
         </div> 
       </form>
   `;
