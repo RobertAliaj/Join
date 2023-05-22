@@ -63,8 +63,9 @@ function visibleInitialsHtml(oneInitial, i, s) {
 function renderPopUpBoardHtml(task, i) {
     return `
  
-    <img src="assets/img/Clear_task.png" id="exitPopUp" class="exit" onclick="removeBoardPopUp()">
-
+    <div class="exit">
+    <img src="assets/img/Clear_task.png" id="exitPopUp" onclick="removeBoardPopUp()">
+    </div>
     <div class="pop-up-category" id="popUpCategory${i}">
         <span>${task.category}</span>
     </div>
@@ -133,7 +134,10 @@ function getNamesPopUpHtml(i, n, initials, names) {
 function renderEditTaskPopUpHtml(i) {
     let task = popUpTasks[i];
     return `
-    <img src="assets/img/Clear_task.png" class="exit edit-exit" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})">
+    
+    <div class="exit edit-exit">
+        <img src="assets/img/Clear_task.png" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})">
+    </div>
     
     <div class="edit-title column">
         <span>Title</span>
@@ -211,5 +215,6 @@ function renderEditTaskPopUpHtml(i) {
     <div class="edit-ok" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})" title="Speichern">
         <span>Ok</span>
         <img src="assets/img/create_task2.png">
-    </div>`;
+    </div>
+    `;
 }

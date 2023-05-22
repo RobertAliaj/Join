@@ -98,7 +98,7 @@ body {
   cursor: pointer;
   box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 8%);
   position: relative;
-  width: 96%;
+  width: 100%;
 }
 
 .to-do-cards:hover {

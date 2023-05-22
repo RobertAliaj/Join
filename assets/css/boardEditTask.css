@@ -1,9 +1,9 @@
-.exit {
+/* .exit {
     position: absolute;
     top: 20px;
     right: 25px;
     cursor: pointer;
-}
+} */
 
 .column {
     display: flex;
@@ -30,6 +30,16 @@
     margin-bottom: 16px;
 }
 
+.edit-ok-parent {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
+    position: absolute;
+    bottom: 0;
+    right: 40px;
+}
+
 .edit-ok {
     box-sizing: border-box;
     background-color: rgb(42, 54, 71);
@@ -42,7 +52,7 @@
     justify-content: center;
     gap: 10px;
     position: absolute;
-    bottom: 25px;
+    bottom: -20px;
     right: 30px;
 }
 
@@ -81,6 +91,7 @@
     display: flex;
     gap: 10px;
     margin-top: 16px;
+    margin-bottom: 32px;
 }
 
 

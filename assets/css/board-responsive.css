@@ -20,9 +20,10 @@
     }
 
     .container {
-        padding: 40px;
+        /* padding: 40px;
         padding-top: 90px;
-        padding-left: 40px;
+        padding-left: 40px; */
+        padding: 90px 40px 110px 40px;
     }
 
     .search-div {
@@ -35,7 +36,7 @@
     }
     
     .container{
-        width: 100vw;
+        width: 100%;
     }
 
 }
