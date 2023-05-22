@@ -64,7 +64,7 @@ async function newContact(name, mail, phone, color) {
       firstname: name.value,
       lastname: "",
       email: mail.value,
-      phone: probe(phone),
+      // phone: probe(phone),
       color: color,
     };
     contacts.push(newContact);
@@ -346,9 +346,10 @@ async function closeEditContact() {
 async function deleteContact(idx) {
   contacts.splice(idx, 1);
   await refreshContacts();
-  location.reload();
+  // location.reload();
   initContacts();
   document.getElementById("specificContact").innerHTML = "";
+  console.log(idx);
 }
 
 /**
