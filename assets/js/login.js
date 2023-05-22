@@ -198,6 +198,11 @@ async function logIn() {
   }
 }
 
+function guestLogIn() {
+  saveGreetingNameToLocalStorage('Guest');
+  saveCurrentUserToLocalStorage('');
+}
+
 async function replaceLocation() {
   window.location.replace("index.html");
 }
@@ -268,7 +273,7 @@ function LoginContainerHtml() {
         </div>
         <div class="buttons">
           <button type="submit" onclick="logIn()" class="login-button"> Log in</button>
-          <button type="submit" onclick="window.location.replace('index.html'); saveGreetingNameToLocalStorage('Guest')" class="guest-login-button">Guest Log in</button>
+          <button type="submit" onclick="window.location.replace('index.html'); guestLogIn()" class="guest-login-button">Guest Log in</button>
         </div> 
       </form>
   `;
