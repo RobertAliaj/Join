@@ -395,6 +395,10 @@
     cursor: pointer !important;
 }
 
+.specific-single-contact div:last-child span:last-child:hover {
+    font-weight: 700;
+}
+
 .no-hover {
     pointer-events: none !important;
 }
@@ -416,6 +420,11 @@
     gap: 100px;
     align-items: center;
     margin-bottom: 30px;
+}
+
+.edit-span span:last-child:hover {
+    color: #007CEE;
+    font-weight: 700;
 }
 
 .contact-information div:first-child span:first-child {
