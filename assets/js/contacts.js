@@ -1,5 +1,4 @@
 let letters = [];
-let currentUser;
 
 /**
  * initialization of the contacts page

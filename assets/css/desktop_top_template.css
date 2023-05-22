@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: space-between;
     z-index: 1;
+    position: relative;
 }
 
 .header span {
@@ -22,14 +23,45 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 36px;
+    /* padding-right: 40px; */
+}
+
+.profile {
+    display: flex;
+    align-items: space-between;
+    height: 100%;
+    margin-right: 70px;
 }
 
 .help {
     cursor: pointer;
 }
 
+.different-profiles {
+    padding: 10px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 70px;
+    box-sizing: border-box;
+}
+
+.different-profiles img {
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgb(44, 54, 70);
+    cursor: pointer;
+}
+
 .user-img {
+    width: 50px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 50%;
     box-shadow: 0 0 0 3px rgb(44, 54, 70);
@@ -41,7 +73,7 @@
     width: 100px;
     height: 50px;
     align-self: flex-end;
-    margin-right: 36px;
+    margin-right: 70px;
     display: flex;
     align-items: center;
     justify-content: center;

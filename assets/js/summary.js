@@ -1,3 +1,5 @@
+let currentUser;
+
 let tasks = [];
 let contacts = [];
 
@@ -7,16 +9,19 @@ function openBoard() {
 
 async function initSummary() {
   await includePlusInit();
-  prepareContacts();
-  loadTasks();
+  saveCurrentUser()
   greetingTime();
+  setProfilePicture();
+  loadTasks();
+
 }
 
-function prepareContacts() {
-  for (j = 0; j < contacts.length; j++) {
-    if (contacts[j]["color"] == "") {
-      contacts[j]["color"] = generateRandomColor();
-      refreshContacts();
+function saveCurrentUser() {
+  let email = localStorage.getItem('currentUser');
+  for (let i = 0; i < users.length; i++) {
+    if (users[i]["email"] == email) {
+      currentUser = i;
+      console.log(i)
     }
   }
 }
@@ -219,4 +224,30 @@ function animateResponsiveGreeting() {
         0
       );
   }, 2000);
+}
+
+function openSelectProfile() {
+  document.getElementById('profilePictures').classList.toggle('d-none')
+}
+
+function chooseProfilePicture(img) {
+  document.getElementById('userPicture').src = `assets/img/${img}`
+  if (img === 'woman.png') {
+    users[currentUser]['gender'] = 'woman';
+  }
+  if (img === 'man.png') {
+    users[currentUser]['gender'] = 'man';
+  }
+  refreshUsers();
+}
+
+function setProfilePicture() {
+  img = document.getElementById('userPicture');
+  if (users[currentUser]['gender'] === 'woman') {
+    img.src = 'assets/img/woman.png';
+  } else if (users[currentUser]['gender'] === 'man') {
+    img.src = 'assets/img/man.png';
+  } else {
+    img.src = 'assets/img/guest_login_img.png';
+  }
 }
