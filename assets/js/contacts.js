@@ -375,7 +375,7 @@ function changeContact(idx) {
 /**
  * opening the addTask container
  */
-function openAddTaskContainer() {
+function openAddTaskContainer(idx) {
   let greyBackground = document.getElementById("greyBackground");
   let addTaskPopUp = document.getElementById("addTaskWrapper");
   let rightSection = document.getElementById("rightSection");
@@ -408,6 +408,10 @@ function openAddTaskContainer() {
     addTaskPopUp.classList.remove("slide-out");
   }
   loadInfos();
+  selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
+  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
+  addContacts();
+
 }
 
 
@@ -498,7 +502,7 @@ function specificContactHtml(idx) {
                 <div>
                     <span class="name">${contacts[idx]["firstname"]} ${contacts[idx]["lastname"]
     }</span>
-                    <span onclick="openAddTaskContainer()" class="add-task">+ Add Task</span>
+                    <span onclick="openAddTaskContainer(${idx})" class="add-task">+ Add Task</span>
                 </div>
             </div>
             <div class="contact-information">

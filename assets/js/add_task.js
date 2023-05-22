@@ -35,7 +35,7 @@ let initialsRenderd = false;
 async function initAddTask() {
   await includePlusInit();
   loadInfos();
-  
+
   // setInterval(() => {
   //   console.log(categorys);
   // }, 500);
@@ -615,9 +615,9 @@ function collectAllInfos() {
 }
 
 function closeAddTask() {
+  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
   clearTaskFields();
   clearContacts();
-  // switchSubtaskIcons();
 }
 
 function clearTaskFields() {

@@ -4,7 +4,7 @@ let users = [];
 async function initLogin() {
   await init();
   openLogIn();
-  lsRememberMe();
+  checkRememberMe();
 }
 
 async function refreshUsers() {
@@ -188,6 +188,7 @@ async function logIn() {
 
     saveGreetingNameToLocalStorage(user["name"]);
     saveCurrentUserToLocalStorage(user["email"]);
+    isRememberMe();
     await replaceLocation();
 
   } else {
@@ -215,16 +216,9 @@ function saveCurrentUserToLocalStorage(email) {
   localStorage.setItem("currentUser", email);
 }
 
-function lsRememberMe() {
-  const rmCheck = document.getElementById("rememberMe"),
-    emailInput = document.getElementById("email");
-
-  if (localStorage.checkbox && localStorage.checkbox !== "") {
-    rmCheck.setAttribute("checked", "checked");
-    emailInput.value = localStorage.username;
-  } else {
-    rmCheck.removeAttribute("checked");
-  }
+function isRememberMe() {
+  const rmCheck = document.getElementById("rememberMe");
+  let emailInput = document.getElementById("email");
 
   if (rmCheck.checked) {
     localStorage.username = emailInput.value;
@@ -232,6 +226,18 @@ function lsRememberMe() {
   } else {
     localStorage.username = "";
     localStorage.checkbox = "";
+  }
+}
+
+function checkRememberMe() {
+  const rmCheck = document.getElementById("rememberMe");
+  let emailInput = document.getElementById("email");
+
+  if (localStorage.checkbox && localStorage.checkbox !== "") {
+    emailInput.value = localStorage.username;
+    rmCheck.setAttribute("checked", "checked");
+  } else {
+    rmCheck.removeAttribute("checked");
   }
 }
 
@@ -266,7 +272,7 @@ function LoginContainerHtml() {
         </div>
         <div class="remember-me">
           <div>
-            <input type="checkbox" id="rememberMe" onclick="lsRememberMe()" value="lsRememberMe" class="select-box">
+            <input type="checkbox" id="rememberMe" onclick="checkRememberMe()" value="lsRememberMe" class="select-box">
             <span>Remember me</span>
           </div>
           <a onclick="openForgotPassword()">Forgot my password</a>
