@@ -19,8 +19,8 @@ async function refreshContacts() {
 /**
  * create a new contact
  */
-function createNewContact() {
-  submitContact();
+async function createNewContact() {
+  await submitContact();
   closeNewContact();
   showContacts();
 }
@@ -29,6 +29,7 @@ function createNewContact() {
  * show all the contacts on the left side of the page
  */
 function showContacts() {
+  document.getElementById('contacts').innerHTML = '';
   if (window.innerWidth < 1001) {
     document.getElementById("newContactButtonResponsive").style.display =
       "flex";
@@ -44,7 +45,7 @@ async function submitContact() {
   let name = document.getElementById("name");
   let mail = document.getElementById("mail");
   let phone = document.getElementById("phone");
-  let color = generateRandomColor();
+  let color = await generateRandomColor();
 
   newContact(name, mail, phone, color);
 }
@@ -63,11 +64,10 @@ async function newContact(name, mail, phone, color) {
       firstname: name.value,
       lastname: "",
       email: mail.value,
-      // phone: probe(phone),
       color: color,
     };
     contacts.push(newContact);
-    await backend.setItem("contacts", JSON.stringify(contacts));
+    await refreshContacts()
   }
   if (WordCount(name) === 2) {
     let newContact = {
@@ -78,7 +78,7 @@ async function newContact(name, mail, phone, color) {
       color: color,
     };
     contacts.push(newContact);
-    await backend.setItem("contacts", JSON.stringify(contacts));
+    await refreshContacts()
   }
 }
 
@@ -133,6 +133,7 @@ function closeNewContact() {
     document.getElementById("overlay").classList.add("d-none");
     document.getElementById("newContactContainer").classList.add("d-none");
   }, 400);
+  refreshContacts();
 }
 
 /**
@@ -249,7 +250,7 @@ function setRandomColor(j) {
  *
  * @returns a random color
  */
-function generateRandomColor() {
+async function generateRandomColor() {
   let color = "#" + Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0');
   let r = parseInt(color.substring(1, 3), 16);
   let g = parseInt(color.substring(3, 5), 16);
