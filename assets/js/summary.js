@@ -243,11 +243,13 @@ function chooseProfilePicture(img) {
 
 function setProfilePicture() {
   img = document.getElementById('userPicture');
-  if (users[currentUser]['gender'] === 'woman') {
-    img.src = 'assets/img/woman.png';
-  } else if (users[currentUser]['gender'] === 'man') {
-    img.src = 'assets/img/man.png';
+  if (localStorage.getItem('currentUser') !== '') {
+    if (users[currentUser]['gender'] === 'woman') {
+      img.src = 'assets/img/woman.png';
+    } else if (users[currentUser]['gender'] === 'man') {
+      img.src = 'assets/img/man.png';
+    }
   } else {
-    img.src = 'assets/img/guest_login_img.png';
+    img.src = 'assets/img/guestLogin.png';
   }
 }
