@@ -191,6 +191,7 @@ function slideOut(container) {
  * creating the letters for the contacts sorting system
  */
 function createLetters() {
+  letters = [];
   let contactContainer = document.getElementById("contacts");
 
   if (contacts.length > 0) {
@@ -260,7 +261,7 @@ function generateRandomColor() {
     g = parseInt(color.substring(3, 5), 16);
     b = parseInt(color.substring(5, 7), 16);
   }
-  
+
   return color;
 }
 
@@ -345,7 +346,6 @@ async function closeEditContact() {
 async function deleteContact(idx) {
   contacts.splice(idx, 1);
   await refreshContacts();
-  // location.reload();
   initContacts();
   document.getElementById("specificContact").innerHTML = "";
   console.log(idx);
@@ -465,19 +465,17 @@ function createLetterHtml(i) {
 function contactHtml(j) {
   return /*html*/ `
         <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
-            <div style="background-color:${
-              contacts[j].color
-            }" class="name-tag" id="${j}">
+            <div style="background-color:${contacts[j].color
+    }" class="name-tag" id="${j}">
                 ${contacts[j]["firstname"].charAt(0).toUpperCase()}${contacts[
-    j
-  ]["lastname"]
-    .charAt(0)
-    .toUpperCase()}
+      j
+    ]["lastname"]
+      .charAt(0)
+      .toUpperCase()}
             </div>
             <div>
-                <span>${contacts[j]["firstname"]} ${
-    contacts[j]["lastname"]
-  }</span>
+                <span>${contacts[j]["firstname"]} ${contacts[j]["lastname"]
+    }</span>
                 <span>${contacts[j]["email"]}</span>
             </div>
         </div>
@@ -488,19 +486,17 @@ function specificContactHtml(idx) {
   return /*html*/ `
         <div class="specific-contact">
             <div class="specific-single-contact">
-                <div style="background-color:${
-                  contacts[idx].color
-                }" class="name-tag bigger" id="specific${idx}">
+                <div style="background-color:${contacts[idx].color
+    }" class="name-tag bigger" id="specific${idx}">
                     ${contacts[idx]["firstname"]
-                      .charAt(0)
-                      .toUpperCase()}${contacts[idx]["lastname"]
-    .charAt(0)
-    .toUpperCase()}
+      .charAt(0)
+      .toUpperCase()}${contacts[idx]["lastname"]
+        .charAt(0)
+        .toUpperCase()}
                 </div>
                 <div>
-                    <span class="name">${contacts[idx]["firstname"]} ${
-    contacts[idx]["lastname"]
-  }</span>
+                    <span class="name">${contacts[idx]["firstname"]} ${contacts[idx]["lastname"]
+    }</span>
                     <span onclick="openAddTaskContainer()" class="add-task">+ Add Task</span>
                 </div>
             </div>
@@ -534,34 +530,30 @@ function editContactHtml(idx) {
             </div>
         </div>
         <div class="contact-create-container">
-            <div style="background-color:#${
-              contacts[idx].color
-            }" class="name-tag bigger" id="edit${idx}">
+            <div style="background-color:#${contacts[idx].color
+    }" class="name-tag bigger" id="edit${idx}">
                 ${contacts[idx]["firstname"].charAt(0).toUpperCase()}${contacts[
-    idx
-  ]["lastname"]
-    .charAt(0)
-    .toUpperCase()}
+      idx
+    ]["lastname"]
+      .charAt(0)
+      .toUpperCase()}
             </div>           
             <div class="contact-form">
                 <form onsubmit="return false">
                     <div class="input-fields">
                         <div>
-                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" value="${
-                              contacts[idx]["firstname"]
-                            } ${contacts[idx]["lastname"]}" required>
+                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" value="${contacts[idx]["firstname"]
+    } ${contacts[idx]["lastname"]}" required>
                             <img src="assets/img/user.png" alt="">
                         </div>
                         <div>
-                            <input id="mail" placeholder="Email" type="email" value="${
-                              contacts[idx]["email"]
-                            }" required>
+                            <input id="mail" placeholder="Email" type="email" value="${contacts[idx]["email"]
+    }" required>
                             <img src="assets/img/mail.png" alt="">
                         </div>
                         <div>
-                            <input id="phone" placeholder="Phone" type="tel" value="${
-                              contacts[idx]["phone"]
-                            }" required>
+                            <input id="phone" placeholder="Phone" type="tel" value="${contacts[idx]["phone"]
+    }" required>
                             <img src="assets/img/mobile.png" alt="">
                         </div>
                     </div>
