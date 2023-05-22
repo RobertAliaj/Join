@@ -139,14 +139,14 @@ function openForgotPassword() {
   loginContainer.innerHTML += PasswordContainerHtml();
 }
 
-function signUp() {
+async function signUp() {
   let signUpName = document.getElementById("signUpName");
   let signUpEmail = document.getElementById("signUpEmail");
   let signUpPassword = document.getElementById("signUpPassword");
   let phone = "";
 
   if (!isEmailAlreadyExists(signUpEmail.value)) {
-    let color = generateRandomColor();
+    let color = await generateRandomColor();
     let user = {
       name: signUpName.value,
       email: signUpEmail.value,

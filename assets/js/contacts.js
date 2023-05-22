@@ -345,6 +345,11 @@ async function closeEditContact() {
  * @param {*} idx the index of the contact
  */
 async function deleteContact(idx) {
+  for (let i = 0; i < users.length; i++) {
+    if (contacts[idx]['email'] === users[i]['email']) {
+      users.splice(i, 1)
+    }
+  }
   contacts.splice(idx, 1);
   await refreshContacts();
   initContacts();
