@@ -190,6 +190,7 @@ function deleteTaskFromArrays(i) {
     let taskTitle = task.title;                                                 // der Titel von dem jeweiligen Task in der popUpTasks
 
     popUpTasks.splice(popUpTasks.indexOf(task), 1);                             // lösche die Task aus dem Array popUpTasks
+    categories.splice(i, 1);
 
     let index = allTasks.findIndex(x => x.title === taskTitle);                 // index = der Titel im allTasks der mit taskTitle (der Title von der Task die gelöscht wurde) übereinstimmt
     if (index != -1 && allTasks[index].title === taskTitle) {                   // wenn index existiert (!= -1 (nicht minus 1 heisst true, also heisst das es ist im Array Vorhanden)) und der Titel von der Task im allTask == der titel von der gelöschten Task
