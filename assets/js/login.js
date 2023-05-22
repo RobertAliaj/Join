@@ -236,8 +236,20 @@ function checkRememberMe() {
   if (localStorage.checkbox && localStorage.checkbox !== "") {
     emailInput.value = localStorage.username;
     rmCheck.setAttribute("checked", "checked");
+  }
+}
+
+function clickedRememberMe() {
+  const rmCheck = document.getElementById("rememberMe");
+  let emailInput = document.getElementById("email");
+
+  if (localStorage.checkbox && localStorage.checkbox == "") {
+    localStorage.username = emailInput.value;
+    rmCheck.setAttribute("checked", "checked");
   } else {
     rmCheck.removeAttribute("checked");
+    localStorage.username = "";
+    localStorage.checkbox = "";
   }
 }
 
@@ -272,7 +284,7 @@ function LoginContainerHtml() {
         </div>
         <div class="remember-me">
           <div>
-            <input type="checkbox" id="rememberMe" onclick="checkRememberMe()" value="lsRememberMe" class="select-box">
+            <input type="checkbox" id="rememberMe" onclick="clickedRememberMe()" value="lsRememberMe" class="select-box">
             <span>Remember me</span>
           </div>
           <a onclick="openForgotPassword()">Forgot my password</a>
