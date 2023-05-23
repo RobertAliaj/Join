@@ -6,6 +6,14 @@ let letters = [];
 async function initContacts() {
   await includePlusInit();
   showContacts();
+  checkPreviousAddTask();
+}
+
+function checkPreviousAddTask() {
+  let set = localStorage.getItem('inviteContact');
+  if (set === 'true') {
+    openCreateContact();
+  }
 }
 
 /**
@@ -134,6 +142,7 @@ function closeNewContact() {
     document.getElementById("newContactContainer").classList.add("d-none");
   }, 400);
   refreshContacts();
+  localStorage.setItem('inviteContact', false);
 }
 
 /**

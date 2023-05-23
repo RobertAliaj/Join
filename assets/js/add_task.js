@@ -32,13 +32,10 @@ let colorForNewCategory;
 let required = true;
 let initialsRenderd = false;
 
+
 async function initAddTask() {
   await includePlusInit();
   loadInfos();
-
-  // setInterval(() => {
-  //   console.log(categorys);
-  // }, 500);
 }
 
 function loadInfos() {
@@ -714,4 +711,9 @@ function taskUploaded() {
     }, 1000);
   }
 
+}
+
+function directToNewContact() {
+  localStorage.setItem('inviteContact', true);
+  window.location.href = 'contacts.html';
 }
