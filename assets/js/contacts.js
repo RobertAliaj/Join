@@ -412,7 +412,9 @@ function openAddTaskContainer(idx) {
     addTaskPopUp.classList.remove("slide-out");
   }
   loadInfos();
-  selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
+  if (idx) {
+    selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
+  }
   pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
   addContacts();
 
