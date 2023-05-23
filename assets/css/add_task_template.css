@@ -37,7 +37,7 @@
     margin-right: 20px;
 }
 
-.padding-20-top {
+.color-picker {
     padding: 20px;
 }
 
@@ -63,6 +63,7 @@
     left: 232px;
     right: 0px;
     bottom: 0;
+
 }
 
 .report {
@@ -84,7 +85,7 @@
 
 }
 
-.headline {
+.headline-add-task {
     width: 100%;
 }
 
@@ -157,7 +158,7 @@
 
 
 .choosenCategory {
-    scale: 1.5;
+    scale: 1.4;
 }
 
 .more-content {
@@ -264,12 +265,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 0px !important;
+    padding-left: 0px;
 
     margin-bottom: 10px;
 }
 
-.subtask-text{
+.subtask-text {
     width: 80%;
     word-break: break-all;
 }
@@ -438,6 +439,74 @@
 }
 
 
+@media(max-width:1540px) {
+    /* .input-section {
+        font-size: 20px;
+    } */
+
+
+    .white-box {
+        font-size: unset !important;
+        height: unset;
+        padding: 8px;
+    }
+
+    .textarea-description {
+        padding: 8px;
+        font-size: unset;
+    }
+
+
+    .dropdown-category-closed {
+        height: unset;
+        font-size: unset;
+    }
+
+    .dd-placeholder {
+        height: unset;
+        padding: 8px;
+    }
+
+    .prio-button {
+        height: unset;
+        padding: 8px;
+        font-size: unset;
+    }
+
+    .input-cat-sub {
+        padding-left: 8px;
+        font-size: unset;
+    }
+
+    .new-cat {
+        padding: 8px;
+    }
+
+    .color-picker {
+        padding: 8px;
+    }
+
+    .padding-36-bottom {
+        padding-bottom: 18px;
+    }
+
+    .create-task {
+        height: unset;
+        font-size: unset;
+        padding: 8px;
+    }
+
+    .category-color {
+        height: 12px;
+        width: 12px;
+    }
+
+    .create-sub{
+        padding: 0;
+    }
+}
+
+
 
 @media (max-width:1300px) {
 
@@ -446,11 +515,13 @@
     }
 
     .content-container {
-        position: unset !important;
+        position: unset;
         display: flex;
         justify-content: center;
         padding-bottom: 90px;
         padding-top: 90px;
+        transform: scale(1);
+        transform-origin: left;
     }
 
     .user-info {

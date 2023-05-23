@@ -9,7 +9,7 @@
     style="max-width: 100% !important"
     >Kanban Project Managment Tool</span
   >
-  <div class="headline">
+  <div class="headline-add-task">
     <h1>Add Task</h1>
   </div>
   <div class="input-section">
@@ -67,7 +67,7 @@
                 type="text"
                 placeholder="New category name"
                 id="categoryInput"
-                class="input-cat-sub no-outline"
+                class="input-cat-sub no-outline new-cat"
               />
               <div
                 class="center space-between clear-add-button-container padding-17-right"
@@ -98,7 +98,7 @@
             <div id="loadedCategorys"></div>
           </div>
         </div>
-        <div id="color-picker" class="display-flex padding-20-top d-none">
+        <div id="color-picker" class="display-flex color-picker  d-none">
           <div
             class="category-color margin-20-right"
             id="colorPickCircle0"
@@ -236,12 +236,12 @@
           <div class="center" id="addSubtask">
             <img
               onclick="switchSubtaskIcons()"
-              class="padding-17-right pointer"
+              class="padding-17-right create-sub pointer"
               src="assets/img/add_subtask.png"
             />
           </div>
           <div
-            class="center space-between clear-add-button-container padding-17-right d-none"
+            class="center space-between clear-add-button-container padding-17-right d-none create-sub"
             id="createSubtask"
           >
             <img

@@ -6,10 +6,6 @@
     .card-bg{
         z-index: 1;
     }
-
-    /* .name-inits {
-        height: 180px;
-    } */
 }
 
 @media(max-width: 1000px) {
@@ -17,10 +13,6 @@
         width: 70%;
         padding: 30px;
     }
-
-    /* .name-inits {
-        height: fit-content;
-    } */
 }
 
 @media(max-width: 830px) {
@@ -85,16 +77,6 @@
         background: transparent;
     }
 
-    /* .edit-or-delete {
-        flex-direction: column;
-        width: fit-content;
-        position: fixed;
-    } */
-
-    .pop-up-assigned {
-        /* margin-bottom: 75px; */
-    }
-
     .width {
         width: 185px;
     }
@@ -102,10 +84,6 @@
     .delete-pop-up {
         width: 95%;
     }
-
-    /* .name-inits {
-        height: fit-content !important;
-    } */
 
     .edit-progress-divs {
         display: flex !important;

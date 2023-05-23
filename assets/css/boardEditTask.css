@@ -1,10 +1,3 @@
-/* .exit {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    cursor: pointer;
-} */
-
 .column {
     display: flex;
     flex-direction: column;

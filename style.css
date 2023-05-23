@@ -21,7 +21,7 @@ body {
     overflow: hidden;
 }
 
-.grey-background{
+.grey-background {
     background-color: black;
     position: absolute;
     height: 100vh;
@@ -38,18 +38,18 @@ body {
     display: none;
 }
 
-.show-if-mobile{
+.show-if-mobile {
     display: none;
     width: 100%;
     margin-top: 30px;
- 
+
 }
 
-.hide-if-not-mobile{
+.hide-if-not-mobile {
     display: none;
 }
 
-.add-task-wrapper{
+.add-task-wrapper {
     position: absolute;
     margin: auto;
     right: 0;
@@ -62,11 +62,12 @@ body {
     background: white;
     border-radius: 20px;
 }
-.hide-pop-up{
+
+.hide-pop-up {
     display: none
 }
 
-.close-btn{
+.close-btn {
     position: absolute;
     right: 40px;
     top: 30px;
@@ -78,17 +79,17 @@ body {
 
 @media (max-width:1300px) {
 
-    .hide-if-not-mobile{
+    .hide-if-not-mobile {
         display: unset !important;
         width: 100% !important;
     }
 
-    
+
     .hide {
         display: none;
     }
 
-    h1{
+    h1 {
         margin-top: 0px;
     }
 
@@ -114,7 +115,7 @@ body {
         display: unset;
     }
 
-    
+
     .legal-notice {
         display: none !important;
     }
@@ -138,13 +139,13 @@ body {
         object-fit: contain;
     }
 
-    .show-if-mobile{
+    .show-if-mobile {
         display: unset !important;
         max-width: 80% !important;
         margin-top: 30px !important;
         margin-bottom: 20px;
         font-size: 1rem;
-    
+
     }
 
     .header {
@@ -167,9 +168,9 @@ body {
         justify-content: center !important;
         margin-top: unset !important;
     }
-    
-    .link-img{
-        padding:unset !important;
+
+    .link-img {
+        padding: unset !important;
         margin: 5px;
     }
 
@@ -186,27 +187,28 @@ body {
     p {
         margin: 5px;
     }
+
     .link {
         flex-direction: column !important;
     }
 
 }
 
-@media (max-height: 750px){
-    .side-container-mobile{
+@media (max-height: 750px) {
+    .side-container-mobile {
         height: 60px !important;
     }
 
-    .header{
-        height: 60px !important;
+    .header {
+        height: 60px;
     }
 
-    .user-img{
+    .user-img {
         height: 35px !important;
 
     }
 
-    .logo-for-mobile{
+    .logo-for-mobile {
         height: 30px;
     }
 }
