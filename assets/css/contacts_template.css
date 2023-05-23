@@ -5,7 +5,6 @@
     right: 0px;
     bottom: 0;
     display: flex;
-    flex-direction: row;
 }
 
 .left-section {
@@ -15,49 +14,29 @@
     background-color: white;
     overflow-y: scroll;
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    z-index: 1;
 }
 
 .right-section {
     width: 70%;
-    position: relative;
-    background-color: #f6f7f8;
     Padding: 50px 50px 50px 50px;
     box-sizing: border-box;
-
 }
 
 
 /********* RIGHT SECTION ***********/
 
-
-.headline {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
 .headline span:first-of-type {
-    font-style: normal;
     font-weight: 700;
     font-size: 50px;
     line-height: 73.2px;
 }
 
 .headline span:last-of-type {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 200;
     font-size: 20px;
-    line-height: 32.4px;
 }
 
 .vertical-line-blue {
-    width: 0px;
     height: 40px;
     border: 1.5px solid #29ABE2;
     border-radius: 10px;
@@ -80,11 +59,9 @@
 
 .new-contact-button img {
     width: 30px;
-    height: 30px;
 }
 
 .new-contact-container {
-    z-index: 3;
     position: absolute;
     margin: auto;
     right: 0;
@@ -94,7 +71,6 @@
     height: 60vh;
     width: 70vw;
     display: flex;
-    z-index: 4;
 }
 
 .close {
@@ -212,7 +188,7 @@
 
 .submit-section {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     font-size: 15px;
     gap: 30px;
     margin-top: 30px;
@@ -499,7 +475,7 @@
     cursor: pointer;
 }
 
-.new-contact-button-responsive{
+.new-contact-button-responsive {
     display: none;
 }
 
@@ -583,37 +559,37 @@
 }
 
 
-@media (max-width: 1300px){
+@media (max-width: 1300px) {
     .right-section {
         display: none;
         width: 100%;
     }
 
-    .buttons{
+    .buttons {
         z-index: 12 !important;
     }
 
-    .flex-center{
+    .flex-center {
         display: flex;
         justify-content: center;
     }
 
-    .add-task-container{
+    .add-task-container {
         padding: unset !important;
         width: 90% !important;
         height: 100% !important;
     }
 
-    .contacts-page{
+    .contacts-page {
         left: 0 !important;
         width: 100%;
     }
 
-    .left-section{
-        width:100%;
+    .left-section {
+        width: 100%;
     }
 
-    .add-task-wrapper{
+    .add-task-wrapper {
         height: 100% !important;
         width: 100% !important;
         z-index: 9 !important;
@@ -650,7 +626,7 @@
         right: 40px;
     }
 
-    .input-section{
+    .input-section {
         display: unset !important;
         width: 90% !important;
         margin-left: 20px !important;
@@ -658,11 +634,11 @@
         margin-right: 20px !important;
     }
 
-    .headline{
+    .headline {
         width: 90%;
     }
 
-    .header{
+    .header {
         z-index: 10 !important;
     }
 
@@ -710,11 +686,11 @@
         bottom: -30px;
     }
 
-   
 
-  
 
-   
+
+
+
 }
 
 @media(max-width: 800px) {
@@ -749,7 +725,7 @@
         height: 70px;
     }
 
-   
+
 
     .contact-form {
         width: 100%;

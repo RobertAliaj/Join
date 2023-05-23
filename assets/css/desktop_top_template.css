@@ -1,16 +1,25 @@
-.header {
-    /* position: fixed;
+.head {
+    position: fixed;
     right: 0;
     left: 232px;
-    width: calc(100vw - 232px); */
-    height: 90px !important;
+    z-index: 3;
+}
+
+.header {
+    height: 90px;
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1;
-    position: relative;
+}
+
+.logo-for-mobile {
+    display: none;
+}
+
+.hide-if-not-mobile {
+    display: none;
 }
 
 .header span {
@@ -18,23 +27,20 @@
     font-size: 21px;
 }
 
+.help {
+    cursor: pointer;
+}
+
 .user-info {
     width: 106px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* padding-right: 40px; */
 }
 
 .profile {
     display: flex;
-    align-items: space-between;
-    height: 100%;
     margin-right: 70px;
-}
-
-.help {
-    cursor: pointer;
 }
 
 .different-profiles {
@@ -85,12 +91,30 @@
     border-bottom-right-radius: 20px;
 }
 
-.head {
-    position: fixed;
-    right: 0;
-    left: 232px;
-    width: calc(100vw - 232px);
-    display: flex;
-    flex-direction: column;
-    z-index: 3;
+@media (max-width:1300px) {
+    .header {
+        left: 0px;
+        width: 100%;
+        position: fixed;
+        height: 60px;
+    }
+
+    .logo-for-mobile {
+        display: unset;
+        height: 30px;
+        width: 100px;
+        object-fit: contain;
+    }
+
+    .hide-if-not-mobile {
+        display: unset;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .user-img {
+        height: 35px;
+    }
 }

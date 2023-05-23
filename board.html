@@ -1,172 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="assets/img/join_small.png" />
-    <title>Join</title>
 
-    <!-- Board CSS Files -->
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="assets/css/boardEditTask.css" />
-    <link rel="stylesheet" href="assets/css/boardPopUp.css" />
-    <link rel="stylesheet" href="assets/css/boardPopUp-responsive.css" />
-    <link rel="stylesheet" href="assets/css/board.css" />
-    <link rel="stylesheet" href="assets/css/board-responsive.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="assets/img/join_small.png" />
+  <title>Join</title>
 
-    <link rel="stylesheet" href="assets/css/desktop_top_template.css">
-    <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css">
-    <link rel="stylesheet" href="assets/fonts/fonts.css">
-    <link rel="stylesheet" href="assets\node_modules\js-datepicker\dist\datepicker.min.css">
-    <link rel="stylesheet" href="assets/css/add_task_template.css">
-    <link rel="stylesheet" href="assets/css/contacts_template.css">
+  <!-- Board CSS Files -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets/css/boardEditTask.css" />
+  <link rel="stylesheet" href="assets/css/boardPopUp.css" />
+  <link rel="stylesheet" href="assets/css/boardPopUp-responsive.css" />
+  <link rel="stylesheet" href="assets/css/board.css" />
+  <link rel="stylesheet" href="assets/css/board-responsive.css" />
 
-
-    <!-- Board JavaScriptFiles -->
-    <script src="assets/js/board/board.js"></script>
-    <script src="assets/js/board/boardEditTask.js"></script>
-    <script src="assets/js/board/boardProperties.js"></script>
-    <script src="assets/js/board/boardHtml.js"></script>
-    <script src="assets/js/board/boardPopUp.js"></script>
-
-    <script src="assets/js/mini_backend.js"></script>
-    <script src="script.js"></script>
-    <script src="assets/js/include.js"></script>
-    <script src="assets/js/login.js"></script>
+  <link rel="stylesheet" href="assets/css/desktop_top_template.css">
+  <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="assets\node_modules\js-datepicker\dist\datepicker.min.css">
+  <link rel="stylesheet" href="assets/css/add_task_template.css">
+  <link rel="stylesheet" href="assets/css/contacts_template.css">
 
 
+  <!-- Board JavaScriptFiles -->
+  <script src="assets/js/board/board.js"></script>
+  <script src="assets/js/board/boardEditTask.js"></script>
+  <script src="assets/js/board/boardProperties.js"></script>
+  <script src="assets/js/board/boardHtml.js"></script>
+  <script src="assets/js/board/boardPopUp.js"></script>
 
-    <!-- Contact and Add Task Javascript Files -->
-    <script src="assets\node_modules\js-datepicker\dist\datepicker.min.js"></script>
-    <script src="assets/js/add_task.js"></script>
-    <script src="assets\js\contacts.js"></script>
-  </head>
+  <script src="assets/js/mini_backend.js"></script>
+  <script src="script.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/login.js"></script>
+
+
+
+  <!-- Contact and Add Task Javascript Files -->
+  <script src="assets\node_modules\js-datepicker\dist\datepicker.min.js"></script>
+  <script src="assets/js/add_task.js"></script>
+  <script src="assets\js\contacts.js"></script>
+</head>
 
 <body onload="awaitHTML(); initBoard()">
 
-    <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
-    <div class="absolute">
-        <div w3-include-html="assets/templates/desktop_top_template.html"> </div>
-    </div>
-    <div w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
+  <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
+  <div class="absolute">
+    <div w3-include-html="assets/templates/desktop_top_template.html"> </div>
+  </div>
+  <div w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
 
-    <div class="container">
-      <span class="show-if-mobile" style="padding: 10px"
-        >Kanban Project Managment Tool</span
-      >
-      <div class="title">
-        <h1>Board</h1>
-        <div class="search-div">
-          <input
-            type="text"
-            placeholder="Find Task"
-            id="searchInput"
-            class="searchInput"
-            onkeyup="searchTask()"
-          />
-          <button onclick="openAddTaskContainer()" class="board-button">
-            Add task <img src="assets/img/add_subtask.png" />
-          </button>
-        </div>
-      </div>
-      <div class="to-do-section" id="toDoSection">
-        <div class="status-parent">
-          <div class="status-title">
-            <h4>To do</h4>
-            <img
-              src="assets/img/add_button.png"
-              class="add-img"
-              onclick="openAddTaskContainer()"
-            />
-          </div>
-          <div
-            class="cards-parent"
-            id="TODO"
-            ondrop="moveTo('TODO'); removeHighlight('TODO')"
-            ondragover="allowDrop(event); highlight('TODO')"
-            ondragleave="removeHighlight('TODO')"
-          ></div>
-        </div>
-
-        <div class="status-parent">
-          <div class="status-title">
-            <h4>In Progress</h4>
-            <img
-              src="assets/img/add_button.png"
-              class="add-img"
-              onclick="openAddTaskContainer()"/>
-          </div>
-          <div
-            class="cards-parent"
-            id="inProgress"
-            ondrop="moveTo('inProgress'); removeHighlight('inProgress')"
-            ondragover="allowDrop(event); highlight('inProgress')"
-            ondragleave="removeHighlight('inProgress')"
-          ></div>
-        </div>
-
-        <div class="status-parent">
-          <div class="status-title">
-            <h4>Awaiting Feedback</h4>
-            <img
-              src="assets/img/add_button.png"
-              class="add-img"
-              onclick="openAddTaskContainer()"
-            />
-          </div>
-          <div
-            class="cards-parent"
-            id="feedback"
-            ondrop="moveTo('feedback'); removeHighlight('feedback')"
-            ondragover="allowDrop(event); highlight('feedback')"
-            ondragleave="removeHighlight('feedback')"
-          ></div>
-        </div>
-
-        <div class="status-parent">
-          <div class="status-title">
-            <h4>Done</h4>
-            <img
-              src="assets/img/add_button.png"
-              class="add-img"
-              onclick="openAddTaskContainer()"
-            />
-          </div>
-          <div
-            class="cards-parent"
-            id="done"
-            ondrop="moveTo('done'); removeHighlight('done')"
-            ondragover="allowDrop(event); highlight('done')"
-            ondragleave="removeHighlight('done')"
-          ></div>
-        </div>
+  <div class="container">
+    <div class="title">
+      <h1>Board</h1>
+      <div class="search-div">
+        <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()" />
+        <button onclick="openAddTaskContainer()" class="board-button">
+          Add task <img src="assets/img/add_subtask.png" />
+        </button>
       </div>
     </div>
-
-    <div class="card-bg d-none" id="card">
-      <div class="card" onclick="event.stopPropagation()" id="popUpOne"></div>
-
-      <div
-        class="card d-none"
-        id="editTask"
-        onclick="event.stopPropagation()"
-      ></div>
-    </div>
-
-    <!-- Background PopUp -->
-    <div class="overlay d-none fade-in" id="greyBackground"></div>
-
-    <!-- Add Task Pop Up -->
-    <div class="d-none slide-out add-task-wrapper" id="addTaskWrapper">
-      <div onclick="closeAddTaskWrapper(); closeAddTask()" class="close-btn">
-        <img src="assets/img/Clear_task.png" alt="" />
+    <div class="to-do-section" id="toDoSection">
+      <div class="status-parent">
+        <div class="status-title">
+          <h4>To do</h4>
+          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer()" />
+        </div>
+        <div class="cards-parent" id="TODO" ondrop="moveTo('TODO'); removeHighlight('TODO')"
+          ondragover="allowDrop(event); highlight('TODO')" ondragleave="removeHighlight('TODO')"></div>
       </div>
-      <div
-        id="addTaskTemplate"
-        w3-include-html="assets/templates/add_task_template.html"
-      ></div>
+
+      <div class="status-parent">
+        <div class="status-title">
+          <h4>In Progress</h4>
+          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer()" />
+        </div>
+        <div class="cards-parent" id="inProgress" ondrop="moveTo('inProgress'); removeHighlight('inProgress')"
+          ondragover="allowDrop(event); highlight('inProgress')" ondragleave="removeHighlight('inProgress')"></div>
+      </div>
+
+      <div class="status-parent">
+        <div class="status-title">
+          <h4>Awaiting Feedback</h4>
+          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer()" />
+        </div>
+        <div class="cards-parent" id="feedback" ondrop="moveTo('feedback'); removeHighlight('feedback')"
+          ondragover="allowDrop(event); highlight('feedback')" ondragleave="removeHighlight('feedback')"></div>
+      </div>
+
+      <div class="status-parent">
+        <div class="status-title">
+          <h4>Done</h4>
+          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer()" />
+        </div>
+        <div class="cards-parent" id="done" ondrop="moveTo('done'); removeHighlight('done')"
+          ondragover="allowDrop(event); highlight('done')" ondragleave="removeHighlight('done')"></div>
+      </div>
     </div>
+  </div>
+
+  <div class="card-bg d-none" id="card">
+    <div class="card" onclick="event.stopPropagation()" id="popUpOne"></div>
+
+    <div class="card d-none" id="editTask" onclick="event.stopPropagation()"></div>
+  </div>
+
+  <!-- Background PopUp -->
+  <div class="overlay d-none fade-in" id="greyBackground"></div>
+
+  <!-- Add Task Pop Up -->
+  <div class="d-none slide-out add-task-wrapper" id="addTaskWrapper">
+    <div onclick="closeAddTaskWrapper(); closeAddTask()" class="close-btn">
+      <img src="assets/img/Clear_task.png" alt="" />
+    </div>
+    <div id="addTaskTemplate" w3-include-html="assets/templates/add_task_template.html"></div>
+  </div>
 </body>
 
 </html>

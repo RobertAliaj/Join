@@ -396,7 +396,6 @@ function openAddTaskContainer(idx) {
     addTaskPopUp.classList.remove("d-none");
     addTaskPopUp.classList.remove("slide-out");
     createTaskBtn.classList.remove("hide");
-    kanbanTitle.classList.remove("show-if-mobile");
 
     rightSection.classList.add("d-none");
     contactsTemplate.classList.add("d-none");
