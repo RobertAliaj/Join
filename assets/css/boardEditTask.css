@@ -40,9 +40,6 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    position: absolute;
-    bottom: 15px;
-    right: 30px;
 }
 
 .edit-ok img {

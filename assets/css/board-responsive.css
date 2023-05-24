@@ -15,7 +15,8 @@
     } */
 
     .container {
-        padding: 90px 40px 110px 40px;
+        padding: 90px clamp(20px, 3.9px + 4.5vw, 62px);
+        /* padding: 90px 40px 110px 40px; */
     }
 
     .search-div {
@@ -39,6 +40,15 @@
         min-height: 50px;
         height: fit-content;
     }
+
+    .title {
+        padding: 0;
+    }
+
+    .status-parent{
+        padding: 0;
+    }
+
 }
 
 

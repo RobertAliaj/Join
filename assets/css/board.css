@@ -1,6 +1,19 @@
 body {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
+
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: initial;
+  scrollbar-width: none;
+}
+
 
 .title h1 {
   margin-top: 0px;
@@ -17,7 +30,7 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   padding: 40px;
-  padding-top: 125px;
+  /* padding-top: 125px; */
   padding-left: 270px;
   width: calc(100vw - 16px);
 }
@@ -162,9 +175,10 @@ body {
   font-size: 12px;
 }
 
-.absolute {
-  position: absolute;
-  right: 0;
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 15;
 }
 
 .cards-parent {

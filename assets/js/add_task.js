@@ -36,6 +36,7 @@ let initialsRenderd = false;
 async function initAddTask() {
   await includePlusInit();
   loadInfos();
+  showCreateTaskBtn();
 }
 
 function loadInfos() {
@@ -687,6 +688,16 @@ async function pushTaskInTasks() {
     // await backend.deleteItem("users");
   }
 }
+
+
+function showCreateTaskBtn() {
+  if(window.location.href == 'http://127.0.0.1:5501/add_task.html'){
+    document.getElementById('addTaskBtn').classList.remove('d-none')
+  } else{
+    document.getElementById('addTaskBtn').classList.add('d-none')
+  }
+}
+
 
 function taskUploaded() {
   // Hier muss das Url noch dynamisch angepasst werden, erst wenn das Projekt fertig auf dem Server liegt
