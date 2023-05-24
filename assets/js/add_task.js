@@ -35,6 +35,7 @@ let initialsRenderd = false;
 
 async function initAddTask() {
   await includePlusInit();
+  setProfilePicture();
   loadInfos();
   showCreateTaskBtn();
 }

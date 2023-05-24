@@ -1,9 +1,9 @@
 @media(max-width: 1300px) {
-    .card{
+    .card {
         height: 70%;
         width: 80%;
     }
-    
+
     .card h1 {
         margin-top: revert;
     }
@@ -34,14 +34,14 @@
         border-radius: 0;
     }
 
-    .edit-ok{
+    .edit-ok {
         width: 100%;
         margin-top: 16px;
         position: initial;
     }
 
-    .card{
-        height:100%;
+    .card {
+        height: 100%;
         width: 100%;
         border-radius: 0;
     }
@@ -49,7 +49,7 @@
 
 
 @media(min-width: 830px) {
-    .edit-progress-divs{
+    .edit-progress-divs {
         display: none;
     }
 }
@@ -81,12 +81,6 @@
     /* .card {
         overflow: auto;
     } */
-
-    .cards-parent::-webkit-scrollbar {
-        width: 0 !important;
-        height: 0;
-        background: transparent;
-    }
 
     .width {
         width: 185px;

@@ -41,9 +41,7 @@
     padding: 20px;
 }
 
-.d-none {
-    display: none !important;
-}
+
 
 .no-outline:focus {
     outline: none;

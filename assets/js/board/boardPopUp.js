@@ -14,7 +14,7 @@ function showPopUp(i) {
     renderPopUpPrio(i);
     proofSubtasks(i);
     popUpCategoryColor(i);
-    changeHeightofAssignedTo(i);
+    // changeHeightofAssignedTo(i);
 }
 
 

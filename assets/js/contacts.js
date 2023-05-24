@@ -5,6 +5,7 @@ let letters = [];
  */
 async function initContacts() {
   await includePlusInit();
+  setProfilePicture();
   showContacts();
   checkPreviousAddTask();
 }

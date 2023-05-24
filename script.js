@@ -7,3 +7,9 @@ async function init() {
   contacts = backend.getItem("contacts") || [];
   categorys = backend.getItem("categorys") || [];
 }
+
+async function loadHelpAndPrivacy() {
+  await awaitHTML();
+  setProfilePicture()
+}
+

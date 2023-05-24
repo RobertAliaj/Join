@@ -17,13 +17,15 @@
     <script src="script.js"></script>
     <script src="assets/js/include.js"></script>
     <script src="assets/js/login.js"></script>
+    <script src="assets/js/summary.js"></script>
+
 
 </head>
 
-<body style="display:flex !important" onload="awaitHTML()">
+<body style="display:flex !important" onload="loadHelpAndPrivacy()">
     <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
     <div>
-        <div w3-include-html="assets/templates/desktop_top_template.html"></div>
+        <div onload="" w3-include-html="assets/templates/desktop_top_template.html"></div>
     </div>
     <div class="impressum">
         <h1>Kanban Definition</h1>
@@ -81,8 +83,9 @@
     </div>
     </div>
 
-    
-    <div style="position:absolute" id="bottomMenuTemplate" w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
+
+    <div style="position:absolute" id="bottomMenuTemplate"
+        w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
 </body>
 
 </html>

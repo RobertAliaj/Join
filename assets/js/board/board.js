@@ -15,13 +15,14 @@ let popUpOpen = false;
  * This function is used to call the functions that get the data from Backend and render them
  */
 async function initBoard() {
-    await getDataBase();
-    getCategoryColorAndName();
-    getContactColorsandInitials();
-    renderTasks();
-    // setInterval(() => {
-    //   console.log(categories);
-    // }, 500);
+  await getDataBase();
+  setProfilePicture();
+  getCategoryColorAndName();
+  getContactColorsandInitials();
+  renderTasks();
+  // setInterval(() => {
+  //   console.log(categories);
+  // }, 500);
 }
 
 

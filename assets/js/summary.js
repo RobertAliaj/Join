@@ -1,8 +1,5 @@
 let currentUser;
 
-let tasks = [];
-let contacts = [];
-
 function openBoard() {
   location.href = "https://gruppe-join-421.developerakademie.net/board.html";
 }

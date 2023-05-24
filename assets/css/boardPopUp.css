@@ -29,18 +29,7 @@
     overflow: auto;
 }
 
-.card::-webkit-scrollbar-thumb {
-    width: 0 !important;
-    height: 50px;
-    background: transparent;
-}
-
-.card::-webkit-scrollbar {
-    -webkit-appearance: unset;
-     width: 0;}
-
-
-.card textarea{
+.card textarea {
     resize: none;
 }
 
@@ -146,7 +135,7 @@
 
 .check-box {
     width: 20px !important;
-    height: 20px  !important;
+    height: 20px !important;
     border: 1px solid black;
     cursor: pointer;
     display: flex;
@@ -232,7 +221,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    top: 0; 
+    top: 0;
     bottom: 0;
     display: flex;
     align-items: center;
