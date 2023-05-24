@@ -1,18 +1,24 @@
 @media(max-width: 1300px) {
     .card{
-        height: 80%;
+        height: 70%;
+        width: 80%;
     }
-
-    .card-bg{
-        z-index: 1;
+    
+    .card h1 {
+        margin-top: revert;
     }
 }
 
 @media(max-width: 1000px) {
     .card {
-        width: 70%;
         padding: 30px;
+        font-size: 1.2rem;
     }
+
+    .to-do-section {
+        flex-wrap: wrap;
+    }
+
 }
 
 @media(max-width: 830px) {
@@ -29,9 +35,15 @@
     }
 
     .edit-ok{
-        width: unset;
+        width: 100%;
         margin-top: 16px;
         position: initial;
+    }
+
+    .card{
+        height:100%;
+        width: 100%;
+        border-radius: 0;
     }
 }
 
@@ -46,7 +58,6 @@
 
     .card {
         width: 100%;
-        height: calc(100% - 150px);
         border-radius: 0;
         overflow: auto;
     }
@@ -67,9 +78,9 @@
 }
 
 @media(max-width: 450px) {
-    .card {
+    /* .card {
         overflow: auto;
-    }
+    } */
 
     .cards-parent::-webkit-scrollbar {
         width: 0 !important;
@@ -89,12 +100,12 @@
         display: flex !important;
     }
 
-    .edit-ok {
+    /* .edit-ok {
         position: unset;
         width: unset;
         margin-top: 16px;
         margin-bottom: 50px;
-    }
+    } */
 
     .importance {
         gap: 5px;

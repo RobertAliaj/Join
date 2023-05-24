@@ -440,11 +440,6 @@
 
 
 @media(max-width:1540px) {
-    /* .input-section {
-        font-size: 20px;
-    } */
-
-
     .white-box {
         font-size: unset !important;
         height: unset;
@@ -575,6 +570,10 @@
     }
 
 
+    .create-task-responsive {
+        display: none;
+    }
+
 }
 
 @media(max-width: 1100px) {
@@ -623,8 +622,7 @@
 
     .create-task {
         font-size: 1rem;
-        height: 45px;
-        width: 135px;
+        padding: 8px;
     }
 
     .buttons {
@@ -635,14 +633,14 @@
 
 @media(max-width: 600px) {
     .dropdown-category-closed {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
 
 
     .prio-button {
         min-width: 80px !important;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
 

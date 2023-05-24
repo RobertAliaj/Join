@@ -209,15 +209,14 @@ function renderAndSave() {
 }
 
 
-
 /**
  * This function is used to change the height of the Element is there are more than 3 subtasks in one task (just for design).
  */
 function changeHeightofAssignedTo(i) {
-    if (allTasks[i]['subtasks']['name'].length >= 3) {
-        document.getElementById(`names${i}`).style.height = '90px';
-    }
-    else {
-        document.getElementById(`names${i}`).style.height = '180px';
-    }
+    // if (allTasks[i]['subtasks']['name'].length >= 3) {
+    //     document.getElementById(`names${i}`).style.height = '90px';
+    // }
+    // else {
+    //     document.getElementById(`names${i}`).style.height = '180px';
+    // }
 }

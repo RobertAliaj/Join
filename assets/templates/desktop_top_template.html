@@ -1,24 +1,32 @@
-<div class="head">
-    <div id="head" class="header">
-        <div class="hide-if-not-mobile"> <img class="logo-for-mobile" src="assets/img/Join_big.png" alt=""></div>
-        <span class="hide">Kanban Project Managment Tool</span>
+<!-- <div class="head"> -->
+<div id="head" class="header">
+    <img class="logo-for-mobile hide-if-not-mobile" src="assets/img/Join_big.png">
+    <span class="hide">Kanban Project Managment Tool</span>
 
-        <div class="profile">
-            <div class="user-info">
-                <a href="help.html">
-                    <img class="help hide" src="assets\img\help.png">
-                </a>
-                <img id="userPicture" onclick="openLogOutContainer(); openSelectProfile()" class="user-img" src="">
-            </div>
-            <div id="profilePictures" class="different-profiles d-none">
-                <img onclick="chooseProfilePicture('woman.png')" src="assets\img\woman.png">
-                <img onclick="chooseProfilePicture('man.png')" src="assets\img\man.png">
-            </div>
-
+    <div class="profile">
+        <div class="user-info">
+            <a href="help.html">
+                <img class="help hide" src="assets\img\help.png">
+            </a>
+            <img id="userPicture" onclick="openLogOutContainer(); openSelectProfile()" class="user-img" src="">
         </div>
+        <div id="profilePictures" class="different-profiles d-none">
+            <img onclick="chooseProfilePicture('woman.png')" src="assets\img\woman.png">
+            <img onclick="chooseProfilePicture('man.png')" src="assets\img\man.png">
+        </div>
+
     </div>
+    <div class="menu-btn-responsive">
+        <button onclick="collectAllInfos()" class="create-task space-evenly">
+            Create Task
+            <img src="assets/img/create_task.png">
+        </button>
+    </div>
+
     <div onclick="logOut()" id="logOut" class="log-out d-none">Log Out</div>
 </div>
+
+<!-- </div> -->
 
 <!-- <a href="https://www.flaticon.com/free-icons/woman" title="woman icons">Woman icons created by Vitaly Gorbachev - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/person" title="person icons">Person icons created by Vitaly Gorbachev - Flaticon</a> -->

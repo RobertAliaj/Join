@@ -3,21 +3,16 @@
         width: 50%;
     }
 
-    .cards-parent {
-        overflow: hidden;
-        min-height: 200px;
-        height: fit-content;
-    }
-
     .status-parent {
         width: 100%;
+        height: unset;
     }
 
-    .cards-parent {
+    /* .cards-parent {
         overflow: hidden;
-        min-height: 200px;
+        min-height: 50px;
         height: fit-content;
-    }
+    } */
 
     .container {
         padding: 90px 40px 110px 40px;
@@ -31,12 +26,22 @@
         font-size: 11px;
         width: 50%;
     }
-    
-    .container{
+
+    .container {
         width: 100%;
     }
-
 }
+
+
+@media(max-width:1000px) {
+    .cards-parent {
+        overflow: hidden;
+        min-height: 50px;
+        height: fit-content;
+    }
+}
+
+
 
 
 @media(max-width: 500px) {
@@ -46,8 +51,8 @@
 
     .title {
         flex-direction: column;
-        
+
     }
 
- 
+
 }

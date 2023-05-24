@@ -62,6 +62,7 @@ function visibleInitialsHtml(oneInitial, i, s) {
 
 function renderPopUpBoardHtml(task, i) {
     return `
+    <div>
  
     <div class="exit">
     <img src="assets/img/Clear_task.png" id="exitPopUp" onclick="removeBoardPopUp()">
@@ -106,7 +107,7 @@ function renderPopUpBoardHtml(task, i) {
         <div class="name-inits" id="names${i}">
         </div>
     </div>
- 
+ </div>
 
     <div class="edit-or-delete">
         <div class="edit-or-delete-child" onclick="openDeletePopUp(${i})" title="Löschen">
@@ -134,87 +135,91 @@ function getNamesPopUpHtml(i, n, initials, names) {
 function renderEditTaskPopUpHtml(i) {
     let task = popUpTasks[i];
     return `
-    
-    <div class="exit edit-exit">
-        <img src="assets/img/Clear_task.png" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})">
-    </div>
-    
-    <div class="edit-title column">
-        <span>Title</span>
-        <input id="inputTitle${i}" class="border" value="${task.title}">
-    </div>
 
-    <div class="edit-description column">
-        <span>Description</span>
-        <textarea id="inputDescription${i}" cols="0" rows="5" class="border description-input">${task.description}</textarea>
-    </div>
-
-    <div class="edit-date column">
-        <span>DueDate</span>
-        <input class="border edit-date" type="date" id="date${i}" value="${task.due_date}" onclick="setTodayDate(${i})">
-    </div>
-
-    <div class="edit-prio column">
+    <div>
+        <div class="exit edit-exit">
+            <img src="assets/img/Clear_task.png" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})">
+        </div>
         
-        <span>Prio</span>
+        <div class="edit-title column">
+            <span>Title</span>
+            <input id="inputTitle${i}" class="border" value="${task.title}">
+        </div>
 
-        <div class="edit-prio-divs">
-            <div class="importance" id="high" onclick="editPriority(${i}, 'high', 'highImg')">
-                <span>Urgent</span>
-                <img src="assets/img/prio_high_old.png" id="highImg">
+        <div class="edit-description column">
+            <span>Description</span>
+            <textarea id="inputDescription${i}" cols="0" rows="5" class="border description-input">${task.description}</textarea>
+        </div>
+
+        <div class="edit-date column">
+            <span>DueDate</span>
+            <input class="border edit-date" type="date" id="date${i}" value="${task.due_date}" onclick="setTodayDate(${i})">
+        </div>
+
+        <div class="edit-prio column">
+            
+            <span>Prio</span>
+
+            <div class="edit-prio-divs">
+                <div class="importance" id="high" onclick="editPriority(${i}, 'high', 'highImg')">
+                    <span>Urgent</span>
+                    <img src="assets/img/prio_high_old.png" id="highImg">
+                </div>
+                <div class="importance" id="medium" onclick="editPriority(${i}, 'medium', 'mediumImg')">
+                    <span>Medium</span>
+                    <img src="assets/img/prio_medium_old.png" id="mediumImg">
+                </div>
+                <div class="importance" id="low" onclick="editPriority(${i}, 'low', 'lowImg')">
+                    <span>Low</span>
+                    <img src="assets/img/prio_low_old.png" id="lowImg">
+                </div>
             </div>
-            <div class="importance" id="medium" onclick="editPriority(${i}, 'medium', 'mediumImg')">
-                <span>Medium</span>
-                <img src="assets/img/prio_medium_old.png" id="mediumImg">
+
+        </div>
+
+
+        
+
+        <div class="edit-assigned column">
+            <span>Assigned To</span>
+            
+            <div class="border dropdown-div" id="dropdownDiv${i}" onclick="renderContactsOnDropDown(${i}); openEditDropDown(${i})">
+                Select contacts to assign <img src="assets/img/drop_down.png">
             </div>
-            <div class="importance" id="low" onclick="editPriority(${i}, 'low', 'lowImg')">
-                <span>Low</span>
-                <img src="assets/img/prio_low_old.png" id="lowImg">
+            
+            <div id="dropdownElements${i}" class="dropDown-elemets border" style="display:none">
             </div>
         </div>
 
-    </div>
 
-
-    
-
-    <div class="edit-assigned column">
-        <span>Assigned To</span>
-        
-        <div class="border dropdown-div" id="dropdownDiv${i}" onclick="renderContactsOnDropDown(${i}); openEditDropDown(${i})">
-            Select contacts to assign <img src="assets/img/drop_down.png">
-        </div>
-        
-        <div id="dropdownElements${i}" class="dropDown-elemets border" style="display:none">
-        </div>
-    </div>
-
-
-    <div class="edit-initials" id="editInits${i}">
-    </div>
-
-
-    <div class="edit-progress-divs">
-        <div class="progress-divs" id="neWTODO" onclick="dragAndDropResponsive(${i}, 'neWTODO', 'TODO')">
-            <span>To Do</span>
+        <div class="edit-initials" id="editInits${i}">
         </div>
 
-        <div class="progress-divs" id="newInProgress" onclick="dragAndDropResponsive(${i}, 'newInProgress', 'inProgress')">
-            <span>In Progress</span>
-        </div>
-        
-        <div class="progress-divs" id="newFeedback" onclick="dragAndDropResponsive(${i}, 'newFeedback', 'feedback')">
-            <span>Feedback</span>
-        </div>
 
-        <div class="progress-divs" id="newDone" onclick="dragAndDropResponsive(${i}, 'newDone', 'done')">
-            <span>Done</span>
+        <div class="edit-progress-divs">
+            <div class="progress-divs" id="neWTODO" onclick="dragAndDropResponsive(${i}, 'neWTODO', 'TODO')">
+                <span>To Do</span>
+            </div>
+
+            <div class="progress-divs" id="newInProgress" onclick="dragAndDropResponsive(${i}, 'newInProgress', 'inProgress')">
+                <span>In Progress</span>
+            </div>
+            
+            <div class="progress-divs" id="newFeedback" onclick="dragAndDropResponsive(${i}, 'newFeedback', 'feedback')">
+                <span>Feedback</span>
+            </div>
+
+            <div class="progress-divs" id="newDone" onclick="dragAndDropResponsive(${i}, 'newDone', 'done')">
+                <span>Done</span>
+            </div>
         </div>
     </div>
 
-    <div class="edit-ok" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})" title="Speichern">
-        <span>Ok</span>
-        <img src="assets/img/create_task2.png">
+    <div class="edit-ok-parent">
+        <div class="edit-ok" onclick="closeEditTask(); renderEditedDetails(${i}), showPopUp(${i})" title="Speichern">
+            <span>Ok</span>
+            <img src="assets/img/create_task2.png">
+        </div>
     </div>
     `;
 }

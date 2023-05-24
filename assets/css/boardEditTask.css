@@ -27,10 +27,6 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    height: fit-content;
-    position: absolute;
-    bottom: 0;
-    right: 40px;
 }
 
 .edit-ok {
@@ -45,7 +41,7 @@
     justify-content: center;
     gap: 10px;
     position: absolute;
-    bottom: -20px;
+    bottom: 15px;
     right: 30px;
 }
 
