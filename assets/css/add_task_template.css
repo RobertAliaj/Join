@@ -645,3 +645,45 @@
 
 
 }
+
+@media (max-height: 800px) {
+    h1{
+        font-size: 1rem;
+    }
+
+    .display-flex{
+        font-size: 1rem;
+    }
+
+    .white-box{
+        height: 25px;
+        font-size: 1rem;
+    }
+
+    .textarea-description{
+        height: 50px;
+        font-size: 1rem;
+        padding-top: 13px;
+    }
+
+    .dd-placeholder{
+        font-size: 1rem;
+        height: 30px;
+    }
+
+  
+
+    .more-content{
+        max-height: 60px;
+    }
+
+    .input-cat-sub{
+        height: 21px;
+        font-size: 1rem;
+    }
+
+    .prio-button{
+        height: 35px;
+        font-size: 1rem;
+    }
+}

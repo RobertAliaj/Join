@@ -62,7 +62,16 @@ body {
 }
 
 @media (max-width:1300px) {
-    h1 {
+
+    .hide-if-not-mobile{
+        display: unset !important;
+    }
+    
+    .hide {
+        display: none;
+    }
+
+    h1{
         margin-top: 0px;
     }
 }

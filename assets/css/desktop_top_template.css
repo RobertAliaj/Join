@@ -76,6 +76,7 @@
 }
 
 .user-img {
+    height: 50px;
     width: 50px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 50%;
@@ -99,9 +100,12 @@
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     cursor: pointer;
+    position: absolute;
+    top: 90px;
+    right: 0px;
 }
 
-.log-out:hover{
+.log-out:hover {
     background-color: #50aadf;
 }
 
@@ -132,11 +136,17 @@
 
     .user-img {
         height: 35px;
+        width: 35px;
+        object-fit: contain;
+
     }
 }
 
-@media(min-width: 1300px){
-    .menu-btn-responsive{
+@media(min-width: 1300px) {
+    .menu-btn-responsive {
         display: none;
     }
+
+   
+    
 }
