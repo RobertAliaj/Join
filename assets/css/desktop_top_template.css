@@ -76,6 +76,7 @@
 }
 
 .user-img {
+    height: 50px;
     width: 50px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 50%;
@@ -132,6 +133,9 @@
 
     .user-img {
         height: 35px;
+        width: 35px;
+        object-fit: contain;
+
     }
 }
 
@@ -139,4 +143,7 @@
     .menu-btn-responsive{
         display: none;
     }
+
+   
+    
 }
