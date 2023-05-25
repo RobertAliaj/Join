@@ -571,6 +571,7 @@
         flex-direction: column;
         align-items: center;
         padding-top: 10px;
+        overflow-x: hidden;
     }
 
     .new-contact-button-responsive {
@@ -586,7 +587,7 @@
         padding: 5px;
         border-radius: 8px;
         margin: 10px;
-        box-sizing: border-box  ;
+        box-sizing: border-box;
     }
 
     .new-contact-button-responsive img {
@@ -623,6 +624,10 @@
 
     .new-contact-container {
         width: 95vw;
+    }
+
+    .contacts-page {
+        bottom: 80px;
     }
 }
 
