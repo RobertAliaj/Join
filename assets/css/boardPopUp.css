@@ -29,6 +29,17 @@
     overflow: auto;
 }
 
+.card::-webkit-scrollbar {
+    display: none;
+}
+
+
+.card {
+    -ms-overflow-style: initial;
+    scrollbar-width: none;
+}
+
+
 .card textarea {
     resize: none;
 }
