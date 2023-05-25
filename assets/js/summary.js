@@ -240,13 +240,16 @@ function chooseProfilePicture(img) {
 
 function setProfilePicture() {
   img = document.getElementById('userPicture');
-  if (localStorage.getItem('currentUser') !== '') {
-    if (users[currentUser]['gender'] === 'woman') {
+  gender = localStorage.getItem('currentUser');
+
+  switch (gender) {
+    case 'woman':
       img.src = 'assets/img/woman.png';
-    } else if (users[currentUser]['gender'] === 'man') {
+      break;
+    case 'man':
       img.src = 'assets/img/man.png';
-    }
-  } else {
-    img.src = 'assets/img/guestLogin.png';
+      break;
+    default:
+      img.src = 'assets/img/guestLogin.png';
   }
 }
