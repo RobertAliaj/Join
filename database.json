@@ -6,70 +6,70 @@
             "lastname": "Mayer",
             "email": "antom@gmail.com",
             "phone": "+491111111111",
-            "color": "#cde302"
+            "color": "cde302"
         },
         {
             "firstname": "Tanja",
             "lastname": "Wolf",
             "email": "wolf@gmail.com",
             "phone": "+492222222222",
-            "color": "#cb2cf9"
+            "color": "cb2cf9"
         },
         {
             "firstname": "Sofia",
             "lastname": "Müller",
             "email": "sofiam@gmail.com",
             "phone": "+493333333333",
-            "color": "#7c6ace"
+            "color": "7c6ace"
         },
         {
             "firstname": "Herbert",
             "lastname": "Braun",
             "email": "hbraun@gmail.com",
             "phone": "+494444444444",
-            "color": "#5eebaf"
+            "color": "5eebaf"
         },
         {
             "firstname": "David",
             "lastname": "Eisenberg",
             "email": "daveis@gmail.com",
             "phone": "+495555555555",
-            "color": "#d03687"
+            "color": "d03687"
         },
         {
             "firstname": "Benedikt",
             "lastname": "Ziegler",
             "email": "ziegel@gmail.com",
             "phone": "+496666666666",
-            "color": "#f7e998"
+            "color": "f7e998"
         },
         {
             "firstname": "Marcel",
             "lastname": "Bauer",
             "email": "mbauer@gmail.com",
             "phone": "+497777777777",
-            "color": "#5ccee0"
+            "color": "5ccee0"
         },
         {
             "firstname": "Robo",
             "lastname": "James",
             "email": "RoboJames@blabla.com",
             "phone": "+497777777777",
-            "color": "#3ad288"
+            "color": "3ad288"
         },
         {
             "firstname": "Christian",
             "lastname": "Meyer",
             "email": "chris@blabla.com",
             "phone": "+497777777777",
-            "color": "#3ad368"
+            "color": "3ad368"
         },
         {
             "firstname": "Mareike",
             "lastname": "Schneider",
             "email": "mareike@gmail.com",
             "phone": "+49764677777",
-            "color": "#4ad368"
+            "color": "4ad368"
         }
     ],
     "categorys": [
@@ -118,8 +118,8 @@
                 ],
                 "status": [
                     true,
-                    true,
-                    true
+                    false,
+                    false
                 ]
             },
             "progress": "TODO"
@@ -158,7 +158,7 @@
                 ],
                 "status": [
                     true,
-                    true
+                    false
                 ]
             },
             "progress": "feedback"
@@ -180,7 +180,7 @@
                     "Created accounts for all common social media platforms"
                 ],
                 "status": [
-                    true,
+                    false,
                     true,
                     true
                 ]
