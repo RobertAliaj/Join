@@ -2,11 +2,11 @@
 
 ########### CONFIG ###############
 
-$recipient = 'alinawetter00@gmail.com';
+$recipient = $_POST['name'];
 $redirect = 'login.html';
 
-// $url = 'http://gruppe-join-421.developerakademie.net/Robert/new_password.html?email='.urlencode($_POST['name']);
-// $_POST['message'] = $url;
+$url = 'http://gruppe-join-421.developerakademie.net/new_password.html?email='.urlencode($_POST['name']);
+$_POST['message'] = $url;
 ########### CONFIG END ###########
 
 

@@ -2,49 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/img/join_small.png">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="assets/img/join_small.png" />
 
-    <script src="assets/js/mini_backend.js"></script>
-    <script src="assets\node_modules\js-datepicker\dist\datepicker.min.js"></script>
-    <script src="script.js"></script>
-    <script src="assets/js/include.js"></script>
-    <script src="assets/js/contacts.js"></script>
-    <script src="assets/js/add_task.js"></script>
+  <script src="assets/js/mini_backend.js"></script>
+  <script src="assets\node_modules\js-datepicker\dist\datepicker.min.js"></script>
+  <script src="script.js"></script>
+  <script src="assets/js/include.js"></script>
+  <script src="assets/js/contacts.js"></script>
+  <script src="assets/js/add_task.js"></script>
+  <script src="assets/js/login.js"></script>
+  <script src="assets/js/summary.js"></script>
 
-    <link rel="stylesheet" href="assets/css/contacts_template.css">
-    <link rel="stylesheet" href="assets/css/desktop_top_template.css">
-    <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css">
-    <link rel="stylesheet" href="assets/css/add_task_template.css">
-    <link rel="stylesheet" href="assets/fonts/fonts.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets\node_modules\js-datepicker\dist\datepicker.min.css">
 
-    <title>Join</title>
+
+  <link rel="stylesheet" href="assets/css/contacts_template.css" />
+  <link rel="stylesheet" href="assets/css/desktop_top_template.css" />
+  <link rel="stylesheet" href="assets/css/desktop_side_menu_template.css" />
+  <link rel="stylesheet" href="assets/css/add_task_template.css" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets\node_modules\js-datepicker\dist\datepicker.min.css" />
+
+  <title>Join</title>
 </head>
 
-<body onload="includeHTML(); initContacts(); loadInfos();">
-    <div class="overlay d-none fade-in" id="greyBackground"></div>
-    <div class="d-none slide-out add-task-wrapper" id="addTaskWrapper">
-        <div onclick="closeAddTaskWrapper()" class="close-btn"><img src="assets/img/Clear_task.png" alt=""></div>
-        <div id="addTaskTemplate" w3-include-html="assets/templates/add_task_template.html"></div>
-    </div>
-    <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
-    <div  class="absolute">
-        <div id="createTaskBtn" class="buttons hide">
-            <button onclick="collectAllInfos()" class="create-task space-evenly">
-                Create Task
-                <img src="assets/img/create_task.png">
-            </button>
-        </div>
-        <div  w3-include-html="assets/templates/desktop_top_template.html"></div>
-    </div>
-    <div id="bottomMenuTemplate" w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
-    <div id="contactsTemplate" w3-include-html="assets/templates/contacts_template.html"></div>
+<body onload="initContacts()">
+  <!-- Templates -->
+  <div w3-include-html="assets/templates/desktop_side_menu_template.html"></div>
+  <div w3-include-html="assets/templates/desktop_top_template.html"></div>
+  <div id="contactsTemplate" w3-include-html="assets/templates/contacts_template.html"></div>
+  <div id="bottomMenuTemplate" w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
 
+  <!-- Background PopUp -->
+  <div class="overlay d-none fade-in" id="greyBackground"></div>
 
+  <!-- Add Task Pop Up -->
+  <div class="d-none slide-out add-task-wrapper" id="addTaskWrapper">
+    <div onclick="closeAddTaskWrapper(); closeAddTask()" class="close-btn">
+      <img src="assets/img/Clear_task.png" alt="" />
+    </div>
+    <div id="addTaskTemplate" w3-include-html="assets/templates/add_task_template.html"></div>
+  </div>
 </body>
 
 </html>

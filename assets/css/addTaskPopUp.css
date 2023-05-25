@@ -13,10 +13,6 @@
     justify-content: center;
 }
 
-.d-none {
-    display: none;
-}
-
 .content {
     background-color: white;
     width: 80%;

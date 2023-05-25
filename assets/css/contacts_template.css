@@ -5,7 +5,6 @@
     right: 0px;
     bottom: 0;
     display: flex;
-    flex-direction: row;
 }
 
 .left-section {
@@ -15,49 +14,29 @@
     background-color: white;
     overflow-y: scroll;
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    z-index: 1;
 }
 
 .right-section {
     width: 70%;
-    position: relative;
-    background-color: #f6f7f8;
     Padding: 50px 50px 50px 50px;
     box-sizing: border-box;
-
 }
 
 
 /********* RIGHT SECTION ***********/
 
-
-.headline {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
 .headline span:first-of-type {
-    font-style: normal;
     font-weight: 700;
     font-size: 50px;
     line-height: 73.2px;
 }
 
 .headline span:last-of-type {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 200;
     font-size: 20px;
-    line-height: 32.4px;
 }
 
 .vertical-line-blue {
-    width: 0px;
     height: 40px;
     border: 1.5px solid #29ABE2;
     border-radius: 10px;
@@ -80,11 +59,9 @@
 
 .new-contact-button img {
     width: 30px;
-    height: 30px;
 }
 
 .new-contact-container {
-    z-index: 3;
     position: absolute;
     margin: auto;
     right: 0;
@@ -94,7 +71,6 @@
     height: 60vh;
     width: 70vw;
     display: flex;
-    z-index: 4;
 }
 
 .close {
@@ -212,7 +188,7 @@
 
 .submit-section {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     font-size: 15px;
     gap: 30px;
     margin-top: 30px;
@@ -248,13 +224,6 @@
     border: none;
     font-size: 15px;
 }
-
-
-
-.d-none {
-    display: none !important;
-}
-
 
 /**************** LEFT SIDE ***************/
 
@@ -395,6 +364,10 @@
     cursor: pointer !important;
 }
 
+.specific-single-contact div:last-child span:last-child:hover {
+    font-weight: 700;
+}
+
 .no-hover {
     pointer-events: none !important;
 }
@@ -416,6 +389,11 @@
     gap: 100px;
     align-items: center;
     margin-bottom: 30px;
+}
+
+.edit-span span:last-child:hover {
+    color: #007CEE;
+    font-weight: 700;
 }
 
 .contact-information div:first-child span:first-child {
@@ -480,7 +458,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -490,23 +468,8 @@
     cursor: pointer;
 }
 
-.new-contact-button-responsive{
+.new-contact-button-responsive {
     display: none;
-}
-
-
-/********* SCROLLBAR **********/
-
-
-::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, .5);
-    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 
 
@@ -574,53 +537,48 @@
 }
 
 
-@media (max-width: 1300px){
+@media (max-width: 1300px) {
     .right-section {
         display: none;
         width: 100%;
     }
 
-    .buttons{
+    .buttons {
         z-index: 12 !important;
     }
 
-    .flex-center{
+    .flex-center {
         display: flex;
         justify-content: center;
     }
 
-    .add-task-container{
+    .add-task-container {
         padding: unset !important;
         width: 90% !important;
         height: 100% !important;
     }
 
-    .contacts-page{
-        left: 0 !important;
+    .contacts-page {
+        left: 0;
         width: 100%;
+        top: 60px;
     }
 
-    .left-section{
-        width:100%;
-    }
-
-    .add-task-wrapper{
-        height: 100% !important;
-        width: 100% !important;
-        z-index: 9 !important;
-        background: white !important;
-        border-radius: 20px !important;
-        /* padding: 40px; */
-        margin-top: 90px !important;
+    .left-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10px;
     }
 
     .new-contact-button-responsive {
         cursor: pointer;
-        width: 130px;
+        width: 100%;
         height: 35px;
         display: flex !important;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
         font-size: 16px;
         color: white;
         background-color: #293646;
@@ -641,7 +599,7 @@
         right: 40px;
     }
 
-    .input-section{
+    .input-section {
         display: unset !important;
         width: 90% !important;
         margin-left: 20px !important;
@@ -649,11 +607,11 @@
         margin-right: 20px !important;
     }
 
-    .headline{
+    .headline {
         width: 90%;
     }
 
-    .header{
+    .header {
         z-index: 10 !important;
     }
 
@@ -701,11 +659,11 @@
         bottom: -30px;
     }
 
-   
 
-  
 
-   
+
+
+
 }
 
 @media(max-width: 800px) {
@@ -740,7 +698,7 @@
         height: 70px;
     }
 
-   
+
 
     .contact-form {
         width: 100%;

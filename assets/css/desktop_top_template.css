@@ -1,15 +1,33 @@
-.header {
+/* .head {
     position: fixed;
     right: 0;
     left: 232px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+} */
+
+
+.header {
     width: calc(100vw - 232px);
+    margin-left: 232px;
     height: 90px;
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1;
+    position: relative;
+    z-index: 4;
+    box-sizing: border-box;
+}
+
+.logo-for-mobile {
+    display: none;
+}
+
+.hide-if-not-mobile {
+    display: none;
 }
 
 .header span {
@@ -17,21 +35,108 @@
     font-size: 21px;
 }
 
+.help {
+    cursor: pointer;
+}
+
 .user-info {
     width: 106px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 36px;
 }
 
-.help {
-    cursor: pointer;
+.profile {
+    display: flex;
+    margin-right: 70px;
+    height: 100%;
 }
 
-.user-img {
+.different-profiles {
+    padding: 10px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 70px;
+    box-sizing: border-box;
+}
+
+.different-profiles img {
+    width: 25px;
+    height: 25px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 50%;
     box-shadow: 0 0 0 3px rgb(44, 54, 70);
     cursor: pointer;
+}
+
+.user-img {
+    width: 50px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgb(44, 54, 70);
+    cursor: pointer;
+}
+
+.log-out {
+    background-color: #293646;
+    width: 100px;
+    height: 50px;
+    align-self: flex-end;
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 100;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+}
+
+.log-out:hover{
+    background-color: #50aadf;
+}
+
+@media (max-width:1300px) {
+    .header {
+        left: 0px;
+        width: 100vw;
+        position: fixed;
+        height: 60px;
+        margin: 0;
+        padding: 0 clamp(20px, 3.9px + 4.5vw, 62px);
+    }
+
+    /* .logo-for-mobile {
+        display: unset;
+        height: 30px;
+        width: 100px;
+        object-fit: contain;
+    } */
+
+    .hide-if-not-mobile {
+        display: unset;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .user-img {
+        height: 35px;
+    }
+}
+
+@media(min-width: 1300px){
+    .menu-btn-responsive{
+        display: none;
+    }
 }

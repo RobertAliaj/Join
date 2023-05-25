@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     background-color: rgb(0 0 0 / 20%);
-    z-index: 5;
+    z-index: 15;
     position: fixed;
     left: 0;
     right: 0;
@@ -14,15 +14,25 @@
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     box-sizing: border-box;
     height: 95%;
     width: 50vw;
     background-color: white;
     border-radius: 20px;
-    padding: 50px;
+    padding: 10px 40px;
+    padding-top: 20px;
     font-size: 20px;
     position: relative;
+    overflow: auto;
 }
+
+.card textarea {
+    resize: none;
+}
+
 
 .pop-up-category {
     box-sizing: border-box;
@@ -67,10 +77,12 @@
 }
 
 .exit {
-    position: absolute;
-    top: 20px;
+    position: sticky;
+    top: 0px;
     right: 25px;
     cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .name-inits {
@@ -78,23 +90,11 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    overflow: auto;
-    /* height: 200px; */
-    cursor: n-resize;
+    height: unset !important;
+    /* overflow: auto; */
+    /* height: fit-content !important; */
 }
 
-
-.name-inits::-webkit-scrollbar {
-    width: 10px;
-    background-color: rgb(0 0 0 / 0%);
-}
-
-
-/* Change the color and shape of the scrollbar thumb */ 
- .name-inits::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-    background-color: rgb(0 0 0 / 0%);
-}
 
 .pop-up-names {
     margin-bottom: 16px;
@@ -135,7 +135,7 @@
 
 .check-box {
     width: 20px !important;
-    height: 20px  !important;
+    height: 20px !important;
     border: 1px solid black;
     cursor: pointer;
     display: flex;
@@ -193,13 +193,8 @@
 }
 
 .edit-or-delete {
-    position: absolute;
-    bottom: 25px;
-    right: 30px;
-    width: 50%;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     gap: 15px;
 }
 
@@ -226,7 +221,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    top: 0; 
+    top: 0;
     bottom: 0;
     display: flex;
     align-items: center;
@@ -243,14 +238,11 @@
 }
 
 .delete-button {
+    position: unset !important;
     width: 30%;
-    background-color: red;
-    border-radius: 12px;
-    border: 1px solid grey;
+    border: none;
     color: white;
     font-weight: bold;
-    padding: 8px;
-    cursor: pointer;
 }
 
 .red-btn:hover {

@@ -1,179 +1,177 @@
-
 <div class="add-task-container">
-    
-    <div id="successfulUpload" class="d-none">
-        succesfully Upload! <img class="checkIcon" src="assets/img/successfull_check.png" alt="">
-    </div>
-    <span id="kanbanTitle" class="show-if-mobile" style="max-width: 100% !important">Kanban Project Managment Tool</span>
-    <div class="headline">
-        
-        <h1>Add Task</h1>
-    </div>
-    <div class="input-section">
-        <div class="main-information">
-            <div class="padding-36-bottom">
-                <div class="display-flex">
-                    <div class="padding-10-bottom padding-17-right">Title</div>
-                    <div id="titleReport" class="report d-none">This field is required</div>
-                </div>
-                <input type="text" placeholder="Enter a title" class="white-box no-outline" id="titleInput">
-
-            </div>
-
-            <div class="padding-36-bottom">
-                <div class="display-flex">
-                    <div class="padding-10-bottom padding-17-right">Description</div>
-                    <div id="descriptionReport" class="report d-none">This field is required</div>
-                </div>
-                <textarea name="description" placeholder="Enter a description" class="textarea-description no-outline"
-                    id="descriptionInput"></textarea>
-            </div>
-
-            <div class="padding-36-bottom">
-                <div class="display-flex">
-                    <div class="padding-10-bottom padding-17-right">Category</div>
-                    <div id="categoryReport" class="report d-none">This field is required</div>
-                </div>
-                <div class="dropdown-category-closed" id="category">
-                    <div id="categoryPlaceholder" class="dd-placeholder"
-                        onclick="pullDownMenu('category', 'assingedTo', 'moreCategorys', 'moreContacts')">
-                        <div id="chosenCategory">Select task category</div>
-                        <img src="assets/img/drop_down.png">
-                    </div>
-
-
-                    <div id="newCategoryContainer" class="d-none">
-                        <div class="display-flex">
-                            <input type="text" placeholder="New category name" id="categoryInput"
-                                class="input-cat-sub no-outline">
-                            <div class="center space-between clear-add-button-container padding-17-right" id="#">
-                                <img class="clear-input pointer" onclick="closeCreateCategory()"
-                                    src="assets\img\Clear_task_input.png">
-                                <div>|</div>
-                                <img onclick="addCategory()" class="pointer" src="assets\img\create_subtask.png">
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="d-none more-content overflow-auto" id="moreCategorys">
-                        <div onclick="openCreateCategory()" class="dd-placeholder gray-hover">
-                            <div >New category</div>
-                        </div>
-                        <div id="loadedCategorys"></div>
-                    </div>
-                </div>
-                <div id="color-picker" class="display-flex padding-20-top d-none">
-                    <div class="category-color margin-20-right" id="colorPickCircle0"></div>
-                    <div class="category-color margin-20-right" id="colorPickCircle1"></div>
-                    <div class="category-color margin-20-right" id="colorPickCircle2"></div>
-                    <div class="category-color margin-20-right" id="colorPickCircle3"></div>
-                    <div class="category-color margin-20-right" id="colorPickCircle4"></div>
-                    <div class="category-color margin-20-right" id="colorPickCircle5"></div>
-                </div>
-            </div>
-
-            <div>
-                <div class="display-flex">
-                    <div class="padding-10-bottom padding-17-right">Assinged to</div>
-                    <div id="contactReport" class="report d-none">This field is required</div>
-                </div>
-                <div class="dropdown-category-closed" id="assingedTo">
-                    <div onclick="pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys')"
-                        class="dd-placeholder" id="contactsToAssingContainer">
-                        <div>Contacts
-                            to assing</div>
-                        <img id="ddArrow" src="assets/img/drop_down.png">
-                        <div class="center space-between clear-add-button-container d-none" id="clearAddButtons">
-                            <div class="onclickArea" onclick="clearContacts()">
-                                <img class="clear-input pointer" 
-                                src="assets\img\Clear_task_input.png">
-                            </div>
-                         
-                            <div>|</div>
-                            <div class="onclickArea" onclick="addContacts()">
-                                <img  class="pointer" src="assets\img\create_subtask.png">
-                            </div>
-                        
-                        </div>
-                    </div>
-                    <div class="d-none more-content overflow-auto" id="moreContacts">
-                        <div class="dd-placeholder gray-hover" onclick="selectedForTask('You', 'point')">
-                            <div>You</div>
-                            <div class="select-box center">
-                                <div id="point"></div>
-                            </div>
-                        </div>
-                        <div id="loadedContacts"></div>
-                        <div class="dd-placeholder gray-hover">
-                            <div>Invite new contact</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="initials-container" id="initialsContainer"></div>
+  <div id="successfulUpload" class="d-none">
+    succesfully Upload!
+    <img class="checkIcon" src="assets/img/successfull_check.png" alt="" />
+  </div>
+  <div class="headline-add-task">
+    <h1>Add Task</h1>
+  </div>
+  <div class="input-section">
+    <div class="main-information">
+      <div class="padding-36-bottom">
+        <div class="display-flex">
+          <div class="padding-10-bottom padding-17-right">Title</div>
+          <div id="titleReport" class="report d-none">
+            This field is required
+          </div>
         </div>
-        <div class="bigBorder"></div>
-        <div class="second-information">
-            <div class="padding-36-bottom">
-                <div class="display-flex">
-                    <div class="padding-10-bottom padding-17-right">Due date</div>
-                    <div id="dateReport" class="report d-none">This field is required</div>
-                </div>
-                <input type="text" placeholder="dd/mm/yyyy" id="date" class="white-box no-outline">
-            </div>
+        <input type="text" placeholder="Enter a title" class="white-box no-outline" id="titleInput" />
+      </div>
 
-            <div class="padding-36-bottom">
-                <div class="display-flex">
-                    <div class="padding-10-bottom padding-17-right">Prio</div>
-                    <div id="prioReport" class="report d-none">This field is required</div>
-                </div>
-                <div class="prio-container">
-                    <button class="prio-button center pointer"
-                        onclick="priority('prioHigh', 'prioMedium', 'prioLow', 'prioHighImg')" id="prioHigh">
-                        <div>Urgent</div>
-                        <img id="prioHighImg" src="assets/img/prio_high.svg">
-                    </button>
-                    <button class="prio-button center pointer"
-                        onclick="priority('prioMedium', 'prioHigh', 'prioLow', 'prioMediumImg')" id="prioMedium">
-                        <div>Medium</div>
-                        <img id="prioMediumImg" src="assets/img/prio_medium.svg">
-                    </button>
-                    <button class="prio-button center pointer"
-                        onclick="priority('prioLow', 'prioHigh', 'prioMedium', 'prioLowImg')" id="prioLow">
-                        <div>Low</div>
-                        <img id="prioLowImg" src="assets/img/prio_low.svg">
-                    </button>
-                </div>
-            </div>
-
-            <div class="padding-36-bottom">
-                <div class="padding-10-bottom">Subtasks</div>
-                <div class="white-box subtask-container" id="subtask">
-                    <input type="text" placeholder="Add new subtask" id="subtaskInput" class="input-cat-sub no-outline"
-                        onclick="switchSubtaskIcons()">
-                    <div class="center" id="addSubtask">
-                        <img onclick="switchSubtaskIcons()" class="padding-17-right pointer"
-                            src="assets/img/add_subtask.png">
-                    </div>
-                    <div class="center space-between clear-add-button-container padding-17-right d-none"
-                        id="createSubtask">
-                        <img class="clear-input pointer" onclick="switchSubtaskIcons()"
-                            src="assets\img\Clear_task_input.png">
-                        <div>|</div>
-                        <img onclick="addSubtask()" class="pointer" src="assets\img\create_subtask.png">
-                    </div>
-                </div>
-                <div id="addedSubtasks"></div>
-            </div>
+      <div class="padding-36-bottom">
+        <div class="display-flex">
+          <div class="padding-10-bottom padding-17-right">Description</div>
+          <div id="descriptionReport" class="report d-none">
+            This field is required
+          </div>
         </div>
-    </div>
+        <textarea name="description" placeholder="Enter a description" class="textarea-description no-outline"
+          id="descriptionInput"></textarea>
+      </div>
 
-    <div id="idOfAddTaskButtons" class="buttons">
-        <button onclick="collectAllInfos()" class="create-task space-evenly">
-            Create Task
-            <img src="assets/img/create_task.png">
-        </button>
+      <div class="padding-36-bottom">
+        <div class="display-flex">
+          <div class="padding-10-bottom padding-17-right">Category</div>
+          <div id="categoryReport" class="report d-none">
+            This field is required
+          </div>
+        </div>
+        <div class="dropdown-category-closed" id="category">
+          <div id="categoryPlaceholder" class="dd-placeholder"
+            onclick="pullDownMenu('category', 'assingedTo', 'moreCategorys', 'moreContacts')">
+            <div id="chosenCategory">Select task category</div>
+            <img src="assets/img/drop_down.png" />
+          </div>
+
+          <div id="newCategoryContainer" class="d-none">
+            <div class="display-flex">
+              <input type="text" placeholder="New category name" id="categoryInput"
+                class="input-cat-sub no-outline new-cat" />
+              <div class="center space-between clear-add-button-container padding-17-right" id="#">
+                <img class="clear-input pointer" onclick="closeCreateCategory()"
+                  src="assets\img\Clear_task_input.png" />
+                <div>|</div>
+                <img onclick="addCategory()" class="pointer" src="assets\img\create_subtask.png" />
+              </div>
+            </div>
+          </div>
+
+          <div class="d-none more-content overflow-auto" id="moreCategorys">
+            <div onclick="openCreateCategory()" class="dd-placeholder gray-hover">
+              <div>New category</div>
+            </div>
+            <div id="loadedCategorys"></div>
+          </div>
+        </div>
+        <div id="color-picker" class="display-flex color-picker  d-none">
+          <div class="category-color margin-20-right" id="colorPickCircle0"></div>
+          <div class="category-color margin-20-right" id="colorPickCircle1"></div>
+          <div class="category-color margin-20-right" id="colorPickCircle2"></div>
+          <div class="category-color margin-20-right" id="colorPickCircle3"></div>
+          <div class="category-color margin-20-right" id="colorPickCircle4"></div>
+          <div class="category-color margin-20-right" id="colorPickCircle5"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="display-flex">
+          <div class="padding-10-bottom padding-17-right">Assinged to</div>
+          <div id="contactReport" class="report d-none">
+            This field is required
+          </div>
+        </div>
+        <div class="dropdown-category-closed" id="assingedTo">
+          <div onclick="pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys')" class="dd-placeholder"
+            id="contactsToAssingContainer">
+            <div>Contacts to assing</div>
+            <img id="ddArrow" src="assets/img/drop_down.png" />
+            <div class="center space-between clear-add-button-container d-none" id="clearAddButtons">
+              <div class="onclickArea" onclick="clearContacts()">
+                <img class="clear-input pointer" src="assets\img\Clear_task_input.png" />
+              </div>
+
+              <div>|</div>
+              <div class="onclickArea" onclick="addContacts()">
+                <img class="pointer" src="assets\img\create_subtask.png" />
+              </div>
+            </div>
+          </div>
+          <div class="d-none more-content overflow-auto" id="moreContacts">
+            <div id="selectYouContainer"></div>
+
+            <div id="loadedContacts"></div>
+            <div onclick="directToNewContact()" class="dd-placeholder gray-hover">
+              <div>Invite new contact</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="initials-container" id="initialsContainer"></div>
     </div>
+    <div class="bigBorder"></div>
+    <div class="second-information">
+      <div class="padding-36-bottom">
+        <div class="display-flex">
+          <div class="padding-10-bottom padding-17-right">Due date</div>
+          <div id="dateReport" class="report d-none">
+            This field is required
+          </div>
+        </div>
+        <input type="date" placeholder="yyyy/dd/mm" id="date" class="white-box no-outline pointer"
+          onclick="addTaskSetDate()" />
+      </div>
+
+      <div class="padding-36-bottom">
+        <div class="display-flex">
+          <div class="padding-10-bottom padding-17-right">Prio</div>
+          <div id="prioReport" class="report d-none">
+            This field is required
+          </div>
+        </div>
+        <div class="prio-container">
+          <button class="prio-button center pointer"
+            onclick="priority('prioHigh', 'prioMedium', 'prioLow', 'prioHighImg')" id="prioHigh">
+            <div>Urgent</div>
+            <img id="prioHighImg" src="assets/img/prio_high.svg" />
+          </button>
+          <button class="prio-button center pointer"
+            onclick="priority('prioMedium', 'prioHigh', 'prioLow', 'prioMediumImg')" id="prioMedium">
+            <div>Medium</div>
+            <img id="prioMediumImg" src="assets/img/prio_medium.svg" />
+          </button>
+          <button class="prio-button center pointer"
+            onclick="priority('prioLow', 'prioHigh', 'prioMedium', 'prioLowImg')" id="prioLow">
+            <div>Low</div>
+            <img id="prioLowImg" src="assets/img/prio_low.svg" />
+          </button>
+        </div>
+      </div>
+
+      <div class="padding-36-bottom">
+        <div class="padding-10-bottom">Subtasks</div>
+        <div class="white-box subtask-container" id="subtask">
+          <input type="text" placeholder="Add new subtask" id="subtaskInput" class="input-cat-sub no-outline"
+            onclick="switchSubtaskIcons()" />
+          <div class="center" id="addSubtask">
+            <img onclick="switchSubtaskIcons()" class="padding-17-right pointer" src="assets/img/add_subtask.png" />
+            <img onclick="switchSubtaskIcons()" class="padding-17-right create-sub pointer"
+              src="assets/img/add_subtask.png" />
+          </div>
+          <div class="center space-between clear-add-button-container padding-17-right d-none" id="createSubtask">
+            <img class="clear-input pointer" onclick="switchSubtaskIcons()" src="assets\img\Clear_task_input.png" />
+            <div>|</div>
+            <img onclick="addSubtask()" class="pointer" src="assets\img\create_subtask.png" />
+          </div>
+        </div>
+        <div id="addedSubtasks"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons create-task-responsive">
+    <button onclick="collectAllInfos()" class="create-task space-evenly">
+      Create Task
+      <img src="assets/img/create_task.png" />
+    </button>
+  </div>
 </div>

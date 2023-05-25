@@ -40,7 +40,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f6f7f8;  
+  background-color: #f6f7f8;
 }
 
 .login-container {
@@ -59,7 +59,7 @@ html {
   position: relative;
 }
 
-.login-span{
+.login-span {
   font-size: 50px;
   font-weight: 700;
 }
@@ -220,10 +220,6 @@ form input::placeholder {
   left: 0;
 }
 
-.d-none {
-  display: none;
-}
-
 /********** FORGOT PASSWORD **************/
 
 .forgot-password-span {
@@ -236,7 +232,7 @@ form input::placeholder {
   left: 0;
   right: 0;
   bottom: -40px;
-  color:#293646;
+  color: #293646;
   text-align: center;
 }
 

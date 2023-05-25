@@ -37,13 +37,11 @@
     margin-right: 20px;
 }
 
-.padding-20-top {
+.color-picker {
     padding: 20px;
 }
 
-.d-none {
-    display: none !important;
-}
+
 
 .no-outline:focus {
     outline: none;
@@ -63,6 +61,7 @@
     left: 232px;
     right: 0px;
     bottom: 0;
+
 }
 
 .report {
@@ -76,16 +75,16 @@
 .add-task-container {
     display: flex;
     justify-content: center;
-    font-size: 21px;
     align-items: center;
     flex-direction: column;
+    box-sizing: border-box;
     padding-left: 90px;
     padding-right: 90px;
     padding-top: 20px;
 
 }
 
-.headline {
+.headline-add-task {
     width: 100%;
 }
 
@@ -110,7 +109,7 @@
     border: 1px solid rgb(209, 209, 209);
     border-radius: 10px;
     font-size: 21px;
-    padding-left: 21px;
+    padding: 17px;
     font-family: 'Inter';
     font-weight: 400;
     background-color: rgb(255, 255, 255);
@@ -150,14 +149,20 @@
 }
 
 .category-color {
+    cursor: pointer;
     height: 16px;
     width: 16px;
     border-radius: 50%;
 }
 
+
+.choosenCategory {
+    scale: 1.4;
+}
+
 .more-content {
     height: 100%;
-    max-height: 170px;
+    max-height: 100px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -259,14 +264,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 0px !important;
+    padding-left: 0px;
 
     margin-bottom: 10px;
 }
 
+.subtask-text {
+    width: 80%;
+    word-break: break-all;
+}
+
 .input-cat-sub {
-    height: 48px;
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
     border: none;
     border-radius: 10px;
@@ -286,11 +295,18 @@
     width: 14px;
 }
 
+.delete-subtask {
+    position: absolute;
+    right: 18px;
+    top: 4px;
+}
+
 .sub-task {
     display: flex;
     align-items: center;
     font-size: 16px;
     padding-bottom: 5px;
+    position: relative;
 }
 
 .selectbox-subtask {
@@ -350,6 +366,7 @@
     background-color: rgb(44, 54, 70);
     font-size: 21px;
     color: rgb(246, 247, 248);
+    cursor: pointer;
 
     height: 60px;
     border: none;
@@ -421,6 +438,69 @@
 }
 
 
+@media(max-width:1540px) {
+    .white-box {
+        font-size: unset !important;
+        height: unset;
+        padding: 8px;
+    }
+
+    .textarea-description {
+        padding: 8px;
+        font-size: unset;
+    }
+
+
+    .dropdown-category-closed {
+        height: unset;
+        font-size: unset;
+    }
+
+    .dd-placeholder {
+        height: unset;
+        padding: 8px;
+    }
+
+    .prio-button {
+        height: unset;
+        padding: 8px;
+        font-size: unset;
+    }
+
+    .input-cat-sub {
+        padding-left: 8px;
+        font-size: unset;
+    }
+
+    .new-cat {
+        padding: 8px;
+    }
+
+    .color-picker {
+        padding: 8px;
+    }
+
+    .padding-36-bottom {
+        padding-bottom: 18px;
+    }
+
+    .create-task {
+        height: unset;
+        font-size: unset;
+        padding: 8px;
+    }
+
+    .category-color {
+        height: 12px;
+        width: 12px;
+    }
+
+    .create-sub {
+        padding: 0;
+    }
+}
+
+
 
 @media (max-width:1300px) {
 
@@ -429,11 +509,13 @@
     }
 
     .content-container {
-        position: unset !important;
+        position: unset;
         display: flex;
         justify-content: center;
         padding-bottom: 90px;
         padding-top: 90px;
+        transform: scale(1);
+        transform-origin: left;
     }
 
     .user-info {
@@ -481,11 +563,19 @@
     }
 
     .add-task-container {
-        padding: unset !important;
-        width: 90%;
+        box-sizing: border-box;
+        overflow: hidden;
+        /* padding: unset !important; */
+        width: 100%;
+        padding: 0px clamp(20px, 3.9px + 4.5vw, 62px);
     }
-
 }
+
+
+.create-task-responsive {
+    display: none;
+}
+
 
 @media(max-width: 1100px) {
 
@@ -533,8 +623,7 @@
 
     .create-task {
         font-size: 1rem;
-        height: 45px;
-        width: 135px;
+        padding: 8px;
     }
 
     .buttons {
@@ -545,14 +634,14 @@
 
 @media(max-width: 600px) {
     .dropdown-category-closed {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
 
 
     .prio-button {
         min-width: 80px !important;
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 
 

@@ -1,37 +1,30 @@
 .side-container {
     position: fixed;
     background-color: rgb(44, 54, 70);
-    width: 232px;
     height: 100%;
-    min-height: 673px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.top-container {
-
-}
-
-.side-logo {
-    width: 100px;
-    padding: 66px;
+    z-index: 16;
 }
 
 .bottom-container {
-    width: 232px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
+}
+
+.side-container-mobile {
+    display: none;
+}
+
+.side-logo {
+    padding: 66px;
 }
 
 .link {
     text-decoration: none;
     color: white;
-    width: calc(232px - 55px);
     height: 46px;
     display: flex;
     padding-left: 55px;
@@ -54,5 +47,79 @@
     margin-bottom: 112px;
     padding-left: 0px;
     justify-content: center;
-    width: 232px;
+}
+
+@media (max-width:1300px) {
+    .side-container {
+        display: none;
+    }
+
+    .side-container-mobile {
+        background-color: rgb(44, 54, 70);
+        position: fixed;
+        width: 100%;
+        bottom: 0px;
+        height: 90px;
+        display: flex;
+        z-index: 2;
+
+
+        box-sizing: border-box;
+        padding: 8px clamp(20px, 3.9px + 4.5vw, 62px);
+        height: fit-content;
+    }
+
+    .bottom-container {
+        width: 100%;
+    }
+
+    .menu {
+        display: flex;
+        /* justify-content: space-around; */
+        height: 100%;
+
+        justify-content: space-between;
+    }
+
+    .side-logo {
+        display: none;
+    }
+
+    .legal-notice {
+        display: none;
+    }
+
+    .link {
+        height: 100%;
+        /* padding-left: 10px; */
+        /* padding-right: 10px; */
+        padding: 0;
+        margin-top: unset;
+
+/* 
+        padding-left: 10px;
+        padding-right: 10px; */
+    }
+
+    .link-img {
+        padding: unset;
+        margin: 5px;
+    }
+}
+
+@media (max-width: 750px) {
+    .side-container-mobile {
+        /* height: 60px; */
+        /* padding: 8px 0px; */
+    }
+}
+
+@media (max-width:600px) {
+    .menu {
+        font-size: 1rem;
+    }
+
+    .link {
+        flex-direction: column;
+    }
 }
