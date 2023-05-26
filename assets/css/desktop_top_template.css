@@ -119,13 +119,6 @@
         padding: 0 clamp(20px, 3.9px + 4.5vw, 62px);
     }
 
-    /* .logo-for-mobile {
-        display: unset;
-        height: 30px;
-        width: 100px;
-        object-fit: contain;
-    } */
-
     .hide-if-not-mobile {
         display: unset;
     }
@@ -138,7 +131,22 @@
         height: 35px;
         width: 35px;
         object-fit: contain;
+    }
 
+    .log-out {
+        top: 60px;
+        margin-right: 85px;
+    }
+
+    .profile {
+        margin-right: 0;
+    }
+
+    .different-profiles {
+        top: 60px;
+        flex-direction: row;
+        gap: 10px;
+        margin-right: 5px;
     }
 }
 
@@ -147,6 +155,6 @@
         display: none;
     }
 
-   
-    
+
+
 }

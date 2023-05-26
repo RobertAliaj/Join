@@ -35,6 +35,7 @@ let initialsRenderd = false;
 
 async function initAddTask() {
   await includePlusInit();
+  saveCurrentUser();
   setProfilePicture();
   loadInfos();
   showCreateTaskBtn();
@@ -692,9 +693,9 @@ async function pushTaskInTasks() {
 
 
 function showCreateTaskBtn() {
-  if(window.location.href == 'http://127.0.0.1:5501/add_task.html'){
+  if (window.location.href == 'http://127.0.0.1:5501/add_task.html') {
     document.getElementById('addTaskBtn').classList.remove('d-none')
-  } else{
+  } else {
     document.getElementById('addTaskBtn').classList.add('d-none')
   }
 }

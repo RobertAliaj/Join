@@ -519,7 +519,7 @@
         transform-origin: left;
     }
 
-    .user-info {
+    .body-add-task .user-info {
         display: none !important;
     }
 
@@ -648,45 +648,43 @@
 }
 
 @media (max-height: 800px) {
-    h1{
+    h1 {
         font-size: 1rem;
     }
 
-    .display-flex{
+    .display-flex {
         font-size: 1rem;
     }
 
-    .white-box{
+    .white-box {
         /* height: 25px; */
         font-size: 1rem;
     }
 
-    .textarea-description{
+    .textarea-description {
         /* height: 50px; */
         font-size: 1rem;
         padding-top: 13px;
     }
 
-    .dd-placeholder{
+    .dd-placeholder {
         font-size: 1rem;
         /* height: 30px; */
     }
 
-  
 
-    .more-content{
+
+    .more-content {
         max-height: 60px;
     }
 
-    .input-cat-sub{
+    .input-cat-sub {
         /* height: 21px; */
         font-size: 1rem;
     }
 
-    .prio-button{
+    .prio-button {
         /* height: 35px; */
         font-size: 1rem;
     }
 }
-
-

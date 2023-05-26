@@ -16,6 +16,7 @@ let popUpOpen = false;
  */
 async function initBoard() {
   await getDataBase();
+  saveCurrentUser();
   setProfilePicture();
   getCategoryColorAndName();
   getContactColorsandInitials();

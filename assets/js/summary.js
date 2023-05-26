@@ -6,7 +6,7 @@ function openBoard() {
 
 async function initSummary() {
   await includePlusInit();
-  saveCurrentUser()
+  saveCurrentUser();
   greetingTime();
   setProfilePicture();
   loadTasks();
@@ -224,7 +224,10 @@ function animateResponsiveGreeting() {
 }
 
 function openSelectProfile() {
-  document.getElementById('profilePictures').classList.toggle('d-none')
+  let user = localStorage.getItem('currentUser')
+  if (user !== '') {
+    document.getElementById('profilePictures').classList.toggle('d-none')
+  }
 }
 
 function chooseProfilePicture(img) {
@@ -240,7 +243,7 @@ function chooseProfilePicture(img) {
 
 function setProfilePicture() {
   img = document.getElementById('userPicture');
-  gender = localStorage.getItem('currentUser');
+  gender = users[currentUser]['gender'];
 
   switch (gender) {
     case 'woman':
