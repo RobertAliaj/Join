@@ -65,10 +65,10 @@ html {
 }
 
 .select-box {
-  width: 12px;
-  height: 12px;
-  border: 1px solid rgb(0 0 0);
-  border-radius: 4px;
+  width: 12px !important;
+  height: 12px !important;
+  border: 1px solid rgb(0 0 0) !important;
+  border-radius: 4px !important;
   cursor: pointer;
 }
 
@@ -80,14 +80,14 @@ html {
   margin-left: 10px;
 }
 
-form {
+.sign-up-container {
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 65%;
 }
 
-form div {
+.sign-up-container div {
   width: 100%;
   position: relative;
   display: flex;
@@ -96,7 +96,7 @@ form div {
   justify-content: center;
 }
 
-form div img {
+.sign-up-container div img {
   width: 15px;
   position: absolute;
   right: 15px;
@@ -106,7 +106,7 @@ form div img {
   margin-bottom: auto;
 }
 
-form input {
+.sign-up-container input {
   border: 1px solid #d1d1d1;
   height: 40px;
   border-radius: 7px;
@@ -115,7 +115,7 @@ form input {
   width: 100%;
 }
 
-form input::placeholder {
+.sign-up-container input::placeholder {
   color: #d1d1d1;
 }
 
@@ -151,9 +151,9 @@ form input::placeholder {
 }
 
 .buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px !important;
 }
 
 .buttons button {
@@ -287,7 +287,7 @@ form input::placeholder {
     justify-content: center;
   }
 
-  form {
+  .sign-up-container {
     width: 100%;
   }
 
@@ -309,7 +309,7 @@ form input::placeholder {
   }
 
   .buttons {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .buttons button {

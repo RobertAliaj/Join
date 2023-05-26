@@ -270,7 +270,7 @@ function LoginContainerHtml() {
   return `
       <span class="login-span">Log in</span>
       <div class="horizontal-blue-line"></div>
-      <form onsubmit="return false">
+      <div class="sign-up-container" >
         <div>
           <input autocomplete="username" type="email" placeholder="Email" id="email">
           <img src="assets/img/mail.png" alt="">
@@ -290,10 +290,10 @@ function LoginContainerHtml() {
           <a onclick="openForgotPassword()">Forgot my password</a>
         </div>
         <div class="buttons">
-          <button type="submit" onclick="logIn()" class="login-button"> Log in</button>
-          <button type="submit" onclick="window.location.replace('index.html'); guestLogIn()" class="guest-login-button">Guest Log in</button>
+          <button onclick="logIn()" class="login-button"> Log in</button>
+          <button onclick="window.location.replace('index.html'); guestLogIn()" class="guest-login-button">Guest Log in</button>
         </div> 
-      </form>
+      </div>
   `;
 }
 
@@ -302,7 +302,7 @@ function SignUpContainerHtml() {
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
       <span class="sign-up-span" >Sign up</span>
       <div class="horizontal-blue-line"></div>
-      <form onsubmit="return false">
+      <div class="sign-up-container">
         <div>
           <input placeholder="Name" id="signUpName" required>
           <img src="assets/img/user.png" alt="">
@@ -319,9 +319,9 @@ function SignUpContainerHtml() {
           <span> This email is already taken</span>
         </div>
         <div class="buttons">
-          <button type="submit" onclick="signUp()" class="login-button"> Sign Up</button>
+          <button onclick="signUp()" class="login-button"> Sign Up</button>
         </div>
-     </form>
+     </div>
   `;
 }
 
