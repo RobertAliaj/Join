@@ -648,10 +648,6 @@
 }
 
 @media (max-height: 800px) {
-    h1 {
-        font-size: 1rem;
-    }
-
     .display-flex {
         font-size: 1rem;
     }

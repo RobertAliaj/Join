@@ -1,24 +1,29 @@
 body {
-    margin: 0;
-    display: unset !important;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 .impressum {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding: 50px 0px;
     margin-left: 340px;
     margin-right: 80px;
+}
+
+.privacy{
+    padding-top: 0 !important;
 }
 
 
 @media (max-width: 1300px) {
     .impressum {
-        margin-left: 20px !important;
-        margin-right: 20px !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        flex-direction: column !important;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 90px clamp(20px, 3.9px + 4.5vw, 62px);
     }
+
+
 
 }
