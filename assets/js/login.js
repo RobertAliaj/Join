@@ -260,7 +260,12 @@ function submitForm() {
 function openLogOutContainer() {
   document.getElementById('logOut').classList.toggle('d-none')
   if (window.innerWidth < 1300) {
-
+    let logOut = document.getElementById('logOut');
+    logOut.innerHTML = `
+    <div onclick="window.location.href = 'help.html'">Help</div>
+    <div onclick="window.location.href =  'privacy.html'">Legal Notice</div>
+    <div onclick="logOut()">Log Out</div>
+    `
   }
 }
 
