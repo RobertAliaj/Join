@@ -227,7 +227,9 @@ function openSelectProfile() {
   let user = localStorage.getItem('currentUser')
   if (user !== '') {
     document.getElementById('profilePictures').classList.toggle('d-none')
-    document.getElementById('profilePictures2').classList.toggle('d-none')
+    if (window.innerWidth < 1300) {
+      document.getElementById('profilePictures2').classList.toggle('d-none')
+    }
   }
 }
 
@@ -242,7 +244,7 @@ function chooseProfilePicture(img) {
   refreshUsers();
 }
 
-function setProfilePicture() {
+async function setProfilePicture() {
   img = document.getElementById('userPicture');
   if (currentUser !== undefined) {
     gender = users[currentUser]['gender'];

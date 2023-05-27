@@ -272,7 +272,7 @@ function openLogOutContainer() {
     `
   } else {
     logOut.innerHTML = `
-    <div onclick="logOut()">Log Out</div>
+    <div class="log-out-div" onclick="logOut()">Log Out</div>
     `
   }
 
