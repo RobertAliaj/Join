@@ -1,185 +1,207 @@
 {
-  "users": [],
-  "contacts": [
-    {
-      "firstname": "Anton",
-      "lastname": "Mayer",
-      "email": "antom@gmail.com",
-      "phone": "+491111111111",
-      "color": "#cde302"
-    },
-    {
-      "firstname": "Tanja",
-      "lastname": "Wolf",
-      "email": "wolf@gmail.com",
-      "phone": "+492222222222",
-      "color": "#cb2cf9"
-    },
-    {
-      "firstname": "Sofia",
-      "lastname": "Müller",
-      "email": "sofiam@gmail.com",
-      "phone": "+493333333333",
-      "color": "#7c6ace"
-    },
-    {
-      "firstname": "Herbert",
-      "lastname": "Braun",
-      "email": "hbraun@gmail.com",
-      "phone": "+494444444444",
-      "color": "#5eebaf"
-    },
-    {
-      "firstname": "David",
-      "lastname": "Eisenberg",
-      "email": "daveis@gmail.com",
-      "phone": "+495555555555",
-      "color": "#d03687"
-    },
-    {
-      "firstname": "Benedikt",
-      "lastname": "Ziegler",
-      "email": "ziegel@gmail.com",
-      "phone": "+496666666666",
-      "color": "#f7e998"
-    },
-    {
-      "firstname": "Marcel",
-      "lastname": "Bauer",
-      "email": "mbauer@gmail.com",
-      "phone": "+497777777777",
-      "color": "#5ccee0"
-    },
-    {
-      "firstname": "Robo",
-      "lastname": "James",
-      "email": "RoboJames@blabla.com",
-      "phone": "+497777777777",
-      "color": "#3ad288"
-    },
-    {
-      "firstname": "Christian",
-      "lastname": "Meyer",
-      "email": "chris@blabla.com",
-      "phone": "+497777777777",
-      "color": "#3ad368"
-    },
-    {
-      "firstname": "Mareike",
-      "lastname": "Schneider",
-      "email": "mareike@gmail.com",
-      "phone": "+49764677777",
-      "color": "#4ad368"
-    }
-  ],
-  "categorys": [
-    {
-      "name": "Design",
-      "color": "#EF8429"
-    },
-    {
-      "name": "Sales",
-      "color": "#EC7EFA"
-    },
-    {
-      "name": "Backoffice",
-      "color": "#64D2C1"
-    },
-    {
-      "name": "Marketing",
-      "color": "#123AF8"
-    },
-    {
-      "name": "Media",
-      "color": "#F7CA39"
-    }
-  ],
-  "tasks": [
-    {
-      "title": "Website redesign",
-      "description": "Modify the contents of the main website. Adjust the UI to the company's brand design. Check responsiv",
-      "category": "Design",
-      "assigned_to": [
-        "Anton Mayer",
-        "Benedikt Ziegler",
-        "Christian Meyer",
-        "Sofia Müller",
-        "Tanja Wolf",
-        "Herbert Braun",
-        "David Eisenberg"
-      ],
-      "due_date": "2023-08-23",
-      "prio": "low",
-      "subtasks": {
-        "name": [
-          "Modify contents",
-          "Create new icons",
-          "Revise the homepage responsively"
-        ],
-        "status": [true, true, true]
-      },
-      "progress": "TODO"
-    },
-    {
-      "title": "Call potential clients",
-      "description": "Make the product presentation to prospective buyers",
-      "category": "Sales",
-      "assigned_to": [
-        "David Eisenberg",
-        "Mareike Schneider",
-        "Tanja Wolf",
-        "Sofia Müller"
-      ],
-      "due_date": "2023-06-28",
-      "prio": "high",
-      "subtasks": {
-        "name": [],
-        "status": []
-      },
-      "progress": "inProgress"
-    },
-    {
-      "title": "Accounting invoices",
-      "description": "Write open invoices for customer",
-      "category": "Backoffice",
-      "assigned_to": ["Herbert Braun"],
-      "due_date": "2023-12-08",
-      "prio": "medium",
-      "subtasks": {
-        "name": ["Subtask 1", "Subtask 2"],
-        "status": [true, true]
-      },
-      "progress": "feedback"
-    },
-    {
-      "title": "Social media strategy",
-      "description": "Develop an ad campaign for brand positioning",
-      "category": "Marketing",
-      "assigned_to": ["Sofia Müller", "Marcel Bauer"],
-      "due_date": "2023-05-26",
-      "prio": "low",
-      "subtasks": {
-        "name": [
-          "Design an ad",
-          "Calculate the costs",
-          "Created accounts for all common social media platforms"
-        ],
-        "status": [true, true, true]
-      },
-      "progress": "done"
-    },
-    {
-      "title": "Video cut",
-      "description": "Edit the new company video",
-      "category": "Media",
-      "assigned_to": ["Tanja Wolf", "Robo James"],
-      "due_date": "2023-02-03",
-      "prio": "medium",
-      "subtasks": {
-        "name": [],
-        "status": []
-      },
-      "progress": "done"
-    }
-  ]
+    "users": [],
+    "contacts": [
+        {
+            "firstname": "Anton",
+            "lastname": "Mayer",
+            "email": "antom@gmail.com",
+            "phone": "+491111111111",
+            "color": "#cde302"
+        },
+        {
+            "firstname": "Tanja",
+            "lastname": "Wolf",
+            "email": "wolf@gmail.com",
+            "phone": "+492222222222",
+            "color": "#cb2cf9"
+        },
+        {
+            "firstname": "Sofia",
+            "lastname": "Müller",
+            "email": "sofiam@gmail.com",
+            "phone": "+493333333333",
+            "color": "#7c6ace"
+        },
+        {
+            "firstname": "Herbert",
+            "lastname": "Braun",
+            "email": "hbraun@gmail.com",
+            "phone": "+494444444444",
+            "color": "#5eebaf"
+        },
+        {
+            "firstname": "David",
+            "lastname": "Eisenberg",
+            "email": "daveis@gmail.com",
+            "phone": "+495555555555",
+            "color": "#d03687"
+        },
+        {
+            "firstname": "Benedikt",
+            "lastname": "Ziegler",
+            "email": "ziegel@gmail.com",
+            "phone": "+496666666666",
+            "color": "#f7e998"
+        },
+        {
+            "firstname": "Marcel",
+            "lastname": "Bauer",
+            "email": "mbauer@gmail.com",
+            "phone": "+497777777777",
+            "color": "#5ccee0"
+        },
+        {
+            "firstname": "Robo",
+            "lastname": "James",
+            "email": "RoboJames@blabla.com",
+            "phone": "+497777777777",
+            "color": "#3ad288"
+        },
+        {
+            "firstname": "Christian",
+            "lastname": "Meyer",
+            "email": "chris@blabla.com",
+            "phone": "+497777777777",
+            "color": "#3ad368"
+        },
+        {
+            "firstname": "Mareike",
+            "lastname": "Schneider",
+            "email": "mareike@gmail.com",
+            "phone": "+49764677777",
+            "color": "#4ad368"
+        }
+    ],
+    "categorys": [
+        {
+            "name": "Design",
+            "color": "#EF8429"
+        },
+        {
+            "name": "Sales",
+            "color": "#EC7EFA"
+        },
+        {
+            "name": "Backoffice",
+            "color": "#64D2C1"
+        },
+        {
+            "name": "Marketing",
+            "color": "#123AF8"
+        },
+        {
+            "name": "Media",
+            "color": "#F7CA39"
+        }
+    ],
+    "tasks": [
+        {
+            "title": "Website redesign",
+            "description": "Modify the contents of the main website. Adjust the UI to the company's brand design. Check responsiv",
+            "category": "Design",
+            "assigned_to": [
+                "Anton Mayer",
+                "Benedikt Ziegler",
+                "Christian Meyer",
+                "Sofia Müller",
+                "Tanja Wolf",
+                "Herbert Braun",
+                "David Eisenberg"
+            ],
+            "due_date": "23-04-2023",
+            "prio": "low",
+            "subtasks": {
+                "name": [
+                    "Modify contents",
+                    "Create new icons",
+                    "Revise the homepage responsively"
+                ],
+                "status": [
+                    true,
+                    true,
+                    true
+                ]
+            },
+            "progress": "TODO"
+        },
+        {
+            "title": "Call potential clients",
+            "description": "Make the product presentation to prospective buyers",
+            "category": "Sales",
+            "assigned_to": [
+                "David Eisenberg",
+                "Mareike Schneider",
+                "Tanja Wolf",
+                "Sofia Müller"
+            ],
+            "due_date": "28-06-2023",
+            "prio": "high",
+            "subtasks": {
+                "name": [],
+                "status": []
+            },
+            "progress": "inProgress"
+        },
+        {
+            "title": "Accounting invoices",
+            "description": "Write open invoices for customer",
+            "category": "Backoffice",
+            "assigned_to": [
+                "Herbert Braun"
+            ],
+            "due_date": "13-02-2023",
+            "prio": "medium",
+            "subtasks": {
+                "name": [
+                    "Subtask 1",
+                    "Subtask 2"
+                ],
+                "status": [
+                    true,
+                    true
+                ]
+            },
+            "progress": "feedback"
+        },
+        {
+            "title": "Social media strategy",
+            "description": "Develop an ad campaign for brand positioning",
+            "category": "Marketing",
+            "assigned_to": [
+                "Sofia Müller",
+                "Marcel Bauer"
+            ],
+            "due_date": "02-03-2023",
+            "prio": "low",
+            "subtasks": {
+                "name": [
+                    "Design an ad",
+                    "Calculate the costs",
+                    "Created accounts for all common social media platforms"
+                ],
+                "status": [
+                    true,
+                    true,
+                    true
+                ]
+            },
+            "progress": "done"
+        },
+        {
+            "title": "Video cut",
+            "description": "Edit the new company video",
+            "category": "Media",
+            "assigned_to": [
+                "Tanja Wolf",
+                "Robo James"
+            ],
+            "due_date": "02-03-2023",
+            "prio": "medium",
+            "subtasks": {
+                "name": [],
+                "status": []
+            },
+            "progress": "done"
+        }
+    ]
 }
