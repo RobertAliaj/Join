@@ -227,6 +227,7 @@ function openSelectProfile() {
   let user = localStorage.getItem('currentUser')
   if (user !== '') {
     document.getElementById('profilePictures').classList.toggle('d-none')
+    document.getElementById('profilePictures2').classList.toggle('d-none')
   }
 }
 
@@ -243,7 +244,7 @@ function chooseProfilePicture(img) {
 
 function setProfilePicture() {
   img = document.getElementById('userPicture');
-  if (currentUser !== '') {
+  if (currentUser !== undefined) {
     gender = users[currentUser]['gender'];
 
     switch (gender) {

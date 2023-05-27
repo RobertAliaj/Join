@@ -265,7 +265,7 @@ function openLogOutContainer() {
     <div onclick="window.location.href = 'help.html'">Help</div>
     <div onclick="window.location.href =  'privacy.html'">Legal Notice</div>
     <div onclick="logOut()">Log Out</div>
-    <div id="profilePictures" class="different-profiles responsive-profiles">
+    <div id="profilePictures2" class="different-profiles responsive-profiles d-none">
       <img onclick="chooseProfilePicture('woman.png'); openLogOutContainer(); openSelectProfile()" src="assets/img/woman.png">
       <img onclick="chooseProfilePicture('man.png'); openLogOutContainer(); openSelectProfile()" src="assets/img/man.png">
     </div>
@@ -275,6 +275,8 @@ function openLogOutContainer() {
     <div onclick="logOut()">Log Out</div>
     `
   }
+
+
 }
 
 function logOut() {
