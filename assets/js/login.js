@@ -259,11 +259,19 @@ function submitForm() {
 
 function openLogOutContainer() {
   document.getElementById('logOut').classList.toggle('d-none')
+  let logOut = document.getElementById('logOut');
   if (window.innerWidth < 1300) {
-    let logOut = document.getElementById('logOut');
     logOut.innerHTML = `
     <div onclick="window.location.href = 'help.html'">Help</div>
     <div onclick="window.location.href =  'privacy.html'">Legal Notice</div>
+    <div onclick="logOut()">Log Out</div>
+    <div id="profilePictures" class="different-profiles responsive-profiles">
+      <img onclick="chooseProfilePicture('woman.png'); openLogOutContainer(); openSelectProfile()" src="assets/img/woman.png">
+      <img onclick="chooseProfilePicture('man.png'); openLogOutContainer(); openSelectProfile()" src="assets/img/man.png">
+    </div>
+    `
+  } else {
+    logOut.innerHTML = `
     <div onclick="logOut()">Log Out</div>
     `
   }
