@@ -9,7 +9,7 @@ async function init() {
 }
 
 async function loadHelpAndPrivacy() {
-  await awaitHTML();
+  await includePlusInit();
   saveCurrentUser();
   setProfilePicture();
 }

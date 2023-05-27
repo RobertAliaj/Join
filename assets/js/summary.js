@@ -243,7 +243,7 @@ function chooseProfilePicture(img) {
 
 function setProfilePicture() {
   img = document.getElementById('userPicture');
-  if (currentUser) {
+  if (currentUser !== '') {
     gender = users[currentUser]['gender'];
 
     switch (gender) {
