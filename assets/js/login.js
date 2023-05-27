@@ -270,7 +270,7 @@ function LoginContainerHtml() {
   return `
       <span class="login-span">Log in</span>
       <div class="horizontal-blue-line"></div>
-      <div class="sign-up-container" >
+      <div class="form-container " >
         <div>
           <input autocomplete="username" type="email" placeholder="Email" id="email">
           <img src="assets/img/mail.png" alt="">
@@ -302,7 +302,7 @@ function SignUpContainerHtml() {
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
       <span class="sign-up-span" >Sign up</span>
       <div class="horizontal-blue-line"></div>
-      <div class="sign-up-container">
+      <div class="form-container ">
         <div>
           <input placeholder="Name" id="signUpName" required>
           <img src="assets/img/user.png" alt="">
@@ -330,7 +330,7 @@ function PasswordContainerHtml() {
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
       <span class="forgot-password-span" >Forgot Password</span>
       <div class="horizontal-blue-line"></div>
-      <form action="https://gruppe-join-421.developerakademie.net/send_mail.php" method="POST">
+      <form class="form-container " action="https://gruppe-join-421.developerakademie.net/send_mail.php" method="POST">
         <div>
           <input name="name" type="email" placeholder="Email" id="forgotPasswordEmail" required>
           <img src="assets/img/mail.png" alt="">

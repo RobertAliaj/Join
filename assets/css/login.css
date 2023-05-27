@@ -80,14 +80,14 @@ html {
   margin-left: 10px;
 }
 
-.sign-up-container {
+.form-container {
   display: flex;
   flex-direction: column;
   gap: 30px;
   width: 65%;
 }
 
-.sign-up-container div {
+.form-container div {
   width: 100%;
   position: relative;
   display: flex;
@@ -96,7 +96,7 @@ html {
   justify-content: center;
 }
 
-.sign-up-container div img {
+.form-container div img {
   width: 15px;
   position: absolute;
   right: 15px;
@@ -106,7 +106,7 @@ html {
   margin-bottom: auto;
 }
 
-.sign-up-container input {
+.form-container input {
   border: 1px solid #d1d1d1;
   height: 40px;
   border-radius: 7px;
@@ -115,7 +115,7 @@ html {
   width: 100%;
 }
 
-.sign-up-container input::placeholder {
+.form-container input::placeholder {
   color: #d1d1d1;
 }
 
@@ -287,7 +287,7 @@ html {
     justify-content: center;
   }
 
-  .sign-up-container {
+  .form-container {
     width: 100%;
   }
 
