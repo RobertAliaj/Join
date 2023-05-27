@@ -386,6 +386,7 @@ function changeContact(idx) {
 
   refreshContacts();
   closeEditContact();
+  openSpecificContact(idx);
 }
 
 /**
