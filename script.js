@@ -10,7 +10,8 @@ async function init() {
 
 async function loadHelpAndPrivacy() {
   await awaitHTML();
-  setProfilePicture()
+  saveCurrentUser();
+  setProfilePicture();
 }
 
 
