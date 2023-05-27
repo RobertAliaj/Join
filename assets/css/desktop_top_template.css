@@ -93,9 +93,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 14px;
-    font-weight: 100;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -103,6 +100,10 @@
     position: absolute;
     top: 90px;
     right: 0px;
+    color: white;
+    font-size: 14px !important;
+    font-weight: 100 !important;
+    text-align: left;
 }
 
 .log-out:hover {
@@ -136,6 +137,23 @@
     .log-out {
         top: 60px;
         margin-right: 85px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        justify-content: space-evenly;
+        gap: 15px;
+        height: unset;
+        width: unset;
+        box-sizing: border-box;
+        cursor: unset;
+    }
+
+    .log-out div {
+        cursor: pointer;
+    }
+
+    .log-out:hover {
+        background-color: #293646;
     }
 
     .profile {
@@ -143,8 +161,7 @@
     }
 
     .different-profiles {
-        top: 60px;
-        flex-direction: row;
+        top: 85px;
         gap: 10px;
         margin-right: 5px;
     }

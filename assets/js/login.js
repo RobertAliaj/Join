@@ -259,6 +259,9 @@ function submitForm() {
 
 function openLogOutContainer() {
   document.getElementById('logOut').classList.toggle('d-none')
+  if (window.innerWidth < 1300) {
+
+  }
 }
 
 function logOut() {
