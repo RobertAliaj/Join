@@ -30,9 +30,23 @@ async function refreshContacts() {
  * create a new contact
  */
 async function createNewContact() {
-  await submitContact();
-  closeNewContact();
-  showContacts();
+  let name = document.getElementById("name");
+  let mail = document.getElementById("mail");
+  let phone = document.getElementById("phone");
+  let color = await generateRandomColor();
+  if (checkCreate(name, mail, phone)) {
+    await newContact(name, mail, phone, color);
+    closeNewContact();
+    showContacts();
+  }
+}
+
+function checkCreate(name, mail, phone) {
+  checkEmail();
+  checkAllValues(name, mail, phone);
+  if (!checkEmail() && checkAllValues(name, mail, phone)) {
+    return true;
+  }
 }
 
 /**
@@ -48,16 +62,49 @@ function showContacts() {
   displayContacts();
 }
 
-/**
- * getting all parameters for the new contact
- */
-async function submitContact() {
-  let name = document.getElementById("name");
-  let mail = document.getElementById("mail");
-  let phone = document.getElementById("phone");
-  let color = await generateRandomColor();
+function checkAllValues(name, mail, phone) {
+  if (!name.value) {
+    document.getElementById('nameNecessary').classList.remove('d-none');
+  } else {
+    document.getElementById('nameNecessary').classList.add('d-none');
+  }
+  if (!mail.value) {
+    document.getElementById('mailNecessary').classList.remove('d-none');
+  } else {
+    document.getElementById('mailNecessary').classList.add('d-none');
+  }
+  if (!phone.value) {
+    document.getElementById('phoneNecessary').classList.remove('d-none');
+  } else {
+    document.getElementById('phoneNecessary').classList.add('d-none');
+  }
+  if (name.value && mail.value && phone.value) {
+    return true
+  }
+}
 
-  newContact(name, mail, phone, color);
+function checkEmail() {
+  if (!isEmailExisting(mail, 'createContactEmailAlert')) {
+    true
+  }
+}
+
+// if (!isEmailExisting(mail)) {
+
+//   return true;
+// } else {
+//   return false
+// }
+
+function isEmailExisting(mail, div) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i]['email'] === mail.value) {
+      document.getElementById(div).classList.remove('d-none');
+      return true
+    } else {
+      document.getElementById(div).classList.add('d-none');
+    }
+  }
 }
 
 /**
@@ -358,14 +405,36 @@ async function closeEditContact() {
 async function deleteContact(idx) {
   for (let i = 0; i < users.length; i++) {
     if (contacts[idx]['email'] === users[i]['email']) {
-      users.splice(i, 1)
+      document.getElementById("newContactContainer").classList.add("d-none");
+      openAttentionCard(idx, i);
+    } else {
+      contacts.splice(idx, 1);
+      await refreshContacts();
+      initContacts();
+      document.getElementById("specificContact").innerHTML = "";
     }
   }
+
+}
+
+function closeAttentionCard() {
+  document.getElementById('overlay').classList.add('d-none');
+  document.getElementById('attentionCard').classList.add('d-none');
+}
+
+function openAttentionCard(idx) {
+  document.getElementById('overlay').classList.remove('d-none');
+  document.getElementById('attentionCard').classList.remove('d-none');
+  document.getElementById('attentionCard').innerHTML = attentionCardHtml(idx, i);
+
+}
+
+async function deleteOwnUser(idx, i) {
+  users.splice(i, 1);
   contacts.splice(idx, 1);
   await refreshContacts();
-  initContacts();
-  document.getElementById("specificContact").innerHTML = "";
-  console.log(idx);
+  await refreshUsers();
+  window.location.href = 'login.html';
 }
 
 /**
@@ -374,19 +443,41 @@ async function deleteContact(idx) {
  * @param {*} idx index of contact
  */
 function changeContact(idx) {
-  let firstname = document.getElementById("name").value.split(" ")[0];
-  let lastname = document.getElementById("name").value.split(" ")[1];
-  let email = document.getElementById("mail").value;
-  let phone = document.getElementById("phone").value;
+  let name = document.getElementById("name")
+  let firstname = document.getElementById("name");
+  let lastname = document.getElementById("name");
+  let email = document.getElementById("mail");
+  let phone = document.getElementById("phone");
 
-  contacts[idx]["firstname"] = firstname;
-  contacts[idx]["lastname"] = lastname;
-  contacts[idx]["email"] = email;
-  contacts[idx]["phone"] = phone;
+  if (checkEdit(idx, name, email, phone)) {
+    contacts[idx]["firstname"] = firstname.value.split(" ")[0];
+    contacts[idx]["lastname"] = lastname.value.split(" ")[1];
+    contacts[idx]["email"] = email.value;
+    contacts[idx]["phone"] = phone.value;
 
-  refreshContacts();
-  closeEditContact();
-  openSpecificContact(idx);
+    refreshContacts();
+    closeEditContact();
+    openSpecificContact(idx);
+  }
+}
+
+function checkEdit(idx, name, email, phone) {
+  checkEditEmail(idx);
+  checkAllValues(name, email, phone)
+  if (!checkEditEmail(idx) && checkAllValues(name, email, phone)) {
+    return true
+  }
+}
+
+function checkEditEmail(idx) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i]['email'] === mail.value && i !== idx) {
+      document.getElementById('editContactEmailAlert').classList.remove('d-none');
+      return true
+    } else {
+      document.getElementById('editContactEmailAlert').classList.add('d-none');
+    }
+  }
 }
 
 /**
@@ -477,6 +568,19 @@ function closeAddTaskWrapper() {
 /************ HTML ************/
 /**************************** */
 
+function attentionCardHtml(idx, i) {
+  return /*html*/ `
+        <span>Are you sure you want to delete the Contact you are signed in with?</span>
+        <div class="submit-section">
+            <div onclick="closeAttentionCard()">Cancle <img src="assets/img/Clear_task.png" alt="">
+            </div>
+            <button class="contacts-button" onclick="deleteOwnUser(${idx, i})">Delete<img src="assets/img/create_task.png"
+                    alt="">
+            </button>
+        </div>
+  `;
+}
+
 function createLetterHtml(i) {
   return /*html*/ `
         <div class="letter" >${letters[i].toUpperCase()}</div>
@@ -562,22 +666,24 @@ function editContactHtml(idx) {
       .toUpperCase()}
             </div>           
             <div class="contact-form">
-                <form onsubmit="return false">
+                <div class="form-container">
                     <div class="input-fields">
                         <div>
-                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" value="${contacts[idx]["firstname"]
-    } ${contacts[idx]["lastname"]}" required>
+                            <input id="name" style="cursor: pointer;" placeholder="Name" type="text" value="${contacts[idx]["firstname"]} ${contacts[idx]["lastname"]}" >
                             <img src="assets/img/user.png" alt="">
+                            <div id="nameNecessary" class="necessary d-none"></div>
+
                         </div>
                         <div>
-                            <input id="mail" placeholder="Email" type="email" value="${contacts[idx]["email"]
-    }" required>
+                            <input id="mail" placeholder="Email" type="email" value="${contacts[idx]["email"]}">
                             <img src="assets/img/mail.png" alt="">
+                            <div id="editContactEmailAlert" class="alert d-none">This email is already taken</div>
+                            <div id="mailNecessary" class="necessary d-none"></div>
                         </div>
                         <div>
-                            <input id="phone" placeholder="Phone" type="tel" value="${contacts[idx]["phone"]
-    }" required>
+                            <input id="phone" placeholder="Phone" type="tel" value="${contacts[idx]["phone"]}">
                             <img src="assets/img/mobile.png" alt="">
+                            <div id="phoneNecessary" class="necessary d-none"></div>
                         </div>
                     </div>
                     <div class="submit-section">
@@ -588,7 +694,7 @@ function editContactHtml(idx) {
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>
-                </form>
+  </div>
             </div>
         </div>
     `;
@@ -608,19 +714,25 @@ function createContactHtml() {
         <div class="contact-create-container">
             <img class="user" src="assets/img/user (1).png" alt="">
             <div class="contact-form">
-                <form onsubmit="return false">
+                <div class="form-container">
                     <div class="input-fields">
                         <div>
                             <input id="name" style="cursor: pointer;" placeholder="Name" type="text" required>
                             <img src="assets/img/user.png" alt="">
+                            <div id="nameNecessary" class="necessary d-none"></div>
                         </div>
                         <div>
                             <input id="mail" placeholder="Email" type="email" required>
                             <img src="assets/img/mail.png" alt="">
+                            <div id="createContactEmailAlert" class="alert d-none">This email is already taken</div>
+                            <div id="mailNecessary" class="necessary d-none"></div>
+
                         </div>
                         <div>
                             <input id="phone" placeholder="Phone" type="tel" required>
                             <img src="assets/img/mobile.png" alt="">
+                            <div id="phoneNecessary" class="necessary d-none"></div>
+
                         </div>
                     </div>
                     <div class="submit-section">
@@ -630,7 +742,7 @@ function createContactHtml() {
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     `;

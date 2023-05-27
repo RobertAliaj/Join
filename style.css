@@ -50,6 +50,14 @@ body {
     border-radius: 20px;
 }
 
+.alert {
+    color: red;
+    font-size: 12px !important;
+    position: absolute !important;
+    left: 0;
+    top: 40px;
+}
+
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -63,15 +71,15 @@ body {
 
 @media (max-width:1300px) {
 
-    .hide-if-not-mobile{
+    .hide-if-not-mobile {
         display: unset !important;
     }
-    
+
     .hide {
         display: none;
     }
 
-    h1{
+    h1 {
         margin-top: 0px;
     }
 }

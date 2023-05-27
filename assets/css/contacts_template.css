@@ -24,6 +24,23 @@
     box-sizing: border-box;
 }
 
+.sure-delete {
+    width: 450px;
+    height: fit-content;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
 
 /********* RIGHT SECTION ***********/
 
@@ -162,6 +179,7 @@
 
 .input-fields div {
     position: relative;
+    box-sizing: border-box;
 }
 
 .input-fields div img {
@@ -471,6 +489,16 @@
 
 .new-contact-button-responsive {
     display: none;
+}
+
+.necessary {
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    bottom: 25px;
+    left: 290px;
+    border-radius: 100%;
+    position: absolute !important;
 }
 
 

@@ -212,14 +212,6 @@ html {
   font-weight: 700;
 }
 
-.alert {
-  color: red;
-  font-size: 12px !important;
-  position: absolute;
-  bottom: 35%;
-  left: 0;
-}
-
 /********** FORGOT PASSWORD **************/
 
 .forgot-password-span {

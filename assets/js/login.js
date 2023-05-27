@@ -155,7 +155,7 @@ async function signUp() {
     };
     pushUser(user);
     newContact(signUpName, signUpEmail, phone, color);
-    refreshContacts();
+    await refreshContacts();
     openLogIn();
   } else {
     let alert = document.getElementById("emailAlert");
@@ -328,14 +328,15 @@ function SignUpContainerHtml() {
         <div>
           <input type="email" placeholder="Email" id="signUpEmail" required>
           <img src="assets/img/mail.png" alt="">
+           <div id="emailAlert" class="alert d-none">
+          <span> This email is already taken</span>
+        </div>
         </div>
         <div>
           <input type="password" placeholder="Password" id="signUpPassword" required>
           <img src="assets/img/schloss.png" alt="">
         </div>
-        <div id="emailAlert" class="alert d-none">
-          <span> This email is already taken</span>
-        </div>
+        
         <div class="buttons">
           <button onclick="signUp()" class="login-button"> Sign Up</button>
         </div>
