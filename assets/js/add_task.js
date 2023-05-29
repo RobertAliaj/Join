@@ -295,14 +295,14 @@ function priority(clicked, notClicked, alsoNotClicked, img) {
       clicked
     ).style = `background-color: rgb(236, 85, 32);`;
     changeColor(img);
-    prio = "high";
+    prio = "urgent";
   }
   if (clicked == "prioMedium") {
     document.getElementById(
       clicked
     ).style = `background-color: rgb(243, 173, 50);`;
     changeColor(img);
-    prio = "mid";
+    prio = "medium";
   }
   if (clicked == "prioLow") {
     document.getElementById(

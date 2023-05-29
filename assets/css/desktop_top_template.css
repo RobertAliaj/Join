@@ -139,11 +139,7 @@
         display: none;
     }
 
-    .user-img {
-        height: 35px;
-        width: 35px;
-        object-fit: contain;
-    }
+
 
     .log-out {
         top: 60px;
