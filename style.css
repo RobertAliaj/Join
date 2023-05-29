@@ -37,13 +37,25 @@ body {
 }
 
 .add-task-wrapper {
-    position: absolute;
+    /*position: absolute;
     margin: auto;
     right: 0;
     left: 0;
     bottom: 0;
     top: 0;
     height: 90vh;
+    width: 80%;
+    z-index: 9;
+    background: white;
+    border-radius: 20px;
+    */
+    position: fixed;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 50%;
+    top: 50%;
+    height: 90%;
     width: 80%;
     z-index: 9;
     background: white;
