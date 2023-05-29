@@ -75,23 +75,23 @@
     "categorys": [
         {
             "name": "Design",
-            "color": "rgb(239, 132, 41)"
+            "color": "#EF8429"
         },
         {
             "name": "Sales",
-            "color": "rgb(236, 126, 250)"
+            "color": "#EC7EFA"
         },
         {
             "name": "Backoffice",
-            "color": "rgb(100, 210, 193)"
+            "color": "#64D2C1"
         },
         {
             "name": "Marketing",
-            "color": "rgb(18, 58, 248)"
+            "color": "#123AF8"
         },
         {
             "name": "Media",
-            "color": "rgb(247, 202, 57)"
+            "color": "#F7CA39"
         }
     ],
     "tasks": [
@@ -108,7 +108,7 @@
                 "Herbert Braun",
                 "David Eisenberg"
             ],
-            "due_date": "2023-04-23",
+            "due_date": "23-04-2023",
             "prio": "low",
             "subtasks": {
                 "name": [
@@ -118,8 +118,8 @@
                 ],
                 "status": [
                     true,
-                    false,
-                    false
+                    true,
+                    true
                 ]
             },
             "progress": "TODO"
@@ -134,8 +134,8 @@
                 "Tanja Wolf",
                 "Sofia Müller"
             ],
-            "due_date": "2023-06-28",
-            "prio": "urgent",
+            "due_date": "28-06-2023",
+            "prio": "high",
             "subtasks": {
                 "name": [],
                 "status": []
@@ -149,7 +149,7 @@
             "assigned_to": [
                 "Herbert Braun"
             ],
-            "due_date": "2023-02-13",
+            "due_date": "13-02-2023",
             "prio": "medium",
             "subtasks": {
                 "name": [
@@ -158,7 +158,7 @@
                 ],
                 "status": [
                     true,
-                    false
+                    true
                 ]
             },
             "progress": "feedback"
@@ -171,7 +171,7 @@
                 "Sofia Müller",
                 "Marcel Bauer"
             ],
-            "due_date": "2023-03-02",
+            "due_date": "02-03-2023",
             "prio": "low",
             "subtasks": {
                 "name": [
@@ -180,7 +180,7 @@
                     "Created accounts for all common social media platforms"
                 ],
                 "status": [
-                    false,
+                    true,
                     true,
                     true
                 ]
@@ -195,7 +195,7 @@
                 "Tanja Wolf",
                 "Robo James"
             ],
-            "due_date": "2023-03-02",
+            "due_date": "02-03-2023",
             "prio": "medium",
             "subtasks": {
                 "name": [],

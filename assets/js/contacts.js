@@ -486,13 +486,34 @@ function checkEditEmail(idx) {
 function openAddTaskContainer(idx) {
   let greyBackground = document.getElementById("greyBackground");
   let addTaskPopUp = document.getElementById("addTaskWrapper");
+  let rightSection = document.getElementById("rightSection");
+  let contactsTemplate = document.getElementById("contactsTemplate");
+  let bottomMenu = document.getElementById("bottomMenuTemplate");
+  let kanbanTitle = document.getElementById("kanbanTitle");
+  let addTaskTemplate = document.getElementById("addTaskTemplate");
   let createTaskBtn = document.getElementById("createTaskBtn");
 
-  greyBackground.classList.remove("d-none");
-  addTaskPopUp.classList.remove("slide-out");
-  addTaskPopUp.classList.add("slide-in");
-  addTaskPopUp.classList.remove("d-none");
+  if (window.innerWidth < 1300) {
+    addTaskPopUp.classList.add("add-task-wrapper");
+    addTaskPopUp.classList.add("slide-in");
+    addTaskPopUp.classList.remove("d-none");
+    addTaskPopUp.classList.remove("slide-out");
+    createTaskBtn.classList.remove("hide");
 
+    rightSection.classList.add("d-none");
+    contactsTemplate.classList.add("d-none");
+    bottomMenu.classList.add("d-none");
+    kanbanTitle.classList.add("d-none");
+    addTaskTemplate.classList.add("flex-center");
+  } else {
+    greyBackground.classList.remove("d-none");
+
+    addTaskPopUp.classList.add("add-task-wrapper");
+    addTaskPopUp.classList.add("slide-in");
+
+    addTaskPopUp.classList.remove("d-none");
+    addTaskPopUp.classList.remove("slide-out");
+  }
   loadInfos();
   if (idx) {
     selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
@@ -509,15 +530,38 @@ function openAddTaskContainer(idx) {
 function closeAddTaskWrapper() {
   let greyBackground = document.getElementById("greyBackground");
   let addTaskPopUp = document.getElementById("addTaskWrapper");
+  let rightSection = document.getElementById("rightSection");
+  let contactsTemplate = document.getElementById("contactsTemplate");
+  let bottomMenu = document.getElementById("bottomMenuTemplate");
+  let kanbanTitle = document.getElementById("kanbanTitle");
+  let addTaskTemplate = document.getElementById("addTaskTemplate");
   let createTaskBtn = document.getElementById("createTaskBtn");
 
-  addTaskPopUp.classList.add("slide-out");
-  addTaskPopUp.classList.remove("slide-in");
- setTimeout(() => {
-  greyBackground.classList.add("d-none");  
-  addTaskPopUp.classList.add("d-none");
- }, 400);
-  
+  if (window.innerWidth > 1300) {
+    addTaskPopUp.classList.remove("slide-in");
+    addTaskPopUp.classList.add("slide-out");
+
+    setTimeout(function () {
+      greyBackground.classList.add("d-none");
+      addTaskPopUp.classList.add("d-none");
+      addTaskPopUp.classList.remove("add-task-wrapper");
+    }, 400);
+  } else {
+    addTaskPopUp.classList.remove("slide-in");
+    addTaskPopUp.classList.add("slide-out");
+
+    rightSection.classList.remove("d-none");
+    contactsTemplate.classList.remove("d-none");
+    bottomMenu.classList.remove("d-none");
+    kanbanTitle.classList.remove("d-none");
+    addTaskTemplate.classList.remove("d-none");
+    createTaskBtn.classList.remove("d-none");
+
+    setTimeout(function () {
+      addTaskPopUp.classList.add("d-none");
+      addTaskPopUp.classList.remove("add-task-wrapper");
+    }, 400);
+  }
 }
 
 /**************************** */
