@@ -510,13 +510,11 @@
     }
 
     .content-container {
-        position: unset;
-        display: flex;
-        justify-content: center;
-        padding-bottom: 90px;
-        padding-top: 90px;
-        transform: scale(1);
-        transform-origin: left;
+        top: 0;
+        left: 0;
+        margin-top: 60px;
+        margin-bottom: 90px;
+        padding: 20px clamp(20px, 3.9px + 4.5vw, 62px);
     }
 
     .body-add-task .user-info {
@@ -524,11 +522,11 @@
     }
 
     .buttons {
-        top: 15px !important;
+        /* top: 15px !important;
         right: 25px !important;
         bottom: unset !important;
         position: fixed !important;
-        padding-top: unset !important;
+        padding-top: unset !important; */
         z-index: 5;
     }
 
@@ -566,9 +564,9 @@
     .add-task-container {
         box-sizing: border-box;
         overflow: hidden;
-        /* padding: unset !important; */
+        padding: unset !important;
         width: 100%;
-        padding: 0px clamp(20px, 3.9px + 4.5vw, 62px);
+        /* padding: 0px clamp(20px, 3.9px + 4.5vw, 62px); */
     }
 
     .create-task-responsive {

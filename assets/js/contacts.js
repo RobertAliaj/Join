@@ -486,12 +486,21 @@ function checkEditEmail(idx) {
 function openAddTaskContainer(idx) {
   let greyBackground = document.getElementById("greyBackground");
   let addTaskPopUp = document.getElementById("addTaskWrapper");
-  let createTaskBtn = document.getElementById("createTaskBtn");
+  let profile = document.getElementById('userPicture');
+  let addTaskBtn = document.getElementById("addTaskBtn");
 
-  greyBackground.classList.remove("d-none");
-  addTaskPopUp.classList.remove("slide-out");
-  addTaskPopUp.classList.add("slide-in");
-  addTaskPopUp.classList.remove("d-none");
+  if (window.innerWidth < 1300) {
+    addTaskPopUp.classList.remove("slide-out");
+    addTaskPopUp.classList.add("slide-in");
+    addTaskPopUp.classList.remove("d-none");
+    profile.classList.add("d-none");
+    addTaskBtn.classList.remove("d-none");
+  } else {
+    greyBackground.classList.remove("d-none");
+    addTaskPopUp.classList.remove("slide-out");
+    addTaskPopUp.classList.add("slide-in");
+    addTaskPopUp.classList.remove("d-none");
+  }
 
   loadInfos();
   if (idx) {
@@ -509,15 +518,23 @@ function openAddTaskContainer(idx) {
 function closeAddTaskWrapper() {
   let greyBackground = document.getElementById("greyBackground");
   let addTaskPopUp = document.getElementById("addTaskWrapper");
-  let createTaskBtn = document.getElementById("createTaskBtn");
+  let profile = document.getElementById('userPicture');
+  let addTaskBtn = document.getElementById("addTaskBtn");
 
-  addTaskPopUp.classList.add("slide-out");
-  addTaskPopUp.classList.remove("slide-in");
- setTimeout(() => {
-  greyBackground.classList.add("d-none");  
-  addTaskPopUp.classList.add("d-none");
- }, 400);
-  
+  if (window.innerWidth < 1300) {
+    addTaskPopUp.classList.add("slide-out");
+    addTaskPopUp.classList.remove("slide-in");
+    profile.classList.remove("d-none");
+    addTaskBtn.classList.add("d-none");
+  } else {
+    addTaskPopUp.classList.add("slide-out");
+    addTaskPopUp.classList.remove("slide-in");
+  }
+  setTimeout(() => {
+    greyBackground.classList.add("d-none");
+    addTaskPopUp.classList.add("d-none");
+  }, 400);
+
 }
 
 /**************************** */

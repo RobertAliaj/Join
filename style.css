@@ -3,6 +3,7 @@ body {
     margin: 0;
     font-family: 'inter';
     background-color: #f6f7f8;
+    overflow-x: hidden;
 }
 
 .d-none {
@@ -93,6 +94,16 @@ body {
 
     h1 {
         margin-top: 0px;
+    }
+
+    .add-task-wrapper {
+        border-radius: 0;
+        margin-top: 60px;
+        height: calc(100vh - 150px);
+        width: 100vw;
+        padding: 50px;
+        box-sizing: border-box;
+        z-index: 1;
     }
 }
 

@@ -567,11 +567,6 @@
 
 
 @media (max-width: 1300px) {
-
-    .add-task-wrapper-in-board-template{
-
-    }
-
     .right-section {
         display: none;
         width: 100%;
@@ -587,16 +582,15 @@
     }
 
     .add-task-container {
-        padding: unset !important;
-        width: 90% !important;
-        height: 100% !important;
-        padding: 20px !important;
+        width: 100%;
+        height: 100%;
     }
 
     .contacts-page {
         left: 0;
         width: 100%;
         top: 60px;
+        bottom: 90px;
     }
 
     .left-section {
@@ -635,14 +629,6 @@
         right: 40px;
     }
 
-    .input-section {
-        display: unset !important;
-        width: 90% !important;
-        margin-left: 20px !important;
-        height: 100%;
-        margin-right: 20px !important;
-    }
-
     .headline {
         width: 90%;
     }
@@ -658,10 +644,6 @@
 
     .new-contact-container {
         width: 95vw;
-    }
-
-    .contacts-page {
-        bottom: 80px;
     }
 }
 
@@ -746,7 +728,7 @@
 }
 
 @media (max-width: 450px) {
-    .main-information{
+    .main-information {
         font-size: 0.8rem;
     }
 
