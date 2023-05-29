@@ -104,6 +104,9 @@ body {
         padding: 50px;
         box-sizing: border-box;
         z-index: 1;
+        bottom: 0;
+        top: 0;
+        overflow-y: scroll;
     }
 }
 
