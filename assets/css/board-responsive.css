@@ -8,7 +8,7 @@
         height: unset;
     }
 
-    .done{
+    .done {
         margin-bottom: 120px;
     }
 
@@ -34,8 +34,16 @@
 
     .container {
         width: 100%;
+        margin-top: 60px;
+        margin-bottom: 90px;
+        position: absolute;
+        top: 0;
+        padding-top: 20px;
+        height: 100vh;
+        overflow-y: scroll;
     }
 }
+
 
 
 @media(max-width:1000px) {
@@ -49,7 +57,7 @@
         padding: 0;
     }
 
-    .status-parent{
+    .status-parent {
         padding-top: 24px;
     }
 
