@@ -119,5 +119,6 @@ body {
         max-width: 500px;
         position: relative;
         width: 100%;
+        gap: 0;
     }
 }
