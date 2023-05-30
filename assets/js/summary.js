@@ -1,18 +1,19 @@
 let currentUser;
 
-function openBoard() {
-  location.href = "https://gruppe-join-421.developerakademie.net/board.html";
-}
-
+/**
+ * This function initializes the Summary page
+ */
 async function initSummary() {
   await includePlusInit();
-  saveCurrentUser();
   greetingTime();
+  saveCurrentUser();
   setProfilePicture();
   loadTasks();
-
 }
 
+/**
+ * This function checks the current User idx in the users array
+ */
 function saveCurrentUser() {
   let email = localStorage.getItem('currentUser');
   for (let i = 0; i < users.length; i++) {
@@ -23,6 +24,32 @@ function saveCurrentUser() {
   }
 }
 
+/**
+ * This function sets the profile picture in the top corner according to the gender
+ */
+async function setProfilePicture() {
+  img = document.getElementById('userPicture');
+  if (currentUser !== undefined) {
+    gender = users[currentUser]['gender'];
+
+    switch (gender) {
+      case 'woman':
+        img.src = 'assets/img/woman.png';
+        break;
+      case 'man':
+        img.src = 'assets/img/man.png';
+        break;
+      default:
+        img.src = 'assets/img/guestLogin.png';
+    }
+  } else {
+    img.src = 'assets/img/guestLogin.png';
+  }
+}
+
+/**
+ * This function loads all the information of the board
+ */
 function loadTasks() {
   showTasksInBoard();
   showTasksInProgress();
@@ -33,6 +60,9 @@ function loadTasks() {
   showDone();
 }
 
+/**
+ * This function displays the number of tasks in board
+ */
 function showTasksInBoard() {
   document.getElementById("tasksInBoard").innerHTML = tasks.length;
   if (tasks.length < 2) {
@@ -40,6 +70,9 @@ function showTasksInBoard() {
   }
 }
 
+/**
+ * This function displays the number of tasks in progress
+ */
 function showTasksInProgress() {
   let x = 0;
   for (i = 0; i < tasks.length; i++) {
@@ -54,6 +87,9 @@ function showTasksInProgress() {
   }
 }
 
+/**
+ * This function displays the number of tasks awaiting feedback
+ */
 function showAwaitingFeedback() {
   let x = 0;
   for (i = 0; i < tasks.length; i++) {
@@ -64,6 +100,9 @@ function showAwaitingFeedback() {
   document.getElementById("awaitingFeedback").innerHTML = x;
 }
 
+/**
+ * This function displays the number of urgent tasks
+ */
 function showUrgentTasks() {
   let x = 0;
   for (i = 0; i < tasks.length; i++) {
@@ -74,6 +113,42 @@ function showUrgentTasks() {
   document.getElementById("urgent").innerHTML = x;
 }
 
+/**
+ * This function displays the mumber of todos
+ */
+function showTodos() {
+  let x = 0;
+  for (i = 0; i < tasks.length; i++) {
+    let task = tasks[i]["subtasks"]["status"];
+    for (j = 0; j < task.length; j++) {
+      if (task[j] === true) {
+        x = x + 1;
+      }
+    }
+  }
+  document.getElementById("todo").innerHTML = x;
+}
+
+/**
+ * This function displays the number of done tasks
+ */
+function showDone() {
+  let x = 0;
+  for (i = 0; i < tasks.length; i++) {
+    let task = tasks[i]["subtasks"]["status"];
+    for (j = 0; j < task.length; j++) {
+      if (task[j] === false) {
+        x = x + 1;
+      }
+    }
+  }
+  document.getElementById("done").innerHTML = x;
+}
+
+/**
+ * This function displays the Task with the closest upcoming date
+ * @returns the closest date
+ */
 function findClosestDate() {
   const today = new Date();
   let closestDate = new Date(tasks[0]["due_date"]);
@@ -91,6 +166,9 @@ function findClosestDate() {
   return closestDate;
 }
 
+/**
+ * This function displays the date
+ */
 function fillInClosestDate() {
   const closestDate = findClosestDate();
   const dateString = closestDate.toLocaleDateString("default", {
@@ -101,6 +179,9 @@ function fillInClosestDate() {
   document.getElementById("upcomingDeadline").innerHTML = dateString;
 }
 
+/**
+ * This function sets the greeting according to current time
+ */
 function greetingTime() {
   var today = new Date();
   var curHr = today.getHours();
@@ -114,32 +195,10 @@ function greetingTime() {
   }
 }
 
-function showTodos() {
-  let x = 0;
-  for (i = 0; i < tasks.length; i++) {
-    let task = tasks[i]["subtasks"]["status"];
-    for (j = 0; j < task.length; j++) {
-      if (task[j] === true) {
-        x = x + 1;
-      }
-    }
-  }
-  document.getElementById("todo").innerHTML = x;
-}
-
-function showDone() {
-  let x = 0;
-  for (i = 0; i < tasks.length; i++) {
-    let task = tasks[i]["subtasks"]["status"];
-    for (j = 0; j < task.length; j++) {
-      if (task[j] === false) {
-        x = x + 1;
-      }
-    }
-  }
-  document.getElementById("done").innerHTML = x;
-}
-
+/**
+ * This function displays the Greeting Name
+ * @param {string} time time string
+ */
 function setGreetingName(time) {
   let name = localStorage.getItem("greetingName");
   document.getElementById("greetingName").innerHTML = name;
@@ -156,11 +215,17 @@ function setGreetingName(time) {
       goodMorning.style.fontSize = "45px";
     }
   }
-  if (window.innerWidth < 601) {
-    responsiveGreeting();
+  if (window.innerWidth < 1000) {
+    referrer = document.referrer;
+    if (referrer == "http://127.0.0.1:5501/login.html") {
+      responsiveGreeting();
+    }
   }
 }
 
+/**
+ * This function sets the greeting in responsive 
+ */
 function responsiveGreeting() {
   document.getElementById("greeting").classList.add("responsive-greeting");
   document.getElementById("headline").style.opacity = 0;
@@ -168,6 +233,9 @@ function responsiveGreeting() {
   animateResponsiveGreeting();
 }
 
+/**
+ * This function animates the fade in of the responsive greeting
+ */
 function animateResponsiveGreeting() {
   setTimeout(function () {
     const animation = gsap
@@ -223,6 +291,9 @@ function animateResponsiveGreeting() {
   }, 2000);
 }
 
+/**
+ * This function opens the profile settings
+ */
 function openSelectProfile() {
   let user = localStorage.getItem('currentUser')
   if (user !== '') {
@@ -233,6 +304,9 @@ function openSelectProfile() {
   }
 }
 
+/**
+ * This function chooses the picture that is set in the gender
+ */
 function chooseProfilePicture(img) {
   document.getElementById('userPicture').src = `assets/img/${img}`
   if (img === 'woman.png') {
@@ -244,23 +318,11 @@ function chooseProfilePicture(img) {
   refreshUsers();
 }
 
-async function setProfilePicture() {
-  img = document.getElementById('userPicture');
-  if (currentUser !== undefined) {
-    gender = users[currentUser]['gender'];
-
-    switch (gender) {
-      case 'woman':
-        img.src = 'assets/img/woman.png';
-        break;
-      case 'man':
-        img.src = 'assets/img/man.png';
-        break;
-      default:
-        img.src = 'assets/img/guestLogin.png';
-    }
-  } else {
-    img.src = 'assets/img/guestLogin.png';
-  }
-
+/**
+ * This function directs to the board Page
+ */
+function openBoard() {
+  location.href = "https://gruppe-join-421.developerakademie.net/board.html";
 }
+
+

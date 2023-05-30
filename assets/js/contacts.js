@@ -1,7 +1,7 @@
 let letters = [];
 
 /**
- * initialization of the contacts page
+ * This function initializes the contacts page
  */
 async function initContacts() {
   await includePlusInit();
@@ -11,6 +11,9 @@ async function initContacts() {
   checkPreviousAddTask();
 }
 
+/**
+ * This function checks if the previous page was the addTask page
+ */
 function checkPreviousAddTask() {
   let set = localStorage.getItem('inviteContact');
   if (set === 'true') {
@@ -19,7 +22,7 @@ function checkPreviousAddTask() {
 }
 
 /**
- * refreshing contacts in the Json from the Server
+ * This function is refreshing contacts in the Json from the Server
  */
 async function refreshContacts() {
   jsonFromServer["contacts"] = contacts;
@@ -41,6 +44,13 @@ async function createNewContact() {
   }
 }
 
+/**
+ * This function checks the values of the inputs of the create contact container
+ * @param {string} name name of new contact
+ * @param {email} mail email of new contact
+ * @param {number} phone phone number of new contact
+ * @returns if the contact already exists
+ */
 function checkCreate(name, mail, phone) {
   checkEmail();
   checkAllValues(name, mail, phone);
@@ -50,7 +60,7 @@ function checkCreate(name, mail, phone) {
 }
 
 /**
- * show all the contacts on the left side of the page
+ * This function shows all the contacts on the left side of the page
  */
 function showContacts() {
   document.getElementById('contacts').innerHTML = '';
@@ -62,6 +72,13 @@ function showContacts() {
   displayContacts();
 }
 
+/**
+ * This function checks if all inputs are filled
+ * @param {string} name name of new contact
+ * @param {email} mail email of new contact
+ * @param {number} phone phone number of new contact
+ * @returns if all inputs have a value
+ */
 function checkAllValues(name, mail, phone) {
   if (!name.value) {
     document.getElementById('nameNecessary').classList.remove('d-none');
@@ -83,19 +100,21 @@ function checkAllValues(name, mail, phone) {
   }
 }
 
+/**
+ * This function checks if the email already exists
+ */
 function checkEmail() {
   if (!isEmailExisting(mail, 'createContactEmailAlert')) {
     true
   }
 }
 
-// if (!isEmailExisting(mail)) {
-
-//   return true;
-// } else {
-//   return false
-// }
-
+/**
+ * This function checks if the email can be found in the contacts
+ * @param {string} mail mail of the new contact
+ * @param {string} div the div of the alert
+ * @returns if the email is found or not
+ */
 function isEmailExisting(mail, div) {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i]['email'] === mail.value) {
@@ -108,12 +127,12 @@ function isEmailExisting(mail, div) {
 }
 
 /**
- *creating the object for a new contact depending on wheather there are 2 names or just one
+ * This function creates the object for a new contact depending on wheather there are 2 names or just one
  *
- * @param {*} name name of the contact
- * @param {*} mail mail of the contact
- * @param {*} phone number of the contact
- * @param {*} color color for the contact
+ * @param {string} name name of the contact
+ * @param {string} mail mail of the contact
+ * @param {number} phone number of the contact
+ * @param {string} color color for the contact
  */
 async function newContact(name, mail, phone, color) {
   if (WordCount(name) === 1) {
@@ -142,7 +161,7 @@ async function newContact(name, mail, phone, color) {
 /**
  * This function is made for a true return instead of a default
  *
- * @param {*} phone number of the contact
+ * @param {number} phone number of the contact
  * @returns phone number or no phone number
  */
 function gettingPhoneNumber(phone) {
@@ -155,7 +174,7 @@ function gettingPhoneNumber(phone) {
 
 /**
  *
- * @param {*} str the name of the contact
+ * @param {string} str the name of the contact
  * @returns how many words are in the contacts name
  */
 function WordCount(str) {
@@ -164,7 +183,7 @@ function WordCount(str) {
 }
 
 /**
- * slides in the createContact Container
+ * This function slides in the createContact Container
  */
 function openCreateContact() {
   document.getElementById("overlay").classList.remove("d-none");
@@ -181,7 +200,7 @@ function openCreateContact() {
 }
 
 /**
- * slides out the new contact container
+ * This function slides out the new contact container
  */
 function closeNewContact() {
   slideOut("newContactContainer");
@@ -195,7 +214,7 @@ function closeNewContact() {
 }
 
 /**
- * an animation for fading in
+ * This function is an animation for fading in
  */
 function fadeIn() {
   document.getElementById("overlay").classList.remove("fade-out");
@@ -203,9 +222,9 @@ function fadeIn() {
 }
 
 /**
- * an animation for sliding in
+ * This function is an animation for sliding in
  *
- * @param {*} container the container that is supposed to slide in
+ * @param {string} container the container that is supposed to slide in
  */
 function slideIn(container) {
   if (container === "newContactContainer") {
@@ -222,7 +241,7 @@ function slideIn(container) {
 }
 
 /**
- * an animation for fading out
+ * This function is an animation for fading out
  */
 function fadeOut() {
   document.getElementById("overlay").classList.remove("fade-in");
@@ -230,9 +249,9 @@ function fadeOut() {
 }
 
 /**
- * an animation for slinding out
+ * This function is an animation for slinding out
  *
- * @param {*} container  the container that is supposed to slide out
+ * @param {string} container  the container that is supposed to slide out
  */
 function slideOut(container) {
   if (container === "newContactContainer") {
@@ -247,7 +266,7 @@ function slideOut(container) {
 }
 
 /**
- * creating the letters for the contacts sorting system
+ * This function creates the letters for the contacts sorting system
  */
 function createLetters() {
   letters = [];
@@ -273,7 +292,7 @@ function createLetters() {
 }
 
 /**
- * displaying all Contacts
+ * This function displays all Contacts
  */
 function displayContacts() {
   if (contacts.length > 0) {
@@ -286,9 +305,9 @@ function displayContacts() {
 }
 
 /**
- * A function that creates a random color
+ * This function creates a random color
  *
- * @param {*} j the index of which contact is getting a color
+ * @param {number} j the index of which contact is getting a color
  */
 function setRandomColor(j) {
   if (!contacts[j]["color"] == "") {
@@ -325,9 +344,9 @@ async function generateRandomColor() {
 }
 
 /**
- * opens specific contact
+ * This function opens specific contact
  *
- * @param {*} idx the index of which contact in the array is opened
+ * @param {number} idx the index of which contact in the array is opened
  */
 function openSpecificContact(idx) {
   document.getElementById("specificContact").innerHTML =
@@ -347,7 +366,7 @@ function openSpecificContact(idx) {
 }
 
 /**
- * removing all css that is made for the specific contact
+ * This function is removing all css that is made for the specific contact
  */
 function closeSpecificContact() {
   document.getElementById("leftSection").style.display = "flex";
@@ -360,9 +379,9 @@ function closeSpecificContact() {
 }
 
 /**
- * editing a contact in the json
+ * This function is editing a contact in the json
  *
- * @param {*} idx the index of the contact that is going to be edited
+ * @param {number} idx the index of the contact that is going to be edited
  */
 function editContact(idx) {
   document.getElementById("overlay").classList.remove("d-none");
@@ -381,7 +400,7 @@ function editContact(idx) {
 }
 
 /**
- * closing the editing div and showing the refreshed contacts
+ * This function is closing the editing div and showing the refreshed contacts
  */
 async function closeEditContact() {
   slideOut("newContactContainer");
@@ -398,9 +417,9 @@ async function closeEditContact() {
 }
 
 /**
- * deleting a contact out of the json
+ * This function is deleting a contact out of the json
  *
- * @param {*} idx the index of the contact
+ * @param {number} idx the index of the contact
  */
 async function deleteContact(idx) {
   for (let i = 0; i < users.length; i++) {
@@ -417,11 +436,18 @@ async function deleteContact(idx) {
 
 }
 
+/**
+ * This function closes the alert card of the email input
+ */
 function closeAttentionCard() {
   document.getElementById('overlay').classList.add('d-none');
   document.getElementById('attentionCard').classList.add('d-none');
 }
 
+/**
+ * This function opens the alert card of the email input
+ * @param {number} idx The index of the contact thats open
+ */
 function openAttentionCard(idx) {
   document.getElementById('overlay').classList.remove('d-none');
   document.getElementById('attentionCard').classList.remove('d-none');
@@ -429,6 +455,11 @@ function openAttentionCard(idx) {
 
 }
 
+/**
+ * This function deletes the contact u are logged in with
+ * @param {number} idx index of the contact 
+ * @param {number} i index of the user
+ */
 async function deleteOwnUser(idx, i) {
   users.splice(i, 1);
   contacts.splice(idx, 1);
@@ -438,9 +469,9 @@ async function deleteOwnUser(idx, i) {
 }
 
 /**
- * changing the parameters of the contact
+ * This function is changing the parameters of the contact
  *
- * @param {*} idx index of contact
+ * @param {number} idx index of contact
  */
 function changeContact(idx) {
   let name = document.getElementById("name")
@@ -461,6 +492,14 @@ function changeContact(idx) {
   }
 }
 
+/**
+ * This function checks the values of the edit
+ * @param {number} idx index of contact
+ * @param {string} name name of contact
+ * @param {string} email email of contact
+ * @param {number} phone number of contact
+ * @returns if the inputs have values and the email exists
+ */
 function checkEdit(idx, name, email, phone) {
   checkEditEmail(idx);
   checkAllValues(name, email, phone)
@@ -469,6 +508,11 @@ function checkEdit(idx, name, email, phone) {
   }
 }
 
+/**
+ * This function checks if the email is already used 
+ * @param {number} idx index of the contact thats beeing edited
+ * @returns true or false
+ */
 function checkEditEmail(idx) {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i]['email'] === mail.value && i !== idx) {
@@ -481,7 +525,7 @@ function checkEditEmail(idx) {
 }
 
 /**
- * opening the addTask container
+ * This function is opening the addTask container
  */
 function openAddTaskContainer(idx) {
   let greyBackground = document.getElementById("greyBackground");
@@ -515,7 +559,7 @@ function openAddTaskContainer(idx) {
 
 
 /**
- * closing the add task container
+ * This function is closing the add task container
  */
 function closeAddTaskWrapper() {
   let greyBackground = document.getElementById("greyBackground");
@@ -543,6 +587,11 @@ function closeAddTaskWrapper() {
 /************ HTML ************/
 /**************************** */
 
+/**
+ * @param {number} idx index of the contact
+ * @param {number} i index of the user
+ * @returns the attention card html
+ */
 function attentionCardHtml(idx, i) {
   return /*html*/ `
         <span>Are you sure you want to delete the Contact you are signed in with?</span>
@@ -556,6 +605,10 @@ function attentionCardHtml(idx, i) {
   `;
 }
 
+/**
+ * @param {number} i index of the letter
+ * @returns a single letter
+ */
 function createLetterHtml(i) {
   return /*html*/ `
         <div class="letter" >${letters[i].toUpperCase()}</div>
@@ -564,6 +617,10 @@ function createLetterHtml(i) {
     `;
 }
 
+/**
+ * @param {number} j index of the contact
+ * @returns a single contact
+ */
 function contactHtml(j) {
   return /*html*/ `
         <div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
@@ -584,6 +641,10 @@ function contactHtml(j) {
     `;
 }
 
+/**
+ * @param {number} idx index of the contact
+ * @returns a contact as a close up
+ */
 function specificContactHtml(idx) {
   return /*html*/ `
         <div class="specific-contact">
@@ -621,6 +682,10 @@ function specificContactHtml(idx) {
     `;
 }
 
+/**
+ * @param {number} idx index of the contact
+ * @returns the edit contact container
+ */
 function editContactHtml(idx) {
   return /*html*/ `
         <img id="close" onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
@@ -633,7 +698,7 @@ function editContactHtml(idx) {
         </div>
         <div class="contact-create-container">
             <div style="background-color:#${contacts[idx].color
-    }" class="name-tag bigger" id="edit${idx}">
+    }" class="name-tag bigger edit-bigger" id="edit${idx}">
                 ${contacts[idx]["firstname"].charAt(0).toUpperCase()}${contacts[
       idx
     ]["lastname"]
@@ -675,6 +740,9 @@ function editContactHtml(idx) {
     `;
 }
 
+/**
+ * @returns the create contact html
+ */
 function createContactHtml() {
   return /*html*/ `
         <img id="close" onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png" alt="">

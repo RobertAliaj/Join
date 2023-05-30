@@ -1,17 +1,26 @@
 
 let users = [];
 
+/**
+ * This function inits the login page
+ */
 async function initLogin() {
   await init();
   openLogIn();
   checkRememberMe();
 }
 
+/**
+ * This function saves the users array to the backend json
+ */
 async function refreshUsers() {
   jsonFromServer["users"] = users;
   await saveJSONToServer();
 }
 
+/**
+ * This function animates the j image 
+ */
 function animate() {
   if (window.innerWidth < 501) {
     animateResponsive();
@@ -20,6 +29,9 @@ function animate() {
   }
 }
 
+/**
+ * This function animates if not responsive mode
+ */
 function animateNormal() {
   let height = document.getElementById("outerDiv").clientHeight;
   let width = document.getElementById("outerDiv").clientWidth;
@@ -68,6 +80,9 @@ function animateNormal() {
   document.getElementById("outerDiv").style.zIndex = 1;
 }
 
+/**
+ * This function animates in responsive
+ */
 function animateResponsive() {
   let height = document.getElementById("outerDiv").clientHeight;
   let width = document.getElementById("outerDiv").clientWidth;
@@ -116,8 +131,9 @@ function animateResponsive() {
   document.getElementById("outerDiv").style.zIndex = 1;
 }
 
-
-
+/**
+ * This function opens the sign up Container
+ */
 function openSignUp() {
   document.getElementById("signUp").style.display = "none";
   let loginContainer = document.getElementById("loginContainer");
@@ -125,6 +141,9 @@ function openSignUp() {
   loginContainer.innerHTML += SignUpContainerHtml();
 }
 
+/**
+ * This function opens the login container
+ */
 function openLogIn() {
   document.getElementById("signUp").style.display = "flex";
   let loginContainer = document.getElementById("loginContainer");
@@ -132,6 +151,9 @@ function openLogIn() {
   loginContainer.innerHTML += LoginContainerHtml();
 }
 
+/**
+ * This function opens the forgot password container
+ */
 function openForgotPassword() {
   document.getElementById("signUp").style.display = "none";
   let loginContainer = document.getElementById("loginContainer");
@@ -139,6 +161,9 @@ function openForgotPassword() {
   loginContainer.innerHTML += PasswordContainerHtml();
 }
 
+/**
+ * This function signs up a new User
+ */
 async function signUp() {
   let signUpName = document.getElementById("signUpName");
   let signUpEmail = document.getElementById("signUpEmail");
@@ -163,6 +188,11 @@ async function signUp() {
   }
 }
 
+/**
+ * This function checks if the function already exists
+ * @param {string} email the email of the input of the sign up
+ * @returns if the email is found
+ */
 function isEmailAlreadyExists(email) {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i].email === email) {
@@ -173,11 +203,18 @@ function isEmailAlreadyExists(email) {
   return false; // E-Mail nicht gefunden
 }
 
+/**
+ * This function pushes a user to the users array
+ * @param {json} user new user
+ */
 async function pushUser(user) {
   users.push(user);
   refreshUsers();
 }
 
+/**
+ * This function logs in with a specific user
+ */
 async function logIn() {
   let email = document.getElementById("email");
   let password = document.getElementById("password");
@@ -199,23 +236,40 @@ async function logIn() {
   }
 }
 
+/**
+ * This function initializes the guest login
+ */
 function guestLogIn() {
   saveGreetingNameToLocalStorage('Guest');
   saveCurrentUserToLocalStorage('');
 }
 
+/**
+ * This function replaces the location so there is no going back
+ */
 async function replaceLocation() {
   window.location.replace("index.html");
 }
 
+/**
+ * This function saves the name to the local storage
+ * @param {string} name name of the login email user
+ */
 function saveGreetingNameToLocalStorage(name) {
   localStorage.setItem("greetingName", name);
 }
 
+/**
+ * This function saves the email to the local storage
+ * @param {string} email email of the login user
+ */
 function saveCurrentUserToLocalStorage(email) {
   localStorage.setItem("currentUser", email);
 }
 
+/**
+ * This function checks if the checkbox is being activated
+ */
 function isRememberMe() {
   const rmCheck = document.getElementById("rememberMe");
   let emailInput = document.getElementById("email");
@@ -229,6 +283,9 @@ function isRememberMe() {
   }
 }
 
+/**
+ * This function checks if the remember me was checked before
+ */
 function checkRememberMe() {
   const rmCheck = document.getElementById("rememberMe");
   let emailInput = document.getElementById("email");
@@ -239,6 +296,9 @@ function checkRememberMe() {
   }
 }
 
+/**
+ * This function is used when you click the remember me 
+ */
 function clickedRememberMe() {
   const rmCheck = document.getElementById("rememberMe");
   let emailInput = document.getElementById("email");
@@ -253,10 +313,9 @@ function clickedRememberMe() {
   }
 }
 
-function submitForm() {
-  document.querySelector("form").submit();
-}
-
+/**
+ * This function opens the log out container
+ */
 function openLogOutContainer() {
   document.getElementById('logOut').classList.toggle('d-none')
   let logOut = document.getElementById('logOut');
@@ -275,15 +334,19 @@ function openLogOutContainer() {
     <div class="log-out-div" onclick="logOut()">Log Out</div>
     `
   }
-
-
 }
 
+/**
+ * This function logs out of a user and redirects to the login page without the action to go back
+ */
 function logOut() {
   localStorage.removeItem('greetingName');
   window.location.replace('login.html');
 }
 
+/**
+ * @returns the login container html
+ */
 function LoginContainerHtml() {
   return `
       <span class="login-span">Log in</span>
@@ -315,6 +378,9 @@ function LoginContainerHtml() {
   `;
 }
 
+/**
+ * @returns the sign up container html
+ */
 function SignUpContainerHtml() {
   return `
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
@@ -344,6 +410,9 @@ function SignUpContainerHtml() {
   `;
 }
 
+/**
+ * @returns the password container html
+ */
 function PasswordContainerHtml() {
   return `
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
