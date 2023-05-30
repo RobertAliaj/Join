@@ -217,7 +217,7 @@ function setGreetingName(time) {
   }
   if (window.innerWidth < 1000) {
     referrer = document.referrer;
-    if (referrer == "http://127.0.0.1:5501/login.html") {
+    if (referrer == "https://gruppe-join-421.developerakademie.net/login.html") {
       responsiveGreeting();
     }
   }
