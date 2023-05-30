@@ -122,6 +122,14 @@
     place-content: center;
 }
 
+@media (min-width:1300px) {
+    .logo-link{
+        display: none;
+    }
+}
+
+
+
 @media (max-width:1300px) {
     .header {
         left: 0px;
@@ -197,7 +205,4 @@
     .menu-btn-responsive {
         display: none;
     }
-
-
-
 }

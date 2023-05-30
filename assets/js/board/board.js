@@ -59,6 +59,7 @@ function renderTasks() {
   }
 }
 
+
 /**
  * This Function is used to clear all Sections/Columns
  */
@@ -68,6 +69,7 @@ function clearSections() {
   document.getElementById("feedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
 }
+
 
 /**
  * This Function is used to get all the Details from the allTasks Array
@@ -81,6 +83,7 @@ function getAllTasksDetails(i) {
   return [task, section, names, prio, statusArray];
 }
 
+
 /**
  * @param {string} names - The names of the employees who have to do the job.
  * @param {string} prio    - The priority of the task.
@@ -91,6 +94,7 @@ function taskDetails(names, prio, statusArray, i) {
   renderPrioImg(prio, i);
   updateProgressBar(statusArray, i);
 }
+
 
 /**
  * This function is used to get the Initials of each name
@@ -109,6 +113,7 @@ function getInitials(names, i) {
   renderVisibleInitials(initials, initialsDiv, i);
   renderHiddenInitials(names, initialsDiv);
 }
+
 
 /**
  * This function is used to render the three first initials
@@ -129,6 +134,7 @@ function renderVisibleInitials(initials, initialsDiv, i) {
   }
 }
 
+
 /**
  * This function is used to render the number of the remaining Coworkers, if there are more than three.
  *
@@ -142,6 +148,7 @@ function renderHiddenInitials(names, initialsDiv) {
     initialsDiv.appendChild(remainingWorkers);
   }
 }
+
 
 /**
  *  This function is used to give each Initial a color
@@ -182,6 +189,7 @@ function renderPrioImg(prio, i) {
   prioImg.src = setPrioProperties(prio).img;
 }
 
+
 /**
  *  This function is used to update the Progressbar of the Subtasks.
  */
@@ -200,6 +208,7 @@ function updateProgressBar(statusArray, i) {
   }
 }
 
+
 /**
  * This function is used to make an Element available for the drag and drop.
  */
@@ -207,12 +216,14 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
+
 /**
  * This function is used to start dragging.
  */
 function startDragging(id) {
   currentDraggedElement = id;
 }
+
 
 /**
  * This function is used to move the task to another ProgressSection (To do, In Progress, Awating Feedback, Done).
@@ -235,6 +246,7 @@ async function moveTo(progress) {
   }
 }
 
+
 /**
  * This funcion is used to push the searched task/s into the searchTasks.
  */
@@ -252,6 +264,7 @@ function searchTask() {
   renderSearchedTask();
 }
 
+
 /**
  * This function is used to get the index of searchTasks array.
  *
@@ -261,6 +274,7 @@ function getSearchIndex(value) {
   let index = searchTasks.indexOf(value);
   return index;
 }
+
 
 /**
  * This function is used to render the searched task.
@@ -281,6 +295,7 @@ function renderSearchedTask() {
     taskDetails(names, prio, statusArray, i);
   }
 }
+
 
 /**
  * This Function is used to get all the Details from the searchTasks Array

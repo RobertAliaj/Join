@@ -78,9 +78,6 @@
 }
 
 @media(max-width: 450px) {
-    /* .card {
-        overflow: auto;
-    } */
 
     .width {
         width: 185px;
@@ -93,13 +90,6 @@
     .edit-progress-divs {
         display: flex !important;
     }
-
-    /* .edit-ok {
-        position: unset;
-        width: unset;
-        margin-top: 16px;
-        margin-bottom: 50px;
-    } */
 
     .importance {
         gap: 5px;

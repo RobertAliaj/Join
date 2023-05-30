@@ -7,6 +7,7 @@ function displayBoardPopUp() {
   document.getElementById("popUpOne").classList.remove("d-none");
 }
 
+
 /**
  * This function is used to remove the Board-Popup.
  */
@@ -16,6 +17,7 @@ function removeBoardPopUp() {
   popUpOpenFalse();
 }
 
+
 /**
  * This function is used to show the Add-task-Popup on the boardpage.
  */
@@ -24,6 +26,7 @@ function showAddTaskPopUp() {
   document.getElementById("popUp").classList.remove("d-none");
 }
 
+
 /**
  * This function is used to remove the Add-Task-Popup.
  */
@@ -31,6 +34,7 @@ function removeAddTaskPopUp() {
   document.getElementById("overlayBg").classList.add("d-none");
   document.getElementById("popUp").classList.add("d-none");
 }
+
 
 /**
  * This function is used to highlight the area where you drag and drop an Element.
@@ -41,6 +45,7 @@ function highlight(id) {
   document.getElementById(id).classList.add("dragarea-highlight");
 }
 
+
 /**
  * This function is used to remove the highlight if drag and drop as soon as you're done drag-and-dropping.
  *
@@ -50,6 +55,7 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove("dragarea-highlight");
 }
 
+
 /**
  * This function is used to show the Edit-Task Popup.
  */
@@ -57,6 +63,7 @@ function openEditTask() {
   document.getElementById("editTask").classList.remove("d-none");
   document.getElementById("popUpOne").classList.add("d-none");
 }
+
 
 /**
  * This function is used to remove the Edit-Task Popup.
@@ -66,12 +73,14 @@ function closeEditTask() {
   document.getElementById("popUpOne").classList.remove("d-none");
 }
 
+
 /**
  * This function is used to show the Delete-Popup.
  */
 function openDeletePopUp(i) {
   document.getElementById(`openDeletePopUp${i}`).classList.remove("d-none");
 }
+
 
 /**
  * This function is used to close the Delete-Popup.
@@ -80,12 +89,14 @@ function closeDeletePopUp(i) {
   document.getElementById(`openDeletePopUp${i}`).classList.add("d-none");
 }
 
+
 /**
  * This function is used to remoce the scrollbar from the body.
  */
 function bodyOverflowHidden() {
   document.getElementsByTagName("body")[0].style.overflow = "hidden";
 }
+
 
 /**
  * This function is used to turn the value of the variable to false.
@@ -94,9 +105,11 @@ function turnToFalse() {
   editTaskCheck = false;
 }
 
+
 function turnToTrue() {
   editTaskCheck = true;
 }
+
 
 /**
  * This function is used to add/remove an onclick to the Edit-Task-Bg (remove onlick while you are editing the task, so you can olny save the Edits through the "Ok-Button").
@@ -111,10 +124,12 @@ function addOnclickToBg() {
   }
 }
 
+
 /**
  * This function is used to call the replaceXthroughArray function.
  */
 window.addEventListener("resize", replaceXThroughArrow);
+
 
 /**
  * This function is used to change the "x" img of the Board-Popup.
@@ -129,6 +144,7 @@ function replaceXThroughArrow() {
   }
 }
 
+
 /**
  * This function is used to turn the Variable to true (for design).
  */
@@ -136,12 +152,14 @@ function popUpOpenTrue() {
   popUpOpen = true;
 }
 
+
 /**
  *  This function is used to turn the Variable to false (for design).
  */
 function popUpOpenFalse() {
   popUpOpen = false;
 }
+
 
 /**
  * This function is used to get the color and the name of every category in the categoryJSON and push it into the categoriesAndColors array.
@@ -155,6 +173,7 @@ function getCategoryColorAndName() {
   }
 }
 
+
 /**
  *  This function returns the color and the name of every Category in the CategoryJSON.
  *
@@ -167,6 +186,7 @@ function setCategoryColor(categoryName, categoryColor) {
     color: categoryColor,
   };
 }
+
 
 /**
  *  This function returns the Priority img and backgroundcolor.
@@ -190,6 +210,7 @@ function setPrioProperties(prio) {
   return { img, color };
 }
 
+
 /**
  * This function is used to get the color and the initial of every name in the contacts and push it into the colorAndInitials array.
  */
@@ -204,6 +225,7 @@ function getContactColorsandInitials() {
   }
 }
 
+
 /**
  *  This function returns the color and the initial of everyname in the contacts.
  *
@@ -216,6 +238,7 @@ function setContactColors(contactColor, initials) {
     color: contactColor,
   };
 }
+
 
 /**
  *  This function returns the color for each Progresssection-Button (4 Buttons instead of drag and drop in the responsive: To do, In Progress, Awating Feedback, Done).

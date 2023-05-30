@@ -14,7 +14,6 @@ function showPopUp(i) {
     renderPopUpPrio(i);
     proofSubtasks(i);
     popUpCategoryColor(i);
-    // changeHeightofAssignedTo(i);
 }
 
 
@@ -187,14 +186,14 @@ function deleteTask(i) {
  */
 function deleteTaskFromArrays(i) {
     let task = popUpTasks[i];
-    let taskTitle = task.title;                                                 // der Titel von dem jeweiligen Task in der popUpTasks
+    let taskTitle = task.title;                                                 
 
-    popUpTasks.splice(popUpTasks.indexOf(task), 1);                             // lösche die Task aus dem Array popUpTasks
+    popUpTasks.splice(popUpTasks.indexOf(task), 1);                             
     categories.splice(i, 1);
 
-    let index = allTasks.findIndex(x => x.title === taskTitle);                 // index = der Titel im allTasks der mit taskTitle (der Title von der Task die gelöscht wurde) übereinstimmt
-    if (index != -1 && allTasks[index].title === taskTitle) {                   // wenn index existiert (!= -1 (nicht minus 1 heisst true, also heisst das es ist im Array Vorhanden)) und der Titel von der Task im allTask == der titel von der gelöschten Task
-        allTasks.splice(index, 1);                                              // dann lösche die Task auch aus dem allTasks
+    let index = allTasks.findIndex(x => x.title === taskTitle);                 
+    if (index != -1 && allTasks[index].title === taskTitle) {                   
+        allTasks.splice(index, 1);                                              
     }
 }
 
@@ -206,17 +205,4 @@ function renderAndSave() {
     document.getElementById('searchInput').value = '';
     saveJSONToServer();
     renderTasks();
-}
-
-
-/**
- * This function is used to change the height of the Element is there are more than 3 subtasks in one task (just for design).
- */
-function changeHeightofAssignedTo(i) {
-    // if (allTasks[i]['subtasks']['name'].length >= 3) {
-    //     document.getElementById(`names${i}`).style.height = '90px';
-    // }
-    // else {
-    //     document.getElementById(`names${i}`).style.height = '180px';
-    // }
 }
