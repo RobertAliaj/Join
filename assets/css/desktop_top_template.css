@@ -24,6 +24,7 @@
 
 .logo-for-mobile {
     display: none;
+    cursor: pointer;
 }
 
 .hide-if-not-mobile {
