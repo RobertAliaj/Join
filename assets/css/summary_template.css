@@ -206,6 +206,10 @@
 
 @media (max-width: 1000px) {
 
+    .greeting-hide {
+        display: none;
+    }
+
     .greeting span {
         font-size: 30px;
     }
