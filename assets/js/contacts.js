@@ -490,6 +490,8 @@ function openAddTaskContainer(idx) {
   let addTaskBtn = document.getElementById("addTaskBtn");
 
   if (window.innerWidth < 1300) {
+   
+    greyBackground.classList.add("d-none");
     addTaskPopUp.classList.remove("slide-out");
     addTaskPopUp.classList.add("slide-in");
     addTaskPopUp.classList.remove("d-none");
