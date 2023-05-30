@@ -48,9 +48,6 @@ function renderTasksHTML(task, i) {
 }
 
 
-
-
-
 function visibleInitialsHtml(oneInitial, i, s) {
     return `
     <div class="initials-board" id="inits${i}-${s}">
