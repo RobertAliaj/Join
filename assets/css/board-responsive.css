@@ -8,7 +8,9 @@
         height: unset;
     }
 
-
+    .done{
+        margin-bottom: 120px;
+    }
 
     /* .cards-parent {
         overflow: hidden;
