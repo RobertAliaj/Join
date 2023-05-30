@@ -667,7 +667,7 @@
 
     .headline {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: flex-start !important;
         position: relative;
         gap: 20px;
         margin-bottom: 50px;
@@ -715,7 +715,10 @@
         height: 70px;
     }
 
-
+    .edit-bigger {
+        position: absolute;
+        top: -75px;
+    }
 
     .contact-form {
         width: 100%;
