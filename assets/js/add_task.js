@@ -693,7 +693,7 @@ async function pushTaskInTasks() {
 
 
 function showCreateTaskBtn() {
-  if (window.location.href == 'http://127.0.0.1:5501/add_task.html') {
+  if (window.location.href == 'http://127.0.0.1:5501/add_task.html' || window.location.href == 'https://gruppe-join-421.developerakademie.net/add_task.html') {
     document.getElementById('addTaskBtn').classList.remove('d-none')
   } else {
     document.getElementById('addTaskBtn').classList.add('d-none')
@@ -703,7 +703,7 @@ function showCreateTaskBtn() {
 
 function taskUploaded() {
   // Hier muss das Url noch dynamisch angepasst werden, erst wenn das Projekt fertig auf dem Server liegt
-  if (window.location.href == 'http://127.0.0.1:5501/board.html') {
+  if (window.location.href == 'http://127.0.0.1:5501/board.html' || window.location.href == 'https://gruppe-join-421.developerakademie.net/board.html') {
 
     closeAddTask();
     closeAddTaskWrapper();
