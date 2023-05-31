@@ -140,6 +140,7 @@ async function newContact(name, mail, phone, color) {
       firstname: name.value,
       lastname: "",
       email: mail.value,
+      phone: gettingPhoneNumber(phone),
       color: color,
     };
     contacts.push(newContact);
@@ -422,17 +423,19 @@ async function closeEditContact() {
  * @param {number} idx the index of the contact
  */
 async function deleteContact(idx) {
-  for (let i = 0; i < users.length; i++) {
-    if (contacts[idx]['email'] === users[i]['email']) {
-      document.getElementById("newContactContainer").classList.add("d-none");
-      openAttentionCard(idx, i);
-    } else {
-      contacts.splice(idx, 1);
-      await refreshContacts();
-      initContacts();
-      document.getElementById("specificContact").innerHTML = "";
-    }
+  const user = users.find(user => user.email === contacts[idx]['email']);
+  // for (let i = 0; i < users.length; i++) {
+  // if (contacts[idx]['email'] === users[i]['email']) {
+  if (user) {
+    document.getElementById("newContactContainer").classList.add("d-none");
+    openAttentionCard(idx, i);
+  } else {
+    contacts.splice(idx, 1);
+    await refreshContacts();
+    initContacts();
+    document.getElementById("specificContact").innerHTML = "";
   }
+  // }
 
 }
 
@@ -534,7 +537,7 @@ function openAddTaskContainer(idx) {
   let addTaskBtn = document.getElementById("addTaskBtn");
 
   if (window.innerWidth < 1300) {
-   
+
     greyBackground.classList.add("d-none");
     addTaskPopUp.classList.remove("slide-out");
     addTaskPopUp.classList.add("slide-in");
@@ -727,14 +730,13 @@ function editContactHtml(idx) {
                         </div>
                     </div>
                     <div class="submit-section">
-                        <button class="contacts-button" id="submit" onclick="changeContact(${idx})" type="submit">Save<img
-                                src="assets/img/create_task.png" alt="">
-                        </button>
-                        <button class="contacts-button" onclick="deleteContact(${idx})" type="submit">Delete<img
+                        <div onclick="deleteContact(${idx})">Delete <img src="assets/img/Clear_task.png" alt="">
+                        </div>
+                        <button class="contacts-button" onclick="changeContact(${idx})" >Save<img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>
-  </div>
+                  </div>
             </div>
         </div>
     `;

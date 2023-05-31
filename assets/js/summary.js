@@ -119,11 +119,8 @@ function showUrgentTasks() {
 function showTodos() {
   let x = 0;
   for (i = 0; i < tasks.length; i++) {
-    let task = tasks[i]["subtasks"]["status"];
-    for (j = 0; j < task.length; j++) {
-      if (task[j] === true) {
-        x = x + 1;
-      }
+    if (tasks[i]['progress'] === 'TODO') {
+      x = x + 1;
     }
   }
   document.getElementById("todo").innerHTML = x;
@@ -135,11 +132,8 @@ function showTodos() {
 function showDone() {
   let x = 0;
   for (i = 0; i < tasks.length; i++) {
-    let task = tasks[i]["subtasks"]["status"];
-    for (j = 0; j < task.length; j++) {
-      if (task[j] === false) {
-        x = x + 1;
-      }
+    if (tasks[i]['progress'] === 'done') {
+      x = x + 1;
     }
   }
   document.getElementById("done").innerHTML = x;

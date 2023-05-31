@@ -293,21 +293,21 @@ function priority(clicked, notClicked, alsoNotClicked, img) {
   if (clicked == "prioHigh") {
     document.getElementById(
       clicked
-    ).style = `background-color: rgb(236, 85, 32);`;
+    ).style = `background-color: rgb(236, 85, 32); color: white`;
     changeColor(img);
     prio = "urgent";
   }
   if (clicked == "prioMedium") {
     document.getElementById(
       clicked
-    ).style = `background-color: rgb(243, 173, 50);`;
+    ).style = `background-color: rgb(243, 173, 50); color: white`;
     changeColor(img);
     prio = "medium";
   }
   if (clicked == "prioLow") {
     document.getElementById(
       clicked
-    ).style = `background-color: rgb(147, 222, 70);`;
+    ).style = `background-color: rgb(147, 222, 70); color: white`;
     changeColor(img);
     prio = "low";
   }

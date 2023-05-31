@@ -728,6 +728,12 @@
         margin-top: 60px;
         justify-content: center;
     }
+
+    .sure-delete {
+        width: unset;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
 
 @media (max-width: 450px) {
