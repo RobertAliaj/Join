@@ -703,7 +703,7 @@ function editContactHtml(idx) {
                             <div id="mailNecessary" class="necessary d-none"></div>
                         </div>
                         <div>
-                            <input id="phone" placeholder="Phone" type="tel" value="${contacts[idx]["phone"]}">
+                            <input class="phoneInput" id="phone" placeholder="Phone" type="number" value="${contacts[idx]["phone"]}">
                             <img src="assets/img/mobile.png" alt="">
                             <div id="phoneNecessary" class="necessary d-none"></div>
                         </div>
