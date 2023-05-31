@@ -386,7 +386,7 @@ function SignUpContainerHtml() {
       <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
       <span class="sign-up-span" >Sign up</span>
       <div class="horizontal-blue-line"></div>
-      <div class="form-container ">
+      <form class="form-container" onsubmit="event.preventDefault(); signUp()">
         <div>
           <input placeholder="Name" id="signUpName" required>
           <img src="assets/img/user.png" alt="">
@@ -404,9 +404,9 @@ function SignUpContainerHtml() {
         </div>
         
         <div class="buttons">
-          <button onclick="signUp()" class="login-button"> Sign Up</button>
+          <button type="submit" class="login-button"> Sign Up</button>
         </div>
-     </div>
+     </form>
   `;
 }
 

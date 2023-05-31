@@ -679,7 +679,7 @@ function editContactHtml(idx) {
       .toUpperCase()}
             </div>           
             <div class="contact-form">
-                <div class="form-container">
+                <form class="form-container" onsubmit="event.preventDefault(); changeContact(${idx})">
                     <div class="input-fields">
                         <div>
                             <input id="name" style="cursor: pointer;" placeholder="Name" type="text" value="${contacts[idx]["firstname"]} ${contacts[idx]["lastname"]}" >
@@ -702,11 +702,11 @@ function editContactHtml(idx) {
                     <div class="submit-section">
                         <div onclick="deleteContact(${idx})">Delete <img src="assets/img/Clear_task.png" alt="">
                         </div>
-                        <button class="contacts-button" onclick="changeContact(${idx})" >Save<img
+                        <button class="contacts-button" type="submit" >Save<img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>
-                  </div>
+                  </form>
             </div>
         </div>
     `;
