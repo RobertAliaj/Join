@@ -65,7 +65,7 @@
       <h1>Board</h1>
       <div class="search-div">
         <input type="text" placeholder="Find Task" id="searchInput" class="searchInput" onkeyup="searchTask()" />
-        <button onclick="openAddTaskContainer()" class="board-button">
+        <button onclick="openAddTaskContainer(); changeProgress('TODO')" class="board-button">
           Add task <img src="assets/img/add_subtask.png" />
         </button>
       </div>
