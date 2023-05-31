@@ -186,7 +186,7 @@ function selectCategory(category, categoryColor) {
   selectedCategory = category;
   openOrClose = document.getElementById("category").classList[1];
   if (openOrClose == "dropdown-category-open") {
-    pullDownMenu("category", "assingedTo", "moreCategorys", "moreContacts");
+    pullDownMenu("category", "edTo", "moreCategorys", "moreContacts");
   }
 }
 
@@ -610,7 +610,7 @@ function collectAllInfos() {
   task.assigned_to = getContact();
   task.due_date = getDate();
   task.prio = getPrio();
-  task.progress = currentProgress;
+  task.progress = currentProgress ? currentProgress : 'TODO';
 
   pushSubtask();
   pushStatus();
