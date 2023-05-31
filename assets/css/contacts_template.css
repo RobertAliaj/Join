@@ -501,16 +501,6 @@
     position: absolute !important;
 }
 
-.phoneInput::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Firefox */
-.phoneInput[type=number] {
-    -moz-appearance: textfield;
-}
-
 
 /************ KEYFRAMES **********/
 
