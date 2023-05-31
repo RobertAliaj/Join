@@ -527,39 +527,6 @@ function checkEditEmail(idx) {
   }
 }
 
-/**
- * This function is opening the addTask container
- */
-function openAddTaskContainer(idx) {
-  let greyBackground = document.getElementById("greyBackground");
-  let addTaskPopUp = document.getElementById("addTaskWrapper");
-  let profile = document.getElementById('userPicture');
-  let addTaskBtn = document.getElementById("addTaskBtn");
-
-  if (window.innerWidth < 1300) {
-
-    greyBackground.classList.add("d-none");
-    addTaskPopUp.classList.remove("slide-out");
-    addTaskPopUp.classList.add("slide-in");
-    addTaskPopUp.classList.remove("d-none");
-    profile.classList.add("d-none");
-    addTaskBtn.classList.remove("d-none");
-  } else {
-    greyBackground.classList.remove("d-none");
-    addTaskPopUp.classList.remove("slide-out");
-    addTaskPopUp.classList.add("slide-in");
-    addTaskPopUp.classList.remove("d-none");
-  }
-
-  loadInfos();
-  if (idx) {
-    selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
-  }
-  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
-  addContacts();
-
-}
-
 
 /**
  * This function is closing the add task container
@@ -585,6 +552,9 @@ function closeAddTaskWrapper() {
   }, 400);
 
 }
+
+
+
 
 /**************************** */
 /************ HTML ************/

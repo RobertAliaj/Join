@@ -60,51 +60,51 @@ function visibleInitialsHtml(oneInitial, i, s) {
 function renderPopUpBoardHtml(task, i) {
     return `
     <div>
- 
-    <div class="exit">
-    <img src="assets/img/Clear_task.png" id="exitPopUp" onclick="removeBoardPopUp()">
-    </div>
-    <div class="pop-up-category" id="popUpCategory${i}">
-        <span>${task.category}</span>
-    </div>
-
-    <div class="pop-up-title">
-        <h1>${task.title}</h1>
-    </div>
-
-    <div class="pop-up-description">
-        <span>${task.description}</span>
-    </div>
-
-    <div class="date">
-        <span><b>Due Date:</b></span>
-        <div>${task.due_date}</div>
-    </div>
-
-    <div class="pop-up-priority" >
-        <b>Priority:</b>
-        <div class="prio-div" id="prioDiv">${task.prio} <img src="assets/img/prio_low.png" id="popUpPrio"></div>
-    </div>
-
     
-    <div class="subtasks-parent" id="subParent">
-        <b class="sub-title" id="subTitle">Subtasks:</b>
+        <div class="exit">
+        <img src="assets/img/Clear_task.png" id="exitPopUp" onclick="removeBoardPopUp()">
+        </div>
+        <div class="pop-up-category" id="popUpCategory${i}">
+            <span>${task.category}</span>
+        </div>
 
-        <div id="subtasks" class="subtasks-child">
+        <div class="pop-up-title">
+            <h1>${task.title}</h1>
+        </div>
+
+        <div class="pop-up-description">
+            <span>${task.description}</span>
+        </div>
+
+        <div class="date">
+            <span><b>Due Date:</b></span>
+            <div>${task.due_date}</div>
+        </div>
+
+        <div class="pop-up-priority" >
+            <b>Priority:</b>
+            <div class="prio-div" id="prioDiv">${task.prio} <img src="assets/img/prio_low.png" id="popUpPrio"></div>
+        </div>
+
+        
+        <div class="subtasks-parent" id="subParent">
+            <b class="sub-title" id="subTitle">Subtasks:</b>
+
+            <div id="subtasks" class="subtasks-child">
+            </div>
+        </div>
+
+        <div class="pop-up-names" >
+            <b>Assigned To:</b>
+        </div>
+
+        <div class="pop-up-assigned">
+            <div id="initsPopUp" class="pop-up-inits"></div>
+
+            <div class="name-inits" id="names${i}">
+            </div>
         </div>
     </div>
-
-    <div class="pop-up-names" >
-        <b>Assigned To:</b>
-    </div>
-
-    <div class="pop-up-assigned">
-        <div id="initsPopUp" class="pop-up-inits"></div>
-
-        <div class="name-inits" id="names${i}">
-        </div>
-    </div>
- </div>
 
     <div class="edit-or-delete">
         <div class="edit-or-delete-child" onclick="openDeletePopUp(${i})" title="Löschen">

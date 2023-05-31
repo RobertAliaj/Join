@@ -22,9 +22,6 @@ async function initBoard() {
   getCategoryColorAndName();
   getContactColorsandInitials();
   renderTasks();
-  // setInterval(() => {
-  //   console.log(categories);
-  // }, 500);
 }
 
 

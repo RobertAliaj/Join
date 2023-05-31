@@ -32,6 +32,8 @@ let colorForNewCategory;
 let required = true;
 let initialsRenderd = false;
 
+let currentProgress;
+
 
 async function initAddTask() {
   await includePlusInit();
@@ -44,6 +46,11 @@ async function initAddTask() {
 function loadInfos() {
   renderCategorys();
   renderContacts();
+}
+
+
+function changeProgress(progressColumn) {
+  currentProgress = progressColumn;
 }
 
 /**
@@ -603,7 +610,7 @@ function collectAllInfos() {
   task.assigned_to = getContact();
   task.due_date = getDate();
   task.prio = getPrio();
-  task.progress = "TODO";
+  task.progress = currentProgress;
 
   pushSubtask();
   pushStatus();
@@ -729,4 +736,37 @@ function taskUploaded() {
 function directToNewContact() {
   localStorage.setItem('inviteContact', true);
   window.location.href = 'contacts.html';
+}
+
+
+/**
+ * This function is opening the addTask container
+ */
+function openAddTaskContainer(idx) {
+  let greyBackground = document.getElementById("greyBackground");
+  let addTaskPopUp = document.getElementById("addTaskWrapper");
+  let profile = document.getElementById('userPicture');
+  let addTaskBtn = document.getElementById("addTaskBtn");
+
+  if (window.innerWidth < 1300) {
+
+    greyBackground.classList.add("d-none");
+    addTaskPopUp.classList.remove("slide-out");
+    addTaskPopUp.classList.add("slide-in");
+    addTaskPopUp.classList.remove("d-none");
+    profile.classList.add("d-none");
+    addTaskBtn.classList.remove("d-none");
+  } else {
+    greyBackground.classList.remove("d-none");
+    addTaskPopUp.classList.remove("slide-out");
+    addTaskPopUp.classList.add("slide-in");
+    addTaskPopUp.classList.remove("d-none");
+  }
+
+  loadInfos();
+  if (idx) {
+    selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
+  }
+  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
+  addContacts();
 }

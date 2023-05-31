@@ -186,14 +186,14 @@ function deleteTask(i) {
  */
 function deleteTaskFromArrays(i) {
     let task = popUpTasks[i];
-    let taskTitle = task.title;                                                 
+    let taskTitle = task.title;
 
-    popUpTasks.splice(popUpTasks.indexOf(task), 1);                             
+    popUpTasks.splice(popUpTasks.indexOf(task), 1);
     categories.splice(i, 1);
 
-    let index = allTasks.findIndex(x => x.title === taskTitle);                 
-    if (index != -1 && allTasks[index].title === taskTitle) {                   
-        allTasks.splice(index, 1);                                              
+    let index = allTasks.findIndex(x => x.title === taskTitle);
+    if (index != -1 && allTasks[index].title === taskTitle) {
+        allTasks.splice(index, 1);
     }
 }
 
