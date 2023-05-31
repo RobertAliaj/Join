@@ -39,8 +39,17 @@ async function createNewContact() {
   let color = await generateRandomColor();
   if (checkCreate(name, mail, phone)) {
     await newContact(name, mail, phone, color);
-    closeNewContact();
-    showContacts();
+    let popUpId = document.getElementById("successfulUpload");
+    popUpId.classList.remove("d-none");
+    popUpId.classList.add("popUp");
+    setTimeout(function () {
+      popUpId.innerHTML = `creating new contact...`;
+    }, 500);
+    setTimeout(function () {
+      closeNewContact();
+      showContacts();
+    }, 1000);
+
   }
 }
 
@@ -569,7 +578,7 @@ function attentionCardHtml(idx, i) {
   return /*html*/ `
         <span>Are you sure you want to delete the Contact you are signed in with?</span>
         <div class="submit-section">
-            <div onclick="closeAttentionCard()">Cancle <img src="assets/img/Clear_task.png" alt="">
+            <div onclick="closeAttentionCard()">Cancel <img src="assets/img/Clear_task.png" alt="">
             </div>
             <button class="contacts-button" onclick="deleteOwnUser(${idx, i})">Delete<img src="assets/img/create_task.png"
                     alt="">
@@ -751,13 +760,17 @@ function createContactHtml() {
                         </div>
                     </div>
                     <div class="submit-section">
-                        <div id="cancle" onclick="closeNewContact()">Cancle <img src="assets/img/Clear_task.png" alt="">
+                        <div id="cancle" onclick="closeNewContact()">Cancel <img src="assets/img/Clear_task.png" alt="">
                         </div>
                         <button class="contacts-button" id="submit" onclick="createNewContact()" type="submit">Create contact <img
                                 src="assets/img/create_task.png" alt="">
                         </button>
                     </div>
-                </div>
+                    
+                </div> 
+            </div>
+            <div id="successfulUpload" class="d-none"> succesfull!
+                        <img class="checkIcon" src="assets/img/successfull_check.png" alt="" />
             </div>
         </div>
     `;

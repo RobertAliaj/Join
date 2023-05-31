@@ -406,6 +406,29 @@
     animation: 125ms slideInFromBottom ease-in-out;
 }
 
+.clear-button {
+    box-sizing: border-box;
+    background-color: white;
+    padding: 12px 8px 12px 8px;
+    border: 1px solid #293646;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    width: fit-content;
+    font-weight: 700;
+}
+
+.clear-button:hover {
+    color: rgb(83, 168, 223);
+    border: 1px solid rgb(83, 168, 223);
+}
+
+.clear-button:hover img {
+    filter: sepia(300%) hue-rotate(150deg) saturate(700%);
+}
+
 @keyframes slideInFromBottom {
     0% {
         transform: translateY(80px);

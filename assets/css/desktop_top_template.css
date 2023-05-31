@@ -122,8 +122,13 @@
     place-content: center;
 }
 
+.task-buttons {
+    display: flex;
+    gap: 20px;
+}
+
 @media (min-width:1300px) {
-    .logo-link{
+    .logo-link {
         display: none;
     }
 }

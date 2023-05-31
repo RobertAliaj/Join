@@ -670,6 +670,9 @@ function setPrioButtonsToDefault() {
   highPrio.style.background = "white";
   midPrio.style.background = "white";
   lowPrio.style.background = "white";
+  highPrio.style.color = "black";
+  midPrio.style.color = "black";
+  lowPrio.style.color = "black";
 
   document.getElementById("prioHighImg").src = `assets/img/prio_high.svg`;
   document.getElementById("prioMediumImg").src = `assets/img/prio_medium.svg`;
