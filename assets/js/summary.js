@@ -19,7 +19,6 @@ function saveCurrentUser() {
   for (let i = 0; i < users.length; i++) {
     if (users[i]["email"] == email) {
       currentUser = i;
-      console.log(i)
     }
   }
 }
@@ -318,5 +317,3 @@ function chooseProfilePicture(img) {
 function openBoard() {
   location.href = "https://gruppe-join-421.developerakademie.net/board.html";
 }
-
-

@@ -79,8 +79,7 @@ function checkCreate(name, mail, phone) {
 function showContacts() {
   document.getElementById('contacts').innerHTML = '';
   if (window.innerWidth < 1001) {
-    document.getElementById("newContactButtonResponsive").style.display =
-      "flex";
+    document.getElementById("newContactButtonResponsive").style.display = "flex";
   }
   createLetters();
   displayContacts();
