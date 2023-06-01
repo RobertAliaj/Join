@@ -141,6 +141,14 @@
 }
 
 
+.edit-contact-span{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+
 /*********** NEW CONTACT CONTAINER ************/
 
 
