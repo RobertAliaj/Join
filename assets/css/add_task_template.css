@@ -592,7 +592,7 @@
     }
 
     .create-task-responsive {
-        display: none;
+        display: none !important;
     }
 }
 

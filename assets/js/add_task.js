@@ -1,17 +1,32 @@
-let collectedContact = [];
-let initials = [];
-let selectedCategory;
-let prio;
-let smallCirleColor = false;
-let subtasks = [];
-let subtaskStatus = [];
-
 let contacts = [];
-let categorys = [];
-let category = [];
+let collectedContact = [];
+
+let selectedCategory; 
+let newCategory;
+
+let initials = [];
 
 let tasks = [];
 
+let prio; 
+
+let smallCirleColor = false; 
+
+let subtasks = []; 
+let subtaskStatus = []; 
+
+
+ 
+/**
+ * this is an object that is neccesary to create a task for the board
+ * @param {object} task - this object defines all components you need for, to create a new task
+ * @param {string} title - describes the title of the new task
+ * @param {string} describtion - describes the description of the new task
+ * @param {string} category - describes the category in which you put your new task, for example: media, design, marketing etc.
+ * @param {string} assigned_to - defines one or more persons that have to do the task
+ * @param {number} due_date - defines the date deadline for the task, which you can choose from the datepicker function
+ * @param {string} prio - defines the priority from the task which can be: urgent, medium or low be
+ */
 let task = {
   title: "",
   description: "",
@@ -27,8 +42,6 @@ let task = {
 };
 
 
-let newCategory;
-let colorForNewCategory;
 let required = true;
 let initialsRenderd = false;
 
