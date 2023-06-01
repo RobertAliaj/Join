@@ -37,7 +37,9 @@
 
   <!-- Contact and Add Task Javascript Files -->
   <script src="assets/js/add_task.js"></script>
-  <script src="assets\js\contacts.js"></script>
+  <script src="assets/js/contacts/contacts.js"></script>
+  <script src="assets/js/contacts/contactsHtml.js"></script>
+  <script src="assets/js/contacts/contactProperties.js"></script>
 </head>
 
 <body onload="initBoard()">
@@ -47,7 +49,6 @@
     <div w3-include-html="assets/templates/desktop_top_template.html"> </div>
   </div>
   <div w3-include-html="assets/templates/mobile_bottom_menu_template.html"></div>
-
 
   <!-- Background PopUp -->
   <div onclick="closeAddTaskWrapper(); closeAddTask()" class="overlay d-none fade-in" id="greyBackground"></div>
@@ -75,7 +76,8 @@
       <div class="status-parent">
         <div class="status-title">
           <h4>To do</h4>
-          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer(); changeProgress('TODO')" />
+          <img src="assets/img/add_button.png" class="add-img"
+            onclick="openAddTaskContainer(); changeProgress('TODO')" />
         </div>
         <div class="cards-parent" id="TODO" ondrop="moveTo('TODO'); removeHighlight('TODO')"
           ondragover="allowDrop(event); highlight('TODO')" ondragleave="removeHighlight('TODO')"></div>
@@ -84,7 +86,8 @@
       <div class="status-parent">
         <div class="status-title">
           <h4>In Progress</h4>
-          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer(); changeProgress('inProgress')" />
+          <img src="assets/img/add_button.png" class="add-img"
+            onclick="openAddTaskContainer(); changeProgress('inProgress')" />
         </div>
         <div class="cards-parent" id="inProgress" ondrop="moveTo('inProgress'); removeHighlight('inProgress')"
           ondragover="allowDrop(event); highlight('inProgress')" ondragleave="removeHighlight('inProgress')"></div>
@@ -93,7 +96,8 @@
       <div class="status-parent">
         <div class="status-title">
           <h4>Awaiting Feedback</h4>
-          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer(); changeProgress('feedback')" />
+          <img src="assets/img/add_button.png" class="add-img"
+            onclick="openAddTaskContainer(); changeProgress('feedback')" />
         </div>
         <div class="cards-parent" id="feedback" ondrop="moveTo('feedback'); removeHighlight('feedback')"
           ondragover="allowDrop(event); highlight('feedback')" ondragleave="removeHighlight('feedback')"></div>
@@ -102,7 +106,8 @@
       <div class="status-parent done">
         <div class="status-title">
           <h4>Done</h4>
-          <img src="assets/img/add_button.png" class="add-img" onclick="openAddTaskContainer(); changeProgress('done')" />
+          <img src="assets/img/add_button.png" class="add-img"
+            onclick="openAddTaskContainer(); changeProgress('done')" />
         </div>
         <div class="cards-parent" id="done" ondrop="moveTo('done'); removeHighlight('done')"
           ondragover="allowDrop(event); highlight('done')" ondragleave="removeHighlight('done')"></div>

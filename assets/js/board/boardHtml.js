@@ -173,8 +173,6 @@ function renderEditTaskPopUpHtml(i) {
             </div>
 
         </div>
-
-
         
 
         <div class="edit-assigned column">

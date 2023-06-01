@@ -594,6 +594,10 @@
     .create-task-responsive {
         display: none !important;
     }
+
+    .buttons{
+        display: none !important;
+    }
 }
 
 
