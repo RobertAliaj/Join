@@ -15,6 +15,7 @@ function setRandomColor(j) {
 
 
 /**
+ * This Function is used to generate a random Color
  *
  * @returns a random color
  */
@@ -43,6 +44,7 @@ function closeAttentionCard() {
     document.getElementById('attentionCard').classList.add('d-none');
 }
 
+
 /**
  * This function opens the alert card of the email input
  * @param {number} idx The index of the contact thats open
@@ -64,6 +66,14 @@ function openSpecificContact(idx) {
     document.getElementById("specificContact").innerHTML = specificContactHtml(idx);
     document.getElementById(`specific${idx}`).style.backgroundColor = contacts[idx]["color"];
 
+    changeLayoutForMobile();
+}
+
+
+/**
+* This function changes the layout for mobile
+*/
+function changeLayoutForMobile() {
     if (window.innerWidth < 1300) {
         document.getElementById("leftSection").style.display = "none";
         document.getElementById("contacts").style.display = "none";
@@ -124,14 +134,10 @@ function fadeOut() {
  */
 function slideIn(container) {
     if (container === "newContactContainer") {
-        document
-            .getElementById("newContactContainer")
-            .classList.remove("slide-out");
+        document.getElementById("newContactContainer").classList.remove("slide-out");
         document.getElementById("newContactContainer").classList.add("slide-in");
     } else {
-        document
-            .getElementById("editContactContainer")
-            .classList.remove("slide-out");
+        document.getElementById("editContactContainer").classList.remove("slide-out");
         document.getElementById("editContactContainer").classList.add("slide-in");
     }
 }
@@ -152,49 +158,64 @@ function fadeIn() {
 function openCreateContact() {
     document.getElementById("overlay").classList.remove("d-none");
     document.getElementById("newContactContainer").classList.remove("d-none");
-    document.getElementById("newContactContainer").innerHTML =
-        createContactHtml();
-    if (window.innerWidth < 801) {
-        document.getElementById("close").src = "assets/img/close_white.png";
-        document.getElementById("joinSmall").style.display = "none";
-        document.getElementById("cancle").style.display = "none";
-    }
+    document.getElementById("newContactContainer").innerHTML = createContactHtml();
+
+    changeStyleForSmallScreen();
     fadeIn();
     slideIn("newContactContainer");
 }
 
 
 /**
-* This function checks if all inputs are filled
-* @param {string} name name of new contact
-* @param {email} mail email of new contact
-* @param {number} phone phone number of new contact
-* @returns if all inputs have a value
+* This function changes the layout for small screens
 */
-function checkAllValues(name, mail, phone) {
-    if (!name.value) {
-        document.getElementById('nameNecessary').classList.remove('d-none');
-    } else {
-        document.getElementById('nameNecessary').classList.add('d-none');
-    }
-    if (!mail.value) {
-        document.getElementById('mailNecessary').classList.remove('d-none');
-    } else {
-        document.getElementById('mailNecessary').classList.add('d-none');
-    }
-    if (!phone.value) {
-        document.getElementById('phoneNecessary').classList.remove('d-none');
-    } else {
-        document.getElementById('phoneNecessary').classList.add('d-none');
-    }
-    if (name.value && mail.value && phone.value) {
-        return true
+function changeStyleForSmallScreen() {
+    if (window.innerWidth < 801) {
+        document.getElementById("close").src = "assets/img/close_white.png";
+        document.getElementById("joinSmall").style.display = "none";
+        document.getElementById("cancle").style.display = "none";
     }
 }
 
 
+/**
+ * This function checks if all inputs are filled
+ * @param {HTMLInputElement} name - The input element for the name of the new contact
+ * @param {HTMLInputElement} mail - The input element for the email of the new contact
+ * @param {HTMLInputElement} phone - The input element for the phone number of the new contact
+ * @returns {boolean} - Returns true if all inputs have a value, otherwise false
+ */
+function checkAllValues(name, mail, phone) {
+    checkValue(name, 'nameNecessary');
+    checkValue(mail, 'mailNecessary');
+    checkValue(phone, 'phoneNecessary');
+
+    return name.value && mail.value && phone.value;
+}
+
+
+/**
+ * Checks if an input has a value and controls visibility of corresponding error message
+ * @param {HTMLInputElement} input - The input element to check
+ * @param {string} errorMsgId - The id of the element that shows the error message
+ */
+function checkValue(input, errorMsgId) {
+    const errorMsgElem = document.getElementById(errorMsgId);
+
+    if (!input.value) {
+        errorMsgElem.classList.remove('d-none');
+    } else {
+        errorMsgElem.classList.add('d-none');
+    }
+}
+
+
+/**
+ * Restricts keyboard input to only numbers, the plus sign, and control keys.
+ * @param {KeyboardEvent} evt - The keyboard event
+ * @returns {boolean} - Returns false if the input is not a number, plus sign, or control key, otherwise true
+ */
 function onlyNumberKey(evt) {
-    // Nur Ziffern, das Pluszeichen und Steuerungstasten zulassen 
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && ASCIICode != 43)
         return false;
