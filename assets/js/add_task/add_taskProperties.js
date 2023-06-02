@@ -127,3 +127,34 @@ function switchIconsfromSubtask(booleanArgument, addSubtask, subtaskInput) {
   
     return [highPrio, midPrio, lowPrio];
   }
+
+  async function generateRandomColor() {
+    let color = "#" + Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0');
+    let r = parseInt(color.substring(1, 3), 16);
+    let g = parseInt(color.substring(3, 5), 16);
+    let b = parseInt(color.substring(5, 7), 16);
+  
+    while (r + g + b < (255 * 3) / 2) {
+      color = "#" + Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0');
+      r = parseInt(color.substring(1, 3), 16);
+      g = parseInt(color.substring(3, 5), 16);
+      b = parseInt(color.substring(5, 7), 16);
+    }
+    return color;
+  }
+
+  function slideInAnimationDesktop(){
+    greyBackground.classList.add("d-none");
+    addTaskPopUp.classList.remove("slide-out");
+    addTaskPopUp.classList.add("slide-in");
+    addTaskPopUp.classList.remove("d-none");
+    profile.classList.add("d-none");
+    addTaskBtn.classList.remove("d-none");
+  }
+
+  function slideInAnimationResponsive(){
+    greyBackground.classList.remove("d-none");
+    addTaskPopUp.classList.remove("slide-out");
+    addTaskPopUp.classList.add("slide-in");
+    addTaskPopUp.classList.remove("d-none");
+  }
