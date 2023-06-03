@@ -60,32 +60,6 @@ function changeProgress(progressColumn) {
 }
 
 /**
- * This function is used to change the height of a div and display its contents
- * if the height of a div was previously changed and you click on another,
- * the previous div is reduced again and the content is hidden.
- * The height of the clicked div is increased and the content is displayed
- *
- * @param {*} clicked - This is the id where a classlist should be changed
- * @param {*} notClicked - This is the id where a classlist should be changed
- * @param {*} visible - This is the id where the classlist "d-none" will removed
- * @param {*} notVisible - This is the id where the classlist "d-none" will added
- */
-
-function pullDownMenu(clicked, notClicked, visible, notVisible) {
-  let openMenu = document.getElementById(clicked).classList;
-  if (openMenu == "dropdown-category-closed") {
-    openCategoryFolder(clicked, notClicked, visible, notVisible);
-  } else {
-    closeCategoryFolder(clicked, visible, notVisible);
-  }
-  if (clicked == "assingedTo") {
-    switchContactIcons();
-    renderInitials();
-    initialsRenderd = false;
-  }
-}
-
-/**
  * Adds the current date to the date input field of a task set.
  * 
  * @param {number} today - Get the current date
@@ -123,14 +97,10 @@ function renderContacts() {
   renderYouContact();
   contactContainer = document.getElementById("loadedContacts");
   contactContainer.innerHTML = "";
-
   for (let i = 0; i < contacts.length; i++) {
     let you = localStorage.getItem("currentUser");
-
     if (contacts[i]["email"] !== you) {
-      let contactName = combineNames(contacts, i);
-      let colorOfContact = contacts[i]["color"];
-      contactContainer.innerHTML += renderContactsHtml(contactName, colorOfContact, i);
+      renderAvailableContacts(contacts, i)
     }
   }
 }
@@ -169,21 +139,10 @@ function selectCategory(category, categoryColor) {
 
 function selectedForTask(selectedContact, selected, colorOfContact) {
   if (collectedContact.includes(selectedContact) == false) {
-    collectedContact.push(selectedContact);
-    addSelectedPoint(selected);
-    manageInitials(selectedContact, colorOfContact);
-    switchContactIcons();
+    selectContactForTask(collectedContact, selectedContact, selected, colorOfContact);
   } else {
-    contactToRemove = collectedContact.indexOf(selectedContact);
-    collectedContact.splice(contactToRemove, 1);
-    manageInitials(selectedContact, colorOfContact);
-    document.getElementById(selected).classList.remove("selection-point");
-    switchContactIcons();
+    deselectContactforTask(collectedContact, selectedContact, colorOfContact, selected)
   }
-}
-
-function addSelectedPoint(selected) {
-  document.getElementById(selected).classList.add("selection-point");
 }
 
 function manageInitials(selectedContact, colorOfContact) {
@@ -200,14 +159,6 @@ function manageInitials(selectedContact, colorOfContact) {
     const indexToRemove = initials.findIndex((obj) => obj.initial === initial);
     initials.splice(indexToRemove, 1);
     selectedContact = "";
-  }
-}
-
-function switchContactIcons() {
-  if (collectedContact.length == false || initialsRenderd == true) {
-    removeClearBtnAndAddArrow()
-  } else {
-    addClearBtnAndRemoveArrow()
   }
 }
 
@@ -337,7 +288,6 @@ function switchSubtaskIcons() {
   }
 }
 
-
 function setStatus(divID, i) {
   if (subtaskStatus[i] == false) {
     document.getElementById(divID).classList.remove("d-none");
@@ -359,46 +309,11 @@ function addCategory() {
   }
 }
 
-async function getRandomColor() {
-  categoryInputFiled = document.getElementById("categoryInput");
-  for (let index = 0; index < 6; index++) {
-    generatedColor = await generateRandomColor();
-    onclickColor = `selectedColor(#${generatedColor})`;
-    colorCircle = document.getElementById("colorPickCircle" + index);
-    colorCircle.style = `background-color: ${generatedColor}`;
-    setOnclickForColorpicker(colorCircle, index);
-  }
-}
-
-
-
 function setOnclickForColorpicker(colorCircle, index) {
   rgbColor = colorCircle.style["cssText"];
   i = rgbColor.length;
   onclickColor = rgbColor.slice(22, i - 2);
   colorCircle.setAttribute("onclick", `selectedColor(${onclickColor}, ${index})`);
-}
-
-
-function selectedColor(r, g, b, index) {
-  removeClassFromColorPicker();
-  smallCirleColor = true;
-  // Der ausgewählten Farbkreis die Klasse 'choosenCategory' hinzufügen
-  let selectedCircle = document.getElementById('colorPickCircle' + index);
-  selectedCircle.classList.add('choosenCategory');
-
-  colorForNewCategory = `rgb(${r}, ${g}, ${b})`;
-}
-
-
-function removeClassFromColorPicker() {
-  // Alle Farbkreise abrufen
-  let colorCircles = document.querySelectorAll('[id^="colorPickCircle"]');
-
-  // Von allen Farbkreisen die Klasse 'choosenCategory' entfernen
-  colorCircles.forEach((circle) => {
-    circle.classList.remove('choosenCategory');
-  });
 }
 
 async function saveNewCategory() {
@@ -415,79 +330,6 @@ async function pushCategoryInCategorys() {
   jsonFromServer["categorys"] = categorys;
   renderCategorys();
   await saveJSONToServer();
-}
-
-
-function getTitleOrDescription(inputId, reportId) {
-  let taskInfo = document.getElementById(inputId).value;
-  if (taskInfo == "") {
-    remove_D_NoneCSSByReportId(reportId);
-    required = true;
-  } else {
-    required = false;
-    add_D_NoneCSSByReportId(reportId);
-    return taskInfo;
-  }
-}
-
-
-function getCategory(reportId) {
-  if (selectedCategory == undefined) {
-    remove_D_NoneCSSByReportId(reportId);
-    required = true;
-  } else {
-    required = false;
-    add_D_NoneCSSByReportId(reportId);
-    return selectedCategory;
-  }
-}
-
-function getContact(reportId) {
-  if (collectedContact == "") {
-    remove_D_NoneCSSByReportId(reportId);
-    required = true;
-  } else {
-    required = false;
-    add_D_NoneCSSByReportId(reportId);
-    return collectedContact;
-  }
-}
-
-function getDate(reportId) {
-  let chosenDate = document.getElementById("date").value;
-  if (chosenDate == "") {
-    remove_D_NoneCSSByReportId(reportId);
-    required = true;
-  } else {
-    add_D_NoneCSSByReportId(reportId);
-    required = false;
-    return chosenDate;
-  }
-}
-
-function getPrio(reportId) {
-  if (prio == undefined) {
-    remove_D_NoneCSSByReportId(reportId);
-    required = true;
-  } else {
-    required = false;
-    add_D_NoneCSSByReportId(reportId);
-    return prio;
-  }
-
-}
-
-function pushSubtask() {
-  for (let i = 0; i < subtasks.length; i++) {
-    task.subtasks.name.push(subtasks[i]) || [];
-  }
-}
-
-
-function pushStatus() {
-  for (let i = 0; i < subtaskStatus.length; i++) {
-    task.subtasks.status.push(subtaskStatus[i]);
-  }
 }
 
 function collectAllInfos() {
@@ -508,12 +350,6 @@ function collectAllInfos() {
   }
 }
 
-function closeAddTask() {
-  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
-  clearTaskFields();
-  clearContacts();
-}
-
 function clearTaskFields() {
   let valuesOfInputs = getIdsOfInputFields();
   setPrioButtonsToDefault();
@@ -531,28 +367,6 @@ function clearTaskFields() {
     },
     progress: "",
   };
-}
-
-function getIdsOfInputFields() {
-  let titleField = document.getElementById("titleInput");
-  let descriptionField = document.getElementById("descriptionInput");
-  let chosenDateField = document.getElementById("date");
-  let categoryField = document.getElementById("chosenCategory");
-  let contactField = document.getElementById("initialsContainer");
-
-  return {
-    titleField,
-    descriptionField,
-    chosenDateField,
-    categoryField,
-    contactField,
-  };
-}
-
-function setPrioButtonsToDefault() {
-  let prioId = getIdOfPrioButtons();
-  resetColorOfPrioButtons(prioId[0], prioId[1], prioId[2]);
-  resetImgOfPrioButtons();
 }
 
 function clearValues(valuesOfInputs) {
@@ -577,16 +391,6 @@ async function pushTaskInTasks() {
     // await backend.deleteItem("users");
   }
 }
-
-
-function showCreateTaskBtn() {
-  if (window.location.href == 'http://127.0.0.1:5501/add_task.html' || window.location.href == 'https://gruppe-join-421.developerakademie.net/add_task.html') {
-    document.getElementById('addTaskBtn').classList.remove('d-none')
-  } else {
-    document.getElementById('addTaskBtn').classList.add('d-none')
-  }
-}
-
 
 function taskUploaded() {
   // Hier muss das Url noch dynamisch angepasst werden, erst wenn das Projekt fertig auf dem Server liegt
@@ -618,26 +422,4 @@ function directToNewContact() {
 }
 
 
-/**
- * This function is opening the addTask container
- */
-function openAddTaskContainer(idx) {
-  let greyBackground = document.getElementById("greyBackground");
-  let addTaskPopUp = document.getElementById("addTaskWrapper");
-  let profile = document.getElementById('userPicture');
-  let addTaskBtn = document.getElementById("addTaskBtn");
-
-  if (window.innerWidth < 1300) {
-    slideInAnimationDesktop(greyBackground, addTaskPopUp, profile, addTaskBtn)
-  } else {
-    slideInAnimationResponsive(greyBackground, addTaskPopUp);
-  }
-  loadInfos();
-  
-  if (idx) {
-    selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
-  }
-  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
-  addContacts();
-}
 

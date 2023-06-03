@@ -143,7 +143,7 @@ function switchIconsfromSubtask(booleanArgument, addSubtask, subtaskInput) {
     return color;
   }
 
-  function slideInAnimationDesktop(){
+  function slideInAnimationDesktop(greyBackground, addTaskPopUp, profile, addTaskBtn){
     greyBackground.classList.add("d-none");
     addTaskPopUp.classList.remove("slide-out");
     addTaskPopUp.classList.add("slide-in");
@@ -152,9 +152,143 @@ function switchIconsfromSubtask(booleanArgument, addSubtask, subtaskInput) {
     addTaskBtn.classList.remove("d-none");
   }
 
-  function slideInAnimationResponsive(){
+  function slideInAnimationResponsive(greyBackground, addTaskPopUp){
     greyBackground.classList.remove("d-none");
     addTaskPopUp.classList.remove("slide-out");
     addTaskPopUp.classList.add("slide-in");
     addTaskPopUp.classList.remove("d-none");
   }
+
+  
+/**
+ * This function is opening the addTask container
+ */
+function openAddTaskContainer(idx) {
+  let greyBackground = document.getElementById("greyBackground");
+  let addTaskPopUp = document.getElementById("addTaskWrapper");
+  let profile = document.getElementById('userPicture');
+  let addTaskBtn = document.getElementById("addTaskBtn");
+
+  if (window.innerWidth < 1300) {
+    slideInAnimationDesktop(greyBackground, addTaskPopUp, profile, addTaskBtn)
+  } else {
+    slideInAnimationResponsive(greyBackground, addTaskPopUp);
+  }
+  loadInfos();
+  
+  if (idx) {
+    selectedForTask(combineNames(contacts, idx), `contactName${idx}`, contacts[idx]["color"]);
+  }
+  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
+  addContacts();
+}
+
+function setPrioButtonsToDefault() {
+  let prioId = getIdOfPrioButtons();
+  resetColorOfPrioButtons(prioId[0], prioId[1], prioId[2]);
+  resetImgOfPrioButtons();
+}
+
+function removeClassFromColorPicker() {
+  // Alle Farbkreise abrufen
+  let colorCircles = document.querySelectorAll('[id^="colorPickCircle"]');
+
+  // Von allen Farbkreisen die Klasse 'choosenCategory' entfernen
+  colorCircles.forEach((circle) => {
+    circle.classList.remove('choosenCategory');
+  });
+}
+
+function selectedColor(r, g, b, index) {
+  removeClassFromColorPicker();
+  smallCirleColor = true;
+  // Der ausgewählten Farbkreis die Klasse 'choosenCategory' hinzufügen
+  let selectedCircle = document.getElementById('colorPickCircle' + index);
+  selectedCircle.classList.add('choosenCategory');
+
+  colorForNewCategory = `rgb(${r}, ${g}, ${b})`;
+}
+
+async function getRandomColor() {
+  categoryInputFiled = document.getElementById("categoryInput");
+  for (let index = 0; index < 6; index++) {
+    generatedColor = await generateRandomColor();
+    onclickColor = `selectedColor(#${generatedColor})`;
+    colorCircle = document.getElementById("colorPickCircle" + index);
+    colorCircle.style = `background-color: ${generatedColor}`;
+    setOnclickForColorpicker(colorCircle, index);
+  }
+}
+
+function addSelectedPoint(selected) {
+  document.getElementById(selected).classList.add("selection-point");
+}
+
+function selectContactForTask(collectedContact, selectedContact, selected, colorOfContact) {
+  collectedContact.push(selectedContact);
+  addSelectedPoint(selected);
+  manageInitials(selectedContact, colorOfContact);
+  switchContactIcons();
+}
+
+function deselectContactforTask(collectedContact, selectedContact, colorOfContact, selected){
+  contactToRemove = collectedContact.indexOf(selectedContact);
+  collectedContact.splice(contactToRemove, 1);
+  manageInitials(selectedContact, colorOfContact);
+  document.getElementById(selected).classList.remove("selection-point");
+  switchContactIcons();
+}
+
+/**
+ * This function is used to change the height of a div and display its contents
+ * if the height of a div was previously changed and you click on another,
+ * the previous div is reduced again and the content is hidden.
+ * The height of the clicked div is increased and the content is displayed
+ *
+ * @param {*} clicked - This is the id where a classlist should be changed
+ * @param {*} notClicked - This is the id where a classlist should be changed
+ * @param {*} visible - This is the id where the classlist "d-none" will removed
+ * @param {*} notVisible - This is the id where the classlist "d-none" will added
+ */
+
+function pullDownMenu(clicked, notClicked, visible, notVisible) {
+  let openMenu = document.getElementById(clicked).classList;
+  if (openMenu == "dropdown-category-closed") {
+    openCategoryFolder(clicked, notClicked, visible, notVisible);
+  } else {
+    closeCategoryFolder(clicked, visible, notVisible);
+  }
+  if (clicked == "assingedTo") {
+    switchContactIcons();
+    renderInitials();
+    initialsRenderd = false;
+  }
+}
+
+function renderAvailableContacts(contacts, i){
+  let contactName = combineNames(contacts, i);
+  let colorOfContact = contacts[i]["color"];
+  contactContainer.innerHTML += renderContactsHtml(contactName, colorOfContact, i);
+}
+
+function switchContactIcons() {
+  if (collectedContact.length == false || initialsRenderd == true) {
+    removeClearBtnAndAddArrow()
+  } else {
+    addClearBtnAndRemoveArrow()
+  }
+}
+
+function closeAddTask() {
+  pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
+  clearTaskFields();
+  clearContacts();
+}
+
+function showCreateTaskBtn() {
+  if (window.location.href == 'http://127.0.0.1:5501/add_task.html' || window.location.href == 'https://gruppe-join-421.developerakademie.net/add_task.html') {
+    document.getElementById('addTaskBtn').classList.remove('d-none')
+  } else {
+    document.getElementById('addTaskBtn').classList.add('d-none')
+  }
+}
