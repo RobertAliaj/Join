@@ -15,6 +15,19 @@ function setRandomColor(j) {
 
 
 /**
+ * This function shows the pop up after a contact is created
+ */
+function showCreateContactPopUp() {
+    let popUpId = document.getElementById("successfulUpload");
+    popUpId.classList.remove("d-none");
+    popUpId.classList.add("popUp");
+    setTimeout(function () {
+        popUpId.innerHTML = `creating new contact...`;
+    }, 500);
+}
+
+
+/**
  * This Function is used to generate a random Color
  *
  * @returns a random color
@@ -31,7 +44,6 @@ async function generateRandomColor() {
         g = parseInt(color.substring(3, 5), 16);
         b = parseInt(color.substring(5, 7), 16);
     }
-
     return color;
 }
 
@@ -65,7 +77,6 @@ function openSpecificContact(idx) {
 
     document.getElementById("specificContact").innerHTML = specificContactHtml(idx);
     document.getElementById(`specific${idx}`).style.backgroundColor = contacts[idx]["color"];
-
     changeLayoutForMobile();
 }
 
@@ -167,6 +178,66 @@ function openCreateContact() {
 
 
 /**
+ * This function slides out the new contact container
+ */
+function closeNewContact() {
+    slideOut("newContactContainer");
+    fadeOut();
+    setTimeout(function () {
+        document.getElementById("overlay").classList.add("d-none");
+        document.getElementById("newContactContainer").classList.add("d-none");
+    }, 400);
+    refreshContacts();
+    localStorage.setItem('inviteContact', false);
+}
+
+
+/**
+ * This function is editing a contact in the json
+ *
+ * @param {number} idx the index of the contact that is going to be edited
+ */
+function editContact(idx) {
+    document.getElementById("overlay").classList.remove("d-none");
+    document.getElementById("newContactContainer").classList.remove("d-none");
+    document.getElementById("newContactContainer").innerHTML = editContactHtml(idx);
+    if (window.innerWidth < 801) {
+        responsiveEditContact()
+    }
+    fadeIn();
+    slideIn("newContactContainer");
+    document.getElementById(`edit${idx}`).style.backgroundColor = contacts[idx]["color"];
+}
+
+
+/**
+ * This function show the edit Contact in responsive mode
+ */
+function responsiveEditContact() {
+    document.getElementById("close").src = "assets/img/close_white.png";
+    document.getElementById("joinSmall").style.display = "none";
+}
+
+
+/**
+ * This function is closing the editing div and showing the refreshed contacts
+ */
+async function closeEditContact() {
+    slideOut("newContactContainer");
+    fadeOut();
+    setTimeout(function () {
+        document.getElementById("overlay").classList.add("d-none");
+        document.getElementById("newContactContainer").classList.add("d-none");
+    }, 400);
+    if (window.innerWidth < 1001) {
+        closeSpecificContact();
+    }
+    await refreshContacts();
+    showContacts();
+}
+
+
+/**
 * This function changes the layout for small screens
 */
 function changeStyleForSmallScreen() {
@@ -220,4 +291,52 @@ function onlyNumberKey(evt) {
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57) && ASCIICode != 43)
         return false;
     return true;
+}
+
+
+/**
+ * This function is closing the add task container
+ */
+function closeAddTaskWrapper() {
+    let greyBackground = document.getElementById("greyBackground");
+    let addTaskPopUp = document.getElementById("addTaskWrapper");
+
+    if (window.innerWidth < 1300) {
+        closeAddTaskWrapperPropsResponsive(addTaskPopUp)
+    } else {
+        closeAddTaskWrapperProps(addTaskPopUp)
+    }
+    setTimeout(() => {
+        greyBackground.classList.add("d-none");
+        addTaskPopUp.classList.add("d-none");
+    }, 400);
+}
+
+
+/**
+ * This function closes the add Task wrapper props in responsive mode
+ * 
+ * @param {*} addTaskPopUp 
+ * @param {*} profile 
+ * @param {*} addTaskBtn 
+ */
+function closeAddTaskWrapperPropsResponsive(addTaskPopUp) {
+    let profile = document.getElementById('userPicture');
+    let addTaskBtn = document.getElementById("addTaskBtn");
+
+    addTaskPopUp.classList.add("slide-out");
+    addTaskPopUp.classList.remove("slide-in");
+    profile.classList.remove("d-none");
+    addTaskBtn.classList.add("d-none");
+}
+
+
+/**
+ * This function closes the add Task wrapper props
+ * 
+ * @param {*} addTaskPopUp 
+ */
+function closeAddTaskWrapperProps(addTaskPopUp) {
+    addTaskPopUp.classList.add("slide-out");
+    addTaskPopUp.classList.remove("slide-in");
 }

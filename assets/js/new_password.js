@@ -22,22 +22,33 @@ function getParameter() {
 /** 
  * This function gets the new password out of the inputs
  */
-async function createNewPassword() {
+function createNewPassword() {
   let password1 = document.getElementById("newPassword1").value;
   let password2 = document.getElementById("newPassword2").value;
 
   if (password1 === password2) {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i]["email"] === localStorage.email) {
-        users[i]["password"] = password1;
-        await saveJSONToServer();
-        correctPassword();
-      }
-    }
+    setNewPassword(password1);
   } else {
     wrongPassword();
   }
 }
+
+
+/**
+ * This function sets the new password and pushes it into the json
+ * 
+ * @param {*} password1 The new password
+ */
+async function setNewPassword(password1) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i]["email"] === localStorage.email) {
+      users[i]["password"] = password1;
+      await saveJSONToServer();
+      correctPassword();
+    }
+  }
+}
+
 
 /**
  * This function redirects to the login site if the new password was similar in both inputs
@@ -51,6 +62,7 @@ function correctPassword() {
     document.getElementById("blueAlert").classList.add("d-none");
   }, 3000);
 }
+
 
 /**
  * This function says that the new password was not similar in both inputs.

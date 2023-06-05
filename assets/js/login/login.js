@@ -1,6 +1,7 @@
 
 let users = [];
 
+
 /**
  * This function inits the login page
  */
@@ -9,6 +10,7 @@ async function initLogin() {
   openLogIn();
   checkRememberMe();
 }
+
 
 /**
  * This function saves the users array to the backend json
@@ -29,22 +31,32 @@ async function signUp() {
   let phone = "";
 
   if (!isEmailAlreadyExists(signUpEmail.value)) {
-    let color = await generateRandomColor();
-    let user = {
-      name: signUpName.value,
-      email: signUpEmail.value,
-      password: signUpPassword.value,
-      gender: '',
-    };
-    pushUser(user);
-    newContact(signUpName, signUpEmail, phone, color);
-    await refreshContacts();
-    openLogIn();
+    signUpUser(signUpName, signUpEmail, signUpPassword, phone);
   } else {
     let alert = document.getElementById("emailAlert");
     alert.classList.remove("d-none");
   }
 }
+
+
+/**
+ * This function pushes a new User into the users and contacts array
+ * 
+ */
+async function signUpUser(signUpName, signUpEmail, signUpPassword, phone) {
+  let color = await generateRandomColor();
+  let user = {
+    name: signUpName.value,
+    email: signUpEmail.value,
+    password: signUpPassword.value,
+    gender: '',
+  };
+  pushUser(user);
+  newContact(signUpName, signUpEmail, phone, color);
+  await refreshContacts();
+  openLogIn();
+}
+
 
 /**
  * This function checks if the function already exists
@@ -54,12 +66,12 @@ async function signUp() {
 function isEmailAlreadyExists(email) {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i].email === email) {
-      return true; // E-Mail bereits vorhanden
+      return true;
     }
   }
-
-  return false; // E-Mail nicht gefunden
+  return false;
 }
+
 
 /**
  * This function pushes a user to the users array
@@ -69,6 +81,7 @@ async function pushUser(user) {
   users.push(user);
   refreshUsers();
 }
+
 
 /**
  * This function logs in with a specific user
@@ -80,19 +93,39 @@ async function logIn() {
     (u) => u.email == email.value && u.password == password.value
   );
   if (user) {
-
-    saveGreetingNameToLocalStorage(user["name"]);
-    saveCurrentUserToLocalStorage(user["email"]);
-    isRememberMe();
-    await replaceLocation();
-
+    logInWithUser(user);
   } else {
-    email.value = "";
-    password.value = "";
-    let alert = document.getElementById("alert");
-    alert.classList.remove("d-none");
+    falseLogIn(email, password);
   }
 }
+
+
+/**
+ * This function logs into a users account
+ * 
+ * @param {*} user The user u are logging in
+ */
+async function logInWithUser(user) {
+  saveGreetingNameToLocalStorage(user["name"]);
+  saveCurrentUserToLocalStorage(user["email"]);
+  isRememberMe();
+  await replaceLocation();
+}
+
+
+/**
+ * This function clears all log in inputs and opens an alert because of wrong login information
+ * 
+ * @param {*} email container of the email input
+ * @param {*} password container of the password input
+ */
+function falseLogIn(email, password) {
+  email.value = "";
+  password.value = "";
+  let alert = document.getElementById("alert");
+  alert.classList.remove("d-none");
+}
+
 
 /**
  * This function initializes the guest login
@@ -102,12 +135,14 @@ function guestLogIn() {
   saveCurrentUserToLocalStorage('');
 }
 
+
 /**
  * This function replaces the location so there is no going back
  */
 async function replaceLocation() {
   window.location.replace("index.html");
 }
+
 
 /**
  * This function saves the name to the local storage
@@ -117,6 +152,7 @@ function saveGreetingNameToLocalStorage(name) {
   localStorage.setItem("greetingName", name);
 }
 
+
 /**
  * This function saves the email to the local storage
  * @param {string} email email of the login user
@@ -124,6 +160,7 @@ function saveGreetingNameToLocalStorage(name) {
 function saveCurrentUserToLocalStorage(email) {
   localStorage.setItem("currentUser", email);
 }
+
 
 /**
  * This function checks if the checkbox is being activated
@@ -141,6 +178,7 @@ function isRememberMe() {
   }
 }
 
+
 /**
  * This function checks if the remember me was checked before
  */
@@ -153,6 +191,7 @@ function checkRememberMe() {
     rmCheck.setAttribute("checked", "checked");
   }
 }
+
 
 /**
  * This function is used when you click the remember me 

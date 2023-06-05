@@ -34,7 +34,7 @@ async function refreshContacts() {
 
 
 /**
- * create a new contact
+ * This functio creates a new contact
  */
 async function createNewContact() {
   let name = document.getElementById("name");
@@ -43,12 +43,7 @@ async function createNewContact() {
   let color = await generateRandomColor();
   if (checkCreate(name, mail, phone)) {
     await newContact(name, mail, phone, color);
-    let popUpId = document.getElementById("successfulUpload");
-    popUpId.classList.remove("d-none");
-    popUpId.classList.add("popUp");
-    setTimeout(function () {
-      popUpId.innerHTML = `creating new contact...`;
-    }, 500);
+    showCreateContactPopUp();
     setTimeout(function () {
       closeNewContact();
       showContacts();
@@ -124,27 +119,53 @@ function isEmailExisting(mail, div) {
  */
 async function newContact(name, mail, phone, color) {
   if (WordCount(name) === 1) {
-    let newContact = {
-      firstname: name.value,
-      lastname: "",
-      email: mail.value,
-      phone: gettingPhoneNumber(phone),
-      color: color,
-    };
-    contacts.push(newContact);
-    await refreshContacts()
+    newContactWordCountOne(name, mail, phone, color);
   }
   if (WordCount(name) === 2) {
-    let newContact = {
-      firstname: name.value.split(" ")[0],
-      lastname: name.value.split(" ")[1],
-      email: mail.value,
-      phone: gettingPhoneNumber(phone),
-      color: color,
-    };
-    contacts.push(newContact);
-    await refreshContacts()
+    newContactWordCountTwo(name, mail, phone, color)
   }
+}
+
+
+/**
+ * This function creates a contact with one one name in the name attribute
+ * 
+ * @param {string} name name of the contact
+ * @param {string} mail mail of the contact
+ * @param {number} phone number of the contact
+ * @param {string} color color for the contact
+ */
+async function newContactWordCountOne(name, mail, phone, color) {
+  let newContact = {
+    firstname: name.value,
+    lastname: "",
+    email: mail.value,
+    phone: gettingPhoneNumber(phone),
+    color: color,
+  };
+  contacts.push(newContact);
+  await refreshContacts()
+}
+
+
+/**
+ * This function creates a contact with two names in the name attribute
+ * 
+ * @param {string} name name of the contact
+ * @param {string} mail mail of the contact
+ * @param {number} phone number of the contact
+ * @param {string} color color for the contact
+ */
+async function newContactWordCountTwo(name, mail, phone, color) {
+  let newContact = {
+    firstname: name.value.split(" ")[0],
+    lastname: name.value.split(" ")[1],
+    email: mail.value,
+    phone: gettingPhoneNumber(phone),
+    color: color,
+  };
+  contacts.push(newContact);
+  await refreshContacts()
 }
 
 
@@ -175,21 +196,6 @@ function WordCount(str) {
 
 
 /**
- * This function slides out the new contact container
- */
-function closeNewContact() {
-  slideOut("newContactContainer");
-  fadeOut();
-  setTimeout(function () {
-    document.getElementById("overlay").classList.add("d-none");
-    document.getElementById("newContactContainer").classList.add("d-none");
-  }, 400);
-  refreshContacts();
-  localStorage.setItem('inviteContact', false);
-}
-
-
-/**
  * This function creates the letters for the contacts sorting system
  */
 function createLetters() {
@@ -197,22 +203,37 @@ function createLetters() {
   let contactContainer = document.getElementById("contacts");
 
   if (contacts.length > 0) {
-    contactContainer.innerHTML = "";
-
-    for (j = 0; j < contacts.length; j++) {
-      let str = contacts[j]["firstname"].toLowerCase();
-      if (!letters.includes(str.charAt(0))) {
-        letters.push(str.charAt(0));
-      }
-    }
-    letters.sort();
-
-    for (i = 0; i < letters.length; i++) {
-      document.getElementById("contacts").innerHTML += createLetterHtml(i);
-    }
+    pushLettersIntoHtml(contactContainer);
   } else {
     contactContainer.innerHTML = `no contacts selectable`;
   }
+}
+
+
+/**
+ * This function shows the letters in html
+ * 
+ */
+function pushLettersIntoHtml(contactContainer) {
+  contactContainer.innerHTML = "";
+  pushLettersInArray();
+  for (i = 0; i < letters.length; i++) {
+    document.getElementById("contacts").innerHTML += createLetterHtml(i);
+  }
+}
+
+
+/**
+ * This function pushes all the first letters once into an array and sorts it afterwards
+ */
+function pushLettersInArray() {
+  for (j = 0; j < contacts.length; j++) {
+    let str = contacts[j]["firstname"].toLowerCase();
+    if (!letters.includes(str.charAt(0))) {
+      letters.push(str.charAt(0));
+    }
+  }
+  letters.sort();
 }
 
 
@@ -229,44 +250,6 @@ function displayContacts() {
   }
 }
 
-
-/**
- * This function is editing a contact in the json
- *
- * @param {number} idx the index of the contact that is going to be edited
- */
-function editContact(idx) {
-  document.getElementById("overlay").classList.remove("d-none");
-  document.getElementById("newContactContainer").classList.remove("d-none");
-  document.getElementById("newContactContainer").innerHTML =
-    editContactHtml(idx);
-  if (window.innerWidth < 801) {
-    document.getElementById("close").src = "assets/img/close_white.png";
-    document.getElementById("joinSmall").style.display = "none";
-  }
-
-  fadeIn();
-  slideIn("newContactContainer");
-  document.getElementById(`edit${idx}`).style.backgroundColor =
-    contacts[idx]["color"];
-}
-
-/**
- * This function is closing the editing div and showing the refreshed contacts
- */
-async function closeEditContact() {
-  slideOut("newContactContainer");
-  fadeOut();
-  setTimeout(function () {
-    document.getElementById("overlay").classList.add("d-none");
-    document.getElementById("newContactContainer").classList.add("d-none");
-  }, 400);
-  if (window.innerWidth < 1001) {
-    closeSpecificContact();
-  }
-  await refreshContacts();
-  showContacts();
-}
 
 /**
  * This function is deleting a contact out of the json
@@ -300,6 +283,7 @@ async function deleteOwnUser(idx, i) {
   window.location.href = 'login.html';
 }
 
+
 /**
  * This function is changing the parameters of the contact
  *
@@ -313,15 +297,29 @@ function changeContact(idx) {
   let phone = document.getElementById("phone");
 
   if (checkEdit(idx, name, email, phone)) {
-    contacts[idx]["firstname"] = firstname.value.split(" ")[0];
-    contacts[idx]["lastname"] = lastname.value.split(" ")[1];
-    contacts[idx]["email"] = email.value;
-    contacts[idx]["phone"] = phone.value;
-
-    refreshContacts();
-    closeEditContact();
-    openSpecificContact(idx);
+    pushNewContactValues(firstname, lastname, email, phone, idx);
   }
+}
+
+
+/**
+ * This function pushed all the edited values into the contactsarray
+ * 
+ * @param {*} firstname first name of the contact
+ * @param {*} lastname last name of the contact
+ * @param {*} email email of the contact
+ * @param {*} phone phone number of the contact
+ * @param {*} idx idx of the contact in the contacts array
+ */
+function pushNewContactValues(firstname, lastname, email, phone, idx) {
+  contacts[idx]["firstname"] = firstname.value.split(" ")[0];
+  contacts[idx]["lastname"] = lastname.value.split(" ")[1];
+  contacts[idx]["email"] = email.value;
+  contacts[idx]["phone"] = phone.value;
+
+  refreshContacts();
+  closeEditContact();
+  openSpecificContact(idx);
 }
 
 
@@ -356,29 +354,4 @@ function checkEditEmail(idx) {
       document.getElementById('editContactEmailAlert').classList.add('d-none');
     }
   }
-}
-
-
-/**
- * This function is closing the add task container
- */
-function closeAddTaskWrapper() {
-  let greyBackground = document.getElementById("greyBackground");
-  let addTaskPopUp = document.getElementById("addTaskWrapper");
-  let profile = document.getElementById('userPicture');
-  let addTaskBtn = document.getElementById("addTaskBtn");
-
-  if (window.innerWidth < 1300) {
-    addTaskPopUp.classList.add("slide-out");
-    addTaskPopUp.classList.remove("slide-in");
-    profile.classList.remove("d-none");
-    addTaskBtn.classList.add("d-none");
-  } else {
-    addTaskPopUp.classList.add("slide-out");
-    addTaskPopUp.classList.remove("slide-in");
-  }
-  setTimeout(() => {
-    greyBackground.classList.add("d-none");
-    addTaskPopUp.classList.add("d-none");
-  }, 400);
 }
