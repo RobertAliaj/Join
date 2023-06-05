@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>JSDoc: Source: loginHtml.js</title>
+
+  <script src="scripts/prettify/prettify.js"> </script>
+  <script src="scripts/prettify/lang-css.js"> </script>
+  <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+  <div id="main">
+
+    <h1 class="page-title">Source: loginHtml.js</h1>
+
+
+
+
+
+
+    <section>
+      <article>
+        <pre class="prettyprint source linenums"><code>/**
+ * This function opens the log out container
+ */
+function openLogOutContainer() {
+    document.getElementById('logOut').classList.toggle('d-none')
+    let logOut = document.getElementById('logOut');
+    if (window.innerWidth &lt; 1300) {
+        logOut.innerHTML = `
+      &lt;div onclick="window.location.href = 'help.html'">Help&lt;/div>
+      &lt;div onclick="window.location.href =  'privacy.html'">Legal Notice&lt;/div>
+      &lt;div onclick="logOut()">Log Out&lt;/div>
+      &lt;div id="profilePictures2" class="different-profiles responsive-profiles d-none">
+        &lt;img onclick="chooseProfilePicture('woman.png'); openLogOutContainer(); openSelectProfile()" src="assets/img/woman.png">
+        &lt;img onclick="chooseProfilePicture('man.png'); openLogOutContainer(); openSelectProfile()" src="assets/img/man.png">
+      &lt;/div>
+      `
+    } else {
+        logOut.innerHTML = `
+      &lt;div class="log-out-div" onclick="logOut()">Log Out&lt;/div>
+      `
+    }
+}
+
+
+/**
+ * This function logs out of a user and redirects to the login page without the action to go back
+ */
+function logOut() {
+    localStorage.removeItem('greetingName');
+    window.location.replace('login.html');
+}
+
+
+/**
+ * @returns the login container html
+ */
+function LoginContainerHtml() {
+    return `
+        &lt;span class="login-span">Log in&lt;/span>
+        &lt;div class="horizontal-blue-line">&lt;/div>
+        &lt;div class="form-container " >
+          &lt;div>
+            &lt;input autocomplete="username" type="email" placeholder="Email" id="email">
+            &lt;img src="assets/img/mail.png" alt="">
+          &lt;/div>
+          &lt;div>
+            &lt;input autocomplete="current-password" type="password" placeholder="Password" id="password">
+            &lt;img src="assets/img/schloss.png" alt="">
+          &lt;/div>
+          &lt;div id="alert" class="alert d-none">
+            &lt;span> You've got the wrong email or password &lt;/span>
+          &lt;/div>
+          &lt;div class="remember-me">
+            &lt;div>
+              &lt;input type="checkbox" id="rememberMe" onclick="clickedRememberMe()" value="lsRememberMe" class="select-box">
+              &lt;span>Remember me&lt;/span>
+            &lt;/div>
+            &lt;a onclick="openForgotPassword()">Forgot my password&lt;/a>
+          &lt;/div>
+          &lt;div class="buttons">
+            &lt;button onclick="logIn()" class="login-button"> Log in&lt;/button>
+            &lt;button onclick="window.location.replace('index.html'); guestLogIn()" class="guest-login-button">Guest Log in&lt;/button>
+          &lt;/div> 
+        &lt;/div>
+    `;
+}
+
+
+/**
+ * @returns the sign up container html
+ */
+function SignUpContainerHtml() {
+    return `
+        &lt;img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
+        &lt;span class="sign-up-span" >Sign up&lt;/span>
+        &lt;div class="horizontal-blue-line">&lt;/div>
+        &lt;form class="form-container" onsubmit="event.preventDefault(); signUp()">
+          &lt;div>
+            &lt;input placeholder="Name" id="signUpName" required>
+            &lt;img src="assets/img/user.png" alt="">
+          &lt;/div>
+          &lt;div>
+            &lt;input type="email" placeholder="Email" id="signUpEmail" required>
+            &lt;img src="assets/img/mail.png" alt="">
+             &lt;div id="emailAlert" class="alert d-none">
+            &lt;span> This email is already taken&lt;/span>
+          &lt;/div>
+          &lt;/div>
+          &lt;div>
+            &lt;input type="password" placeholder="Password" id="signUpPassword" required>
+            &lt;img src="assets/img/schloss.png" alt="">
+          &lt;/div>
+          
+          &lt;div class="buttons">
+            &lt;button type="submit" class="login-button"> Sign Up&lt;/button>
+          &lt;/div>
+       &lt;/form>
+    `;
+}
+
+
+/**
+ * @returns the password container html
+ */
+function PasswordContainerHtml() {
+    return `
+        &lt;img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
+        &lt;span class="forgot-password-span" >Forgot Password&lt;/span>
+        &lt;div class="horizontal-blue-line">&lt;/div>
+        &lt;form class="form-container " action="https://gruppe-join-421.developerakademie.net/send_mail.php" method="POST">
+          &lt;div>
+            &lt;input name="name" type="email" placeholder="Email" id="forgotPasswordEmail" required>
+            &lt;img src="assets/img/mail.png" alt="">
+  
+          &lt;/div>
+          &lt;div class="buttons">
+            &lt;button type="submit" class="login-button"> Send Mail &lt;/button>
+          &lt;/div>
+       &lt;/form>`;
+}
+</code></pre>
+      </article>
+    </section>
+
+
+
+
+  </div>
+
+  <nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Global</h3>
+    <h3><b>loginHtml.js</b></h3>
+    <ul class="overflowContainer">
+      <li><a href="global.html#LoginContainerHtml">LoginContainerHtml</a></li>
+      <li><a href="global.html#PasswordContainerHtml">PasswordContainerHtml</a></li>
+      <li><a href="global.html#SignUpContainerHtml">SignUpContainerHtml</a></li>
+      <li><a href="global.html#animate">animate</a></li>
+      <li><a href="global.html#animateNormal">animateNormal</a></li>
+      <li><a href="global.html#animateResponsive">animateResponsive</a></li>
+      <li><a href="global.html#checkRememberMe">checkRememberMe</a></li>
+      <li><a href="global.html#clickedRememberMe">clickedRememberMe</a></li>
+      <li><a href="global.html#falseLogIn">falseLogIn</a></li>
+      <li><a href="global.html#guestLogIn">guestLogIn</a></li>
+      <li><a href="global.html#initLogin">initLogin</a></li>
+      <li><a href="global.html#isEmailAlreadyExists">isEmailAlreadyExists</a></li>
+      <li><a href="global.html#isRememberMe">isRememberMe</a></li>
+      <li><a href="global.html#logIn">logIn</a></li>
+      <li><a href="global.html#logInWithUser">logInWithUser</a></li>
+      <li><a href="global.html#logOut">logOut</a></li>
+      <li><a href="global.html#openForgotPassword">openForgotPassword</a></li>
+      <li><a href="global.html#openLogIn">openLogIn</a></li>
+      <li><a href="global.html#openLogOutContainer">openLogOutContainer</a></li>
+      <li><a href="global.html#openSignUp">openSignUp</a></li>
+      <li><a href="global.html#pushUser">pushUser</a></li>
+      <li><a href="global.html#refreshUsers">refreshUsers</a></li>
+      <li><a href="global.html#replaceLocation">replaceLocation</a></li>
+      <li><a href="global.html#saveCurrentUserToLocalStorage">saveCurrentUserToLocalStorage</a></li>
+      <li><a href="global.html#saveGreetingNameToLocalStorage">saveGreetingNameToLocalStorage</a></li>
+      <li><a href="global.html#signUp">signUp</a></li>
+      <li><a href="global.html#signUpUser">signUpUser</a></li>
+    </ul>
+  </nav>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 05 2023 15:44:09
+    GMT+0200 (Mitteleuropäische Sommerzeit)
+  </footer>
+
+  <script> prettyPrint(); </script>
+  <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

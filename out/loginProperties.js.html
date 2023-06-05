@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: loginProperties.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+    <div id="main">
+
+        <h1 class="page-title">Source: loginProperties.js</h1>
+
+
+
+
+
+
+        <section>
+            <article>
+                <pre class="prettyprint source linenums"><code>/**
+ * This function animates the j image 
+ */
+function animate() {
+    if (window.innerWidth &lt; 501) {
+        animateResponsive();
+    } else {
+        animateNormal();
+    }
+}
+
+
+/**
+* This function animates if not responsive mode
+*/
+function animateNormal() {
+    let height = document.getElementById("outerDiv").clientHeight;
+    let width = document.getElementById("outerDiv").clientWidth;
+    let imgHeight = document.getElementById("imgDiv").clientHeight;
+    let imgWidth = document.getElementById("imgDiv").clientWidth;
+    setTimeout(function () {
+        const animation = gsap
+            .timeline()
+            .set(
+                "#imgDiv",
+                {
+                    x: 0,
+                    y: 0,
+                    scale: 0.9,
+                },
+                0
+            )
+            .set(
+                "#contentDiv",
+                {
+                    opacity: 0,
+                },
+                0
+            )
+            .to(
+                "#imgDiv",
+                {
+                    x: -width / 2 + imgWidth / 2 + 50,
+                    y: -height / 2 + imgHeight / 2 + 50,
+                    scale: 0.3,
+                    ease: "power1.out",
+                    duration: 1,
+                },
+                0
+            )
+            .to(
+                "#contentDiv",
+                {
+                    opacity: 1,
+                    duration: 1,
+                },
+                0
+            );
+    }, 1000);
+
+    document.getElementById("outerDiv").style.zIndex = 1;
+}
+
+
+/**
+ * This function animates in responsive
+ */
+function animateResponsive() {
+    let height = document.getElementById("outerDiv").clientHeight;
+    let width = document.getElementById("outerDiv").clientWidth;
+    let imgHeight = document.getElementById("imgDiv").clientHeight;
+    let imgWidth = document.getElementById("imgDiv").clientWidth;
+    setTimeout(function () {
+        const animation = gsap
+            .timeline()
+            .set(
+                "#imgDiv",
+                {
+                    x: 0,
+                    y: 0,
+                    scale: 1,
+                },
+                0
+            )
+            .set(
+                "#contentDiv",
+                {
+                    opacity: 0,
+                },
+                0
+            )
+            .to(
+                "#imgDiv",
+                {
+                    x: -width / 2 + imgWidth / 2 + 20,
+                    y: -height / 2 + imgHeight / 2 + 20,
+                    scale: 0.2,
+                    ease: "power1.out",
+                    duration: 1,
+                },
+                0
+            )
+            .to(
+                "#contentDiv",
+                {
+                    opacity: 1,
+                    duration: 1,
+                },
+                0
+            );
+    }, 1000);
+
+    document.getElementById("outerDiv").style.zIndex = 1;
+}
+
+
+/**
+ * This function opens the sign up Container
+ */
+function openSignUp() {
+    document.getElementById("signUp").style.display = "none";
+    let loginContainer = document.getElementById("loginContainer");
+    loginContainer.innerHTML = "";
+    loginContainer.innerHTML += SignUpContainerHtml();
+}
+
+
+/**
+ * This function opens the login container
+ */
+function openLogIn() {
+    document.getElementById("signUp").style.display = "flex";
+    let loginContainer = document.getElementById("loginContainer");
+    loginContainer.innerHTML = "";
+    loginContainer.innerHTML += LoginContainerHtml();
+}
+
+
+/**
+ * This function opens the forgot password container
+ */
+function openForgotPassword() {
+    document.getElementById("signUp").style.display = "none";
+    let loginContainer = document.getElementById("loginContainer");
+    loginContainer.innerHTML = "";
+    loginContainer.innerHTML += PasswordContainerHtml();
+}</code></pre>
+            </article>
+        </section>
+
+
+
+
+    </div>
+
+    <nav>
+        <h2><a href="index.html">Home</a></h2>
+        <h3>Global</h3>
+        <h3><b>loginProperties</b></h3>
+        <ul class="overflowContainer">
+            <li><a href="global.html#LoginContainerHtml">LoginContainerHtml</a></li>
+            <li><a href="global.html#PasswordContainerHtml">PasswordContainerHtml</a></li>
+            <li><a href="global.html#SignUpContainerHtml">SignUpContainerHtml</a></li>
+            <li><a href="global.html#animate">animate</a></li>
+            <li><a href="global.html#animateNormal">animateNormal</a></li>
+            <li><a href="global.html#animateResponsive">animateResponsive</a></li>
+            <li><a href="global.html#checkRememberMe">checkRememberMe</a></li>
+            <li><a href="global.html#clickedRememberMe">clickedRememberMe</a></li>
+            <li><a href="global.html#falseLogIn">falseLogIn</a></li>
+            <li><a href="global.html#guestLogIn">guestLogIn</a></li>
+            <li><a href="global.html#initLogin">initLogin</a></li>
+            <li><a href="global.html#isEmailAlreadyExists">isEmailAlreadyExists</a></li>
+            <li><a href="global.html#isRememberMe">isRememberMe</a></li>
+            <li><a href="global.html#logIn">logIn</a></li>
+            <li><a href="global.html#logInWithUser">logInWithUser</a></li>
+            <li><a href="global.html#logOut">logOut</a></li>
+            <li><a href="global.html#openForgotPassword">openForgotPassword</a></li>
+            <li><a href="global.html#openLogIn">openLogIn</a></li>
+            <li><a href="global.html#openLogOutContainer">openLogOutContainer</a></li>
+            <li><a href="global.html#openSignUp">openSignUp</a></li>
+            <li><a href="global.html#pushUser">pushUser</a></li>
+            <li><a href="global.html#refreshUsers">refreshUsers</a></li>
+            <li><a href="global.html#replaceLocation">replaceLocation</a></li>
+            <li><a href="global.html#saveCurrentUserToLocalStorage">saveCurrentUserToLocalStorage</a></li>
+            <li><a href="global.html#saveGreetingNameToLocalStorage">saveGreetingNameToLocalStorage</a></li>
+            <li><a href="global.html#signUp">signUp</a></li>
+            <li><a href="global.html#signUpUser">signUpUser</a></li>
+        </ul>
+    </nav>
+
+    <br class="clear">
+
+    <footer>
+        Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 05 2023 15:44:09
+        GMT+0200 (Mitteleuropäische Sommerzeit)
+    </footer>
+
+    <script> prettyPrint(); </script>
+    <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

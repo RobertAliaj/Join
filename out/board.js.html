@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: board.js</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
+<head>
+  <meta charset="utf-8">
+  <title>JSDoc: Source: board.js</title>
+
+  <script src="scripts/prettify/prettify.js"> </script>
+  <script src="scripts/prettify/lang-css.js"> </script>
+  <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
 
 <body>
 
-<div id="main">
+  <div id="main">
 
     <h1 class="page-title">Source: board.js</h1>
 
-    
 
 
 
-    
+
+
     <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>let allTasks = [];
+      <article>
+        <pre class="prettyprint source linenums"><code>let allTasks = [];
 let searchTasks = [];
 let popUpTasks = [];
 let contactsBoard = [];
@@ -42,11 +43,14 @@ let popUpOpen = false;
 /**
  * This function is used to call the functions that get the data from Backend and render them
  */
-async function init() {
-    await getDataBase();
-    getCategoriesFromJSON();
-    getContactColorsandInitials();
-    renderTasks();
+async function initBoard() {
+  await awaitHTML();
+  await getDataBase();
+  saveCurrentUser();
+  setProfilePicture();
+  getCategoryColorAndName();
+  getContactColorsandInitials();
+  renderTasks();
 }
 
 
@@ -54,10 +58,10 @@ async function init() {
  * This function is used to get the Data from server
  */
 async function getDataBase() {
-    await downloadFromServer();
-    allTasks = jsonFromServer['tasks'];
-    contactsBoard = jsonFromServer['contacts'];
-    categories = jsonFromServer['categorys'];
+  await init();
+  allTasks = tasks;
+  contactsBoard = contacts;
+  categories = categorys;
 }
 
 
@@ -65,15 +69,20 @@ async function getDataBase() {
  * This function is used to render the Tasks
  */
 function renderTasks() {
-    clearSections();
-    for (let i = 0; i &lt; allTasks.length; i++) {
-        let [task, section, names, prio, statusArray] = getAllTasksDetails(i);
+  clearSections();
+  for (let i = 0; i &lt; allTasks.length; i++) {
+    let [task, section, names, prio, statusArray] = getAllTasksDetails(i);
 
-        if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
-            document.getElementById(section).innerHTML += renderTasksHTML(task, i);
+    if (
+      section == "TODO" ||
+      section == "inProgress" ||
+      section == "feedback" ||
+      section == "done"
+    )
+      document.getElementById(section).innerHTML += renderTasksHTML(task, i);
 
-        taskDetails(names, prio, statusArray, i);
-    }
+    taskDetails(names, prio, statusArray, i);
+  }
 }
 
 
@@ -81,10 +90,10 @@ function renderTasks() {
  * This Function is used to clear all Sections/Columns
  */
 function clearSections() {
-    document.getElementById('TODO').innerHTML = '';
-    document.getElementById('inProgress').innerHTML = '';
-    document.getElementById('feedback').innerHTML = '';
-    document.getElementById('done').innerHTML = '';
+  document.getElementById("TODO").innerHTML = "";
+  document.getElementById("inProgress").innerHTML = "";
+  document.getElementById("feedback").innerHTML = "";
+  document.getElementById("done").innerHTML = "";
 }
 
 
@@ -92,14 +101,13 @@ function clearSections() {
  * This Function is used to get all the Details from the allTasks Array
  */
 function getAllTasksDetails(i) {
-    let task = allTasks[i];
-    let section = allTasks[i]['progress'];
-    let names = allTasks[i]['assigned_to']
-    let prio = allTasks[i]['prio'];
-    let statusArray = allTasks[i]['subtasks']['status'];
-    return [task, section, names, prio, statusArray];
+  let task = allTasks[i];
+  let section = allTasks[i]["progress"];
+  let names = allTasks[i]["assigned_to"];
+  let prio = allTasks[i]["prio"];
+  let statusArray = allTasks[i]["subtasks"]["status"];
+  return [task, section, names, prio, statusArray];
 }
-
 
 
 /**
@@ -107,76 +115,79 @@ function getAllTasksDetails(i) {
  * @param {string} prio    - The priority of the task.
  */
 function taskDetails(names, prio, statusArray, i) {
-    getInitials(names, i);
-    changeCategoryColor(i);
-    renderPrioImg(prio, i);
-    updateProgressBar(statusArray, i);
+  getInitials(names, i);
+  changeCategoryColor(i);
+  renderPrioImg(prio, i);
+  updateProgressBar(statusArray, i);
 }
 
 
 /**
  * This function is used to get the Initials of each name
- *  
+ *
  * @param {string} names - The names of the employees who have to do the job.
  */
 function getInitials(names, i) {
-    let initialsDiv = document.getElementById(`initials${i}`);
-    let initials = names.map(name => name.split(' ').map(word => word[0]).join(''));
+  let initialsDiv = document.getElementById(`initials${i}`);
+  let initials = names.map((name) =>
+    name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+  );
 
-    renderVisibleInitials(initials, initialsDiv, i);
-    renderHiddenInitials(names, initialsDiv);
+  renderVisibleInitials(initials, initialsDiv, i);
+  renderHiddenInitials(names, initialsDiv);
 }
 
 
 /**
  * This function is used to render the three first initials
- * 
+ *
  * @param {string} initials - initials of each name.
  */
 function renderVisibleInitials(initials, initialsDiv, i) {
-    let divsCreated = 0;
-    for (let s = 0; s &lt; initials.length; s++) {
-
-        if (divsCreated === 3) {
-            break;
-        }
-
-        divsCreated++;
-        const oneInitial = initials[s];
-        initialsDiv.innerHTML += visibleInitialsHtml(oneInitial, i, s);
-        renderInitialsColors(i, s);
+  let divsCreated = 0;
+  for (let s = 0; s &lt; initials.length; s++) {
+    if (divsCreated === 3) {
+      break;
     }
+
+    divsCreated++;
+    const oneInitial = initials[s];
+    initialsDiv.innerHTML += visibleInitialsHtml(oneInitial, i, s);
+    renderInitialsColors(i, s);
+  }
 }
 
 
 /**
  * This function is used to render the number of the remaining Coworkers, if there are more than three.
- * 
+ *
  * @param {string} names - The names of the employees who have to do the job.
  */
 function renderHiddenInitials(names, initialsDiv) {
-    if (names.length > 3) {
-        let remainingWorkers = document.createElement("div");
-        remainingWorkers.innerHTML = `+${names.length - 3}`;
-        remainingWorkers.classList.add("remaining-workers");
-        initialsDiv.appendChild(remainingWorkers);
-    }
+  if (names.length > 3) {
+    let remainingWorkers = document.createElement("div");
+    remainingWorkers.innerHTML = `+${names.length - 3}`;
+    remainingWorkers.classList.add("remaining-workers");
+    initialsDiv.appendChild(remainingWorkers);
+  }
 }
-
 
 
 /**
  *  This function is used to give each Initial a color
-*/
+ */
 function renderInitialsColors(i, s) {
-    let bubble = document.getElementById(`inits${i}-${s}`);
+  let bubble = document.getElementById(`inits${i}-${s}`);
 
-    for (let j = 0; j &lt; colorAndInitials.length; j++) {
-        if (bubble.textContent.includes(colorAndInitials[j].name)) {
-            bubble.style.backgroundColor = colorAndInitials[j].color;
-            break;
-        }
+  for (let j = 0; j &lt; colorAndInitials.length; j++) {
+    if (bubble.textContent.includes(colorAndInitials[j].name)) {
+      bubble.style.backgroundColor = colorAndInitials[j].color;
+      break;
     }
+  }
 }
 
 
@@ -184,42 +195,43 @@ function renderInitialsColors(i, s) {
  *  This function is used to give each Category a color
  */
 function changeCategoryColor(i) {
-    let categoryName = document.getElementById(`category${i}`);
-    for (let n = 0; n &lt; categoriesAndColors.length; n++) {
-        if (categoryName.textContent.includes(categoriesAndColors[n].name)) {
-            categoryName.style.backgroundColor = categoriesAndColors[n].color;
-            break;
-        }
+  let categoryName = document.getElementById(`category${i}`);
+  for (let n = 0; n &lt; categoriesAndColors.length; n++) {
+    if (categoryName.textContent.includes(categoriesAndColors[n].name)) {
+      categoryName.style.backgroundColor = categoriesAndColors[n].color;
+      break;
     }
+  }
 }
 
 
 /**
  *  This function is used to render the Priority img.
- *  
+ *
  * @param {string} prio - The name of the Priority.
  */
 function renderPrioImg(prio, i) {
-    let prioImg = document.getElementById(`prioImg${i}`);
-    prioImg.src = setPrioProperties(prio).img;
+  let prioImg = document.getElementById(`prioImg${i}`);
+  prioImg.src = setPrioProperties(prio).img;
 }
-
 
 
 /**
  *  This function is used to update the Progressbar of the Subtasks.
  */
 function updateProgressBar(statusArray, i) {
-    let trueCount = statusArray.filter(val => val === true).length;
-    let progressPercent = (trueCount / statusArray.length) * 100;
-    let progressBar = document.getElementById(`proBar${i}`);
+  let trueCount = statusArray.filter((val) => val === true).length;
+  let progressPercent = (trueCount / statusArray.length) * 100;
+  let progressBar = document.getElementById(`proBar${i}`);
 
-    if (statusArray.length > 0) {
-        progressBar.style.width = progressPercent + "%";
-        document.getElementById(`progressNumbers${i}`).innerHTML = `${trueCount}/${statusArray.length} Done`;
-    } else {
-        document.getElementById(`proDiv${i}`).style = 'display : none;';
-    }
+  if (statusArray.length > 0) {
+    progressBar.style.width = progressPercent + "%";
+    document.getElementById(
+      `progressNumbers${i}`
+    ).innerHTML = `${trueCount}/${statusArray.length} Done`;
+  } else {
+    document.getElementById(`proDiv${i}`).style = "display : none;";
+  }
 }
 
 
@@ -227,37 +239,37 @@ function updateProgressBar(statusArray, i) {
  * This function is used to make an Element available for the drag and drop.
  */
 function allowDrop(ev) {
-    ev.preventDefault();
+  ev.preventDefault();
 }
 
 
 /**
- * This function is used to start dragging. 
+ * This function is used to start dragging.
  */
 function startDragging(id) {
-    currentDraggedElement = id;
+  currentDraggedElement = id;
 }
 
 
 /**
  * This function is used to move the task to another ProgressSection (To do, In Progress, Awating Feedback, Done).
- * 
+ *
  * @param {string} progress - The id of the ProgressSection where you can move the task to.
  */
 async function moveTo(progress) {
-    let search = document.getElementById('searchInput').value;
+  let search = document.getElementById("searchInput").value;
 
-    if (search.length > 0) {
-        searchTasks[currentDraggedElement]['progress'] = progress;
-        document.getElementById('searchInput').value = '';
-        await saveJSONToServer();
-        renderTasks();
-    } else {
-        allTasks[currentDraggedElement]['progress'] = progress;
-        jsonFromServer['tasks'] = allTasks;
-        await saveJSONToServer();
-        renderTasks();
-    }
+  if (search.length > 0) {
+    searchTasks[currentDraggedElement]["progress"] = progress;
+    document.getElementById("searchInput").value = "";
+    await saveJSONToServer();
+    renderTasks();
+  } else {
+    allTasks[currentDraggedElement]["progress"] = progress;
+    jsonFromServer["tasks"] = allTasks;
+    await saveJSONToServer();
+    renderTasks();
+  }
 }
 
 
@@ -265,28 +277,28 @@ async function moveTo(progress) {
  * This funcion is used to push the searched task/s into the searchTasks.
  */
 function searchTask() {
-    let search = document.getElementById('searchInput').value;
-    search = search.toLowerCase().trim();
-    searchTasks = [];
-    for (let i = 0; i &lt; allTasks.length; i++) {
-        if (allTasks[i]['title'].toLowerCase().includes(search)) {
-            if (getSearchIndex(search) == -1) {
-                searchTasks.push(allTasks[i]);
-            }
-        }
+  let search = document.getElementById("searchInput").value;
+  search = search.toLowerCase().trim();
+  searchTasks = [];
+  for (let i = 0; i &lt; allTasks.length; i++) {
+    if (allTasks[i]["title"].toLowerCase().includes(search)) {
+      if (getSearchIndex(search) == -1) {
+        searchTasks.push(allTasks[i]);
+      }
     }
-    renderSearchedTask();
+  }
+  renderSearchedTask();
 }
 
 
 /**
  * This function is used to get the index of searchTasks array.
- * 
- * @param {string} value - This is the value of the search input. 
+ *
+ * @param {string} value - This is the value of the search input.
  */
 function getSearchIndex(value) {
-    let index = searchTasks.indexOf(value);
-    return index;
+  let index = searchTasks.indexOf(value);
+  return index;
 }
 
 
@@ -294,15 +306,20 @@ function getSearchIndex(value) {
  * This function is used to render the searched task.
  */
 function renderSearchedTask() {
-    clearSections();
-    for (let i = 0; i &lt; searchTasks.length; i++) {
-        let [task, section, names, prio, statusArray] = getSearchedTasksDetails(i);
+  clearSections();
+  for (let i = 0; i &lt; searchTasks.length; i++) {
+    let [task, section, names, prio, statusArray] = getSearchedTasksDetails(i);
 
-        if (section == "TODO" || section == "inProgress" || section == "feedback" || section == "done")
-            document.getElementById(section).innerHTML += renderTasksHTML(task, i);
+    if (
+      section == "TODO" ||
+      section == "inProgress" ||
+      section == "feedback" ||
+      section == "done"
+    )
+      document.getElementById(section).innerHTML += renderTasksHTML(task, i);
 
-        taskDetails(names, prio, statusArray, i);
-    }
+    taskDetails(names, prio, statusArray, i);
+  }
 }
 
 
@@ -310,32 +327,118 @@ function renderSearchedTask() {
  * This Function is used to get all the Details from the searchTasks Array
  */
 function getSearchedTasksDetails(i) {
-    let task = searchTasks[i];
-    let names = searchTasks[i]['assigned_to'];
-    let section = searchTasks[i]['progress'];
-    let prio = searchTasks[i]['prio'];
-    let statusArray = searchTasks[i]['subtasks']['status'];
-    return [task, section, names, prio, statusArray];
+  let task = searchTasks[i];
+  let names = searchTasks[i]["assigned_to"];
+  let section = searchTasks[i]["progress"];
+  let prio = searchTasks[i]["prio"];
+  let statusArray = searchTasks[i]["subtasks"]["status"];
+  return [task, section, names, prio, statusArray];
 }</code></pre>
-        </article>
+      </article>
     </section>
 
 
 
 
-</div>
+  </div>
 
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addClickEvent">addClickEvent</a></li><li><a href="global.html#addOnclickToBg">addOnclickToBg</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#bodyOverflowHidden">bodyOverflowHidden</a></li><li><a href="global.html#changeCategoryColor">changeCategoryColor</a></li><li><a href="global.html#changeHeightofAssignedTo">changeHeightofAssignedTo</a></li><li><a href="global.html#checkboxClicked">checkboxClicked</a></li><li><a href="global.html#chooseArrayToRender">chooseArrayToRender</a></li><li><a href="global.html#clearPriorityDivs">clearPriorityDivs</a></li><li><a href="global.html#clearProgressButtons">clearProgressButtons</a></li><li><a href="global.html#clearSections">clearSections</a></li><li><a href="global.html#closeDeletePopUp">closeDeletePopUp</a></li><li><a href="global.html#closeEditTask">closeEditTask</a></li><li><a href="global.html#createCheckBox">createCheckBox</a></li><li><a href="global.html#createCheckbox">createCheckbox</a></li><li><a href="global.html#createContact">createContact</a></li><li><a href="global.html#createContactsAndCheckboxes">createContactsAndCheckboxes</a></li><li><a href="global.html#createSubtaskDiv">createSubtaskDiv</a></li><li><a href="global.html#deleteTaskFromArrays">deleteTaskFromArrays</a></li><li><a href="global.html#displayBoardPopUp">displayBoardPopUp</a></li><li><a href="global.html#dragAndDropResponsive">dragAndDropResponsive</a></li><li><a href="global.html#editDetails">editDetails</a></li><li><a href="global.html#editPriority">editPriority</a></li><li><a href="global.html#getAllTasksDetails">getAllTasksDetails</a></li><li><a href="global.html#getCategoryColorAndName">getCategoryColorAndName</a></li><li><a href="global.html#getContactColorsandInitials">getContactColorsandInitials</a></li><li><a href="global.html#getDataBase">getDataBase</a></li><li><a href="global.html#getInitials">getInitials</a></li><li><a href="global.html#getNamesPopUp">getNamesPopUp</a></li><li><a href="global.html#getSearchIndex">getSearchIndex</a></li><li><a href="global.html#getSearchedTasksDetails">getSearchedTasksDetails</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newProgressColor">newProgressColor</a></li><li><a href="global.html#openDeletePopUp">openDeletePopUp</a></li><li><a href="global.html#openEditDropDown">openEditDropDown</a></li><li><a href="global.html#openEditTask">openEditTask</a></li><li><a href="global.html#popUpCategoryColor">popUpCategoryColor</a></li><li><a href="global.html#popUpInitialColor">popUpInitialColor</a></li><li><a href="global.html#popUpOpenFalse">popUpOpenFalse</a></li><li><a href="global.html#popUpOpenTrue">popUpOpenTrue</a></li><li><a href="global.html#proofInput">proofInput</a></li><li><a href="global.html#proofSubtasks">proofSubtasks</a></li><li><a href="global.html#removeAddTaskPopUp">removeAddTaskPopUp</a></li><li><a href="global.html#removeBoardPopUp">removeBoardPopUp</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderAndSave">renderAndSave</a></li><li><a href="global.html#renderContactsOnDropDown">renderContactsOnDropDown</a></li><li><a href="global.html#renderEditInitialColors">renderEditInitialColors</a></li><li><a href="global.html#renderEditInitials">renderEditInitials</a></li><li><a href="global.html#renderEditTaskPopUp">renderEditTaskPopUp</a></li><li><a href="global.html#renderEditedDetails">renderEditedDetails</a></li><li><a href="global.html#renderHiddenInitials">renderHiddenInitials</a></li><li><a href="global.html#renderInitialsColors">renderInitialsColors</a></li><li><a href="global.html#renderPopUpBoard">renderPopUpBoard</a></li><li><a href="global.html#renderPopUpPrio">renderPopUpPrio</a></li><li><a href="global.html#renderPrioImg">renderPrioImg</a></li><li><a href="global.html#renderSearchedTask">renderSearchedTask</a></li><li><a href="global.html#renderSubtasksPopUp">renderSubtasksPopUp</a></li><li><a href="global.html#renderTasks">renderTasks</a></li><li><a href="global.html#renderVisibleInitials">renderVisibleInitials</a></li><li><a href="global.html#replaceXThroughArrow">replaceXThroughArrow</a></li><li><a href="global.html#searchTask">searchTask</a></li><li><a href="global.html#setBgColor">setBgColor</a></li><li><a href="global.html#setCategoryColor">setCategoryColor</a></li><li><a href="global.html#setContactColors">setContactColors</a></li><li><a href="global.html#setNewPriority">setNewPriority</a></li><li><a href="global.html#setNewProgress">setNewProgress</a></li><li><a href="global.html#setPrioProperties">setPrioProperties</a></li><li><a href="global.html#setProgressColor">setProgressColor</a></li><li><a href="global.html#setTodayDate">setTodayDate</a></li><li><a href="global.html#showAddTaskPopUp">showAddTaskPopUp</a></li><li><a href="global.html#showEditPopUp">showEditPopUp</a></li><li><a href="global.html#showPopUp">showPopUp</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#taskDetails">taskDetails</a></li><li><a href="global.html#turnToFalse">turnToFalse</a></li><li><a href="global.html#updateProgressBar">updateProgressBar</a></li></ul>
-</nav>
+  <nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Global</h3>
+    <h3><b>board.js</b></h3>
+    <hr>
+    <ul>
+      <li><a href="global.html#addClickEvent">addClickEvent</a></li>
+      <li><a href="global.html#addOnclickToBg">addOnclickToBg</a></li>
+      <li><a href="global.html#allowDrop">allowDrop</a></li>
+      <li><a href="global.html#bodyOverflowHidden">bodyOverflowHidden</a></li>
+      <li><a href="global.html#changeCategoryColor">changeCategoryColor</a></li>
+      <li><a href="global.html#checkboxClicked">checkboxClicked</a></li>
+      <li><a href="global.html#chooseArrayToRender">chooseArrayToRender</a></li>
+      <li><a href="global.html#clearPriorityDivs">clearPriorityDivs</a></li>
+      <li><a href="global.html#clearProgressButtons">clearProgressButtons</a></li>
+      <li><a href="global.html#clearSections">clearSections</a></li>
+      <li><a href="global.html#closeDeletePopUp">closeDeletePopUp</a></li>
+      <li><a href="global.html#closeEditTask">closeEditTask</a></li>
+      <li><a href="global.html#createCheckBox">createCheckBox</a></li>
+      <li><a href="global.html#createCheckbox">createCheckbox</a></li>
+      <li><a href="global.html#createContact">createContact</a></li>
+      <li><a href="global.html#createContactsAndCheckboxes">createContactsAndCheckboxes</a></li>
+      <li><a href="global.html#createSubtaskDiv">createSubtaskDiv</a></li>
+      <li><a href="global.html#deleteTaskFromArrays">deleteTaskFromArrays</a></li>
+      <li><a href="global.html#displayBoardPopUp">displayBoardPopUp</a></li>
+      <li><a href="global.html#dragAndDropResponsive">dragAndDropResponsive</a></li>
+      <li><a href="global.html#editDetails">editDetails</a></li>
+      <li><a href="global.html#editPriority">editPriority</a></li>
+      <li><a href="global.html#getAllTasksDetails">getAllTasksDetails</a></li>
+      <li><a href="global.html#getCategoryColorAndName">getCategoryColorAndName</a></li>
+      <li><a href="global.html#getContactColorsandInitials">getContactColorsandInitials</a></li>
+      <li><a href="global.html#getDataBase">getDataBase</a></li>
+      <li><a href="global.html#getInitials">getInitials</a></li>
+      <li><a href="global.html#getNamesPopUp">getNamesPopUp</a></li>
+      <li><a href="global.html#getSearchIndex">getSearchIndex</a></li>
+      <li><a href="global.html#getSearchedTasksDetails">getSearchedTasksDetails</a></li>
+      <li><a href="global.html#highlight">highlight</a></li>
+      <li><a href="global.html#initBoard">initBoard</a></li>
+      <li><a href="global.html#moveTo">moveTo</a></li>
+      <li><a href="global.html#newProgressColor">newProgressColor</a></li>
+      <li><a href="global.html#openDeletePopUp">openDeletePopUp</a></li>
+      <li><a href="global.html#openEditDropDown">openEditDropDown</a></li>
+      <li><a href="global.html#openEditTask">openEditTask</a></li>
+      <li><a href="global.html#popUpCategoryColor">popUpCategoryColor</a></li>
+      <li><a href="global.html#popUpInitialColor">popUpInitialColor</a></li>
+      <li><a href="global.html#popUpOpenFalse">popUpOpenFalse</a></li>
+      <li><a href="global.html#popUpOpenTrue">popUpOpenTrue</a></li>
+      <li><a href="global.html#proofInput">proofInput</a></li>
+      <li><a href="global.html#proofSubtasks">proofSubtasks</a></li>
+      <li><a href="global.html#removeAddTaskPopUp">removeAddTaskPopUp</a></li>
+      <li><a href="global.html#removeBoardPopUp">removeBoardPopUp</a></li>
+      <li><a href="global.html#removeHighlight">removeHighlight</a></li>
+      <li><a href="global.html#renderAndSave">renderAndSave</a></li>
+      <li><a href="global.html#renderContactsOnDropDown">renderContactsOnDropDown</a></li>
+      <li><a href="global.html#renderEditInitialColors">renderEditInitialColors</a></li>
+      <li><a href="global.html#renderEditInitials">renderEditInitials</a></li>
+      <li><a href="global.html#renderEditTaskPopUp">renderEditTaskPopUp</a></li>
+      <li><a href="global.html#renderEditedDetails">renderEditedDetails</a></li>
+      <li><a href="global.html#renderHiddenInitials">renderHiddenInitials</a></li>
+      <li><a href="global.html#renderInitialsColors">renderInitialsColors</a></li>
+      <li><a href="global.html#renderPopUpBoard">renderPopUpBoard</a></li>
+      <li><a href="global.html#renderPopUpPrio">renderPopUpPrio</a></li>
+      <li><a href="global.html#renderPrioImg">renderPrioImg</a></li>
+      <li><a href="global.html#renderSearchedTask">renderSearchedTask</a></li>
+      <li><a href="global.html#renderSubtasksPopUp">renderSubtasksPopUp</a></li>
+      <li><a href="global.html#renderTasks">renderTasks</a></li>
+      <li><a href="global.html#renderVisibleInitials">renderVisibleInitials</a></li>
+      <li><a href="global.html#replaceXThroughArrow">replaceXThroughArrow</a></li>
+      <li><a href="global.html#searchTask">searchTask</a></li>
+      <li><a href="global.html#setBgColor">setBgColor</a></li>
+      <li><a href="global.html#setCategoryColor">setCategoryColor</a></li>
+      <li><a href="global.html#setContactColors">setContactColors</a></li>
+      <li><a href="global.html#setNewPriority">setNewPriority</a></li>
+      <li><a href="global.html#setNewProgress">setNewProgress</a></li>
+      <li><a href="global.html#setPrioProperties">setPrioProperties</a></li>
+      <li><a href="global.html#setProgressColor">setProgressColor</a></li>
+      <li><a href="global.html#setTodayDate">setTodayDate</a></li>
+      <li><a href="global.html#showAddTaskPopUp">showAddTaskPopUp</a></li>
+      <li><a href="global.html#showEditPopUp">showEditPopUp</a></li>
+      <li><a href="global.html#showPopUp">showPopUp</a></li>
+      <li><a href="global.html#startDragging">startDragging</a></li>
+      <li><a href="global.html#taskDetails">taskDetails</a></li>
+      <li><a href="global.html#turnToFalse">turnToFalse</a></li>
+      <li><a href="global.html#updateProgressBar">updateProgressBar</a></li>
+    </ul>
+    <hr>
+  </nav>
 
-<br class="clear">
+  <br class="clear">
 
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Feb 01 2023 14:14:57 GMT+0100 (Mitteleuropäische Normalzeit)
-</footer>
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 05 2023 15:43:53
+    GMT+0200 (Mitteleuropäische Sommerzeit)
+  </footer>
 
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
+  <script> prettyPrint(); </script>
+  <script src="scripts/linenumber.js"> </script>
 </body>
+
 </html>

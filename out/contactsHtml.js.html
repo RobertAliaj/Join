@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: contactsHtml.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+    <div id="main">
+
+        <h1 class="page-title">Source: contactsHtml.js</h1>
+
+
+
+
+
+
+        <section>
+            <article>
+                <pre class="prettyprint source linenums"><code>/**
+ * @param {number} idx index of the contact
+ * @param {number} i index of the user
+ * @returns the attention card html
+ */
+function attentionCardHtml(idx, i) {
+    return `
+    &lt;span>Are you sure you want to delete the Contact you are signed in with?&lt;/span>
+          
+    &lt;div class="submit-section">
+        &lt;div onclick="closeAttentionCard()">Cancel &lt;img src="assets/img/Clear_task.png" alt="">&lt;/div>
+              
+        &lt;button class="contacts-button" onclick="deleteOwnUser(${idx, i})">
+          Delete &lt;img src="assets/img/create_task.png">
+        &lt;/button>
+    &lt;/div>`;
+}
+
+
+/**
+ * @param {number} i index of the letter
+ * @returns a single letter
+ */
+function createLetterHtml(i) {
+    return `
+        &lt;div class="letter" >${letters[i].toUpperCase()}&lt;/div>
+        &lt;div class="letter-block" id="${letters[i]}">&lt;/div>
+      `;
+}
+
+
+/**
+ * @param {number} j index of the contact
+ * @returns a single contact
+ */
+function contactHtml(j) {
+    return `
+      &lt;div class="single-contact" tabindex="1" onclick="openSpecificContact(${j})">
+          &lt;div style="background-color:${contacts[j].color}" class="name-tag" id="${j}">
+              ${contacts[j]["firstname"].charAt(0).toUpperCase()}${contacts[j]["lastname"].charAt(0).toUpperCase()}
+          &lt;/div>
+
+          &lt;div>
+              &lt;span>${contacts[j]["firstname"]} ${contacts[j]["lastname"]}&lt;/span>
+              &lt;span>${contacts[j]["email"]}&lt;/span>
+          &lt;/div>
+      &lt;/div>`;
+}
+
+
+/**
+ * @param {number} idx index of the contact
+ * @returns a contact as a close up
+ */
+function specificContactHtml(idx) {
+    return /*html*/ `
+    &lt;div class="specific-contact">
+      &lt;div class="specific-single-contact">
+          &lt;div style="background-color:${contacts[idx].color}" class="name-tag bigger" id="specific${idx}">
+              ${contacts[idx]["firstname"].charAt(0).toUpperCase()} ${contacts[idx]["lastname"].charAt(0).toUpperCase()}
+          &lt;/div>
+          
+          &lt;div>
+              &lt;span class="name">${contacts[idx]["firstname"]} ${contacts[idx]["lastname"]}&lt;/span>
+              &lt;span onclick="openAddTaskContainer(${idx})" class="add-task">+ Add Task&lt;/span>
+          &lt;/div>
+      &lt;/div>
+          
+      &lt;div class="contact-information">
+          &lt;img onclick="editContact(${idx})" class="edit" id="editContactButton" src="assets/img/edit.png" alt="" style="display: none;">
+          
+          &lt;div class="edit-span" id="editSpan">
+              &lt;span>Contact Information&lt;/span>
+              &lt;span class="edit-contact-span" onclick="editContact(${idx})">
+                &lt;img style="height:20px" src="assets/img/edit_pen_img.png"> Edit Contact
+              &lt;/span>
+          &lt;/div>
+          
+          &lt;div>
+              &lt;b>Email&lt;/b>
+              &lt;span class="mail">${contacts[idx]["email"]}&lt;/span>
+              &lt;b>Phone&lt;/b>
+              &lt;span>${contacts[idx]["phone"]}&lt;/span>
+          &lt;/div>
+      &lt;/div>
+    &lt;/div>`;
+}
+
+
+/**
+ * @param {number} idx index of the contact
+ * @returns the edit contact container
+ */
+function editContactHtml(idx) {
+    return /*html*/ `
+          &lt;img id="close" onclick="closeEditContact()" class="close" src="assets/img/Clear_task.png" alt="">
+          
+          &lt;div class="blue-side">
+              &lt;div class="flex-blue-side">
+                  &lt;img id="joinSmall" src="assets/img/join_small.png" alt="">
+                  &lt;b>Edit contact&lt;/b>
+                  &lt;div class="horizontal-blue-line">&lt;/div>
+              &lt;/div>
+          &lt;/div>
+
+          &lt;div class="contact-create-container">
+              &lt;div style="background-color:#${contacts[idx].color}" class="name-tag bigger edit-bigger" id="edit${idx}">
+                  ${contacts[idx]["firstname"].charAt(0).toUpperCase()}${contacts[idx]["lastname"].charAt(0).toUpperCase()}
+              &lt;/div>           
+          
+              &lt;div class="contact-form">
+                  &lt;form class="form-container" onsubmit="event.preventDefault(); changeContact(${idx})">
+                      &lt;div class="input-fields">
+                          &lt;div>
+                              &lt;input id="name" style="cursor: pointer;" placeholder="Name" type="text" value="${contacts[idx]["firstname"]} ${contacts[idx]["lastname"]}">
+                              &lt;img src="assets/img/user.png">
+                              &lt;div id="nameNecessary" class="necessary d-none">&lt;/div>
+                          &lt;/div>
+
+                          &lt;div>
+                              &lt;input id="mail" placeholder="Email" type="email" value="${contacts[idx]["email"]}">
+                              &lt;img src="assets/img/mail.png" alt="">
+                              &lt;div id="editContactEmailAlert" class="alert d-none">This email is already taken&lt;/div>
+                              &lt;div id="mailNecessary" class="necessary d-none">&lt;/div>
+                          &lt;/div>
+                          
+                          &lt;div>
+                                &lt;input id="phone" placeholder="Phone" type="text" value="${contacts[idx]["phone"]}" onkeypress="return onlyNumberKey(event)">
+                                &lt;img src="assets/img/mobile.png" alt="">
+                                &lt;div id="phoneNecessary" class="necessary d-none">&lt;/div>
+                          &lt;/div>
+                      &lt;/div>
+
+                      &lt;div class="submit-section">
+                          &lt;div onclick="deleteContact(${idx})">Delete &lt;img src="assets/img/Clear_task.png" alt="">
+                          &lt;/div>
+                          &lt;button class="contacts-button" type="submit" >Save&lt;img
+                                  src="assets/img/create_task.png" alt="">
+                          &lt;/button>
+                          &lt;/div>
+                    &lt;/form>
+              &lt;/div>
+          &lt;/div>
+      `;
+}
+
+
+/**
+ * @returns the create contact html
+ */
+function createContactHtml() {
+    return /*html*/ `
+          &lt;img id="close" onclick="closeNewContact()" class="close" src="assets/img/Clear_task.png">
+          
+          &lt;div class="blue-side">
+              &lt;div class="flex-blue-side">
+                  &lt;img id="joinSmall" src="assets/img/join_small.png">
+                  &lt;b id="overlayHeadline">Add contact&lt;/b>
+                  &lt;span id="overlaySubline">Tasks are better with a team!&lt;/span>
+                  &lt;div class="horizontal-blue-line">&lt;/div>
+              &lt;/div>
+          &lt;/div>
+          
+          &lt;div class="contact-create-container">
+              &lt;img class="user" src="assets/img/user (1).png" alt="">
+              &lt;div class="contact-form">
+                  &lt;div class="form-container">
+                      &lt;div class="input-fields">
+                          &lt;div>
+                              &lt;input id="name" style="cursor: pointer;" placeholder="Name" type="text" required>
+                              &lt;img src="assets/img/user.png" alt="">
+                              &lt;div id="nameNecessary" class="necessary d-none">&lt;/div>
+                          &lt;/div>
+                          &lt;div>
+                              &lt;input id="mail" placeholder="Email" type="email" required>
+                              &lt;img src="assets/img/mail.png" alt="">
+                              &lt;div id="createContactEmailAlert" class="alert d-none">This email is already taken&lt;/div>
+                              &lt;div id="mailNecessary" class="necessary d-none">&lt;/div>
+                          &lt;/div>
+                          &lt;div>
+                              &lt;input id="phone" placeholder="Phone" type="text" onkeypress="return onlyNumberKey(event)" required>
+                              &lt;img src="assets/img/mobile.png" alt="">
+                              &lt;div id="phoneNecessary" class="necessary d-none">&lt;/div>
+                          &lt;/div>
+                      &lt;/div>
+
+                    &lt;div class="submit-section">      
+                        &lt;div id="cancle" onclick="closeNewContact()">
+                            Cancel &lt;img src="assets/img/Clear_task.png">
+                          &lt;/div>
+                          &lt;button class="contacts-button" id="submit" onclick="createNewContact()" type="submit">Create contact &lt;img
+                                  src="assets/img/create_task.png" alt="">
+                          &lt;/button>
+                      &lt;/div>
+                  &lt;/div> 
+              &lt;/div>
+
+              &lt;div id="successfulUpload" class="d-none"> succesfull!
+                          &lt;img class="checkIcon" src="assets/img/successfull_check.png" alt="" />
+              &lt;/div>
+          &lt;/div>
+      `;
+}
+</code></pre>
+            </article>
+        </section>
+
+
+
+
+    </div>
+
+    <nav>
+        <h2><a href="index.html">Home</a></h2>
+        <h3>Global</h3>
+        <h3><b>contactsHtml.js</b></h3>
+        <ul class="overflowContainer">
+            <li><a href="global.html#WordCount">WordCount</a></li>
+            <li><a href="global.html#attentionCardHtml">attentionCardHtml</a></li>
+            <li><a href="global.html#changeContact">changeContact</a></li>
+            <li><a href="global.html#changeLayoutForMobile">changeLayoutForMobile</a></li>
+            <li><a href="global.html#changeStyleForSmallScreen">changeStyleForSmallScreen</a></li>
+            <li><a href="global.html#checkAllValues">checkAllValues</a></li>
+            <li><a href="global.html#checkCreate">checkCreate</a></li>
+            <li><a href="global.html#checkEdit">checkEdit</a></li>
+            <li><a href="global.html#checkEditEmail">checkEditEmail</a></li>
+            <li><a href="global.html#checkEmail">checkEmail</a></li>
+            <li><a href="global.html#checkPreviousAddTask">checkPreviousAddTask</a></li>
+            <li><a href="global.html#checkValue">checkValue</a></li>
+            <li><a href="global.html#closeAddTaskWrapper">closeAddTaskWrapper</a></li>
+            <li><a href="global.html#closeAddTaskWrapperProps">closeAddTaskWrapperProps</a></li>
+            <li><a href="global.html#closeAddTaskWrapperPropsResponsive">closeAddTaskWrapperPropsResponsive</a></li>
+            <li><a href="global.html#closeAttentionCard">closeAttentionCard</a></li>
+            <li><a href="global.html#closeEditContact">closeEditContact</a></li>
+            <li><a href="global.html#closeNewContact">closeNewContact</a></li>
+            <li><a href="global.html#closeSpecificContact">closeSpecificContact</a></li>
+            <li><a href="global.html#contactHtml">contactHtml</a></li>
+            <li><a href="global.html#createContactHtml">createContactHtml</a></li>
+            <li><a href="global.html#createLetterHtml">createLetterHtml</a></li>
+            <li><a href="global.html#createLetters">createLetters</a></li>
+            <li><a href="global.html#createNewContact">createNewContact</a></li>
+            <li><a href="global.html#deleteContact">deleteContact</a></li>
+            <li><a href="global.html#deleteOwnUser">deleteOwnUser</a></li>
+            <li><a href="global.html#displayContacts">displayContacts</a></li>
+            <li><a href="global.html#editContact">editContact</a></li>
+            <li><a href="global.html#editContactHtml">editContactHtml</a></li>
+            <li><a href="global.html#fadeIn">fadeIn</a></li>
+            <li><a href="global.html#fadeOut">fadeOut</a></li>
+            <li><a href="global.html#generateRandomColor">generateRandomColor</a></li>
+            <li><a href="global.html#gettingPhoneNumber">gettingPhoneNumber</a></li>
+            <li><a href="global.html#initContacts">initContacts</a></li>
+            <li><a href="global.html#isEmailExisting">isEmailExisting</a></li>
+            <li><a href="global.html#newContact">newContact</a></li>
+            <li><a href="global.html#newContactWordCountOne">newContactWordCountOne</a></li>
+            <li><a href="global.html#newContactWordCountTwo">newContactWordCountTwo</a></li>
+            <li><a href="global.html#onlyNumberKey">onlyNumberKey</a></li>
+            <li><a href="global.html#openAttentionCard">openAttentionCard</a></li>
+            <li><a href="global.html#openCreateContact">openCreateContact</a></li>
+            <li><a href="global.html#openSpecificContact">openSpecificContact</a></li>
+            <li><a href="global.html#pushLettersInArray">pushLettersInArray</a></li>
+            <li><a href="global.html#pushLettersIntoHtml">pushLettersIntoHtml</a></li>
+            <li><a href="global.html#pushNewContactValues">pushNewContactValues</a></li>
+            <li><a href="global.html#refreshContacts">refreshContacts</a></li>
+            <li><a href="global.html#responsiveEditContact">responsiveEditContact</a></li>
+            <li><a href="global.html#setRandomColor">setRandomColor</a></li>
+            <li><a href="global.html#showContacts">showContacts</a></li>
+            <li><a href="global.html#showCreateContactPopUp">showCreateContactPopUp</a></li>
+            <li><a href="global.html#slideIn">slideIn</a></li>
+            <li><a href="global.html#slideOut">slideOut</a></li>
+            <li><a href="global.html#specificContactHtml">specificContactHtml</a></li>
+        </ul>
+    </nav>
+
+    <br class="clear">
+
+    <footer>
+        Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 05 2023 15:44:01
+        GMT+0200 (Mitteleuropäische Sommerzeit)
+    </footer>
+
+    <script> prettyPrint(); </script>
+    <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

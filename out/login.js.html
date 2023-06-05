@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>JSDoc: Source: login.js</title>
+
+  <script src="scripts/prettify/prettify.js"> </script>
+  <script src="scripts/prettify/lang-css.js"> </script>
+  <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+  <div id="main">
+
+    <h1 class="page-title">Source: login.js</h1>
+
+
+
+
+
+
+    <section>
+      <article>
+        <pre class="prettyprint source linenums"><code>
+let users = [];
+
+
+/**
+ * This function inits the login page
+ */
+async function initLogin() {
+  await init();
+  openLogIn();
+  checkRememberMe();
+}
+
+
+/**
+ * This function saves the users array to the backend json
+ */
+async function refreshUsers() {
+  jsonFromServer["users"] = users;
+  await saveJSONToServer();
+}
+
+
+/**
+ * This function signs up a new User
+ */
+async function signUp() {
+  let signUpName = document.getElementById("signUpName");
+  let signUpEmail = document.getElementById("signUpEmail");
+  let signUpPassword = document.getElementById("signUpPassword");
+  let phone = "";
+
+  if (!isEmailAlreadyExists(signUpEmail.value)) {
+    signUpUser(signUpName, signUpEmail, signUpPassword, phone);
+  } else {
+    let alert = document.getElementById("emailAlert");
+    alert.classList.remove("d-none");
+  }
+}
+
+
+/**
+ * This function pushes a new User into the users and contacts array
+ * 
+ */
+async function signUpUser(signUpName, signUpEmail, signUpPassword, phone) {
+  let color = await generateRandomColor();
+  let user = {
+    name: signUpName.value,
+    email: signUpEmail.value,
+    password: signUpPassword.value,
+    gender: '',
+  };
+  pushUser(user);
+  newContact(signUpName, signUpEmail, phone, color);
+  await refreshContacts();
+  openLogIn();
+}
+
+
+/**
+ * This function checks if the function already exists
+ * @param {string} email the email of the input of the sign up
+ * @returns if the email is found
+ */
+function isEmailAlreadyExists(email) {
+  for (let i = 0; i &lt; contacts.length; i++) {
+    if (contacts[i].email === email) {
+      return true;
+    }
+  }
+  return false;
+}
+
+
+/**
+ * This function pushes a user to the users array
+ * @param {json} user new user
+ */
+async function pushUser(user) {
+  users.push(user);
+  refreshUsers();
+}
+
+
+/**
+ * This function logs in with a specific user
+ */
+async function logIn() {
+  let email = document.getElementById("email");
+  let password = document.getElementById("password");
+  let user = users.find(
+    (u) => u.email == email.value &amp;&amp; u.password == password.value
+  );
+  if (user) {
+    logInWithUser(user);
+  } else {
+    falseLogIn(email, password);
+  }
+}
+
+
+/**
+ * This function logs into a users account
+ * 
+ * @param {*} user The user u are logging in
+ */
+async function logInWithUser(user) {
+  saveGreetingNameToLocalStorage(user["name"]);
+  saveCurrentUserToLocalStorage(user["email"]);
+  isRememberMe();
+  await replaceLocation();
+}
+
+
+/**
+ * This function clears all log in inputs and opens an alert because of wrong login information
+ * 
+ * @param {*} email container of the email input
+ * @param {*} password container of the password input
+ */
+function falseLogIn(email, password) {
+  email.value = "";
+  password.value = "";
+  let alert = document.getElementById("alert");
+  alert.classList.remove("d-none");
+}
+
+
+/**
+ * This function initializes the guest login
+ */
+function guestLogIn() {
+  saveGreetingNameToLocalStorage('Guest');
+  saveCurrentUserToLocalStorage('');
+}
+
+
+/**
+ * This function replaces the location so there is no going back
+ */
+async function replaceLocation() {
+  window.location.replace("index.html");
+}
+
+
+/**
+ * This function saves the name to the local storage
+ * @param {string} name name of the login email user
+ */
+function saveGreetingNameToLocalStorage(name) {
+  localStorage.setItem("greetingName", name);
+}
+
+
+/**
+ * This function saves the email to the local storage
+ * @param {string} email email of the login user
+ */
+function saveCurrentUserToLocalStorage(email) {
+  localStorage.setItem("currentUser", email);
+}
+
+
+/**
+ * This function checks if the checkbox is being activated
+ */
+function isRememberMe() {
+  const rmCheck = document.getElementById("rememberMe");
+  let emailInput = document.getElementById("email");
+
+  if (rmCheck.checked) {
+    localStorage.username = emailInput.value;
+    localStorage.checkbox = "checked";
+  } else {
+    localStorage.username = "";
+    localStorage.checkbox = "";
+  }
+}
+
+
+/**
+ * This function checks if the remember me was checked before
+ */
+function checkRememberMe() {
+  const rmCheck = document.getElementById("rememberMe");
+  let emailInput = document.getElementById("email");
+
+  if (localStorage.checkbox &amp;&amp; localStorage.checkbox !== "") {
+    emailInput.value = localStorage.username;
+    rmCheck.setAttribute("checked", "checked");
+  }
+}
+
+
+/**
+ * This function is used when you click the remember me 
+ */
+function clickedRememberMe() {
+  const rmCheck = document.getElementById("rememberMe");
+  let emailInput = document.getElementById("email");
+
+  if (localStorage.checkbox &amp;&amp; localStorage.checkbox == "") {
+    localStorage.username = emailInput.value;
+    rmCheck.setAttribute("checked", "checked");
+  } else {
+    rmCheck.removeAttribute("checked");
+    localStorage.username = "";
+    localStorage.checkbox = "";
+  }
+}
+</code></pre>
+      </article>
+    </section>
+
+
+
+
+  </div>
+
+  <nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Global</h3>
+    <h3><a>login.js</a></h3>
+    <ul class="overflowContainer">
+      <li><a href="global.html#LoginContainerHtml">LoginContainerHtml</a></li>
+      <li><a href="global.html#PasswordContainerHtml">PasswordContainerHtml</a></li>
+      <li><a href="global.html#SignUpContainerHtml">SignUpContainerHtml</a></li>
+      <li><a href="global.html#animate">animate</a></li>
+      <li><a href="global.html#animateNormal">animateNormal</a></li>
+      <li><a href="global.html#animateResponsive">animateResponsive</a></li>
+      <li><a href="global.html#checkRememberMe">checkRememberMe</a></li>
+      <li><a href="global.html#clickedRememberMe">clickedRememberMe</a></li>
+      <li><a href="global.html#falseLogIn">falseLogIn</a></li>
+      <li><a href="global.html#guestLogIn">guestLogIn</a></li>
+      <li><a href="global.html#initLogin">initLogin</a></li>
+      <li><a href="global.html#isEmailAlreadyExists">isEmailAlreadyExists</a></li>
+      <li><a href="global.html#isRememberMe">isRememberMe</a></li>
+      <li><a href="global.html#logIn">logIn</a></li>
+      <li><a href="global.html#logInWithUser">logInWithUser</a></li>
+      <li><a href="global.html#logOut">logOut</a></li>
+      <li><a href="global.html#openForgotPassword">openForgotPassword</a></li>
+      <li><a href="global.html#openLogIn">openLogIn</a></li>
+      <li><a href="global.html#openLogOutContainer">openLogOutContainer</a></li>
+      <li><a href="global.html#openSignUp">openSignUp</a></li>
+      <li><a href="global.html#pushUser">pushUser</a></li>
+      <li><a href="global.html#refreshUsers">refreshUsers</a></li>
+      <li><a href="global.html#replaceLocation">replaceLocation</a></li>
+      <li><a href="global.html#saveCurrentUserToLocalStorage">saveCurrentUserToLocalStorage</a></li>
+      <li><a href="global.html#saveGreetingNameToLocalStorage">saveGreetingNameToLocalStorage</a></li>
+      <li><a href="global.html#signUp">signUp</a></li>
+      <li><a href="global.html#signUpUser">signUpUser</a></li>
+    </ul>
+  </nav>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 05 2023 15:44:09
+    GMT+0200 (Mitteleuropäische Sommerzeit)
+  </footer>
+
+  <script> prettyPrint(); </script>
+  <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

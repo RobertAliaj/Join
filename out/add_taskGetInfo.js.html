@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>JSDoc: Source: add_taskGetInfo.js</title>
+
+  <script src="scripts/prettify/prettify.js"> </script>
+  <script src="scripts/prettify/lang-css.js"> </script>
+  <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+  <div id="main">
+
+    <h1 class="page-title">Source: add_taskGetInfo.js</h1>
+
+
+
+
+
+
+    <section>
+      <article>
+        <pre class="prettyprint source linenums"><code>/**
+Retrieves the IDs of input fields used in the task form.
+@returns {object} An object containing references to the input fields.
+titleField: The input field for the task title.
+descriptionField: The input field for the task description.
+chosenDateField: The input field for the chosen date.
+categoryField: The input field for the chosen category.
+contactField: The input field for the selected contacts.
+*/
+function getIdsOfInputFields() {
+  let titleField = document.getElementById("titleInput");
+  let descriptionField = document.getElementById("descriptionInput");
+  let chosenDateField = document.getElementById("date");
+  let categoryField = document.getElementById("chosenCategory");
+  let contactField = document.getElementById("initialsContainer");
+
+  return {
+    titleField,
+    descriptionField,
+    chosenDateField,
+    categoryField,
+    contactField,
+  };
+}
+
+/**
+Retrieves the value of the title or description input field.
+If the input field is empty, it adds the "d-none" CSS class to the corresponding report element and sets the 'required' variable to true.
+If the input field is not empty, it removes the "d-none" CSS class from the corresponding report element, sets the 'required' variable to false, and returns the value of the input field.
+@param {string} inputId - The ID of the input field.
+@param {string} reportId - The ID of the report element.
+@returns {string} The value of the input field if it is not empty, otherwise null.
+*/
+function getTitleOrDescription(inputId, reportId) {
+  let taskInfo = document.getElementById(inputId).value;
+  if (taskInfo == "") {
+    remove_D_NoneCSSByReportId(reportId);
+    required = true;
+  } else {
+    required = false;
+    add_D_NoneCSSByReportId(reportId);
+    return taskInfo;
+  }
+}
+
+/**
+Retrieves the selected category.
+If no category is selected, it adds the "d-none" CSS class to the corresponding report element and sets the 'required' variable to true.
+If a category is selected, it removes the "d-none" CSS class from the corresponding report element, sets the 'required' variable to false, and returns the selected category.
+@param {string} reportId - The ID of the report element.
+@returns {string} The selected category if it exists, otherwise null.
+*/
+function getCategory(reportId) {
+  if (selectedCategory == undefined) {
+    remove_D_NoneCSSByReportId(reportId);
+    required = true;
+  } else {
+    required = false;
+    add_D_NoneCSSByReportId(reportId);
+    return selectedCategory;
+  }
+}
+
+/**
+Retrieves the selected contact.
+If no contact is selected, it adds the "d-none" CSS class to the corresponding report element and sets the 'required' variable to true.
+If a contact is selected, it removes the "d-none" CSS class from the corresponding report element, sets the 'required' variable to false, and returns the selected contact.
+@param {string} reportId - The ID of the report element.
+@returns {string} The selected contact if it exists, otherwise null.
+*/
+function getContact(reportId) {
+  if (collectedContact == "") {
+    remove_D_NoneCSSByReportId(reportId);
+    required = true;
+  } else {
+    required = false;
+    add_D_NoneCSSByReportId(reportId);
+    return collectedContact;
+  }
+}
+
+/**
+Retrieves the chosen date.
+If no date is chosen, it adds the "d-none" CSS class to the corresponding report element and sets the 'required' variable to true.
+If a date is chosen, it removes the "d-none" CSS class from the corresponding report element, sets the 'required' variable to false, and returns the chosen date.
+@param {string} reportId - The ID of the report element.
+@returns {string} The chosen date if it exists, otherwise null.
+*/
+function getDate(reportId) {
+  let chosenDate = document.getElementById("date").value;
+  if (chosenDate == "") {
+    remove_D_NoneCSSByReportId(reportId);
+    required = true;
+  } else {
+    add_D_NoneCSSByReportId(reportId);
+    required = false;
+    return chosenDate;
+  }
+}
+
+/**
+Retrieves the priority value.
+If no priority is selected, it adds the "d-none" CSS class to the corresponding report element and sets the 'required' variable to true.
+If a priority is selected, it removes the "d-none" CSS class from the corresponding report element, sets the 'required' variable to false, and returns the selected priority value.
+@param {string} reportId - The ID of the report element.
+@returns {string} The selected priority value if it exists, otherwise null.
+*/
+function getPrio(reportId) {
+  if (prio == undefined) {
+    remove_D_NoneCSSByReportId(reportId);
+    required = true;
+  } else {
+    required = false;
+    add_D_NoneCSSByReportId(reportId);
+    return prio;
+  }
+}
+
+/**
+ * Toggles the visibility of a specific div element based on the status of a subtask.
+ * If the subtaskStatus at index i is false, it removes the "d-none" CSS class from the element with the specified divID
+ * and updates the subtaskStatus array accordingly.
+ * If the subtaskStatus at index i is true, it adds the "d-none" CSS class to the element with the specified divID
+ * and updates the subtaskStatus array accordingly.
+ *
+ * @param {string} divID - The ID of the div element to toggle.
+ * @param {number} i - The index of the subtask in the subtaskStatus array.
+ */
+function setStatus(divID, i) {
+  if (subtaskStatus[i] == false) {
+    document.getElementById(divID).classList.remove("d-none");
+    subtaskStatus.splice(i, 1, true);
+  } else {
+    document.getElementById(divID).classList.add("d-none");
+    subtaskStatus.splice(i, 1, false);
+  }
+}
+
+/**
+ * Pushes the values of the subtaskStatus array to the task.subtasks.status array.
+ */
+function pushStatus() {
+  for (let i = 0; i &lt; subtaskStatus.length; i++) {
+    task.subtasks.status.push(subtaskStatus[i]);
+  }
+}
+
+/**
+ * Pushes the values of the subtasks array to the task.subtasks.name array.
+ */
+function pushSubtask() {
+  for (let i = 0; i &lt; subtasks.length; i++) {
+    task.subtasks.name.push(subtasks[i]) || [];
+  }
+}
+
+</code></pre>
+      </article>
+    </section>
+
+
+
+
+  </div>
+
+  <nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Global</h3>
+    <ul>
+      <li><a href="global.html#addCategory">addCategory</a></li>
+      <li><a href="global.html#addClearBtnAndRemoveArrow">addClearBtnAndRemoveArrow</a></li>
+      <li><a href="global.html#addContacts">addContacts</a></li>
+      <li><a href="global.html#addPopUpCSS">addPopUpCSS</a></li>
+      <li><a href="global.html#addSelectedPoint">addSelectedPoint</a></li>
+      <li><a href="global.html#addSubtask">addSubtask</a></li>
+      <li><a href="global.html#addTaskSetDate">addTaskSetDate</a></li>
+      <li><a href="global.html#add_D_NoneCSSByReportId">add_D_NoneCSSByReportId</a></li>
+      <li><a href="global.html#changeColor">changeColor</a></li>
+      <li><a href="global.html#changeProgress">changeProgress</a></li>
+      <li><a href="global.html#changeStyleForPriority">changeStyleForPriority</a></li>
+      <li><a href="global.html#clearContacts">clearContacts</a></li>
+      <li><a href="global.html#clearTaskFields">clearTaskFields</a></li>
+      <li><a href="global.html#clearValues">clearValues</a></li>
+      <li><a href="global.html#closeAddTask">closeAddTask</a></li>
+      <li><a href="global.html#closeCategoryFolder">closeCategoryFolder</a></li>
+      <li><a href="global.html#closeCreateCategory">closeCreateCategory</a></li>
+      <li><a href="global.html#collectAllInfos">collectAllInfos</a></li>
+      <li><a href="global.html#combineNames">combineNames</a></li>
+      <li><a href="global.html#deselectContactforTask">deselectContactforTask</a></li>
+      <li><a href="global.html#directToNewContact">directToNewContact</a></li>
+      <li><a href="global.html#generateRandomColor">generateRandomColor</a></li>
+      <li><a href="global.html#getCategory">getCategory</a></li>
+      <li><a href="global.html#getClass">getClass</a></li>
+      <li><a href="global.html#getContact">getContact</a></li>
+      <li><a href="global.html#getDate">getDate</a></li>
+      <li><a href="global.html#getFirstLetters">getFirstLetters</a></li>
+      <li><a href="global.html#getIdOfPrioButtons">getIdOfPrioButtons</a></li>
+      <li><a href="global.html#getIdsOfInputFields">getIdsOfInputFields</a></li>
+      <li><a href="global.html#getPrio">getPrio</a></li>
+      <li><a href="global.html#getRandomColor">getRandomColor</a></li>
+      <li><a href="global.html#getTitleOrDescription">getTitleOrDescription</a></li>
+      <li><a href="global.html#initAddTask">initAddTask</a></li>
+      <li><a href="global.html#loadInfos">loadInfos</a></li>
+      <li><a href="global.html#manageInitials">manageInitials</a></li>
+      <li><a href="global.html#openAddTaskContainer">openAddTaskContainer</a></li>
+      <li><a href="global.html#openCategoryFolder">openCategoryFolder</a></li>
+      <li><a href="global.html#openCreateCategory">openCreateCategory</a></li>
+      <li><a href="global.html#priority">priority</a></li>
+      <li><a href="global.html#pullDownMenu">pullDownMenu</a></li>
+      <li><a href="global.html#pushCategoryInCategorys">pushCategoryInCategorys</a></li>
+      <li><a href="global.html#pushInitialAndColorData">pushInitialAndColorData</a></li>
+      <li><a href="global.html#pushStatus">pushStatus</a></li>
+      <li><a href="global.html#pushSubtask">pushSubtask</a></li>
+      <li><a href="global.html#pushTaskInTasks">pushTaskInTasks</a></li>
+      <li><a href="global.html#removeClassFromColorPicker">removeClassFromColorPicker</a></li>
+      <li><a href="global.html#removeClearBtnAndAddArrow">removeClearBtnAndAddArrow</a></li>
+      <li><a href="global.html#removeInitialAndColorData">removeInitialAndColorData</a></li>
+      <li><a href="global.html#removeSubtask">removeSubtask</a></li>
+      <li><a href="global.html#remove_D_NoneCSSByReportId">remove_D_NoneCSSByReportId</a></li>
+      <li><a href="global.html#renderAvailableContacts">renderAvailableContacts</a></li>
+      <li><a href="global.html#renderCategorys">renderCategorys</a></li>
+      <li><a href="global.html#renderContacts">renderContacts</a></li>
+      <li><a href="global.html#renderInitials">renderInitials</a></li>
+      <li><a href="global.html#renderSubtasks">renderSubtasks</a></li>
+      <li><a href="global.html#renderYou">renderYou</a></li>
+      <li><a href="global.html#renderYouContact">renderYouContact</a></li>
+      <li><a href="global.html#resetColorOfPrioButtons">resetColorOfPrioButtons</a></li>
+      <li><a href="global.html#resetImgOfPrioButtons">resetImgOfPrioButtons</a></li>
+      <li><a href="global.html#resetPrioButton">resetPrioButton</a></li>
+      <li><a href="global.html#saveNewCategory">saveNewCategory</a></li>
+      <li><a href="global.html#selectCategory">selectCategory</a></li>
+      <li><a href="global.html#selectContactForTask">selectContactForTask</a></li>
+      <li><a href="global.html#selectedColor">selectedColor</a></li>
+      <li><a href="global.html#selectedForTask">selectedForTask</a></li>
+      <li><a href="global.html#setAttribute">setAttribute</a></li>
+      <li><a href="global.html#setOnclickForColorpicker">setOnclickForColorpicker</a></li>
+      <li><a href="global.html#setPrioButtonsToDefault">setPrioButtonsToDefault</a></li>
+      <li><a href="global.html#setPriority">setPriority</a></li>
+      <li><a href="global.html#setStatus">setStatus</a></li>
+      <li><a href="global.html#showCreateTaskBtn">showCreateTaskBtn</a></li>
+      <li><a href="global.html#slideInAnimationDesktop">slideInAnimationDesktop</a></li>
+      <li><a href="global.html#slideInAnimationResponsive">slideInAnimationResponsive</a></li>
+      <li><a href="global.html#switchContactIcons">switchContactIcons</a></li>
+      <li><a href="global.html#switchIconsfromSubtask">switchIconsfromSubtask</a></li>
+      <li><a href="global.html#switchSubtaskIcons">switchSubtaskIcons</a></li>
+      <li><a href="global.html#task">task</a></li>
+      <li><a href="global.html#taskUploaded">taskUploaded</a></li>
+    </ul>
+  </nav>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 05 2023 15:54:25
+    GMT+0200 (Mitteleuropäische Sommerzeit)
+  </footer>
+
+  <script> prettyPrint(); </script>
+  <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>
