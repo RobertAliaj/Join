@@ -460,7 +460,7 @@ async function pushTaskInTasks() {
  */
 function taskUploaded() {
   // Hier muss das Url noch dynamisch angepasst werden, erst wenn das Projekt fertig auf dem Server liegt
-  if (window.location.href == 'http://127.0.0.1:5501/board.html' || window.location.href == 'https://gruppe-join-421.developerakademie.net/board.html') {
+  if (window.location.href == 'http://127.0.0.1:5501/board.html' || window.location.href == 'https://join.robert-aliaj.de/board.html') {
     closeAddTask();
     closeAddTaskWrapper();
     initBoard();

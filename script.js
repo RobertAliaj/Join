@@ -1,4 +1,4 @@
-setURL(`https://gruppe-join-421.developerakademie.net/smallest_backend_ever`);
+setURL(`https://join.robert-aliaj.de/smallest_backend_ever`);
 
 async function init() {
   await downloadFromServer();

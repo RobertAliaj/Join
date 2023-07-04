@@ -5,7 +5,7 @@
 $recipient = $_POST['name'];
 $redirect = 'login.html';
 
-$url = 'http://gruppe-join-421.developerakademie.net/new_password.html?email='.urlencode($_POST['name']);
+$url = 'http://join.robert-aliaj.de/new_password.html?email='.urlencode($_POST['name']);
 $_POST['message'] = $url;
 ########### CONFIG END ###########
 

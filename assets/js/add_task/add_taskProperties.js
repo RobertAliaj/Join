@@ -427,13 +427,13 @@ function closeAddTask() {
 
 /**
  * Shows or hides the create task button based on the current URL.
- * If the URL matches 'http://127.0.0.1:5501/add_task.html' or 'https://gruppe-join-421.developerakademie.net/add_task.html',
+ * If the URL matches 'http://127.0.0.1:5501/add_task.html' or 'https://join.robert-aliaj.de/add_task.html',
  * the create task button is shown. Otherwise, it is hidden.
  */
 function showCreateTaskBtn() {
   if (
     window.location.href == 'http://127.0.0.1:5501/add_task.html' ||
-    window.location.href == 'https://gruppe-join-421.developerakademie.net/add_task.html'
+    window.location.href == 'https://join.robert-aliaj.de/add_task.html'
   ) {
     document.getElementById('addTaskBtn').classList.remove('d-none')
   } else {

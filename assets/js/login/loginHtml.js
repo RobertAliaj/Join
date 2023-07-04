@@ -107,7 +107,7 @@ function PasswordContainerHtml() {
         <img onclick="openLogIn()" class="arrow" src="assets/img/left-arrow.png">
         <span class="forgot-password-span" >Forgot Password</span>
         <div class="horizontal-blue-line"></div>
-        <form class="form-container " action="https://gruppe-join-421.developerakademie.net/send_mail.php" method="POST">
+        <form class="form-container " action="https://join.robert-aliaj.de/send_mail.php" method="POST">
           <div>
             <input name="name" type="email" placeholder="Email" id="forgotPasswordEmail" required>
             <img src="assets/img/mail.png" alt="">
