@@ -55,7 +55,7 @@ async function setNewPassword(password1) {
  */
 function correctPassword() {
   document.getElementById("loginContainer").innerHTML += `
-        <div id="blueAlert" class="blue-alert">Dein Passwort wurde erfolgreich geändert. In ein paar Sekunden wirst du zur Login Seite weitergeleitet!</div>
+        <div id="blueAlert" class="blue-alert">Your password has been successfully changed. In a few seconds, you will be redirected to the login page!</div>
     `;
   setTimeout(function () {
     location.href = "login.html";

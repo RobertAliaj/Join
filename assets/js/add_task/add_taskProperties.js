@@ -14,12 +14,9 @@ function openCategoryFolder(clicked, notClicked, visible, notVisible) {
   document.getElementById("initialsContainer").classList.add("d-none");
 }
 
+
 /**
  * Closes a category folder in a dropdown menu.
- *
- * @param {string} clicked - The ID of the category folder element that is clicked and should be closed.
- * @param {string} visible - The ID of the content element that should be hidden.
- * @param {string} notVisible - The ID of the content element that should be hidden.
  */
 function closeCategoryFolder(clicked, visible, notVisible) {
   document.getElementById(clicked).classList.remove("dropdown-category-open");
@@ -27,6 +24,7 @@ function closeCategoryFolder(clicked, visible, notVisible) {
   document.getElementById(notVisible).classList.add("d-none");
   document.getElementById("initialsContainer").classList.remove("d-none");
 }
+
 
 /**
  * Removes the "clearAddButtons" element's "d-none" class and adds the "ddArrow" element's "d-none" class.
@@ -37,6 +35,7 @@ function removeClearBtnAndAddArrow() {
   document.getElementById("ddArrow").classList.remove("d-none");
   setTimeout(setAttribute, 200);
 }
+
 
 /**
  * Adds the "clearAddButtons" element's "d-none" class and removes the "ddArrow" element's "d-none" class.
@@ -50,9 +49,9 @@ function addClearBtnAndRemoveArrow() {
     .removeAttribute("onclick");
 }
 
+
 /**
  * Changes the style of the element based on the provided priority.
- * @param {string} clicked - The identifier of the element that was clicked.
  */
 function changeStyleForPriority(clicked) {
   if (clicked == "prioHigh") {
@@ -63,6 +62,7 @@ function changeStyleForPriority(clicked) {
     document.getElementById(clicked).style = `background-color: rgb(147, 222, 70); color: white`;
   }
 }
+
 
 /**
  * Resets the style and images of priority buttons.
@@ -77,9 +77,9 @@ function resetPrioButton(notClicked, alsoNotClicked) {
   document.getElementById("prioLowImg").src = `assets/img/prio_low.svg`;
 }
 
+
 /**
  * Changes the color of the specified image.
- * @param {string} img - The identifier of the image to change the color.
  */
 function changeColor(img) {
   imgPath = document.getElementById(img);
@@ -94,10 +94,9 @@ function changeColor(img) {
   }
 }
 
+
 /**
  * Gets the CSS class based on the status of the subtask at the specified index.
- * @param {number} i - The index of the subtask.
- * @returns {string} The CSS class to be applied.
  */
 function getClass(i) {
   if (subtaskStatus[i] == true) {
@@ -106,6 +105,7 @@ function getClass(i) {
     return (setClass = "d-none");
   }
 }
+
 
 /**
  * Switches the icons and behavior of the subtask elements based on the boolean argument.
@@ -128,6 +128,7 @@ function switchIconsfromSubtask(booleanArgument, addSubtask, subtaskInput) {
   }
 }
 
+
 /**
  * Opens the create category section by modifying the relevant elements' classes and invoking other functions.
  */
@@ -139,6 +140,7 @@ function openCreateCategory() {
   getRandomColor();
 }
 
+
 /**
  * Closes the create category section by modifying the relevant elements' classes.
  */
@@ -148,27 +150,25 @@ function closeCreateCategory() {
   document.getElementById("color-picker").classList.add("d-none");
 }
 
+
 /**
  * Removes the "d-none" CSS class from the element with the specified report ID.
- * @param {string} reportId - The ID of the element to remove the "d-none" CSS class from.
  */
 function remove_D_NoneCSSByReportId(reportId) {
   document.getElementById(reportId).classList.remove("d-none");
 }
 
+
 /**
  * Adds the "d-none" CSS class to the element with the specified report ID.
- * @param {string} reportId - The ID of the element to add the "d-none" CSS class to.
  */
 function add_D_NoneCSSByReportId(reportId) {
   document.getElementById(reportId).classList.add("d-none");
 }
 
+
 /**
  * Resets the background color and text color of the priority buttons.
- * @param {HTMLElement} highPrio - The high priority button element.
- * @param {HTMLElement} midPrio - The medium priority button element.
- * @param {HTMLElement} lowPrio - The low priority button element.
  */
 function resetColorOfPrioButtons(highPrio, midPrio, lowPrio) {
   highPrio.style.background = "white";
@@ -179,6 +179,7 @@ function resetColorOfPrioButtons(highPrio, midPrio, lowPrio) {
   lowPrio.style.color = "black";
 }
 
+
 /**
  * Resets the image source of the priority buttons to their default images.
  */
@@ -188,9 +189,9 @@ function resetImgOfPrioButtons() {
   document.getElementById("prioLowImg").src = `assets/img/prio_low.svg`;
 }
 
+
 /**
  * Retrieves the priority button elements by their IDs.
- * @returns {Array<HTMLElement>} An array containing the high, medium, and low priority button elements.
  */
 function getIdOfPrioButtons() {
   let highPrio = document.getElementById("prioHigh");
@@ -200,9 +201,9 @@ function getIdOfPrioButtons() {
   return [highPrio, midPrio, lowPrio];
 }
 
+
 /**
  * Generates a random color in hexadecimal format.
- * @returns {Promise<string>} A promise that resolves to a randomly generated color.
  */
 async function generateRandomColor() {
   let color = "#" + Math.floor(Math.random() * 16777216).toString(16).padStart(6, '0');
@@ -218,6 +219,7 @@ async function generateRandomColor() {
   }
   return color;
 }
+
 
 /**
  * Applies the slide-in animation for the desktop view by modifying the classes of the specified elements.
@@ -235,10 +237,9 @@ function slideInAnimationDesktop(greyBackground, addTaskPopUp, profile, addTaskB
   addTaskBtn.classList.remove("d-none");
 }
 
+
 /**
  * Applies the slide-in animation for the responsive view by modifying the classes of the specified elements.
- * @param {HTMLElement} greyBackground - The grey background element.
- * @param {HTMLElement} addTaskPopUp - The add task popup element.
  */
 function slideInAnimationResponsive(greyBackground, addTaskPopUp) {
   greyBackground.classList.remove("d-none");
@@ -250,7 +251,6 @@ function slideInAnimationResponsive(greyBackground, addTaskPopUp) {
 
 /**
  * Opens the add task container and applies the appropriate slide-in animation based on the window width.
- * @param {number} [idx] - Optional index value for selecting a contact.
  */
 function openAddTaskContainer(idx) {
   let greyBackground = document.getElementById("greyBackground");
@@ -272,6 +272,7 @@ function openAddTaskContainer(idx) {
   addContacts();
 }
 
+
 /**
  * Resets the priority buttons to their default state.
  */
@@ -281,18 +282,18 @@ function setPrioButtonsToDefault() {
   resetImgOfPrioButtons();
 }
 
+
 /**
  * Removes the 'choosenCategory' class from all color circles in the color picker.
  */
 function removeClassFromColorPicker() {
-  // Retrieve all color circles
   let colorCircles = document.querySelectorAll('[id^="colorPickCircle"]');
 
-  // Remove the 'choosenCategory' class from all color circles
   colorCircles.forEach((circle) => {
     circle.classList.remove('choosenCategory');
   });
 }
+
 
 /**
  * Selects a color by adding the 'choosenCategory' class to the specified color circle and sets the color for a new category.
@@ -310,10 +311,9 @@ function selectedColor(r, g, b, index) {
   colorForNewCategory = `rgb(${r}, ${g}, ${b})`;
 }
 
+
 /**
  * Generates random colors for the color picker and assigns them to color circles.
- * Uses the `generateRandomColor` function to generate each color asynchronously.
- * @returns {Promise<void>}
  */
 async function getRandomColor() {
   categoryInputFiled = document.getElementById("categoryInput");
@@ -326,13 +326,14 @@ async function getRandomColor() {
   }
 }
 
+
 /**
  * Adds the "selection-point" class to the specified element to indicate selection.
- * @param {string} selected - The ID of the element to add the "selection-point" class to.
  */
 function addSelectedPoint(selected) {
   document.getElementById(selected).classList.add("selection-point");
 }
+
 
 /**
  * Selects a contact for a task by adding it to a collected contacts array, adding a selected point indicator,
@@ -348,6 +349,7 @@ function selectContactForTask(collectedContact, selectedContact, selected, color
   manageInitials(selectedContact, colorOfContact);
   switchContactIcons();
 }
+
 
 /**
  * Deselects a contact for a task by removing it from a collected contacts array, managing initials and color,
@@ -365,11 +367,9 @@ function deselectContactforTask(collectedContact, selectedContact, colorOfContac
   switchContactIcons();
 }
 
+
 /**
  * This function is used to change the height of a div and display its contents
- * if the height of a div was previously changed and you click on another,
- * the previous div is reduced again and the content is hidden.
- * The height of the clicked div is increased and the content is displayed
  *
  * @param {*} clicked - This is the id where a classlist should be changed
  * @param {*} notClicked - This is the id where a classlist should be changed
@@ -391,21 +391,9 @@ function pullDownMenu(clicked, notClicked, visible, notVisible) {
   }
 }
 
-/**
- * Renders the available contacts by generating HTML for each contact and appending it to the contact container.
- * @param {Array} contacts - The array of available contacts.
- * @param {number} i - The index of the contact to render.
- */
-function renderAvailableContacts(contacts, i) {
-  let contactName = combineNames(contacts, i);
-  let colorOfContact = contacts[i]["color"];
-  contactContainer.innerHTML += renderContactsHtml(contactName, colorOfContact, i);
-}
 
 /**
  * Switches the contact icons based on the state of collected contacts and initials rendering.
- * If there are no collected contacts or initials have been rendered, the clear button is removed and the arrow is added.
- * Otherwise, the clear button is added and the arrow is removed.
  */
 function switchContactIcons() {
   if (collectedContact.length == false || initialsRenderd == true) {
@@ -415,9 +403,9 @@ function switchContactIcons() {
   }
 }
 
+
 /**
- * Closes the add task section by resetting the pull-down menus for assignedTo and category,
- * clearing the task fields, and clearing the selected contacts.
+ * Closes the add task section by resetting the pull-down menus for assignedTo and category
  */
 function closeAddTask() {
   pullDownMenu('assingedTo', 'category', 'moreContacts', 'moreCategorys');
@@ -425,10 +413,9 @@ function closeAddTask() {
   clearContacts();
 }
 
+
 /**
  * Shows or hides the create task button based on the current URL.
- * If the URL matches 'http://127.0.0.1:5501/add_task.html' or 'https://join.robert-aliaj.de/add_task.html',
- * the create task button is shown. Otherwise, it is hidden.
  */
 function showCreateTaskBtn() {
   if (
@@ -441,12 +428,10 @@ function showCreateTaskBtn() {
   }
 }
 
+
 /**
  * Sets the onclick event for a color circle in the color picker.
  * Extracts the RGB color value from the color circle's style and assigns it to the onclick event.
- *
- * @param {HTMLElement} colorCircle - The color circle element to set the onclick event for.
- * @param {number} index - The index of the color circle.
  */
 function setOnclickForColorpicker(colorCircle, index) {
   rgbColor = colorCircle.style["cssText"];
@@ -455,15 +440,15 @@ function setOnclickForColorpicker(colorCircle, index) {
   colorCircle.setAttribute("onclick", `selectedColor(${onclickColor}, ${index})`);
 }
 
+
 /**
  * Adds CSS classes to a popup element to make it visible and styled as a popup.
- *
- * @param {HTMLElement} popUpId - The ID of the popup element to add CSS classes to.
  */
 function addPopUpCSS(popUpId) {
   popUpId.classList.remove("d-none");
   popUpId.classList.add("popUp");
 }
+
 
 /**
  * Switches the icons and visibility of the subtask input and create subtask elements.
@@ -483,12 +468,10 @@ function switchSubtaskIcons() {
   }
 }
 
+
 /**
 Pushes the initial and color data of a contact to the 'initials' array.
 Clears the selectedContact variable.
-@param {string} initial - The initial of the contact.
-@param {string} colorOfContact - The color associated with the contact.
-@param {string} selectedContact - The selected contact.
 */
 function pushInitialAndColorData(initial, colorOfContact, selectedContact) {
   initials.push({
@@ -501,7 +484,6 @@ function pushInitialAndColorData(initial, colorOfContact, selectedContact) {
 
 /**
 Removes the initial and color data of a contact from the 'initials' array.
-Clears the selectedContact variable.
 @param {string} initial - The initial of the contact to remove.
 @param {string} selectedContact - The selected contact.
 */
